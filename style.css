@@ -2,17 +2,20 @@
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    flex-wrap: wrap;
 }
 
 .box {
-    background-color: yellow;
+    color: white;
     width: 250px;
     height: 250px;
     border: 2;
     box-sizing: border-box;
-    text-align: center;
+    border-width: thin;
+    border-style: solid;
 }
 .box-content{
     padding: 5px;
-    border: black;
+    border-width: thick;
+    border-style: dotted;
 }
