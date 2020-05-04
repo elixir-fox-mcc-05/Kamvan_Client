@@ -11,91 +11,184 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div id="box-category" class="col s3">
-            <div class="header red darken-2 white-text">
-                <span>Backlog</span>
+        <div id="newtask" class="modal">
+            <div class="modal-content">
+              <h4>Add New Task</h4>
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input  name="title" id="title" type="text" class="validate">
+                      <label for="title">Title</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea name="description" id="description" class="materialize-textarea validate"></textarea>
+                      <label for="description">Description</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input name="point" id="point" type="number" class="validate">
+                      <label for="point">Point</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input name="assignedto" id="assignedto" type="text" class="validate">
+                      <label for="assignedto">Assigned To</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red  white-text">Cancel</a>
+              <div></div>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat blue  white-text">Save</a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="title-kamvan">
+                <h3>Kamvan Board</h3>
+                <a href="#newtask" class="waves-effect waves-light btn modal-trigger indigo">New Task</a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="box-category" class="col s12 l3">
+                <div class="header red darken-2 white-text">
+                    <span>Backlog</span>
                 </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
+                </div>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
+                </div>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
+                </div>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
                 </div>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
+            <div id="box-category" class="col s12 l3">
+                <div class="header orange darken-2 white-text">
+                    <span>Todo</span>
                 </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
-                </div>
-            </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-todo" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
                 </div>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
+            <div id="box-category" class="col s12 l3">
+                <div class="header light-blue darken-2 white-text">
+                    <span>Doing</span>
                 </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-doing" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div id="box-category" class="col s12 l3">
+                <div class="header green darken-2 white-text">
+                    <span>Done</span>
+                </div>
+                <div id="box-item" class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title">Task 1</span>
+                        <p>This is your first task</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#detail-done" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="box-category" class="col s3">
-            <div class="header orange darken-2 white-text">
-                <span>Todo</span>
+        <div id="detail-backlog" class="modal">
+            <div class="modal-content">
+              <h4>Detail Task</h4>
+              <p>Task Description</p>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
-                </div>
+            <div class="modal-footer">
+                <div></div>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Todo</a>
             </div>
         </div>
-        <div id="box-category" class="col s3">
-            <div class="header light-blue darken-2 white-text">
-                <span>Doing</span>
+        <div id="detail-todo" class="modal">
+            <div class="modal-content">
+              <h4>Detail Task</h4>
+              <p>Task Description</p>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
-                </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Backlog</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Doing</a>
             </div>
         </div>
-        <div id="box-category" class="col s3">
-            <div class="header green darken-2 white-text">
-                <span>Done</span>
+        <div id="detail-doing" class="modal">
+            <div class="modal-content">
+              <h4>Detail Task</h4>
+              <p>Task Description</p>
             </div>
-            <div id="box-item" class="card white">
-                <div class="card-content grey-text">
-                    <span class="card-title">Task 1</span>
-                    <p>This is your first task</p>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="waves-effect waves-light btn">Show Detail</a>
-                </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Todo</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Done</a>
             </div>
         </div>
-
+        <div id="detail-done" class="modal">
+            <div class="modal-content">
+              <h4>Detail Task</h4>
+              <p>Task Description</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Doing</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red  white-text">Delete</a>
+              <div></div>
+            </div>
+        </div>
     </div>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Main Script -->
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
