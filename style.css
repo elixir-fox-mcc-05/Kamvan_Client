@@ -145,12 +145,24 @@ body {
 }
 
 .card button {
-    width: 180px;
-    height: 40px;
-    background-color: #52ef44;
-    border: none;
-    border-radius: 20px;
-    margin-top: 40px;
-    color: white;
-    font-size: 20px;
+  width: 180px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 40px;
+  color: white;
+  font-size: 20px;
+}
+
+.card .button1 {
+  background-color: #ff6161;
+}
+.card .button2 {
+  background-color: #a6b4ff;
+}
+.card .button3 {
+  background-color: #efde44;
+}
+.card .button4 {
+  background-color: #52ef44;
 }
