@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+
+        <title>Kanban Kanban</title>
+    </head>
+    <body>
+        <!-- MAIN PAGE -->
+        <div class="mainPage page">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                        <a class="navbar-brand nav-link"> Kanban </a>
+                        <div class="navbar-nav right">
+                            <a class="nav-link" href="#"> Logout </a>
+                        </div>
+                    </div>
+                </nav>
+            <h1 id="title">Kanban</h1>
+            <div class="newKanban">
+                <!-- New Task Form -->
+                <div class="containerAdd">
+                    <h2 class="text-center">New Task</h2><hr>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="newTask" class="form-control" placeholder="New Task" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm createBtn">Create Task</button>
+                    </form>
+                </div>
+                <!-- End Task Form -->
+            </div>
+
+            <!-- Kanban Block -->
+            <div class="containerHome">
+                <!-- Container Category -->
+                <div class="contCategory">
+                    <!-- Task Category Container -->
+                    <div class="category">Backlog</div>
+                    <!-- Kanban -->
+                    <div class="kanbanbox">
+                        <div class="taskTitle"> Task </div>
+                        <button type="button" class="btn btn-secondary btn-sm deleteBtn">Delete</button>
+                    </div>
+                </div>
+                <!-- Container Category -->
+                <div class="contCategory">
+                    <div class="category">Todo</div>
+                    <div class="kanbanbox">
+                        <div class="taskTitle"> Task </div>
+                        <button type="button" class="btn btn-secondary btn-sm deleteBtn">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="contCategory">
+                    <div class="category">Done</div>
+                    <div class="kanbanbox">
+                        <div class="taskTitle"> Task </div>
+                        <button type="button" class="btn btn-secondary btn-sm deleteBtn">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="contCategory">
+                    <div class="category">Complete</div>
+                    <div class="kanbanbox">
+                        <div class="taskTitle"> Task </div>
+                        <button type="button" class="btn btn-secondary btn-sm deleteBtn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN PAGE -->
+
+        <!-- HOME PAGE -->
+        <div class="page">
+            <div id="home">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                        <a class="navbar-brand nav-link" href="#"> Home </a>
+                        <div class="navbar-nav right">
+                            <a class="nav-link" href="#"> Login </a>
+                            <a class="nav-link" href="#"> Register </a>                           
+                        </div>
+                    </div>
+                </nav>
+    
+                <div class="jumbotron">
+                    <h1 class="display-4"> Welcome To Kanban </h1>
+                    <hr class="my-4">
+                    <p>Kanban for weekly challenge Hacktiv8 Phase 2</p>
+                    <p>The main purpose of a kanban is to help organize tasks</p>
+                </div>
+            </div>
+    
+            <div class="center">
+                <!-- Login Form -->
+                <div id="login">
+                    <div class="containerForm wrap-logreg">
+                        <h1> Login </h1>
+                        <form class="form-login">
+                            <div class="login-wrap">
+                                <input class="input-login" type="email" name="loginEmail" placeholder="Email"
+                                    autocomplete="off" required>
+                                <span class="icon-login" data-placeholder="&#xf207;"></span>
+                            </div>
+                            <div class="login-wrap">
+                                <input class="input-login" type="password" name="loginPassword" placeholder="Password"
+                                     required>
+                                <span class="icon-login" data-placeholder="&#xf191;"></span>
+                            </div>
+    
+                            <div class="login-wrap-button">
+                                <button class="button-login" type="submit"> Login </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END HOME -->
+
+        <script src="main.js"></script>
+    </body>
+</html>
