@@ -18,7 +18,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="color: white;">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="color: white;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,7 +43,58 @@
                     <a id="btn" href="#" class="btn btn-primary" data-toggle="modal" data-target="#todo-add-container">Add Task</a>
                 </form>
             </div>
-        </nav>
+        </nav> -->
+
+        <div class="landing-container vw-100 vh-100">
+            <div class="register-banner d-flex w-100 h-100">
+                <div class="register-left col-md-6 bg-primary vh-100">
+                    <div class="register-card h-auto p-5 d-flex align-self-center ">
+                        <h1><center>JOIN US</center></h1>
+                        <button class="btn btn-secondary ml-5 mr-5" onclick="alter('a')">Registered? Sign in</button>
+                    </div>
+                </div>
+                <div class="register-right col-md-6 bg-info vh-100">    
+                    <div class="register-card h-auto p-5 d-flex align-self-center ">
+                        <h1><center>Welcome Back</center></h1>
+                        <button class="btn btn-secondary ml-5 mr-5" onclick="alter('b')">No account? Sign up</button>
+                    </div>
+                </div>
+                <div class="register-overlay bg-secondary vh-100">
+                    <div class="form-container d-flex">
+                        <div class="register-form-container bg-light col-md-12 vh-100">
+                            
+                            <form class="">
+                                <div class="card m-5 p-0 h-100 d-flex align-self-center">
+                                    <div class="form-group col-md-12"><label></label><div id="register-error" class="alert alert-danger"></div></div>
+                                    <div>
+                                        <div class="form-group col-md-12"><input id="register-email" class="form-control" type="text" name="email" placeholder="E-mail"></div>
+                                        <div class="form-group col-md-12"><input id="register-password" class="form-control" type="password" name="password" placeholder="Password"></div>
+                                        <div class="form-group col-md-12"><label></label><input id="register-submit" class="form-control" type="button" value="Register"></div>
+                                        
+                                    </div>
+                                </div>
+                            </form>
+                        
+                        </div>
+                        <div class="login-form-container bg-light col-md-12 m-0 vh-100">
+                            
+                            <form class="" >
+                                <div class="card m-5 p-0 h-100 d-flex align-self-center">
+                                    <div class="form-group col-md-12"><label></label><div id="login-error" class="alert alert-danger"></div></div>
+                                    <div>
+                                        <div class="form-group col-md-12"><input id="login-email" class="form-control" type="text" name="email" placeholder="E-mail"></div>
+                                        <div class="form-group col-md-12"><input id="login-password" class="form-control" type="password" name="password" placeholder="Password"></div>
+                                        <div class="form-group col-md-12"><label></label><input id="login-submit" class="form-control" type="button" value="Continue"></div>   
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="login-banner bg-primary"></div> -->
+        </div>
 
         <div class="home-container d-flex p-2 justify-content-center col-sm-12 col-md-12 flex-wrap">
 
@@ -129,30 +180,9 @@
 
         
         <div class="register-container">
-            <form  class="modal-dialog modal-dialog-centered" >
-                <div class="modal-content">
-                    <div class="form-group col-md-12"><label></label><div id="register-error" class="alert alert-danger"></div></div>
-                    <div>
-                        <div class="form-group col-md-12"><input id="register-email" class="form-control" type="text" name="email" placeholder="E-mail"></div>
-                        <div class="form-group col-md-12"><input id="register-password" class="form-control" type="password" name="password" placeholder="Password"></div>
-                        <div class="form-group col-md-12"><label></label><input id="register-submit" class="form-control" type="button" value="Register"></div>
-                        
-                    </div>
-                </div>
-            </form>
         </div>
 
         <div class="login-container">
-            <form class="modal-dialog modal-dialog-centered" >
-                <div class="modal-content">
-                    <div class="form-group col-md-12"><label></label><div id="login-error" class="alert alert-danger"></div></div>
-                    <div>
-                        <div class="form-group col-md-12"><input id="login-email" class="form-control" type="text" name="email" placeholder="E-mail"></div>
-                        <div class="form-group col-md-12"><input id="login-password" class="form-control" type="password" name="password" placeholder="Password"></div>
-                        <div class="form-group col-md-12"><label></label><input id="login-submit" class="form-control" type="button" value="Continue"></div>   
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="add-edit-container">
             <form class="modal-dialog modal-dialog-centered" >
@@ -171,5 +201,8 @@
                 </div>
             </form>
         </div>
+        <!-- core JavaScript
+        ================================================== -->
+        <script src="main.js"></script>
     </body>
 </html>
