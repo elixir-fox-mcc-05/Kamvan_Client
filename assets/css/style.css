@@ -1,0 +1,15 @@
+.container-fluid {
+    display: flex;
+    background-color: cyan;
+}
+#box-category{
+    margin: 10px 5px;
+    width: 25%;
+    background-color: white;
+}
+#box-category .header{
+    padding: 10px;
+}
+#box-item {
+    margin: 5px 5px;
+}
