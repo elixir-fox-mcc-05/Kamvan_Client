@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.box {
+    background-color: yellow;
+    width: 250px;
+    height: 250px;
+    border: 2;
+    box-sizing: border-box;
+    text-align: center;
+}
+.box-content{
+    padding: 5px;
+    border: black;
+}

@@ -7,81 +7,56 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
     <title>Kamvan</title>
   </head>
   <body>
-    <div class="container">
-        <div class="nav-bar" >
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="navId" style="display:flex; justify-content: space-between;">
-                <div class="col-xs-1-12" >
-                    <i class="mdi mdi-format-size cc cc-logo:">Kamvan Board</i>
-                </div>
-                <li class="nav-item" hidden>
-                    <a href="#tab1Id" class="nav-link active">Active</a>
-                </li>
-                <li class="nav-item dropdown" hidden>
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#tab2Id">Action</a>
-                        <a class="dropdown-item" href="#tab3Id">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#tab4Id">Action</a>
-                    </div>
-                </li>
-                <li class="nav-item" hidden>
-                    <a href="#tab5Id" class="nav-link">Another link</a>
-                </li>
-                <li class="nav-item" hidden>
-                    <a href="#" class="nav-link disabled">Disabled</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">New Task</a>
-                </li>
-            </ul>
-            
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
-                <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
-                <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
-                <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
-                <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+    <div class="nav-bar" >
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="navId" style="display:flex; justify-content: space-between;">
+            <div class="col-xs-1-12" >
+                <i class="mdi mdi-format-size cc cc-logo:">Kamvan Board</i>
             </div>
-        </div>
-        <div class="main-container" style="display: flex; justify-content: space-between;">
-            <div class="row" style="padding: 10px;">
-                <div class="card" style="background-color: red;">
-                    <div class="card-body blockquote">
-                      Back-Log
-                    </div>
+            <li class="nav-item" hidden>
+                <a href="#tab1Id" class="nav-link active">Active</a>
+            </li>
+            <li class="nav-item dropdown" hidden>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#tab2Id">Action</a>
+                    <a class="dropdown-item" href="#tab3Id">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#tab4Id">Action</a>
                 </div>
-            </div>
-            <div class="row" style="padding: 10px;">
-                <div class="card" style="background-color: yellow;">
-                    <div class="card-body blockquote">
-                      To-Do
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 10px;">
-                <div class="card" style="background-color: lightblue;">
-                    <div class="card-body blockquote" >
-                      Doing
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding: 10px;">
-                <div class="card" style="background-color: lightgreen;">
-                    <div class="card-body blockquote">
-                      Done
-                    </div>
-                </div>
-            </div>
-        </div>
+            </li>
+            <li class="nav-item" hidden>
+                <a href="#tab5Id" class="nav-link">Another link</a>
+            </li>
+            <li class="nav-item" hidden>
+                <a href="#" class="nav-link disabled">Disabled</a>
+            </li>
+            <li class="nav-item">
+                <button type="button" name="" id="" class="btn btn-primary" btn-lg btn-block">New Task</button>
+            </li>
+        </ul>
         
-        
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+            <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+            <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+            <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+            <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+        </div>
+    </div>
+
+    <div class="container">    
+        <div class="box">Back-Log
+        </div>
+        <div class="box">To-Do</div>
+        <div class="box">Doing</div>
+        <div class="box">Done</div>
     </div>
 
     <!-- Optional JavaScript -->
