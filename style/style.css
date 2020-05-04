@@ -3,6 +3,11 @@ body {
     text-align: center;
 }
 
+.container-md {
+    width: 95vw;
+    margin: auto;
+}
+
 .title {
     color: darkseagreen;
 }
@@ -14,4 +19,8 @@ body {
 
 .card-text {
     font-family: 'Roboto', sans-serif;
+}
+
+.detail-button {
+    color: white;
 }
