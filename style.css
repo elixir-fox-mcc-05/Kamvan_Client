@@ -1,0 +1,16 @@
+body {
+    background-color: pink;
+}
+
+.container {
+    display: flex;
+    background-color: powderblue;
+}
+
+.board-container {
+    margin-top: 70px;
+}
+
+.card-header {
+    font-weight: 700;
+}
