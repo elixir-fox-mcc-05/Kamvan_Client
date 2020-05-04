@@ -1,4 +1,11 @@
+.container{
+    max-width: 90%;
+}
+
 .bg-custom-orange {
     background-color: darkorange;
 }
 
+.border-custom-orange {
+    border-color: darkorange;
+}
