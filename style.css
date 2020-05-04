@@ -1,0 +1,57 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.custom-navbar{
+    display: flex;
+    /* background-color: aquamarine; */
+    justify-content: space-between;
+    margin: 10px 90px;
+}
+
+.left-side-navbar p{
+    font-size: 30px;
+    font-weight: bold;
+    color: slategray;
+}
+
+.custom-card-place{
+    display: flex;
+    /* background-color: aquamarine; */
+    justify-content: space-between;
+    margin: 10px 80px;
+    align-items: baseline;
+}
+
+.custom-card-place div{
+    margin: 0 10px;
+}
+
+#Back-Log{
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+}
+
+#To-Do{
+    background-color: orange;
+    border-radius: 5px;
+    color: white;
+}
+
+#Doing{
+    background-color: skyblue;
+    border-radius: 5px;
+    color: white;
+}
+
+#Done{
+    background-color: springgreen;
+    border-radius: 5px;
+    color: white;
+}
+
+#custom-card{
+    margin: 10px auto;
+}
