@@ -15,6 +15,11 @@ body {
 #box-item {
     margin: 5px 5px;
 }
+.modal {
+    max-width: 75%;
+    max-height: 100%;
+    overflow: visible;
+}
 #title-kamvan{
     margin: 0 20px;
     display: flex;
@@ -23,5 +28,8 @@ body {
 }
 .modal-footer {
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+#newtask {
+    width: 500px;
 }
