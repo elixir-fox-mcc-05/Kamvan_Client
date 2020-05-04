@@ -1,0 +1,17 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.title {
+    color: darkseagreen;
+}
+
+.text-center {
+    color: white;
+    font-weight: bold;
+}
+
+.card-text {
+    font-family: 'Roboto', sans-serif;
+}

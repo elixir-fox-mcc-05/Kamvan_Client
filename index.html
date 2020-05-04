@@ -4,14 +4,14 @@
         <title>Kamvan - Kanban Tamvan</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./style/style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     </head>
-    <body style="background-color: bisque;">
+    <body style="background-color: blanchedalmond;">
         <!-- Login and Register Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color" style="background-color: turquoise;" id="front-navbar">
-            <a class="navbar-brand" style="color: coral;">Kamvan Board</a>
+            <a class="navbar-brand" style="color: coral;">KamVan Board</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +34,7 @@
 
         <!-- User Navbar -->
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color" style="background-color: turquoise;" id="navbar-user">
-            <a class="navbar-brand" style="color: coral ;">Kamvan Board</a>
+            <a class="navbar-brand" style="color: coral ;">KamVan Board</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,7 +55,9 @@
 
         <!-- Login Page-->
         <div id="loginForm" class="col-5 mx-auto my-5">
-            <h1>Login to Kamvan Board App</h1>
+            <div class="login-title">
+                <h1>Login to KamVan Board App</h1>
+            </div>
             <form>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -72,7 +74,9 @@
 
         <!-- Register -->
         <div id="registerForm" class="col-5 mx-auto my-5">
-            <h1>Register to Kamvan Board App</h1>
+            <div class="register-title">
+                <h1>Register to KamVan Board App</h1>
+            </div>
             <form>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -88,7 +92,96 @@
         <!-- End of Register -->
 
         <!-- Main Page -->
-
+        <div class="container-fluid">
+            <div class="d-flex p-2">
+              <div class="title">
+                <h1>KamVan Board</h1>
+            </div>
+              <div class="btn btn-primary ml-auto" id="new-task">New Task</div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header bg-danger">
+                    <p class="text-center">BackLog</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="card">
+                      <div class="card-header">
+                        Title
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">Task: </p>
+                        <p class="card-text">Assigned To: </p>
+                        <a href="#" class="btn btn-primary">Show Detail</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header bg-warning">
+                    <p class="text-center">ToDo</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="card">
+                      <div class="card-header">
+                        Title
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">Task: </p>
+                        <p class="card-text">Assigned To: </p>
+                        <a href="#" class="btn btn-primary">Show Detail</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header bg-primary">
+                    <p class="text-center">Progress</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="card">
+                      <div class="card-header">
+                        Title
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">Task: </p>
+                        <p class="card-text">Assigned To: </p>
+                        <a href="#" class="btn btn-primary">Show Detail</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header bg-success">
+                    <p class="text-center">Complete</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="card">
+                      <div class="card-header">
+                        Title
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">Task: </p>
+                        <p class="card-text">Assigned To: </p>
+                        <a href="#" class="btn btn-primary">Show Detail</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         <!-- End of Main Page -->
+
+        <!-- Script -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- End of Script -->
     </body>
 </html>
