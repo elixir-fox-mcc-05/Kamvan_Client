@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kamvan - Kanban Tamvan</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color: bisque;">
+        <!-- Login and Register Navbar -->
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color" style="background-color: turquoise;" id="front-navbar">
+            <a class="navbar-brand" style="color: coral;">Kamvan Board</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect waves-light" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" onclick="login()">Login</a>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" onclick="register()">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- End of Login and Register Navbar -->
+
+        <!-- User Navbar -->
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color" style="background-color: turquoise;" id="navbar-user">
+            <a class="navbar-brand" style="color: coral ;">Kamvan Board</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect waves-light" onclick="homeUser()" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" onclick="logout()" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- End of User Navbar -->
+
+        <!-- Login Page-->
+        <div id="loginForm" class="col-5 mx-auto my-5">
+            <h1>Login to Kamvan Board App</h1>
+            <form>
+                <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- End of Login Page-->
+
+        <!-- Register -->
+        <div id="registerForm" class="col-5 mx-auto my-5">
+            <h1>Register to Kamvan Board App</h1>
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        <!-- End of Register -->
+
+        <!-- Main Page -->
+
+        <!-- End of Main Page -->
+    </body>
+</html>
