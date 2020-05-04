@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+        crossorigin="anonymous">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgb(230, 230, 230);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .menu ul {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .menu ul li {
+            list-style: none;
+            /* padding: 15px; */
+            margin-right: 5px;
+        }
+
+        ul li:hover {
+            cursor: pointer;
+        }
+
+        .alert {
+            margin-bottom: 1px;
+        }
+
+        .container {
+            border: solid 2px rgb(156, 148, 148);
+            border-radius: 10px;
+            -webkit-box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
+            -moz-box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
+            box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
+        }
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .bg-custom{
+            background-color: rgb(233, 235, 133);
+        }
+    </style>
+</head>
+<body>
+    <div class="alert alert-danger" role="alert" id="alert">
+        Error Message will appear here
+    </div>
+    <div class="navbar d-flex align-items-center">
+        <div class="logo">
+            <a href="#"><img src="./assets/kanban.png" alt="kanban-logo" height="55"></a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li class="btn btn-primary">Login</li>
+                <li class="btn btn-danger">Logout</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container bg-light mt-5 w-25 mb-5 pb-3">
+        <form id="register-form">
+            <h3>Register</h3>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="register-name"  placeholder="your name">
+              </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="register-email" aria-describedby="emailHelp" placeholder="your email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="register-password" placeholder="your password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <small id="already-register" class="form-text text-muted pb-1">Already Register? <a href="#" id="straight-to-login">Login Here</a></small>
+          </form>
+    </div>
+
+    <div class="container bg-light mt-5 w-25 mb-5 pb-3">
+        <form id="login-form">
+            <h3>Login</h3>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" placeholder="your email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="login-password" placeholder="your password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+    <!-- Home Page -->
+    <div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h2>Hey Akbar, Welcome to Kanban Board</h2>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-md" id="addTask">Add New task</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around">
+            <div class="card  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-danger text-white">Back Log</div>
+                <div class="card-body bg-white">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-warning text-white">ToDo</div>
+                <div class="card-body bg-white">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-primary text-white">Doing</div>
+                <div class="card-body bg-white">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-success text-white">Done</div>
+                <div class="card-body bg-white">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-body bg-custom"></div>
+    </div>
+
+</body>
+</html>
