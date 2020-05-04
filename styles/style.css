@@ -1,0 +1,81 @@
+:root {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-container {
+  width: 300px;
+  margin: 10px;
+  font-size: 30px;
+  border: black solid 1px;
+  border-radius: 5px;
+  padding: 0px 0px 10px 0px;
+  box-shadow: 2px 2px black;
+}
+
+.head-container {
+  border: black solid 1px;
+  background-color: red;
+  margin: 0px;
+  padding: 0px;
+}
+
+.title-container {
+  margin: 10px 10px 0px 10px;
+  border: black solid 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: center;
+  box-shadow: 2px 2px black;
+}
+
+.sub-container-1 {
+  margin: 0px 10px;
+  border: black solid 1px;
+  padding: 10px;
+  box-shadow: 2px 2px black;
+}
+
+.head-container-1 {
+  text-align: center;
+  background-color: #185c1b;
+  color: white;
+}
+
+.head-container-2 {
+  text-align: center;
+  background-color: #185c1b;
+  color: white;
+}
+
+.head-container-3 {
+  text-align: center;
+  background-color: #185c1b;
+  color: white;
+}
+
+.head-container-4 {
+  text-align: center;
+  background-color: #185c1b;
+  color: white;
+}
+
+button {
+  background-color: #0f024b;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
