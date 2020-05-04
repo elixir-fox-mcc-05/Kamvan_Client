@@ -1,0 +1,51 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background: #e8f5e9;
+}
+
+.navbar {
+  background-color: white;
+  display: flex;
+  padding: 20px 60px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .navbar-left i,
+p {
+  color: #f06292;
+  font-size: 25px;
+  margin: 0 10px 0;
+}
+
+.navbar .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .navbar-right img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 10px 0;
+}
+
+.navbar .navbar-right i {
+    font-size: 20px;
+    margin: 0 10px 0;
+    color: #757575;
+}
