@@ -1,11 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamvan</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <title>KamVan</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <h3 class="text-white">KamVan Board</h3>
+      <button type="button" class="btn btn-light">New Task</button>
+    </nav>
+
+    <div class="container">
+      <div class="row d-flex flex-sm-wrap">
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-header backlog">
+              Back-Log
+            </div>
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  Testing
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Testing...</p>
+                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-header todo">
+              To-Do
+            </div>
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  Testing
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Testing...</p>
+                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-header doing">
+              Doing
+            </div>
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  Testing
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Testing...</p>
+                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+              <div class="card-header done">
+                Done
+              </div>
+              <div class="card-body">
+                  <div class="card">
+                      <div class="card-header">
+                        Testing
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">Testing...</p>
+                        <a href="#!" class="btn btn-primary">Show Detail</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
