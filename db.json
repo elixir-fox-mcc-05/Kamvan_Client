@@ -1,0 +1,25 @@
+{
+    "tasks":[
+        {
+            "id": 1,
+            "title": "Kanban",
+            "description": "no need",
+            "point": 100,
+            "assigned_to": "whoever"
+        },
+        {
+            "id": 2,
+            "title": "KamVan",
+            "description": "need",
+            "point": 90,
+            "assigned_to": "siapa"
+        },
+        {
+            "id": 3,
+            "title": "Bankai",
+            "description": "needed rn",
+            "point": 70,
+            "assigned_to": "siapa aja"
+        }
+    ]
+}
