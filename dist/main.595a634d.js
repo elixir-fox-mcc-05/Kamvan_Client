@@ -8550,8 +8550,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  // serverUrl:'https://g-kanban.herokuapp.com'
-  serverUrl: 'http://localhost:3000'
+  serverUrl: 'https://g-kanban.herokuapp.com' // serverUrl:'http://localhost:3000'
+
 };
 exports.default = _default;
 },{}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
@@ -10330,17 +10330,12 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = _axios.default.create({
-  // baseURL: 'https://g-kanban.herokuapp.com'
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://g-kanban.herokuapp.com' // baseURL: 'http://localhost:3000'
+
 });
 
 exports.default = _default;
-},{"axios":"node_modules/axios/index.js"}],"node_modules/vue-google-login/dist/vue-google-login.min.js":[function(require,module,exports) {
-var define;
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t=t||self)["vue-google-login"]={})}(this,function(t){"use strict";var e,n,o=function(t){return e?Promise.resolve(e):(n||(n=function(t){return new Promise(function(n,o){window.onGapiLoad=function(){window.gapi.load("auth2",function(){try{e=window.gapi.auth2.init(Object.assign({},t))}catch(t){o({err:"client_id missing or is incorrect, or if you added extra params maybe they are written incorrectly, did you add it to the component or plugin?"})}n(e)})}})}(t)),n)},i=function(t,e){if(t)return t[e]();return Promise.reject({err:"Script not loaded correctly, did you added the plugin or the client_id to the component?"})},r={load:function(t){return Promise.all([o(t),new Promise(function(t,e){if(!document.getElementById("auth2_script_id")){var n=document.createElement("script");n.setAttribute("src","https://apis.google.com/js/platform.js?onload=onGapiLoad"),n.setAttribute("async",!0),n.setAttribute("defer","defer"),n.setAttribute("id","auth2_script_id"),document.head.appendChild(n)}t()})]).then(function(t){return t[0]})},signIn:function(){return i(e,"signIn")},signOut:function(){return i(e,"signOut")}},s=0;var d=function(t,e,n,o,i,r,s,d,u,a){"boolean"!=typeof s&&(u=d,d=s,s=!1);var c,l="function"==typeof n?n.options:n;if(t&&t.render&&(l.render=t.render,l.staticRenderFns=t.staticRenderFns,l._compiled=!0,i&&(l.functional=!0)),o&&(l._scopeId=o),r?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),e&&e.call(this,u(t)),t&&t._registeredComponents&&t._registeredComponents.add(r)},l._ssrRegister=c):e&&(c=s?function(){e.call(this,a(this.$root.$options.shadowRoot))}:function(t){e.call(this,d(t))}),c)if(l.functional){var f=l.render;l.render=function(t,e){return c.call(e),f(t,e)}}else{var h=l.beforeCreate;l.beforeCreate=h?[].concat(h,c):[c]}return n}({render:function(){var t=this.$createElement,e=this._self._c||t;return this.renderParams&&!this.logoutButton?e("div",{attrs:{id:this.id},on:{click:this.handleClick}}):e("button",{attrs:{id:this.id},on:{click:this.handleClick}},[this._t("default")],2)},staticRenderFns:[]},void 0,{name:"GoogleLogin",props:{params:{type:Object,required:!0},onSuccess:{type:Function,default:function(){}},onFailure:{type:Function,default:function(){}},logoutButton:{type:Boolean,default:!1},renderParams:{type:Object,required:!1}},beforeCreate:function(){this.id="google-signin-btn-".concat(s++)},methods:{handleClick:function(){var t=this,e=this.logoutButton?"signOut":"signIn";r[e]().then(function(e){return t.onSuccess(e)}).catch(function(e){return t.onFailure(e)})}},mounted:function(){var t=this;r.load(this.params).then(function(){t.renderParams&&!1===t.logoutButton&&window.gapi.signin2.render(t.id,t.renderParams)}).catch(function(t){console.log(t)})}},void 0,!1,void 0,void 0,void 0),u={install:function(t,e){t.GoogleAuth=r.load(e)}};t.GoogleLogin=d,t.LoaderPlugin=u,t.default=d,Object.defineProperty(t,"__esModule",{value:!0})});
-
-
-},{}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -10690,8 +10685,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _vueGoogleLogin = _interopRequireDefault(require("vue-google-login"));
-
 var _axios = _interopRequireDefault(require("../axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -10748,27 +10741,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
+// import GoogleLogin from 'vue-google-login';
+// const  GSignInButton = require('vue-google-signin-button')
 var _default = {
   name: "LoginForm",
   data: function data() {
     return {
       username: '',
       password: '',
-      googleSignInParams: {
-        client_id: '636705423948-jk7m1fvtdv0go84aorh7g79agb78lvk1.apps.googleusercontent.com'
-      },
-      params: {
-        client_id: '636705423948-jk7m1fvtdv0go84aorh7g79agb78lvk1.apps.googleusercontent.com'
-      },
-      // only needed if you want to render the button with the google ui
-      renderParams: {
-        width: 250,
-        height: 50,
-        longtitle: true
-      }
+      clientId: '636705423948-jk7m1fvtdv0go84aorh7g79agb78lvk1.apps.googleusercontent.com'
     };
   },
   methods: {
@@ -10796,35 +10777,30 @@ var _default = {
         });
       });
     },
-    onSignInSuccess: function onSignInSuccess(googleUser) {
+    OnGoogleAuthSuccess: function OnGoogleAuthSuccess(idToken) {
       var _this2 = this;
 
-      console.log("xuccess"); // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-      // See https://developers.google.com/identity/sign-in/web/reference#users
-
-      var profile = googleUser.getBasicProfile(); // etc etc
-
-      console.log(profile);
+      console.log('test');
       (0, _axios.default)({
         method: "POST",
         url: "/user/gmail",
-        data: {
-          username: profile.yu
+        headers: {
+          token: idToken
         }
       }).then(function (result) {
+        console.log('****************', result);
         localStorage.setItem('token', result.data.token);
-        localStorage.setItem('username', profile.yu);
+        localStorage.setItem('username', result.data.username);
 
         _this2.$emit('succeslogin');
       }).catch(function (err) {
         Vue.toasted.global.my_app_error({
           message: 'Username/Password not Found'
         });
-      });
+      }); // Receive the idToken and make your magic with the backend
     },
-    onSignInError: function onSignInError(error) {
-      // `error` contains any error occurred.
-      console.log('OH NOES', error);
+    OnGoogleAuthFail: function OnGoogleAuthFail(error) {
+      console.log(error);
     }
   }
 };
@@ -10842,196 +10818,185 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "wrap-login100" },
-      [
+    _c("div", { staticClass: "wrap-login100" }, [
+      _c("form", { staticClass: "login100-form validate-form" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("span", { staticClass: "login100-form-title p-b-34 p-t-27" }, [
+          _vm._v("\n\t\t\t\tLog in\n\t\t\t")
+        ]),
+        _vm._v(" "),
         _c(
-          "form",
-          { staticClass: "login100-form validate-form" },
+          "div",
+          {
+            staticClass: "wrap-input100 validate-input",
+            attrs: { "data-validate": "Enter username" }
+          },
           [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("span", { staticClass: "login100-form-title p-b-34 p-t-27" }, [
-              _vm._v("\n\t\t\t\tLog in\n\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "wrap-input100 validate-input",
-                attrs: { "data-validate": "Enter username" }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.username,
-                      expression: "username"
-                    }
-                  ],
-                  staticClass: "input100",
-                  attrs: {
-                    type: "text",
-                    name: "username",
-                    placeholder: "Username"
-                  },
-                  domProps: { value: _vm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "wrap-input100 validate-input",
-                attrs: { "data-validate": "Enter password" }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  staticClass: "input100",
-                  attrs: {
-                    type: "password",
-                    name: "pass",
-                    placeholder: "Password"
-                  },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "container-login100-form-btn" }, [
-              _c(
-                "button",
+            _c("input", {
+              directives: [
                 {
-                  staticClass: "login100-form-btn",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.login($event)
-                    }
-                  }
-                },
-                [_vm._v("\n\t\t\t\t\tLogin\n\t\t\t\t")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center p-t-20" }, [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.register($event)
-                    }
-                  }
-                },
-                [_vm._v("\n\t\t\t\t\tsign in\n\t\t\t\t")]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "g-signin-button",
-              {
-                staticClass: "login100-form-title p-b-34 p-t-27",
-                attrs: { params: _vm.googleSignInParams },
-                on: { success: _vm.onSignInSuccess, error: _vm.onSignInError }
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.username,
+                  expression: "username"
+                }
+              ],
+              staticClass: "input100",
+              attrs: {
+                type: "text",
+                name: "username",
+                placeholder: "Username"
               },
-              [
-                _c("span", { staticClass: "google-button__icon" }, [
-                  _c(
-                    "svg",
-                    {
-                      attrs: {
-                        viewBox: "0 0 366 372",
-                        xmlns: "http://www.w3.org/2000/svg"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z",
-                          id: "Shape",
-                          fill: "#EA4335"
-                        }
-                      }),
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z",
-                          id: "Shape",
-                          fill: "#FBBC05"
-                        }
-                      }),
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z",
-                          id: "Shape",
-                          fill: "#4285F4"
-                        }
-                      }),
-                      _c("path", {
-                        attrs: {
-                          d:
-                            "M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z",
-                          fill: "#34A853"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "google-button__text" }, [
-                  _vm._v("Sign in with Google")
-                ])
-              ]
-            )
-          ],
-          1
+              domProps: { value: _vm.username },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.username = $event.target.value
+                }
+              }
+            })
+          ]
         ),
         _vm._v(" "),
-        _c("GoogleLogin", {
-          attrs: {
-            params: _vm.params,
-            renderParams: _vm.renderParams,
-            onSuccess: _vm.onSuccess,
-            onFailure: _vm.onFailure
-          }
-        })
-      ],
-      1
-    )
+        _c(
+          "div",
+          {
+            staticClass: "wrap-input100 validate-input",
+            attrs: { "data-validate": "Enter password" }
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              staticClass: "input100",
+              attrs: {
+                type: "password",
+                name: "pass",
+                placeholder: "Password"
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "container-login100-form-btn" }, [
+          _c(
+            "button",
+            {
+              staticClass: "login100-form-btn",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.login($event)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\tLogin\n\t\t\t\t")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center p-t-20" }, [
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.register($event)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\tsign in\n\t\t\t\t")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "google" }, [
+        _c(
+          "button",
+          {
+            directives: [
+              {
+                name: "google-signin-button",
+                rawName: "v-google-signin-button",
+                value: _vm.clientId,
+                expression: "clientId"
+              }
+            ],
+            staticClass: "google-signin-button"
+          },
+          [
+            _c("span", { staticClass: "google-button__icon" }, [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    viewBox: "0 0 366 372",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z",
+                      id: "Shape",
+                      fill: "#EA4335"
+                    }
+                  }),
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z",
+                      id: "Shape",
+                      fill: "#FBBC05"
+                    }
+                  }),
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z",
+                      id: "Shape",
+                      fill: "#4285F4"
+                    }
+                  }),
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z",
+                      fill: "#34A853"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "google-button__text" }, [
+              _vm._v("Sign in with Google")
+            ])
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -11093,7 +11058,7 @@ render._withStripped = true
       
       }
     })();
-},{"vue-google-login":"node_modules/vue-google-login/dist/vue-google-login.min.js","../axios":"scr/axios/index.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/support/isBufferBrowser.js":[function(require,module,exports) {
+},{"../axios":"scr/axios/index.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/support/isBufferBrowser.js":[function(require,module,exports) {
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
@@ -11946,6 +11911,7 @@ var _default = {
           }
         }).then(function (result) {
           localStorage.setItem('token', result.data.token);
+          localStorage.setItem('username', result.data.username);
 
           _this.$emit('succeslogin');
         }).catch(function (err) {
@@ -12687,12 +12653,12 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "item card text-white bg-info mb-3 " }, [
+  return _c("div", [
     _c(
       "div",
       {
         staticClass:
-          "card text-white bg-primary mb-1 d-flex justify-content-around",
+          "card text-black bg-light mb-1 d-flex justify-content-around",
         staticStyle: { "max-width": "18rem" }
       },
       [
@@ -12705,17 +12671,17 @@ exports.default = _default;
             _vm._v(_vm._s(_vm.content.createAt))
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "card-text text-white" }, [
+          _c("p", { staticClass: "card-text text-black" }, [
             _vm._v(_vm._s(_vm.content.description))
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body " }, [
+        _c("div", { staticClass: "card-footer " }, [
           _vm.content.status != "Backlog"
             ? _c(
                 "button",
                 {
-                  staticClass: "card-link text-white",
+                  staticClass: "card-link text-black",
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -12730,7 +12696,7 @@ exports.default = _default;
           _c(
             "button",
             {
-              staticClass: "card-link text-white",
+              staticClass: "card-link text-black",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -12744,7 +12710,7 @@ exports.default = _default;
           _c(
             "button",
             {
-              staticClass: "card-link text-white",
+              staticClass: "card-link text-black",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -12898,7 +12864,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: "CardContainer",
   components: {
@@ -12925,7 +12890,6 @@ var _default = {
         });
       }
 
-      console.log(datafilter);
       return datafilter;
     },
     refreshData: function refreshData() {
@@ -12972,6 +12936,7 @@ exports.default = _default;
         _vm._l(_vm.StatusCheck("Backlog"), function(task) {
           return _c("task-card", {
             key: task.id,
+            staticClass: "item card text-black bg-danger mb-3 ",
             attrs: { content: task },
             on: { refreshData: _vm.refreshData }
           })
@@ -12989,6 +12954,7 @@ exports.default = _default;
       _vm._l(_vm.StatusCheck("Todo"), function(task) {
         return _c("task-card", {
           key: task.id,
+          staticClass: "item card text-black bg-warning mb-3 ",
           attrs: { content: task },
           on: { refreshData: _vm.refreshData }
         })
@@ -13005,6 +12971,7 @@ exports.default = _default;
       _vm._l(_vm.StatusCheck("Done"), function(task) {
         return _c("task-card", {
           key: task.id,
+          staticClass: "item card text-black bg-primary mb-3 ",
           attrs: { content: task },
           on: { refreshData: _vm.refreshData }
         })
@@ -13021,6 +12988,7 @@ exports.default = _default;
       _vm._l(_vm.StatusCheck("Completed"), function(task) {
         return _c("task-card", {
           key: task.id,
+          staticClass: "item card text-black bg-success mb-3 ",
           attrs: { content: task },
           on: { refreshData: _vm.refreshData }
         })
@@ -13071,6 +13039,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("../axios"));
+
+var _config = _interopRequireDefault(require("../config"));
 
 var _util = require("util");
 
@@ -13136,7 +13106,7 @@ var _default = {
           token: localStorage.token
         }
       }).then(function (result) {
-        io.connect(config.serverUrl).emit('msg');
+        io.connect(_config.default.serverUrl).emit('msg');
 
         _this.$emit('refreshData');
 
@@ -13305,7 +13275,7 @@ render._withStripped = true
       
       }
     })();
-},{"../axios":"scr/axios/index.js","util":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/util.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"scr/views/Home.vue":[function(require,module,exports) {
+},{"../axios":"scr/axios/index.js","../config":"scr/config.js","util":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/util.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"scr/views/Home.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13669,25 +13639,80 @@ render._withStripped = true
 var define;
 'use strict';var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(obj){return typeof obj}:function(obj){return obj&&'function'==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?'symbol':typeof obj};(function(){function a(c){'undefined'!=typeof console&&console.error('[g-signin-button] '+c)}function b(c){c.component('g-signin-button',{name:'g-signin-button',render:function render(d){return d('div',{attrs:{class:'g-signin-button'},ref:'signinBtn'},this.$slots.default)},props:{params:{type:Object,required:!0,default:function _default(){return{}}}},mounted:function mounted(){var _this=this;return window.gapi?this.params.client_id?void window.gapi.load('auth2',function(){var d=window.gapi.auth2.init(_this.params);d.attachClickHandler(_this.$refs.signinBtn,{},function(e){_this.$emit('success',e)},function(e){_this.$emit('error',e),_this.$emit('failure',e)})}):void a('params.client_id must be specified.'):void a('"https://apis.google.com/js/api:client.js" needs to be included as a <script>.')}})}'object'==('undefined'==typeof exports?'undefined':_typeof(exports))?module.exports=b:'function'==typeof define&&define.amd?define([],function(){return b}):window.Vue&&window.Vue.use(b)})();
 
-},{}],"scr/main.js":[function(require,module,exports) {
+},{}],"node_modules/vue-google-signin-button-directive/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _vue.default.directive('google-signin-button', {
+  bind: function (el, binding, vnode) {
+    CheckComponentMethods();
+    let clientId = binding.value;
+    let googleSignInAPI = document.createElement('script');
+    googleSignInAPI.setAttribute('src', 'https://apis.google.com/js/api:client.js');
+    document.head.appendChild(googleSignInAPI);
+    googleSignInAPI.onload = InitGoogleButton;
+
+    function InitGoogleButton() {
+      gapi.load('auth2', () => {
+        const auth2 = gapi.auth2.init({
+          client_id: clientId,
+          cookiepolicy: 'single_host_origin'
+        });
+        auth2.attachClickHandler(el, {}, OnSuccess, Onfail);
+      });
+    }
+
+    function OnSuccess(googleUser) {
+      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token);
+      googleUser.disconnect();
+    }
+
+    function Onfail(error) {
+      vnode.context.OnGoogleAuthFail(error);
+    }
+
+    function CheckComponentMethods() {
+      if (!vnode.context.OnGoogleAuthSuccess) {
+        throw new Error('The method OnGoogleAuthSuccess must be defined on the component');
+      }
+
+      if (!vnode.context.OnGoogleAuthFail) {
+        throw new Error('The method OnGoogleAuthFail must be defined on the component');
+      }
+    }
+  }
+});
+
+exports.default = _default;
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"scr/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
+var _vueGoogleSigninButtonDirective = _interopRequireDefault(require("vue-google-signin-button-directive"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var GSignInButton = require('vue-google-signin-button');
 
-_vue.default.use(GSignInButton);
-
+// Vue.use(GSignInButton)
 new _vue.default({
+  GoogleSignInButton: _vueGoogleSigninButtonDirective.default,
   render: function render(h) {
     return h(_App.default);
   }
 }).$mount('#App');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"scr/App.vue","vue-google-signin-button":"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"scr/App.vue","vue-google-signin-button":"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js","vue-google-signin-button-directive":"node_modules/vue-google-signin-button-directive/index.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13715,7 +13740,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59103" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57702" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

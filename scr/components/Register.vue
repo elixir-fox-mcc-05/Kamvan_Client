@@ -86,7 +86,8 @@ methods:{
             }
         })
         .then(result=>{
-			localStorage.setItem('token',result.data.token)  			       
+			localStorage.setItem('token',result.data.token) 
+			localStorage.setItem('username',result.data.username) 			       
             this.$emit('succeslogin')
         })
         .catch(err=>{
@@ -97,7 +98,7 @@ methods:{
 	   }else{
 		   Vue.toasted.global.my_app_error({
                     message : 'Password not Match',
-                });
+        	});
 	   }
         
     }

@@ -1,16 +1,16 @@
 <template>
 
- <div class="item card text-white bg-info mb-3 ">
-    <div class="card text-white bg-primary mb-1 d-flex justify-content-around" style="max-width: 18rem;">
+ <div >
+    <div class="card text-black bg-light mb-1 d-flex justify-content-around" style="max-width: 18rem;">
         <div class="card-header">{{content.title}}</div>
         <div class="card-body">
             <h5 class="card-title">{{content.createAt}}</h5>
-            <p class="card-text text-white">{{content.description}}</p>
+            <p class="card-text text-black">{{content.description}}</p>
         </div>
-        <div class="card-body ">
-            <button class="card-link text-white" v-if="content.status !='Backlog'" @click.prevent="updatePrev(content.id,content.status)">Previous</button>
-            <button class="card-link text-white" @click.prevent="dele(content.id)">Delete</button>
-            <button class="card-link text-white" @click.prevent="updateNext(content.id,content.status)">Next</button>
+        <div class="card-footer ">
+            <button class="card-link text-black" v-if="content.status !='Backlog'" @click.prevent="updatePrev(content.id,content.status)">Previous</button>
+            <button class="card-link text-black" @click.prevent="dele(content.id)">Delete</button>
+            <button class="card-link text-black" @click.prevent="updateNext(content.id,content.status)">Next</button>
         </div>
     </div>
     <div class="card-footer bg-transparent p-0">

@@ -33,6 +33,7 @@
 <script>
 
 import axios from '../axios'
+import config from '../config'
 import { log } from 'util'
 export default {
     name:"AddTask",
