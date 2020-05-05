@@ -2,18 +2,15 @@ body {
     padding: 0;
     margin: 0;
 }
-.row{
-    margin: 10px;
-}
 #box-category{
-    padding: 10px;
+    padding-bottom: 10px;
     background-color: white;
 }
 #box-category .header{
     padding: 10px;
 }
 #box-item {
-    margin: 5px 5px;
+    margin: 10px 15px;
 }
 .modal {
     max-width: 75%;
