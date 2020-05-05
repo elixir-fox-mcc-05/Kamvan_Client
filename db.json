@@ -1,0 +1,78 @@
+{
+  "User": [
+    {
+      "name": "Pata McMeow",
+      "email": "patatuy@mail.com",
+      "password": "blackpatuy"
+    },
+    {
+      "name": "Simba McMeow",
+      "email": "simbaboy@mail.com",
+      "password": "simbaburik"
+    },
+    {
+      "name": "Puma McMeow",
+      "email": "pumaboy@mail.com",
+      "password": "pampampuma"
+    },
+    {
+      "name": "Sora McMeow",
+      "email": "sora@mail.com",
+      "password": "soracora"
+    },
+    {
+      "id": 5,
+      "name": "akbar",
+      "email": "akbar@mail.com",
+      "password": "akbarakbar"
+    },
+    {
+      "id": 6,
+      "name": "Huey McMeow",
+      "email": "hueyguey@mail.com",
+      "password": "hueyguey"
+    },
+    {
+      "id": 7,
+      "name": "Duwey McMeow",
+      "email": "dadaduy@mail.com",
+      "password": "dadaduy14"
+    },
+    {
+      "id": 8,
+      "name": "Zero McMeow",
+      "email": "zero@mail.com",
+      "password": "zerozero"
+    }
+  ],
+  "Task": [
+    {
+      "id": 1,
+      "title": "Merapihkan Arsip",
+      "category": "backlog",
+      "due_date": "2020-05-09",
+      "description": "no description"
+    },
+    {
+      "id": 2,
+      "title": "Memberikan Penawaran pada Kontraktor",
+      "category": "done",
+      "due_date": "2020-05-09",
+      "description": "urgent"
+    },
+    {
+      "id": 3,
+      "title": "Membuat Laporan Keuangan Bulanan",
+      "category": "doing",
+      "due_date": "2020-05-09",
+      "description": "no description"
+    },
+    {
+      "id": 4,
+      "title": "Mempersiapkan Presentasi Produk",
+      "category": "todo",
+      "due_date": "2020-05-09",
+      "description": "urgent"
+    }
+  ]
+}
