@@ -10,8 +10,8 @@
 <body>
     <!-- nav bar -->
     <div class="container">
-        <nav class="navbar navbar-light bg-light">
-            <a class="h1 font-weight-bold">KanBan Board</a>
+        <nav class="navbar bg-custom-grey">
+            <a class="h1 font-weight-bold display-4">Kanban Board</a>
             <form class="form-inline">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formAddTask">
                     Add Task
@@ -34,19 +34,19 @@
             <form>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="addTitle"  class="col-form-label">Title</label>
+                        <label for="addTitle"  class="col-form-label font-weight-bold">Title</label>
                         <input type="text" class="form-control" id="addTitle" placeholder="Task Title">
                     </div>
                     <div class="form-group">
-                        <label for="description" class="col-form-label">Description:</label>
+                        <label for="description" class="col-form-label font-weight-bold">Description:</label>
                         <textarea class="form-control" id="addDescription" placeholder="Task Description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="addPoint"  class="col-form-label">Point</label>
+                        <label for="addPoint"  class="col-form-label font-weight-bold">Point</label>
                         <input type="number" class="form-control" id="addPoint" placeholder="0">
                     </div>
                     <div class="form-group">
-                        <label for="addAssignedTo"  class="col-form-label">Title</label>
+                        <label for="addAssignedTo"  class="col-form-label font-weight-bold">Title</label>
                         <input type="text" class="form-control" id="addAssignedTo" placeholder="Assigned To">
                     </div>
                 </div>
@@ -65,10 +65,10 @@
             <div class="col md-4">
                 <!-- Back-Log-->
                 <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-danger font-weight-bold text-light">Back-Log</div>
+                    <div class="card-header bg-danger font-weight-bold text-light h4">Back-Log</div>
                     <div class="card-body text-primary">
                         <div class="card border-danger mb-3" style="max-width: 100%;">
-                            <div class="card-header text-body">header task</div>
+                            <div class="card-header font-weight-bold text-body">header task</div>
                             <div class="card-body text-primary">
                               <p class="text-body">Point: </p>
                               <p class="text-body">Assigned To: </p>
@@ -78,7 +78,7 @@
                             </div>
                           </div>
                           <div class="card border-danger mb-3" style="max-width: 100%;">
-                            <div class="card-header text-body">header task</div>
+                            <div class="card-header font-weight-bold text-body">header task</div>
                             <div class="card-body text-primary">
                               <p class="text-body">Point: </p>
                               <p class="text-body">Assigned To: </p>
@@ -94,10 +94,10 @@
             <div class="col md-4">
                 <!-- ToD-o-->
                 <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-custom-orange font-weight-bold text-light">To-Do</div>
+                    <div class="card-header bg-custom-orange font-weight-bold text-light h4">To-Do</div>
                     <div class="card-body text-primary">
                         <div class="card border-custom-orange  mb-3" style="max-width: 100%;">
-                            <div class="card-header text-body">header task</div>
+                            <div class="card-header font-weight-bold text-body">header task</div>
                             <div class="card-body text-primary">
                               <p class="text-body">Point: </p>
                               <p class="text-body">Assigned To: </p>
@@ -113,10 +113,10 @@
             <div class="col md-4">
                 <!-- Doing-->
                 <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-info font-weight-bold text-light">Doing</div>
+                    <div class="card-header bg-info font-weight-bold text-light h4">Doing</div>
                     <div class="card-body text-primary">
                         <div class="card border-info mb-3" style="max-width: 100%;">
-                            <div class="card-header text-body">header task</div>
+                            <div class="card-header font-weight-bold text-body">header task</div>
                             <div class="card-body text-primary">
                               <p class="text-body">Point: </p>
                               <p class="text-body">Assigned To: </p>
@@ -132,10 +132,10 @@
             <div class="col md-4">
                 <!-- Done-->
                 <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-success font-weight-bold text-light">Done</div>
+                    <div class="card-header bg-success font-weight-bold text-light h4">Done</div>
                     <div class="card-body text-primary">
                         <div class="card border-success mb-3" style="max-width: 100%;">
-                            <div class="card-header text-body">header task</div>
+                            <div class="card-header font-weight-bold text-body">header task</div>
                             <div class="card-body text-primary">
                               <p class="text-body">Point: </p>
                               <p class="text-body">Assigned To: </p>
@@ -154,20 +154,26 @@
     <!-- show detail -->
     <!-- Back-Log -->
     <div class="modal fade" id="detailBackLog" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
           <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Task: </h5>
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Task:..... </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form>
                 <div class="modal-body">
-                    backlog
+                    <p class="font-weight-bold">Task Description :</p>
+                    <p class="mt-0">test deskripsi</p>
+                    <p class="font-weight-bold">Point :</p>
+                    <p class="mt-0">10</p>
+                    <p class="font-weight-bold">Status :</p>
+                    <p class="mt-0">Back Log</p>
                 </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="modal-footer border-top-0 d-flex justify-content-around">
+                    <button type="submit" name="deleteBackLogButton" class="btn btn-dark ">Delete</button>
+                    <button type="submit" name="updateTodoButton" class="btn btn-custom-orange">To Do</button>
                 </div>
             </form>
           </div>
@@ -176,20 +182,27 @@
     <!-- end Back-Log -->
     <!-- To-Do -->
     <div class="modal fade" id="detailToDo" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
           <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Task: </h5>
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Task: ............ </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form>
                 <div class="modal-body">
-                    todo
+                    <p class="font-weight-bold">Task Description :</p>
+                    <p class="mt-0">test deskripsi</p>
+                    <p class="font-weight-bold">Point :</p>
+                    <p class="mt-0">10</p>
+                    <p class="font-weight-bold">Status :</p>
+                    <p class="mt-0">To Do</p>
                 </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="modal-footer border-top-0 d-flex justify-content-around">
+                    <button type="submit" name="updateBackLogButton" class="btn btn-danger">Back Log</button>
+                    <button type="submit" name="deleteToDoButton" class="btn btn-dark">Delete</button>
+                    <button type="submit" name="updateDoingButton" class="btn btn-info">Doing</button>
                 </div>
             </form>
           </div>
@@ -198,20 +211,27 @@
     <!-- End To-Do -->
     <!-- Doing -->
     <div class="modal fade" id="detailDoing" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
           <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Task: </h5>
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Task: .......... </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form>
                 <div class="modal-body">
-                    doing
+                    <p class="font-weight-bold">Task Description :</p>
+                    <p class="mt-0">test deskripsi</p>
+                    <p class="font-weight-bold">Point :</p>
+                    <p class="mt-0">10</p>
+                    <p class="font-weight-bold">Status :</p>
+                    <p class="mt-0">Doing</p>
                 </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="modal-footer border-top-0 d-flex justify-content-around">
+                    <button type="submit" name="updateToDoButton" class="btn btn-custom-orange">To Do</button>
+                    <button type="submit" name="deleteDoingButton" class="btn btn-dark">Delete</button>
+                    <button type="submit" name="updateDoneButton" class="btn btn-success">Done</button>
                 </div>
             </form>
           </div>
@@ -220,20 +240,26 @@
     <!-- End Doing -->
     <!-- Done -->
     <div class="modal fade" id="detailDone" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
           <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Task: </h5>
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Task: </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form>
                 <div class="modal-body">
-                    done
+                    <p class="font-weight-bold">Task Description :</p>
+                    <p class="mt-0">test deskripsi</p>
+                    <p class="font-weight-bold">Point :</p>
+                    <p class="mt-0">10</p>
+                    <p class="font-weight-bold">Status :</p>
+                    <p class="mt-0">Done</p>
                 </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="modal-footer border-top-0 d-flex justify-content-around">
+                    <button type="submit" name="updateDoingButton" class="btn btn-info">Doing</button>
+                    <button type="submit" name="deleteDoneButton" class="btn btn-dark">Delete</button>
                 </div>
             </form>
           </div>
