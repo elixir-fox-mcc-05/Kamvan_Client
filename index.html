@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    >
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <!-- CSS -->
     <link rel="stylesheet" href="/style.css" type="text/css" />
+    <!-- Vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Title -->
     <title>KamVan</title>
   </head>
   <body>
@@ -18,81 +28,110 @@
       <button type="button" class="btn btn-light">New Task</button>
     </nav>
 
-    <div class="container">
+    <div id="board"class="container">
       <div class="row d-flex flex-sm-wrap">
-        <div class="col-lg-3">
+        <div class="col-lg">
           <div class="card">
             <div class="card-header backlog">
               Back-Log
             </div>
             <div class="card-body">
-              <div class="card">
+              <div v-for="(task, index) in tasks" v-if="task.status === 'backlog'" class="card">
                 <div class="card-header">
-                  Testing
+                  {{ task.title }}
                 </div>
                 <div class="card-body">
-                  <p class="card-text">Testing...</p>
-                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                  <p class="card-text">Description : {{ task.description }}</p>
+                  <p class="card-text">Points : {{ task.points }}</p>
+                  <p class="card-text">Assigned To : {{ task.assignedTo }}</p>
+                  <a href="" class="btn btn-primary">Show Detail</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg">
           <div class="card">
             <div class="card-header todo">
               To-Do
             </div>
             <div class="card-body">
-              <div class="card">
+              <div v-for="(task, index) in tasks" v-if="task.status === 'todo'" class="card">
                 <div class="card-header">
-                  Testing
+                  {{ task.title }}
                 </div>
                 <div class="card-body">
-                  <p class="card-text">Testing...</p>
-                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                  <p class="card-text">Description : {{ task.description }}</p>
+                  <p class="card-text">Points : {{ task.points }}</p>
+                  <p class="card-text">Assigned To : {{ task.assignedTo }}</p>
+                  <a href="" class="btn btn-primary">Show Detail</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg">
           <div class="card">
             <div class="card-header doing">
               Doing
             </div>
             <div class="card-body">
-              <div class="card">
+              <div v-for="(task, index) in tasks" v-if="task.status === 'doing'" class="card">
                 <div class="card-header">
-                  Testing
+                  {{ task.title }}
                 </div>
                 <div class="card-body">
-                  <p class="card-text">Testing...</p>
-                  <a href="#!" class="btn btn-primary">Show Detail</a>
+                  <p class="card-text">Description : {{ task.description }}</p>
+                  <p class="card-text">Points : {{ task.points }}</p>
+                  <p class="card-text">Assigned To : {{ task.assignedTo }}</p>
+                  <a href="" class="btn btn-primary">Show Detail</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
-            <div class="card">
-              <div class="card-header done">
-                Done
-              </div>
-              <div class="card-body">
-                  <div class="card">
-                      <div class="card-header">
-                        Testing
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">Testing...</p>
-                        <a href="#!" class="btn btn-primary">Show Detail</a>
-                      </div>
-                  </div>
+        <div class="col-lg">
+          <div class="card">
+            <div class="card-header done">
+              Done
+            </div>
+            <div class="card-body">
+              <div v-for="(task, index) in tasks" v-if="task.status === 'done'" class="card">
+                <div class="card-header">
+                  {{ task.title }}
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Description : {{ task.description }}</p>
+                  <p class="card-text">Points : {{ task.points }}</p>
+                  <p class="card-text">Assigned To : {{ task.assignedTo }}</p>
+                  <a href="" class="btn btn-primary">Show Detail</a>
+                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Main JavaScript -->
+    <script src="./script.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
