@@ -17,25 +17,25 @@
                 <form class="col s12">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input  name="title" id="title" type="text" class="validate">
+                      <input  name="title" id="title" type="text" class="validate" v-model="inputTask.title">
                       <label for="title">Title</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <textarea name="description" id="description" class="materialize-textarea validate"></textarea>
+                      <textarea name="description" id="description" class="materialize-textarea validate" v-model="inputTask.description"></textarea>
                       <label for="description">Description</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input name="point" id="point" type="number" class="validate">
+                      <input name="point" id="point" type="number" class="validate" v-model="inputTask.point">
                       <label for="point">Point</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input name="assignedto" id="assignedto" type="text" class="validate">
+                      <input name="assignedto" id="assignedto" type="text" class="validate" v-model="inputTask.assignedTo">
                       <label for="assignedto">Assigned To</label>
                     </div>
                   </div>
@@ -45,7 +45,7 @@
             <div class="modal-footer">
               <a href="#!" class="modal-close waves-effect waves-green btn-flat red  white-text">Cancel</a>
               <div></div>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat blue  white-text">Save</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat blue  white-text" @click.prevent="addTask()">Save</a>
             </div>
         </div>
         <div class="row">
@@ -66,55 +66,55 @@
                             <p>{{ task.description }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                            <a href="#detail-backlog" class="waves-effect waves-light btn modal-trigger" @click.prevent="detailTask(task.id)">Show Detail</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col s12 l3">
-                <div id="box-category" class="card" v-for="task in tasks" v-if="task.category === 'todo'" :key="task.id">
+                <div id="box-category" class="card">
                     <div class="header orange darken-2 white-text">
                         <span>Todo</span>
                     </div>
-                    <div id="box-item" class="card white">
+                    <div id="box-item" class="card white" v-for="task in tasks" v-if="task.category === 'todo'" :key="task.id">
                         <div class="card-content black-text">
                             <span class="card-title">{{ task.title }}</span>
                             <p>{{ task.description }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="#detail-todo" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                            <a href="#detail-todo" class="waves-effect waves-light btn modal-trigger" @click.prevent="detailTask(task.id)">Show Detail</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col s12 l3">
-                <div id="box-category" class="card" v-for="task in tasks" v-if="task.category === 'doing'" :key="task.id">
+                <div id="box-category" class="card">
                     <div class="header light-blue darken-2 white-text">
                         <span>Doing</span>
                     </div>
-                    <div id="box-item" class="card white">
+                    <div id="box-item" class="card white" v-for="task in tasks" v-if="task.category === 'doing'" :key="task.id">
                         <div class="card-content black-text">
                             <span class="card-title">{{ task.title }}</span>
                             <p>{{ task.description }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="#detail-doing" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                            <a href="#detail-doing" class="waves-effect waves-light btn modal-trigger" @click.prevent="detailTask(task.id)">Show Detail</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col s12 l3">
-                <div id="box-category" class="card" v-for="task in tasks" v-if="task.category === 'done'" :key="task.id">
+                <div id="box-category" class="card">
                     <div class="header green darken-2 white-text">
                         <span>Done</span>
                     </div>
-                    <div id="box-item" class="card white">
+                    <div id="box-item" class="card white" v-for="task in tasks" v-if="task.category === 'done'" :key="task.id">
                         <div class="card-content black-text">
                             <span class="card-title">{{ task.title }}</span>
                             <p>{{ task.description }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="#detail-done" class="waves-effect waves-light btn modal-trigger">Show Detail</a>
+                            <a href="#detail-done" class="waves-effect waves-light btn modal-trigger" @click.prevent="detailTask(task.id)">Show Detail</a>
                         </div>
                     </div>
                 </div>               
@@ -122,45 +122,45 @@
         </div>
         <div id="detail-backlog" class="modal">
             <div class="modal-content">
-              <h4>Detail Task</h4>
-              <p>Task Description</p>
+              <h4>{{ detail.title }}</h4>
+              <p>{{ detail.description }}</p>
             </div>
             <div class="modal-footer">
                 <div></div>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Todo</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text" @click.prevent="deleteTask(detail.id)">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text" @click.prevent="changeCategory(detail.id,'todo')">Todo</a>
             </div>
         </div>
         <div id="detail-todo" class="modal">
             <div class="modal-content">
-              <h4>Detail Task</h4>
-              <p>Task Description</p>
+              <h4>{{ detail.title }}</h4>
+              <p>{{ detail.description }}</p>
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Backlog</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Doing</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text" @click.prevent="changeCategory(detail.id,'backlog')">Backlog</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text" @click.prevent="deleteTask(detail.id)">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text" @click.prevent="changeCategory(detail.id,'doing')">Doing</a>
             </div>
         </div>
         <div id="detail-doing" class="modal">
             <div class="modal-content">
-              <h4>Detail Task</h4>
-              <p>Task Description</p>
+              <h4>{{ detail.title }}</h4>
+              <p>{{ detail.description }}</p>
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Todo</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text">Delete</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text">Done</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text" @click.prevent="changeCategory(detail.id,'todo')">Todo</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red white-text" @click.prevent="deleteTask(detail.id)">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat green white-text" @click.prevent="changeCategory(detail.id,'done')">Done</a>
             </div>
         </div>
         <div id="detail-done" class="modal">
             <div class="modal-content">
-              <h4>Detail Task</h4>
-              <p>Task Description</p>
+              <h4>{{ detail.title }}</h4>
+              <p>{{ detail.description }}</p>
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text">Doing</a>
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat red  white-text">Delete</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat orange white-text" @click.prevent="changeCategory(detail.id,'doing')">Doing</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat red  white-text" @click.prevent="deleteTask(detail.id)">Delete</a>
               <div></div>
             </div>
         </div>
