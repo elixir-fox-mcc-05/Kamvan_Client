@@ -4,18 +4,20 @@
     padding: 10px;
     flex-wrap: wrap;
 }
-
-.box {
-    color: white;
-    width: 250px;
-    height: 250px;
-    border: 2;
-    box-sizing: border-box;
-    border-width: thin;
-    border-style: solid;
+.card {
+    width: 22%;
 }
-.box-content{
-    padding: 5px;
-    border-width: thick;
-    border-style: dotted;
+.card-header {
+    padding: 10px 0 0 10px;
+    color: white;
+}
+.title-card{
+    padding: 0 0 0 5px;
+}
+.card-title {
+    border:1px solid;
+    padding: 5px 0 5px 10px;
+}
+.card-body .inner-card {
+    height: auto;
 }
