@@ -41,18 +41,38 @@
         </div>
         <div class="custom-card-place" >
             <div v-for="step in steps">
-              <div class="card">
+              <div  v-if="step == 'To-Do'">
+                <div class="card">
+                    <h3 class="card-header" :id="step" >{{ step }}</h3>
+                    <div class="card-body">
+                      <div v-for="task in tasks" :key="task.id">
+                        <div class="card" id="custom-card">
+                            <h3 class="card-header">{{task.title}}</h3>
+                            <div class="card-body">
+                              <p class="card-text">Point: {{task.point}}</p>
+                              <p class="card-text">Assigned To: {{task.assigned_to}}</p>
+                              <a href="#!" class="btn btn-primary">Show Detail</a>
+                            </div>
+                        </div>   
+                      </div>
+                    </div>
+                </div>    
+              </div>
+              <div v-else>
+                <div class="card">
                   <h3 class="card-header" :id="step" >{{ step }}</h3>
                   <div class="card-body">
                       <div class="card" id="custom-card">
-                          <h3 class="card-header">Task Title</h3>
+                          <h3 class="card-header">task title</h3>
                           <div class="card-body">
-                            <p class="card-text">Point: aaaaaaaaaaaaaaaa</p>
-                            <p class="card-text">Assigned To:</p>
+                            <p class="card-text">Point: </p>
+                            <p class="card-text">Assigned To: </p>
                             <a href="#!" class="btn btn-primary">Show Detail</a>
                           </div>
                       </div>   
                   </div>
+                </div>    
+              </div>
               </div>
             </div>
         </div>
