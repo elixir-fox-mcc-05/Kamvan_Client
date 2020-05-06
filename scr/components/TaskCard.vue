@@ -1,16 +1,17 @@
 <template>
 
  <div >
-    <div class="card text-black bg-light mb-1 d-flex justify-content-around" style="max-width: 18rem;">
+    <div class="card text-black bg-light mb-1 d-flex justify-content-around" >
         <div class="card-header">{{content.title}}</div>
         <div class="card-body">
             <h5 class="card-title">{{content.createAt}}</h5>
             <p class="card-text text-black">{{content.description}}</p>
         </div>
-        <div class="card-footer ">
-            <button class="card-link text-black" v-if="content.status !='Backlog'" @click.prevent="updatePrev(content.id,content.status)">Previous</button>
-            <button class="card-link text-black" @click.prevent="dele(content.id)">Delete</button>
-            <button class="card-link text-black" @click.prevent="updateNext(content.id,content.status)">Next</button>
+        <div class="card-footer action">
+            <button class="fa fa-chevron-circle-left" aria-hidden="true" v-if="content.status !='Backlog'" @click.prevent="updatePrev(content.id,content.status)"></button>
+            <button class="fa fa-pencil-square" aria-hidden="true" @click.prevent="upda(content.id,content.title,content.description)"></button>
+            <button class="fa fa-trash" aria-hidden="true" @click.prevent="dele(content.id)"></button>
+            <button class="fa fa-chevron-circle-right" aria-hidden="true" @click.prevent="updateNext(content.id,content.status)"></button>
         </div>
     </div>
     <div class="card-footer bg-transparent p-0">
@@ -58,9 +59,9 @@ export default {
             axios({
                 method:"GET",
                 url:"/task/"+id,
-                 headers:{
+                headers:{
                     token:localStorage.token
-                 }
+                }
             })
             .then(result=>{               
                 
@@ -70,13 +71,14 @@ export default {
                 this.projectmember = result.data.data.filter(function (item) { return item.Usertasks.length == 0 });                
                 this.projectmember.map(databaru=>{return databaru.idtaskchoosen=id})
                 }
-                 
             })
             .catch(err=>{
                 console.log(err);                
             })
-
-        },        
+        },  
+        upda(id,title,des){           
+            this.$emit('editbutton',id,title,des)
+        },      
         updateNext(id,status){
            axios({
                 method:"PUT",
@@ -151,5 +153,9 @@ export default {
 </script>
 
 <style>
-
+.action{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 </style>

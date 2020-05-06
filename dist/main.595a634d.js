@@ -8550,8 +8550,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  serverUrl: 'https://g-kanban.herokuapp.com' // serverUrl:'http://localhost:3000'
-
+  // serverUrl:'https://g-kanban.herokuapp.com'    
+  serverUrl: 'http://localhost:3000'
 };
 exports.default = _default;
 },{}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
@@ -10330,8 +10330,8 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = _axios.default.create({
-  baseURL: 'https://g-kanban.herokuapp.com' // baseURL: 'http://localhost:3000'
-
+  // baseURL: 'https://g-kanban.herokuapp.com'
+  baseURL: 'http://localhost:3000'
 });
 
 exports.default = _default;
@@ -12544,6 +12544,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: "TaskCard",
   components: {
@@ -12583,6 +12584,9 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    upda: function upda(id, title, des) {
+      this.$emit('editbutton', id, title, des);
     },
     updateNext: function updateNext(id, status) {
       (0, _axios.default)({
@@ -12658,8 +12662,7 @@ exports.default = _default;
       "div",
       {
         staticClass:
-          "card text-black bg-light mb-1 d-flex justify-content-around",
-        staticStyle: { "max-width": "18rem" }
+          "card text-black bg-light mb-1 d-flex justify-content-around"
       },
       [
         _c("div", { staticClass: "card-header" }, [
@@ -12676,50 +12679,56 @@ exports.default = _default;
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-footer " }, [
+        _c("div", { staticClass: "card-footer action" }, [
           _vm.content.status != "Backlog"
-            ? _c(
-                "button",
-                {
-                  staticClass: "card-link text-black",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.updatePrev(_vm.content.id, _vm.content.status)
-                    }
+            ? _c("button", {
+                staticClass: "fa fa-chevron-circle-left",
+                attrs: { "aria-hidden": "true" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.updatePrev(_vm.content.id, _vm.content.status)
                   }
-                },
-                [_vm._v("Previous")]
-              )
+                }
+              })
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "card-link text-black",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.dele(_vm.content.id)
-                }
+          _c("button", {
+            staticClass: "fa fa-pencil-square",
+            attrs: { "aria-hidden": "true" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.upda(
+                  _vm.content.id,
+                  _vm.content.title,
+                  _vm.content.description
+                )
               }
-            },
-            [_vm._v("Delete")]
-          ),
+            }
+          }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "card-link text-black",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.updateNext(_vm.content.id, _vm.content.status)
-                }
+          _c("button", {
+            staticClass: "fa fa-trash",
+            attrs: { "aria-hidden": "true" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.dele(_vm.content.id)
               }
-            },
-            [_vm._v("Next")]
-          )
+            }
+          }),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "fa fa-chevron-circle-right",
+            attrs: { "aria-hidden": "true" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.updateNext(_vm.content.id, _vm.content.status)
+              }
+            }
+          })
         ])
       ]
     ),
@@ -12864,6 +12873,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "CardContainer",
   components: {
@@ -12893,11 +12908,13 @@ var _default = {
       return datafilter;
     },
     refreshData: function refreshData() {
-      console.log('refresh');
       this.$emit('refreshData');
     },
     addbutton: function addbutton() {
       this.$emit('addbutton');
+    },
+    editbutton: function editbutton(id, title, des) {
+      this.$emit('editbutton', id, title, des);
     }
   }
 };
@@ -12914,31 +12931,39 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "container-item" } }, [
+  return _c("div", { staticClass: "row flex-row flex-sm-nowrap py-3" }, [
+    _c("div", [
+      _c("button", {
+        staticClass: "btn btn-primary fa fa-plus m-1",
+        attrs: { type: "button" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.addbutton($event)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       {
-        staticClass: "overflow-auto scrollbar scrollbar-primary",
+        staticClass: "overflow-auto scrollbar scrollbar-primary card-body",
         attrs: { id: "container-backlog" }
       },
       [
-        _c("button", {
-          staticClass: "btn btn-primary fa fa-plus m-1",
-          attrs: { type: "button" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.addbutton($event)
-            }
-          }
-        }),
+        _c(
+          "h6",
+          { staticClass: "card-title text-uppercase text-truncate py-2" },
+          [_vm._v("Back Log")]
+        ),
         _vm._v(" "),
         _vm._l(_vm.StatusCheck("Backlog"), function(task) {
           return _c("task-card", {
             key: task.id,
             staticClass: "item card text-black bg-danger mb-3 ",
             attrs: { content: task },
-            on: { refreshData: _vm.refreshData }
+            on: { editbutton: _vm.editbutton, refreshData: _vm.refreshData }
           })
         })
       ],
@@ -12948,52 +12973,76 @@ exports.default = _default;
     _c(
       "div",
       {
-        staticClass: "overflow-auto scrollbar scrollbar-primary",
+        staticClass: "overflow-auto scrollbar scrollbar-primary card-body",
         attrs: { id: "container-product" }
       },
-      _vm._l(_vm.StatusCheck("Todo"), function(task) {
-        return _c("task-card", {
-          key: task.id,
-          staticClass: "item card text-black bg-warning mb-3 ",
-          attrs: { content: task },
-          on: { refreshData: _vm.refreshData }
+      [
+        _c(
+          "h6",
+          { staticClass: "card-title text-uppercase text-truncate py-2" },
+          [_vm._v("To Do")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.StatusCheck("Todo"), function(task) {
+          return _c("task-card", {
+            key: task.id,
+            staticClass: "item card text-black bg-warning mb-3 ",
+            attrs: { content: task },
+            on: { editbutton: _vm.editbutton, refreshData: _vm.refreshData }
+          })
         })
-      }),
-      1
+      ],
+      2
     ),
     _vm._v(" "),
     _c(
       "div",
       {
-        staticClass: "overflow-auto scrollbar scrollbar-primary",
+        staticClass: "overflow-auto scrollbar scrollbar-primary card-body",
         attrs: { id: "container-development" }
       },
-      _vm._l(_vm.StatusCheck("Done"), function(task) {
-        return _c("task-card", {
-          key: task.id,
-          staticClass: "item card text-black bg-primary mb-3 ",
-          attrs: { content: task },
-          on: { refreshData: _vm.refreshData }
+      [
+        _c(
+          "h6",
+          { staticClass: "card-title text-uppercase text-truncate py-2" },
+          [_vm._v("Done")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.StatusCheck("Done"), function(task) {
+          return _c("task-card", {
+            key: task.id,
+            staticClass: "item card text-black bg-primary mb-3 ",
+            attrs: { content: task },
+            on: { editbutton: _vm.editbutton, refreshData: _vm.refreshData }
+          })
         })
-      }),
-      1
+      ],
+      2
     ),
     _vm._v(" "),
     _c(
       "div",
       {
-        staticClass: "overflow-auto scrollbar scrollbar-primary",
+        staticClass: "overflow-auto scrollbar scrollbar-primary card-body",
         attrs: { id: "container-done" }
       },
-      _vm._l(_vm.StatusCheck("Completed"), function(task) {
-        return _c("task-card", {
-          key: task.id,
-          staticClass: "item card text-black bg-success mb-3 ",
-          attrs: { content: task },
-          on: { refreshData: _vm.refreshData }
+      [
+        _c(
+          "h6",
+          { staticClass: "card-title text-uppercase text-truncate py-2" },
+          [_vm._v("Completed")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.StatusCheck("Completed"), function(task) {
+          return _c("task-card", {
+            key: task.id,
+            staticClass: "item card text-black bg-success mb-3 ",
+            attrs: { content: task },
+            on: { editbutton: _vm.editbutton, refreshData: _vm.refreshData }
+          })
         })
-      }),
-      1
+      ],
+      2
     )
   ])
 }
@@ -13275,6 +13324,278 @@ render._withStripped = true
       
       }
     })();
+},{"../axios":"scr/axios/index.js","../config":"scr/config.js","util":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/util.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"scr/components/EditTask.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("../axios"));
+
+var _config = _interopRequireDefault(require("../config"));
+
+var _util = require("util");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "AddTask",
+  props: ['dataedit'],
+  data: function data() {
+    return {
+      payload: {
+        id: '',
+        title: '',
+        description: ''
+      }
+    };
+  },
+  methods: {
+    cancelbutton: function cancelbutton() {
+      this.$emit('canceleditbutton');
+    },
+    editingTask: function editingTask() {
+      var _this = this;
+
+      (0, _axios.default)({
+        method: "PUT",
+        url: "/task/" + this.payload.id,
+        data: {
+          title: this.payload.title,
+          description: this.payload.description
+        },
+        headers: {
+          token: localStorage.token
+        }
+      }).then(function (result) {
+        io.connect(_config.default.serverUrl).emit('msg');
+
+        _this.$emit('refreshData');
+
+        Vue.toasted.global.my_app_success({
+          message: 'Edit Task Success'
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  },
+  created: function created() {
+    this.payload.id = this.dataedit.idtask;
+    this.payload.title = this.dataedit.title;
+    this.payload.description = this.dataedit.description;
+  }
+};
+exports.default = _default;
+        var $18f9a3 = exports.default || module.exports;
+      
+      if (typeof $18f9a3 === 'function') {
+        $18f9a3 = $18f9a3.options;
+      }
+    
+        /* template */
+        Object.assign($18f9a3, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "wrap-contact3" }, [
+    _c("form", { staticClass: "contact3-form validate-form" }, [
+      _c("span", { staticClass: "contact3-form-title" }, [
+        _vm._v("\n\t\t\t\t\t\tEdit Task\n\t\t\t\t\t")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.payload.id,
+            expression: "payload.id"
+          }
+        ],
+        attrs: { type: "hidden", name: "id" },
+        domProps: { value: _vm.payload.id },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.payload, "id", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" " + _vm._s(_vm.dataedit.id) + "\n\t\t\t\t\t"),
+      _c(
+        "div",
+        {
+          staticClass: "wrap-input3 validate-input",
+          attrs: { "data-validate": "Title is required" }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.payload.title,
+                expression: "payload.title"
+              }
+            ],
+            staticClass: "input3",
+            attrs: { type: "text", name: "title" },
+            domProps: { value: _vm.payload.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.payload, "title", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "focus-input3" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "wrap-input3 validate-input",
+          attrs: { "data-validate": "Description is required" }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.payload.description,
+                expression: "payload.description"
+              }
+            ],
+            staticClass: "input3",
+            attrs: { name: "description" },
+            domProps: { value: _vm.payload.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.payload, "description", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "focus-input3" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "container-contact3-form-btn container-login100-form-btn"
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "contact3-form-btn",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.editingTask($event)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\t\t\tSubmit\n\t\t\t\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "contact3-form-btn",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.cancelbutton($event)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\t\t\tCancel\n\t\t\t\t\t\t")]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$18f9a3', $18f9a3);
+          } else {
+            api.reload('$18f9a3', $18f9a3);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"../axios":"scr/axios/index.js","../config":"scr/config.js","util":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util/util.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"scr/views/Home.vue":[function(require,module,exports) {
 "use strict";
 
@@ -13286,6 +13607,8 @@ exports.default = void 0;
 var _cardContainer = _interopRequireDefault(require("../components/cardContainer"));
 
 var _AddTask = _interopRequireDefault(require("../components/AddTask"));
+
+var _EditTask = _interopRequireDefault(require("../components/EditTask"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -13315,26 +13638,45 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: "HomePage",
   components: {
     CardContainer: _cardContainer.default,
-    AddTask: _AddTask.default
+    AddTask: _AddTask.default,
+    EditTask: _EditTask.default
   },
   data: function data() {
     return {
       formadd: false,
-      activeuser: localStorage.username
+      formedit: false,
+      activeuser: localStorage.username,
+      editdata: {
+        idtask: '',
+        title: '',
+        description: ''
+      }
     };
   },
   props: ['dataAllTaskFromApp'],
   methods: {
     refreshData: function refreshData() {
       this.formadd = false;
+      this.formedit = false;
       this.$emit('refreshData');
     },
     addbutton: function addbutton() {
       this.formadd = true;
+    },
+    editbutton: function editbutton(id, title, des) {
+      this.editdata.idtask = id;
+      this.editdata.title = title;
+      this.editdata.description = des;
+      console.log(this.editdata.idtask, this.editdata.title, this.editdata.description);
+      this.formedit = true;
+    },
+    canceleditbutton: function canceleditbutton() {
+      this.formedit = false;
     },
     cancelbutton: function cancelbutton() {
       this.formadd = false;
@@ -13389,17 +13731,27 @@ exports.default = _default;
         }
       },
       [
-        _vm._m(0),
-        _vm._v(" "),
-        !_vm.formadd
-          ? _c("card-container", {
-              attrs: { dataAllTaskFromHome: _vm.dataAllTaskFromApp },
-              on: { refreshData: _vm.refreshData, addbutton: _vm.addbutton }
-            })
-          : _c("add-task", {
+        _vm.formadd && !_vm.formedit
+          ? _c("add-task", {
               on: {
                 cancelbutton: _vm.cancelbutton,
                 refreshData: _vm.refreshData
+              }
+            })
+          : !_vm.formadd && _vm.formedit
+          ? _c("edit-task", {
+              attrs: { dataedit: _vm.editdata },
+              on: {
+                canceleditbutton: _vm.canceleditbutton,
+                refreshData: _vm.refreshData
+              }
+            })
+          : _c("card-container", {
+              attrs: { dataAllTaskFromHome: _vm.dataAllTaskFromApp },
+              on: {
+                refreshData: _vm.refreshData,
+                addbutton: _vm.addbutton,
+                editbutton: _vm.editbutton
               }
             })
       ],
@@ -13407,22 +13759,7 @@ exports.default = _default;
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "container-header" } }, [
-      _c("div", [_c("h5", [_vm._v("Back Log")])]),
-      _vm._v(" "),
-      _c("div", [_c("h5", [_vm._v("Todo")])]),
-      _vm._v(" "),
-      _c("div", [_c("h5", [_vm._v("Done")])]),
-      _vm._v(" "),
-      _c("div", [_c("h5", [_vm._v("Completed")])])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -13455,7 +13792,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/cardContainer":"scr/components/cardContainer.vue","../components/AddTask":"scr/components/AddTask.vue","axios":"node_modules/axios/index.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","D:\\ACKTIV8\\Phase 2R\\W6D1\\Kamvan_Client\\images\\bg-01.jpg":[["bg-01.49446d9e.jpg","images/bg-01.jpg"],"images/bg-01.jpg"],"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/_empty.js":[function(require,module,exports) {
+},{"../components/cardContainer":"scr/components/cardContainer.vue","../components/AddTask":"scr/components/AddTask.vue","../components/EditTask":"scr/components/EditTask.vue","axios":"node_modules/axios/index.js","_css_loader":"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","D:\\ACKTIV8\\Phase 2R\\W6D1\\Kamvan_Client\\images\\bg-01.jpg":[["bg-01.49446d9e.jpg","images/bg-01.jpg"],"images/bg-01.jpg"],"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"C:/Users/TOP/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/_empty.js":[function(require,module,exports) {
 
 },{}],"scr/App.vue":[function(require,module,exports) {
 "use strict";
@@ -13705,7 +14042,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var GSignInButton = require('vue-google-signin-button');
 
-// Vue.use(GSignInButton)
+var firebaseConfig = {
+  apiKey: "AIzaSyCqrOOmVd_ew7uroS93pcEe2m6e6brcrUg",
+  authDomain: "g-kan-ban.firebaseapp.com",
+  databaseURL: "https://g-kan-ban.firebaseio.com",
+  projectId: "g-kan-ban",
+  storageBucket: "g-kan-ban.appspot.com",
+  messagingSenderId: "113359193326",
+  appId: "1:113359193326:web:4d45556d681710d9b71fff"
+}; // Initialize Firebase
+
+firebase.initializeApp(firebaseConfig); // Vue.use(GSignInButton)
+
 new _vue.default({
   GoogleSignInButton: _vueGoogleSigninButtonDirective.default,
   render: function render(h) {
@@ -13740,7 +14088,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60743" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
