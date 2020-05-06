@@ -120,6 +120,7 @@ export default {
   min-height: 200px;
   background: rgba(255, 255, 255, 0.5);
   margin: 20px;
+  border-radius: 15px;
 }
 .cardtitle{
  height: 50px;
