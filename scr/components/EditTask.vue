@@ -71,6 +71,10 @@ export default {
             })
             .catch(err=>{
                 console.log(err)
+                Vue.toasted.global.my_app_error({
+                    message : 'Not Authorized to Access'
+                });
+                
             })
         }
     },

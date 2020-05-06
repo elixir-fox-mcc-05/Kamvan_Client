@@ -8550,8 +8550,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  // serverUrl:'https://g-kanban.herokuapp.com'    
-  serverUrl: 'http://localhost:3000'
+  serverUrl: 'https://g-kanban.herokuapp.com' // serverUrl:'http://localhost:3000'
+
 };
 exports.default = _default;
 },{}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
@@ -10330,8 +10330,8 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = _axios.default.create({
-  // baseURL: 'https://g-kanban.herokuapp.com'
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://g-kanban.herokuapp.com' // baseURL: 'http://localhost:3000'
+
 });
 
 exports.default = _default;
@@ -13410,6 +13410,9 @@ var _default = {
         });
       }).catch(function (err) {
         console.log(err);
+        Vue.toasted.global.my_app_error({
+          message: 'Not Authorized to Access'
+        });
       });
     }
   },
@@ -14042,18 +14045,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var GSignInButton = require('vue-google-signin-button');
 
-var firebaseConfig = {
-  apiKey: "AIzaSyCqrOOmVd_ew7uroS93pcEe2m6e6brcrUg",
-  authDomain: "g-kan-ban.firebaseapp.com",
-  databaseURL: "https://g-kan-ban.firebaseio.com",
-  projectId: "g-kan-ban",
-  storageBucket: "g-kan-ban.appspot.com",
-  messagingSenderId: "113359193326",
-  appId: "1:113359193326:web:4d45556d681710d9b71fff"
-}; // Initialize Firebase
-
-firebase.initializeApp(firebaseConfig); // Vue.use(GSignInButton)
-
+// Vue.use(GSignInButton)
 new _vue.default({
   GoogleSignInButton: _vueGoogleSigninButtonDirective.default,
   render: function render(h) {
@@ -14088,7 +14080,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64770" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
