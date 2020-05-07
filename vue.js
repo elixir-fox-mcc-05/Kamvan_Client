@@ -22,7 +22,7 @@ new Vue({
     methods: {
         register() {
             axios.post('http://localhost:3000/user', {
-                "id": 8,
+                "id": 9,
                 "name": this.registrationName,
                 "email": this.registrationEmail,
                 "password": this.registrationPassword
@@ -65,6 +65,10 @@ new Vue({
         showAllTask() {
             axios.get('http://localhost:3000/task')
                 .then(res => {
+                    this.backlog = [];
+                    this.todo = [];
+                    this.doing = [];
+                    this.done = [];
                     res.data.forEach(task => {
                         if(task.category === 'backlog') {
                             this.backlog.push(task);
@@ -113,7 +117,8 @@ new Vue({
         deleteTask(id) {
             axios.delete(`http://localhost:3000/task/${id}`)
                 .then(res => {
-                    console.log(res);
+                    this.showAllTask();
+                    
                 })
                 .catch(err => {
                     this.alertMessage = err.message;

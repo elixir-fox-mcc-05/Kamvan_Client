@@ -49,7 +49,6 @@ ul li:hover {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
 }
 
 .kanban-card {
@@ -168,4 +167,11 @@ ul li:hover {
 
 .main-head {
     padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .kanban-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
