@@ -1,11 +1,10 @@
 <template>
     <div>
-        <navbar></navbar>
-        <landingPage
+        <LandingPage
             @registerUser="registerUser"
             @loginUser="loginUser"
-        ></landingPage>
-        <!-- <mainPage
+        ></LandingPage>
+        <!-- <MainPage
             :Tasks="Tasks"
             :Users="Users"
             @createTask="createTask"
@@ -13,22 +12,20 @@
             @changeCategory="changeCategory"
             @deleteTask="deleteTask"
         >
-        </mainPage> -->
+        </MainPage> -->
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-import navbar from './components/1-navbar'
-import landingPage from './components/2-landingPage'
-import mainPage from './components/3-mainPage'
+import LandingPage from './pages/LandingPage'
+import MainPage from './pages/MainPage'
 
 export default {
     name: 'App',
     components: {
-        navbar,
-        landingPage,
-        mainPage
+        LandingPage,
+        MainPage
     },
     data: function() {
         return {
@@ -36,6 +33,7 @@ export default {
             Tasks: [],
             Users: [],
             CurrentUser: {},
+            isLogin: false
         }
     },
     methods: {

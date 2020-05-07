@@ -1,5 +1,6 @@
 <template>
     <section id="landingPage" class="container-fluid justify-content-center">
+        <Navbar></Navbar>
         <RegisterForm
             @registerUser="registerUser"
         ></RegisterForm>
@@ -10,12 +11,14 @@
 </template>
 
 <script>
-import RegisterForm from './2-1-register'
-import LoginForm from './2-2-login'
+import Navbar from '../components/Navbar'
+import RegisterForm from '../components/RegisterForm'
+import LoginForm from '../components/LoginForm'
 
 export default {
     name: 'landingPage',
     components: {
+        Navbar,
         RegisterForm,
         LoginForm
     },

@@ -6,7 +6,7 @@
                     <h4>{{category}}</h4>
                 </div>
                 <div class="card-body align-items-center pt-4">
-                    <taskCard v-for="Task in Tasks" :key="Task.id"
+                    <TaskCard v-for="Task in Tasks" :key="Task.id"
                         :category="category"
                         :Task="Task"
                         :Users="Users"
@@ -14,7 +14,7 @@
                         @changeCategory="changeCategory"
                         @deleteTask="deleteTask"
                     >
-                    </taskCard>
+                    </TaskCard>
                 </div>
             </div>
         </div>        
@@ -23,13 +23,12 @@
 </template>
 
 <script>
-import taskCard from './3-1-1-taskCard'
-
+import TaskCard from '../components/TaskCard'
 
 export default {
     name: 'kanbanBoard',
     components: {
-        taskCard
+        TaskCard
     },
     props: [ 'category', 'Tasks', 'Users' ],
     methods: {

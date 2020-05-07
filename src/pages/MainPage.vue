@@ -1,9 +1,11 @@
 <template>
     <div>
         <section id="mainPage">
+            <Navbar></Navbar>
+
             <div class="container-fluid mt-3">
                 <div class="row" >
-                    <kanbanBoard
+                    <KanbanBoard
                         v-for="category in Categories" :key="category"
                         :category="category"
                         :Tasks="Tasks"
@@ -12,9 +14,8 @@
                         @changeCategory="changeCategory"
                         @deleteTask="deleteTask"
                     >
-                    </kanbanBoard>
+                    </KanbanBoard>
                 </div>
-
             </div>
 
             <NewTaskModal :Users="Users" @createTask="createTask"></NewTaskModal>
@@ -24,8 +25,9 @@
 </template>
 
 <script>
-import kanbanBoard from './3-1-kanbanBoard'
-import NewTaskModal from './NewTaskModal'
+import Navbar from '../components/Navbar'
+import KanbanBoard from '../components/KanbanBoard'
+import NewTaskModal from '../components/NewTaskModal'
 
 export default {
     name: 'mainPage',
@@ -35,7 +37,7 @@ export default {
         }
     },
     components: {
-        kanbanBoard, NewTaskModal
+        Navbar, KanbanBoard, NewTaskModal
     },
     props: [ 'Tasks', 'Users' ],
     methods: {
