@@ -4,13 +4,15 @@
             <div class="container-fluid mt-3">
                 <div class="row" >
                     <kanbanBoard
-                    v-for="category in Categories" :key="category"
-                    :category="category"
-                    :Tasks="Tasks"
-                    :Users="Users"
-                    @updateTask="updateTask"
-                >
-                </kanbanBoard>
+                        v-for="category in Categories" :key="category"
+                        :category="category"
+                        :Tasks="Tasks"
+                        :Users="Users"
+                        @updateTask="updateTask"
+                        @changeCategory="changeCategory"
+                        @deleteTask="deleteTask"
+                    >
+                    </kanbanBoard>
                 </div>
 
             </div>
@@ -42,6 +44,12 @@ export default {
         },
         updateTask(editedTask) {
             this.$emit('updateTask', editedTask)
+        },
+        changeCategory(id, status) {
+            this.$emit('changeCategory', id, status)
+        },
+        deleteTask(id) {
+            this.$emit('deleteTask', id)
         }
     }
 }

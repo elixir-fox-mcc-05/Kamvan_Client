@@ -1,18 +1,24 @@
 <template>
     <div>
         <navbar></navbar>
-        <landingPage></landingPage>
-        <mainPage
+        <landingPage
+            @registerUser="registerUser"
+            @loginUser="loginUser"
+        ></landingPage>
+        <!-- <mainPage
             :Tasks="Tasks"
             :Users="Users"
             @createTask="createTask"
             @updateTask="updateTask"
+            @changeCategory="changeCategory"
+            @deleteTask="deleteTask"
         >
-        </mainPage>
+        </mainPage> -->
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 import navbar from './components/1-navbar'
 import landingPage from './components/2-landingPage'
 import mainPage from './components/3-mainPage'
@@ -29,33 +35,7 @@ export default {
             baseUrl: 'http://localhost:3000',
             Tasks: [],
             Users: [],
-            newUser: {
-                name: '',
-                email: '',
-                password: ''
-            },
-            loginUser: {
-                email: '',
-                password: ''
-            },
-            newTask: {
-                title: '',
-                description: '',
-                category: '',
-                priority: '',
-                deadline: '',
-                AssigneeId: '',
-            },
-            editedTask: {
-                title: '',
-                description: '',
-                category: '',
-                priority: '',
-                deadline: '',
-                AssigneeId: '',
-            },
             CurrentUser: {},
-            Categories: ['Back-Log', 'Todo', 'Doing', 'Done']
         }
     },
     methods: {
@@ -87,39 +67,41 @@ export default {
                 })
         },
 
-        registerUser() {
-            axios({
-                method: 'post',
-                url: `${this.baseUrl}/users/register`,
-                data: {
-                    name,
-                    email,
-                    password
-                }
-            })
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+        registerUser(newUser) {
+            console.log('newuser', newUser)
+            // axios({
+            //     method: 'post',
+            //     url: `${this.baseUrl}/users/register`,
+            //     data: {
+            //         name,
+            //         email,
+            //         password
+            //     }
+            // })
+            //     .then(response => {
+            //         console.log(response)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         },
 
-        loginUser() {
-            axios({
-                method: 'post',
-                url: `${this.baseUrl}/users/login`,
-                data: {
-                    email,
-                    password
-                }
-            })
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+        loginUser(user) {
+            console.log('user', user)
+            // axios({
+            //     method: 'post',
+            //     url: `${this.baseUrl}/users/login`,
+            //     data: {
+            //         email,
+            //         password
+            //     }
+            // })
+            //     .then(response => {
+            //         console.log(response)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         },
 
         createTask(newTask) {
@@ -167,32 +149,34 @@ export default {
         },
 
         changeCategory(id, status) {
-            axios({
-                method: 'patch',
-                url: `${this.baseUrl}/tasks/${id}`,
-                data: {
-                    category: status
-                }
-            })
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            console.log('id', id, 'status', status)
+            // axios({
+            //     method: 'patch',
+            //     url: `${this.baseUrl}/tasks/${id}`,
+            //     data: {
+            //         category: status
+            //     }
+            // })
+            //     .then(response => {
+            //         console.log(response)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         },
 
         deleteTask(id) {
-            axios({
-                method: 'delete',
-                url: `${this.baseUrl}/tasks/${id}`,
-            })
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            console.log('delete', id)
+            // axios({
+            //     method: 'delete',
+            //     url: `${this.baseUrl}/tasks/${id}`,
+            // })
+            //     .then(response => {
+            //         console.log(response)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         }
     },
     created() {

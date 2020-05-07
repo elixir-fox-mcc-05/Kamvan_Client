@@ -3,7 +3,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-11 justify-content-start">
-                        <h2>Kamvan Board</h2>
+                        <h2>Kanban Board</h2>
                     </div>
                     <div class="col-1 justify-content-end">
                         <a class="btn btn-primary btn-sm text-white" role="button" data-toggle="modal" data-target="#modalNewTask">New Task</a>

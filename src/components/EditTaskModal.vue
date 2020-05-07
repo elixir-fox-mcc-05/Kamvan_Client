@@ -45,11 +45,11 @@
                                 <option v-for="User in Users" :key="User.id" :value="User.id">{{User.name}}</option>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" @click.prevent="clearData">Cancel</button>
-                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" @click.prevent="createTask">Save</button>    
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" @click.prevent="updateTask">Save</button>    
                 </div>
             </div>
         </div>
