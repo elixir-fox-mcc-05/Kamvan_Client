@@ -1,0 +1,109 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "category": "Back-Log",
+      "title": "makan makan",
+      "desc": "makan-makan bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 2,
+      "category": "Todo",
+      "title": "minum-minum",
+      "desc": "minum-minum bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 3,
+      "category": "Doing",
+      "title": "ngerjain portofolio",
+      "desc": "mengerjakan portofolio",
+      "UserId": 1
+    },
+    {
+      "id": 4,
+      "category": "Done",
+      "title": "ngerjain server",
+      "desc": "mengerjakan server untuk portofolio",
+      "UserId": 1
+    }, {
+      "id": 1,
+      "category": "Back-Log",
+      "title": "makan makan",
+      "desc": "makan-makan bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 2,
+      "category": "Todo",
+      "title": "minum-minum",
+      "desc": "minum-minum bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 3,
+      "category": "Doing",
+      "title": "ngerjain portofolio",
+      "desc": "mengerjakan portofolio",
+      "UserId": 1
+    },
+    {
+      "id": 4,
+      "category": "Done",
+      "title": "ngerjain server",
+      "desc": "mengerjakan server untuk portofolio",
+      "UserId": 1
+    }, {
+      "id": 1,
+      "category": "Back-Log",
+      "title": "makan makan",
+      "desc": "makan-makan bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 2,
+      "category": "Todo",
+      "title": "minum-minum",
+      "desc": "minum-minum bareng teman-teman",
+      "UserId": 1
+    },
+    {
+      "id": 3,
+      "category": "Doing",
+      "title": "ngerjain portofolio",
+      "desc": "mengerjakan portofolio",
+      "UserId": 1
+    },
+    {
+      "id": 4,
+      "category": "Done",
+      "title": "ngerjain server",
+      "desc": "mengerjakan server untuk portofolio",
+      "UserId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "amir",
+      "email": "amir@gmail.com",
+      "password": "zxcvb",
+      "organization-name": "Hacktiv8"
+    },
+    {
+      "id": 2,
+      "name": "ricky",
+      "email": "ricky@gmail.com",
+      "password": "zxcvb",
+      "organization-name": "Hacktiv8"
+    },
+    {
+        "id": 3,
+        "name": "budi",
+        "email": "budi@gmail.com",
+        "password": "zxcvb",
+        "organization-name": "Strawhat Pirate"
+      }
+  ]
+}
