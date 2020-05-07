@@ -10,10 +10,10 @@
       <register :currentPage="currentPage"></register>
       <login :currentPage="currentPage" :isLogin="isLogin" @changeLogin="changeLogin"></login>
       <div class="main-container" v-show="currentPage === 'dashboard'">
-        <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]"></listKanban>
+        <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]" @showAddForm="showAddForm" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin"></listKanban>
       </div>
-      <kanbanAdd v-show="currentPage === 'addKanban'"></kanbanAdd>
-      
+      <kanbanAdd @fetchKanban="fetchKanban" @changeLogin="changeLogin" v-show="currentPage === 'addKanban'"></kanbanAdd>
+      <kanbanUpdate :activity="activity" v-show="currentPage === 'editKanban'"  id="edit-form"></kanbanUpdate>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ import register from './components/Register';
 import login from './components/Login';
 import listKanban from './components/ListKanban';
 import kanbanAdd from './components/KanbanAdd';
+import kanbanUpdate from './components/KanbanUpdate';
 
 export default {
     name: 'App',
@@ -31,7 +32,8 @@ export default {
         isLogin: false,
         currentPage: 'login',
         categories: ['Backlog', 'ToDo', 'Doing', 'Done'],
-        kanbans: []
+        kanbans: [],
+        activity: ''
       }
     },
     components: {
@@ -39,7 +41,8 @@ export default {
       register, 
       login,
       listKanban,
-      kanbanAdd
+      kanbanAdd,
+      kanbanUpdate
     },
     methods: {
       // Menampilkan register form
@@ -60,6 +63,7 @@ export default {
       changeLogin(input) {
         this.isLogin = input;
         this.currentPage = 'dashboard';
+        fetchKanban();
       },
       // Mengecek apakah sudah login atau belum
       checkLogin() {
@@ -70,6 +74,7 @@ export default {
       },
       // Menarik data dari server 
       fetchKanban() {
+        this.kanbans = [];
         const axios = require('axios');
         axios.get('http://localhost:3000/kanbans', {
           headers: {
@@ -97,6 +102,12 @@ export default {
       // Menampilkan kanban add form
       showAddForm(input) {
         this.currentPage = input;
+      },
+      // Menampilkan edit kanban form
+      showEditForm(input) {
+          this.currentPage = 'editKanban';
+          this.activity = input;
+          console.log(this.activity)
       }
     },
     created() {

@@ -1,38 +1,63 @@
 <template>
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-white bg-primary">
-                {{ category }}
-            </div>
-            <div class="card-body" id="main-body">
-                <div v-if="tasks.length>0">
-                    <kanbanCard v-for="task in tasks" :key="task.id" :task="task"></kanbanCard>
+    <div>
+        <div v-show="!show" class="container">
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    {{ category }}
+                </div>
+                <div class="card-body" id="main-body">
+                    <div v-if="tasks.length>0">
+                        <kanbanCard v-for="task in tasks" :key="task.id" :task="task" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin"></kanbanCard>
+                    </div>
+                </div>
+                <!-- Add Button -->
+                <div class="add-btn bg-primary" @click="showAddForm">
+                    <font-awesome-icon :icon="['fas', 'user-secret']"/>
                 </div>
             </div>
-            <!-- Add Button -->
-            <div class="add-btn bg-primary">
-                <font-awesome-icon :icon="['fas', 'user-secret']"/>
-            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import kanbanCard from './KanbanCard';
 
+
 export default {
     name:'ListKanban',
     props: ['category', 'tasks'],
     components: {
         kanbanCard
+    },
+    data() {
+        return {
+            show: false,
+            activity: ''
+        }
+    },
+    methods: {
+        // Menampilkan add kanban form
+        showAddForm() {
+            this.$emit('showAddForm', 'addKanban');
+        },
+        // Menampilkan edit kanban form
+        showEditForm(input) {
+            this.$emit('showEditForm', input);
+        },
+        // Parsing fetch kanban 
+        fetchKanban() {
+            this.$emit('fetchKanban');
+        },
+        // Parsing change login
+        changeLogin() {
+            this.$emit('changeLogin')
+        }
     }
 }
 </script>
 
 <style>
-.mini-container {
-    margin: 10px;
-    width: 100%;
-}
+
 
 .btn-kanban {
     display: flex;
