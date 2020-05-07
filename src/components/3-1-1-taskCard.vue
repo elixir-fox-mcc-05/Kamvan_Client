@@ -5,7 +5,7 @@
             <p class="card-text text-left font-weight-light">Priority: {{Task.priority}}</p>
             <p class="card-text text-left font-weight-light">Deadline: {{Task.deadline}}</p>
             <p class="card-text text-left font-weight-light">Assign To: {{Task.AssigneeDetail.name}}</p>
-            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDetailTask">Show Detail</a>
+            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="target">Show Detail</a>
         </div>
         <DetailTaskModal
             :Task="Task"
@@ -25,7 +25,7 @@ export default {
     props: ['Task', 'category', 'Users'],
     data() {
         return {
-
+            target: `#modalDetailTask${this.Task.id}`
         }
     },
     methods: {

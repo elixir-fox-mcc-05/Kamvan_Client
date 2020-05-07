@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="modalDetailTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button btn-sm" class="btn btn-primary" data-dismiss="modal">Before</button>
-                    <button type="button btn-sm" class="btn btn-warning" data-toggle="modal" data-target="#modalEditTask">Modify</button>
+                    <button type="button btn-sm" class="btn btn-warning" data-toggle="modal" :data-target="target">Modify</button>
                     <button type="button btn-sm" class="btn btn-danger">Delete</button>
                     <button type="button btn-sm" class="btn btn-success" data-dismiss="modal">Next</button>
                 </div>
@@ -44,6 +44,12 @@ export default {
     name: 'DetailTaskModal',
     components: {
         EditTaskModal
+    },
+    data() {
+        return {
+            modalId: `modalDetailTask${this.Task.id}`,
+            target: `#modalEditTask${this.Task.id}`
+        }
     },
     props: [ 'Task', 'Users' ],
     methods: {

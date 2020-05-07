@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="modalEditTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,6 +63,7 @@ export default {
     props: [ 'Task', 'Users' ],
     data() {
         return {
+            modalId: `modalEditTask${this.Task.id}`,
             editTask: {
                 title: this.Task.title,
                 description: this.Task.description,
