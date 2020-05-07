@@ -75,12 +75,7 @@ export default {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.068);
 }
 
-.KanbanAdd1 {
-  background-color: #ff6161;
-}
-.KanbanAdd1:hover {
-  background-color: #e04d4d;
-}
+
 
 .KanbanAdd2 {
   background-color: #a6b4ff;
@@ -102,6 +97,6 @@ export default {
 }
 
 .KanbanAdd4:hover {
-  background-color: #49db3c;
+  background-color: #52ef44;
 }
 </style>

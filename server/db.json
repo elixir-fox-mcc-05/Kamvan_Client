@@ -18,67 +18,73 @@
       "id": 3,
       "category": "Doing",
       "title": "ngerjain portofolio",
-      "desc": "mengerjakan portofolio",
+      "desc": "Kerjain create, update, delete task. Kejain sistem login-logout, buat register page, draggable, server",
       "UserId": 1
     },
     {
       "id": 4,
-      "category": "Done",
+      "category": "Todo",
       "title": "ngerjain server",
       "desc": "mengerjakan server untuk portofolio",
       "UserId": 1
     }, {
-      "id": 1,
+      "id": 5,
       "category": "Back-Log",
-      "title": "makan makan",
+      "title": "lari-lari",
       "desc": "makan-makan bareng teman-teman",
       "UserId": 1
     },
     {
-      "id": 2,
+      "id": 6,
       "category": "Todo",
-      "title": "minum-minum",
+      "title": "Kipas-kipas",
       "desc": "minum-minum bareng teman-teman",
       "UserId": 1
     },
     {
-      "id": 3,
-      "category": "Doing",
-      "title": "ngerjain portofolio",
+      "id": 6,
+      "category": "Todo",
+      "title": "Tidur",
       "desc": "mengerjakan portofolio",
       "UserId": 1
     },
     {
-      "id": 4,
+      "id": 7,
       "category": "Done",
-      "title": "ngerjain server",
+      "title": "Beli baju",
       "desc": "mengerjakan server untuk portofolio",
       "UserId": 1
     }, {
-      "id": 1,
+      "id": 8,
       "category": "Back-Log",
-      "title": "makan makan",
+      "title": "Sholat",
       "desc": "makan-makan bareng teman-teman",
       "UserId": 1
     },
     {
-      "id": 2,
+      "id": 9,
       "category": "Todo",
-      "title": "minum-minum",
+      "title": "Jalan-jalan",
       "desc": "minum-minum bareng teman-teman",
       "UserId": 1
     },
     {
-      "id": 3,
+      "id": 10,
       "category": "Doing",
-      "title": "ngerjain portofolio",
+      "title": "Mandi",
       "desc": "mengerjakan portofolio",
       "UserId": 1
     },
     {
-      "id": 4,
+      "id": 11,
+      "category": "Doing",
+      "title": "Minum",
+      "desc": "mengerjakan server untuk portofolio yang mana servernya harus bagus dan harus tiada duanya",
+      "UserId": 1
+    },{
+      "id": 12,
       "category": "Done",
-      "title": "ngerjain server",
+      "title": "Tiduuuuuur",
       "desc": "mengerjakan server untuk portofolio",
       "UserId": 1
     }

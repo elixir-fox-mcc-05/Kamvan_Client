@@ -3,7 +3,7 @@
     <div class="KanbanCard">
       <div class="title-card">{{ task.title }}</div>
       <p>{{ task.desc }}</p>
-      <button>
+      <button :style="{ 'background-color': colorTheme }">
         See Detail
       </button>
     </div>
@@ -13,19 +13,25 @@
 <script>
 export default {
   name: 'KanbanCard',
-  props: ['task'],
-  
+  props: ['task', 'category'],
+  computed: {
+    colorTheme() {
+      switch (this.category) {
+        case 'Back-Log':
+          return '#ff6161';
+        case 'Todo':
+          return '#a6b4ff';
+        case 'Doing':
+          return '#efde44';
+        case 'Done':
+          return '#52ef44';
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.CardContainer {
-  flex-basis: 25%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-/* card */
 .KanbanCard {
   background-color: white;
   height: 350px;
@@ -57,14 +63,15 @@ button {
   height: 40px;
   border: none;
   border-radius: 20px;
-  margin-top: 140px;
-  color: white;
+  margin-top: 90px;
+  color: #313236;
   font-size: 20px;
   cursor: pointer;
-  background-color: #64b5f6
+  /* position: fixed; */
+  z-index: 100;
 }
 
-button:hover{
+button:hover {
   background-color: white;
   border: 2px solid #64b5f6;
   color: #64b5f6;

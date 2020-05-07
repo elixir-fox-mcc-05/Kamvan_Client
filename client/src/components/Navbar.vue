@@ -23,7 +23,7 @@ export default {
 .navbar {
   background-color: white;
   display: flex;
-  padding: 20px 60px 20px;
+  padding: 25px 65px 25px;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.068);
@@ -44,8 +44,8 @@ export default {
 
 .navbar .navbar-left i,
 #logo {
-  color: #64b5f6;
-  font-size: 25px;
+  color: #ff6161;
+  font-size: 30px;
   margin: 0 10px 0;
 }
 
@@ -76,16 +76,16 @@ export default {
 .logout {
   width: 140px;
   height: 40px;
-  border: 1px solid #64b5f6;
+  border: 1px solid #ff6161;
   border-radius: 20px;
-  color: #64b5f6;
+  color: #ff6161;
   font-size: 20px;
   background-color: white;
   cursor: pointer;
 }
 
 .logout:hover {
-  background-color: #64b5f6;
+  background-color: #ff6161;
   border: none;
   color: white;
 }
