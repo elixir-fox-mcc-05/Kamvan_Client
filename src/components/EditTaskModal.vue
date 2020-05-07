@@ -85,8 +85,9 @@ export default {
         },
 
         updateTask() {
+            let id = this.Task.id
             let editedTask = this.editTask
-            this.$emit('updateTask', editedTask)
+            this.$emit('updateTask', id, editedTask)
         }
     }
 }

@@ -6,6 +6,7 @@
         <div class="card-body">
             <p class="card-text text-left font-weight-light">Priority: {{Task.priority}}</p>
             <p class="card-text text-left font-weight-light">Deadline: {{Task.deadline}}</p>
+            <p class="card-text text-left font-weight-light">Assign By: {{Task.AssignorDetail.name}}</p>
             <p class="card-text text-left font-weight-light">Assign To: {{Task.AssigneeDetail.name}}</p>
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="target">Show Detail</a>
         </div>
@@ -33,8 +34,8 @@ export default {
         }
     },
     methods: {
-        updateTask(editedTask) {
-            this.$emit('updateTask', editedTask)
+        updateTask(id, editedTask) {
+            this.$emit('updateTask', id, editedTask)
         },
         changeCategory(id, status) {
             this.$emit('changeCategory', id, status)

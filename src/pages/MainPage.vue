@@ -44,8 +44,8 @@ export default {
         createTask(newTask) {
             this.$emit('createTask', newTask)
         },
-        updateTask(editedTask) {
-            this.$emit('updateTask', editedTask)
+        updateTask(id, editedTask) {
+            this.$emit('updateTask', id,  editedTask)
         },
         changeCategory(id, status) {
             this.$emit('changeCategory', id, status)

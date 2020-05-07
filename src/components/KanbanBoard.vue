@@ -6,7 +6,7 @@
                     <h4>{{category}}</h4>
                 </div>
                 <div class="card-body align-items-center pt-4">
-                    <TaskCard v-for="Task in Tasks" :key="Task.id"
+                    <TaskCard v-for="Task in ListTask" :key="Task.id"
                         :category="category"
                         :Task="Task"
                         :Users="Users"
@@ -32,14 +32,25 @@ export default {
     },
     props: [ 'category', 'Tasks', 'Users' ],
     methods: {
-        updateTask(editedTask) {
-            this.$emit('updateTask', editedTask)
+        updateTask(id, editedTask) {
+            this.$emit('updateTask', id, editedTask)
         },
         changeCategory(id, status) {
             this.$emit('changeCategory', id, status)
         },
         deleteTask(id) {
             this.$emit('deleteTask', id)
+        }
+    },
+    computed: {
+        ListTask() {
+            let data = []
+            for(let i = 0; i < this.Tasks.length; i++) {
+                if(this.Tasks[i].category == this.category) {
+                    data.push(this.Tasks[i])
+                }
+            }
+            return data
         }
     }
 }

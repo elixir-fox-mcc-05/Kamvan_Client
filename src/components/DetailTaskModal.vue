@@ -22,7 +22,7 @@
                     <p class="">Assign To:</p>
                     <p class=" text-left font-weight-light">{{Task.AssigneeDetail.name}}</p>
                 </div>
-                <div class="modal-footer justify-content-between">
+                <div class="modal-footer justify-content-between" v-if="Task.AssignorId == currentUserId">
                     <div>
                         <button v-if="Task.category == 'Todo'" type="button" class="btn btn-danger btn-sm" data-dismiss="modal" @click.prevent="changeCategory(Task.id,'Back-Log')">Back-Log</button>
                         <button v-else-if="Task.category == 'Doing'" type="button" class="btn btn-warning btn-sm" data-dismiss="modal" @click.prevent="changeCategory(Task.id,'Todo')">Todo</button>
@@ -59,13 +59,14 @@ export default {
     data() {
         return {
             modalId: `modalDetailTask${this.Task.id}`,
-            target: `#modalEditTask${this.Task.id}`
+            target: `#modalEditTask${this.Task.id}`,
+            currentUserId: localStorage.currentUserId
         }
     },
     props: [ 'Task', 'Users' ],
     methods: {
-        updateTask(editedTask) {
-            this.$emit('updateTask', editedTask)
+        updateTask(id, editedTask) {
+            this.$emit('updateTask', id, editedTask)
         },
 
         changeCategory(id, status) {

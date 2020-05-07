@@ -83,8 +83,8 @@ export default {
         },
 
         createTask() {
-            let payload = this.newTask
-            this.$emit('createTask', payload)
+            let newTask = this.newTask
+            this.$emit('createTask', newTask)
         }
     }
 }
