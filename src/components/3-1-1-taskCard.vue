@@ -7,15 +7,31 @@
             <p class="card-text text-left font-weight-light">Assign To: {{Task.AssigneeDetail.name}}</p>
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDetailTask">Show Detail</a>
         </div>
+        <DetailTaskModal
+            :Task="Task"
+            :Users="Users"
+            @updateTask="updateTask"
+        ></DetailTaskModal>
     </div>
 </template>
 
 <script>
+import DetailTaskModal from './DetailTaskModal'
 export default {
     name: 'taskCard',
-    props: ['Task', 'category'],
-    methods: {
+    components: {
+        DetailTaskModal
+    },
+    props: ['Task', 'category', 'Users'],
+    data() {
+        return {
 
+        }
+    },
+    methods: {
+        updateTask(editedTask) {
+            this.$emit('updateTask', editedTask)
+        }
     }
 }
 </script>

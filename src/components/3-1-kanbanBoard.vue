@@ -6,7 +6,13 @@
                 <h4>{{category}}</h4>
                 </div>
                 <div class="card-body align-items-center">
-                    <taskCard v-for="Task in Tasks" :key="Task.id" :category="category" :Task="Task"></taskCard>
+                    <taskCard v-for="Task in Tasks" :key="Task.id"
+                    :category="category"
+                    :Task="Task"
+                    :Users="Users"
+                    @updateTask="updateTask"
+                >
+                </taskCard>
                 </div>
             </div>
         </div>        
@@ -23,7 +29,12 @@ export default {
     components: {
         taskCard
     },
-    props: [ 'category', 'Tasks' ]
+    props: [ 'category', 'Tasks', 'Users' ],
+    methods: {
+        updateTask(editedTask) {
+            this.$emit('updateTask', editedTask)
+        }
+    }
 }
 </script>
 
