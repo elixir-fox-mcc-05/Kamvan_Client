@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.form-container {
+    width: 500px;
+    margin: auto;
+}
 .main-container {
     width: 90%;
     margin: auto;
@@ -9,9 +13,9 @@
     justify-content: center;
 }
 
-.container {
+/* .container {
     width: 50vh;
-}
+} */
 
 #main-body{
     display: flex;
