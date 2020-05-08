@@ -127,11 +127,12 @@ export default {
                 .then(({data}) =>{
                     this.message = ""
                     localStorage.setItem("token", data.acces_token)
+                    this.token = data.acces_token
                     this.loggedIn = true
                     this.fetchData()
                 })
                 .catch(err => {
-                    console.log(err.response)
+                    console.log(err)
                 })
         },
         logout(){
@@ -162,7 +163,6 @@ export default {
                 })
         },
         edit(data){
-            console.log(data)
             axios({
                 method : "put",
                 url : `${this.baseUrl}task/${data.id}`,
@@ -177,11 +177,11 @@ export default {
                 }
             })
                 .then(result => {
-                    this.fetchData()
+                    this.fetchData();
                 })
                 .catch(err => {
-                    this.message = "Ada error"
-                    console.log(this.message)
+                    this.message = "Ada error";
+                    console.log(this.message);
                 })
         },
         deleteData(data){
@@ -193,12 +193,12 @@ export default {
                 }
             })
                 .then(res => {
-                    console.log("succes")
-                    this.fetchData()
+                    console.log("succes");
+                    this.fetchData();
                 })
                 .catch(err => {
-                    this.message = ""
-                    console.log(this.message)
+                    this.message = "";
+                    console.log(this.message);
                 })
         },
         changeCategory(data){
@@ -213,16 +213,16 @@ export default {
                 }
             })
                 .then(res => {
-                    this.fetchData()
+                    this.fetchData();
                 })
                 .catch(err => {
-                    this.message = "ada error"
-                    console.log(this.message)
+                    this.message = "ada error";
+                    console.log(this.message);
                 })
         },
         onSignIn (user) {
-            const profile = user.getAuthResponse().id_token
-            console.log(profile)
+            const profile = user.getAuthResponse().id_token;
+            console.log(profile);
             axios({
                 method: 'post',
                 url : this.baseUrl + 'user/google-login',
@@ -232,11 +232,12 @@ export default {
             })
                 .then(({data}) => {
                     localStorage.setItem('token', data.Token)
-                    this.loggedIn = true
-                    this.fetchData()
+                    this.token = data.Token
+                    this.loggedIn = true;
+                    this.fetchData();
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log(err);
                 })
         }
     },
@@ -246,8 +247,13 @@ export default {
         });
         gapi.signin2.render('google-signin-button', {
             onsuccess: this.onSignIn
-        })
+        });
     },
+    created(){
+        if(localStorage.getItem("token")){
+            this.fetchData()
+        }
+    }
 };
 </script>
 
