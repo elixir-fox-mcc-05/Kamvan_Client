@@ -1,0 +1,103 @@
+body {
+  background-color: #fffadf;
+  margin: 0;
+  font-family: "Helvetica";
+}
+
+nav span {
+  color: #ffb186;
+  font-size: 40px;
+}
+
+.btn-style {
+  background-color: #ffb186;
+  font-weight: bold;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+}
+
+.btn-style:hover {
+  background-color: #e88419;
+  font-weight: bold;
+  color: #ffb186;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid #ffb186;
+}
+
+nav img {
+  width: 50px;
+}
+
+.containers {
+  width: 300px;
+  display: flex;
+}
+
+.containers h4 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+  margin: 10px;
+}
+
+.card {
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  border: none;
+}
+
+.card a {
+  background-color: #ffb186;
+  color: #ffffff;
+}
+
+.card p {
+  font-size: small;
+}
+
+.title-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-btn a {
+  background-color: #ffb186;
+  font-weight: bold;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  font-size: 10px;
+  text-align: center;
+  border: none;
+}
+
+.title-btn a:hover {
+  background-color: #ffde22;
+  text-align: center;
+  font-weight: bold;
+  color: #ffb186;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  border-radius: 25px;
+}
+
+
+
+
+/*# sourceMappingURL=/style.c61ab535.css.map */

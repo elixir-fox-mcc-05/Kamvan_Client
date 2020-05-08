@@ -1,122 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="shortcut icon" href="./kanban.png" />
-    <link rel="stylesheet" href="style.css">
-    <title>看板 - KANBAN</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="shortcut icon" href="./kanban.png" />
+  <link rel="stylesheet" href="./src/style.css">
+  <title>看板 - KANBAN | Project Management</title>
 </head>
 <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-light">
-      <a class="navbar-brand" href="#"> <span>看板</span> </a>
-      <button type="button" class="btn add">+</button>
-    </nav>
-    <!-- add workflow -->
-    <!-- on hold, approved, on progress, done -->
-    <div class="containers">
-
-      <div class="container">
-        <h4>BACK-LOG</h4>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  
-      </div>
-      <div class="container">
-        <h4>TO-DO</h4>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  
-      </div>
-      <div class="container">
-        <h4>DOING</h4>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  
-      </div>
-      <div class="container">
-        <h4>DONE</h4>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 15rem;">
-          <!-- <img src="https://logodix.com/logo/1882976.jpg" alt="logo" class="card-img-top"> -->
-          <div class="card-body">
-            <div class="title-btn">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn">..</a>
-            </div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  
-      </div>
-      
-    </div>
-
-    <!-- cards --> 
+  <div id="app"></div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/src/main.js"></script>
 </body>
 </html>
