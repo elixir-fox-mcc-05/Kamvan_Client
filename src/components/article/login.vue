@@ -1,18 +1,23 @@
 <template>
 <div class=" column is-offset-one-quarter box is-half" v-if="showlogin">
-    <div class="nes-field" >
-        <label class="subtitle" for="name-field">email</label>
+    <div class="column">
+        <h1 class="subtitle has-text-centered is-size-4" for="name-field">E-mail</h1>
         <input v-model="email" type="text" id="loginemail" class="input is-small">
     </div>
-    <div class="nes-field">
-        <label class="subtitle" for="name-field">password</label>
+    <div class="column">
+        <h1 class="subtitle has-text-centered is-size-4" for="name-field">Password</h1>
         <input v-model="password" type="password" id="loginpassword" class="input is-small">
     </div>
     <hr class="login-hr">
-    <a @click.prevent="login" class="button">Login</a>
-    <a @click.prevent="switchregister" class="button">Register</a>
+    <div class="level">
+    <a @click.prevent="login" class="button  is-medium is-success has-text-centered">Login</a>
+    <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+    <div class="level-right">
+    <a @click.prevent="switchregister" class="button is-medium is-success level-item is-5">Register</a>
+    </div>
+    </div>
     <hr class="login-hr">
-     <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+     
 </div>
 </template>
 

@@ -88,7 +88,7 @@ export default {
       // console.log(dataLogin)
       axios({
         method: "post",
-        url: "http://localhost:3000/login",
+        url: "https://intense-scrubland-11112.herokuapp.com/login",
         data : {
           email : dataLogin.email,
           password : dataLogin.password
@@ -112,7 +112,7 @@ export default {
       // console.log(dataRegister)
       axios({
         method: "post",
-        url: "http://localhost:3000/register",
+        url: "https://intense-scrubland-11112.herokuapp.com/register",
         data : {
           first_name : dataRegister.first_name,
           last_name : dataRegister.last_name,
@@ -156,7 +156,7 @@ export default {
     fetchTask(){
       axios({
         method: "get",
-        url : 'http://localhost:3000/tasks',
+        url : 'https://intense-scrubland-11112.herokuapp.com/tasks',
         headers : {
           token : localStorage.token
         }
@@ -172,7 +172,7 @@ export default {
     addTask(data){
       axios({
         method : 'post',
-        url : 'http://localhost:3000/tasks/add',
+        url : 'https://intense-scrubland-11112.herokuapp.com/tasks/add',
         headers : {
           token : localStorage.token
         },
@@ -195,7 +195,7 @@ export default {
       console.log('jalan woi')
       axios({
         method: 'get',
-        url : `http://localhost:3000/tasks/${i}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/${i}`,
         headers : {
           token : localStorage.token
         },
@@ -248,7 +248,7 @@ export default {
       // console.log('h')
       axios({
         method: 'put',
-        url : `http://localhost:3000/tasks/update/${id}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/update/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -269,7 +269,7 @@ export default {
     deleteTask(id){
       axios({
         method: 'delete',
-        url : `http://localhost:3000/tasks/delete/${id}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/delete/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -296,7 +296,7 @@ export default {
             let google_token = googleUser.getAuthResponse().id_token
             axios({
               method : 'post',
-              url : 'http://localhost:3000/googlelogin',
+              url : 'https://intense-scrubland-11112.herokuapp.com/googlelogin',
               headers : {
                 google_token
               }
@@ -313,7 +313,7 @@ export default {
             })
     },
     onFailure(googleUser) {
-        console.log('googleUser error');
+        // console.log('googleUser error');
 
         // This only gets the user information: id, name, imageUrl and email
         console.log(googleUser.getBasicProfile());

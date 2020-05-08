@@ -4,7 +4,7 @@
                   <p class="is-size-6 has-text-centered">Points: {{task.points}}</p>
                   <p class="is-size-6 has-text-centered">Author: {{task.User.first_name}} {{task.User.last_name}}</p>
                   <hr class="login-hr has-background-dark">
-                  <button class="button" @click="detailBtn(task.id)">Show Detail</button>
+                  <button class="level button is-rounded" @click="detailBtn(task.id)">Show Detail</button>
                 </div>
 </template>
 
