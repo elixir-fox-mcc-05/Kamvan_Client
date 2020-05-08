@@ -1,163 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Spree Kanban Board</title>
-  </head>
-  <body>
-        <div id="app">
-
-            <!-- PAGE 1 | LOGIN PAGE -->
-            <section id="loginPage" v-if="currentPage == 'loginPage'"> 
-                <div class="container" id="login-box" >
-                    <div class="row align-items-center justify-content-center">
-                        <!-- <div class="col-4"></div> -->
-                        <div class="col-4 border border-primary rounded m-3 p-3">
-                            <div class="form-horizontal ">
-                                <h1 class="text-center">Welcome to Spree</h1>
-                                <p class="lead text-muted text-center">Spree helps you track your team's progress in developing a website using the famous Kanban method.</p>
-                                <hr/>
-                                <form class="justify-content-center">
-                                    <label class="control-label" for="loginEmail">Email:</label>
-                                    <input type="email" class="form-control" id="loginEmail" >
-                                    <label class="control-label" for="loginPassword">Password:</label>
-                                    <input type="password" class="form-control id="loginPassword><br>
-                                    <button type="button" class="btn btn-success">Log in</button>
-                                </form>
-                                <hr/>
-                                <p>New to Spree? You can register here!</p>
-                            </div>
-                        </div>
-                        <!-- <div class="col-4"></div> -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE 2 | REGISTER PAGE -->
-            
-            <section id="registerPage" v-else-if="currentPage == 'registerPage'">
-                <div class="container" id="login-box" >
-                    <div class="row align-items-center justify-content-center">
-                        <!-- <div class="col-4"></div> -->
-                        <div class="col-4 border border-primary rounded m-3 p-3">
-                            <div class="form-horizontal ">
-                                <h1 class="text-center">First time?</h1>
-                                <p class="lead text-muted text-center">Step right up and register here!</p>
-                                <hr/>
-                                <form class="justify-content-center">
-                                    <label class="control-label" for="registerEmail">Email:</label>
-                                    <input type="email" class="form-control" id="registerEmail" >
-                                    <label class="control-label" for="registerPassword">Password:</label>
-                                    <input type="password" class="form-control id="registerPassword><br>
-                                    <label class="control-label" for="registerPassword_verify">Confirm password:</label>
-                                    <input type="password" class="form-control id="registerPassword_verify><br>
-                                    <button type="button" class="btn btn-success">Register</button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- <div class="col-4"></div> -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- PAGE 3 | DASHBOARD MAIN PAGE  -->
-
-            <section id="dashboard" v-else-if="currentPage === 'dashboard'">
-                <div class="container-fluid" style="background-color: orangered;">
-                    <div class="row d-flex justify-content-between p-3">
-                        <h1>HELLO THIS IS TASKBAR</h1>
-                        <div>
-                            <button class="btn btn-success">Add task</button>
-                            <button class="btn btn-danger">Log out</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid justify-content-center" id="dashboard-box">
-                    <div class="row justify-content-center">
-                        <div class="w-100 border-primary rounded m-3 p-3" style="background-color: yellowgreen;">
-                            <h1>KANBAN BOARD HERE</h1>
-                            <div class="row justify-content-center">
-                                <div class="column h-20 w-auto m-3 p-3" style="background-color: teal; max-width: 20%;">
-                                    <H3>Test Board 1</H3>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4> 
-                                        </div>
-                                    </div>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4> 
-                                        </div>
-                                    </div>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="h-20 w-auto m-3 p-3" style="background-color: teal;max-width: 20%">
-                                    <H3>Test Board 2</H3>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="h-20 w-auto m-3 p-3" style="background-color: teal;max-width: 20%">
-                                    <H3>Test Board 3</H3>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="h-20 w-auto m-3 p-3" style="background-color: teal;max-width: 20%">
-                                    <H3>Test Board 4</H3>
-                                    <div class="task-card" style="background-color: wheat;">
-                                        <div class="column">
-                                            <H4>THIS IS CARD THIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARDTHIS IS CARD</H4>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>
-                </div>
-            
-            
-            </section>
-
-            <!-- PAGE 4 | ADD TASK PAGE -->
-
-            <section id="addTaskPage" v-else-if="currentPage === 'addTaskPage'">
-                <h1>Hello! This is Add Task page!</h1>
-            </section>
-
-            <!-- PAGE 5 | EDIT TASK PAGE -->
-
-            <section id="editTaskPage" v-else-if="currentPage === 'editTaskPage'">
-                <h1>Hello! This is Edit Task page!</h1>
-            </section>
-        </div>
-
-
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <!--  -->
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="./main.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Spree Kanban Board</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="/src/main.js"></script>
+</body>
 </html>
