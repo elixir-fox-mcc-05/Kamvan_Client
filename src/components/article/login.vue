@@ -11,19 +11,27 @@
     <hr class="login-hr">
     <a @click.prevent="login" class="button">Login</a>
     <a @click.prevent="switchregister" class="button">Register</a>
+    <hr class="login-hr">
+     <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
 </div>
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
 export default {
     name : 'Login',
+    components : {
+        GoogleLogin
+    },
     data(){
         return {
             email : '',
-            password : ''
+            password : '',
+            
+            
         }
     },
-    props: ['showlogin'],
+    props: ['showlogin','params','renderParams'],
     methods :{
         login(){
             
@@ -40,6 +48,13 @@ export default {
         },
         switchregister(){
             this.$emit('switchregister')
+        },
+        onSuccess(googleUser){
+            // console.log(googleUser);
+            this.$emit('onSuccess',googleUser)
+        },
+        onFailure(googleUser){
+            this.$emit('onFailure')
         }
     }
 }

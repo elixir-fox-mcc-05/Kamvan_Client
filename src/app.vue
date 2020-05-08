@@ -3,8 +3,17 @@
     <Headerside @logout="logout" 
     :loggedIn="loggedIn" 
     @addNewTaskForm="addNewTaskForm"
+    @switchregister="switchregister"
+    @switchlogin="switchlogin"
     ></Headerside>
-    <Login :showlogin="showlogin" @login="login" @switchregister='switchregister'></Login>
+    <Login :showlogin="showlogin" 
+    @login="login" 
+    @switchregister='switchregister'
+    :params="params"
+    :renderParams="renderParams"
+    @onSuccess="onSuccess"
+    :onFailure="onFailure"
+    ></Login>
     <Register :showregister="showregister" @register='register'></Register>
     <Column :showColumn="showColumn" :tasks="tasks" @detailBtn="detailBtn"></Column>
     <AddTask @addTask="addTask" :showAddTask="showAddTask" @close="showAddTask = false"></AddTask>
@@ -16,7 +25,7 @@
      ></DetailTask>
 </div>
 </template>
- <DetailTask :taskDetail="taskDetail" :showDetailTask="showDetailTask" @updateTask="updateTask" @deleteTask="deleteTask"></DetailTask>
+
 <script>
 import Headerside from './components/layout/header'
 import Login from './components/article/login'
@@ -24,6 +33,7 @@ import Register from './components/article/register'
 import Column from './components/Column'
 import DetailTask from './components/ui/DetailTask'
 import AddTask from './components/ui/AddTask'
+import GoogleLogin from 'vue-google-login';
 import axios from 'axios'
 export default {
   name: "App",
@@ -51,8 +61,18 @@ export default {
       showColumn : true,
       showAddTask : true,
       showDetailTask : true,
-      loggedIn : false
-    };
+      loggedIn : false,
+      params: {
+                    client_id: "352204718470-j9o7cm2ippmp6i1705sbhj3h6741234e.apps.googleusercontent.com"
+                },
+                // only needed if you want to render the button with the google ui
+                renderParams: {
+                    width: 150,
+                    height: 50,
+                    longtitle: false
+                }
+            
+    }
   },
   components: {
     Headerside,
@@ -60,7 +80,8 @@ export default {
     Register,
     Column,
     AddTask,
-    DetailTask
+    DetailTask,
+    // GoogleLogin
   },
   methods: {
     login(dataLogin) {
@@ -112,13 +133,26 @@ export default {
         });
     },
     logout(){
+      // const auth2 = gapi.auth2.getAuthInstance();
+      // auth2.signOut().then(function () {
+      //   localStorage.removeItem('access_token');
+      //   $('#main').empty();
+      //   $('#login-navbar-button').hide();
+      //   $('#not-login-navbar-button').show();
+      //   showFormLogin();
+      // });
       localStorage.clear()
       this.loggedIn = false
       this.showColumn = false
       this.showlogin = true
     },
     switchregister(){
+      this.showlogin = false
       this.showregister = true
+    },
+    switchlogin(){
+      this.showlogin = true
+      this.showregister = false
     },
     fetchTask(){
       axios({
@@ -254,6 +288,36 @@ export default {
     closeEditModal(){
       // console.log('editclose')
       this.showDetailTask = !this.showDetailTask
+    },
+    onSuccess(googleUser) {
+            // console.log(googleUser);
+ 
+            // This only gets the user information: id, name, imageUrl and email
+            console.log(googleUser.getAuthResponse());
+            let google_token = googleUser.getAuthResponse().id_token
+            axios({
+              method : 'post',
+              url : 'http://localhost:3000/googlelogin',
+              headers : {
+                google_token
+              }
+            })
+            .then(({data}) => {
+              console.log(data.token)
+              let token = data.token
+              localStorage.setItem('token', token)
+              this.checkstorage()
+              this.fetchTask()
+            })
+            .catch(err => {
+              console.log(err.response.data)
+            })
+    },
+    onFailure(googleUser) {
+        console.log('googleUser error');
+
+        // This only gets the user information: id, name, imageUrl and email
+        console.log(googleUser.getBasicProfile());
     }
   },
   created() {

@@ -9,8 +9,8 @@
 <script>
 import TaskForm from './ui/TaskForm'
 import TaskList from './ui/TaskList'
-import AddTask from './ui/AddTask'
-import DetailTask from './ui/DetailTask'
+// import AddTask from './ui/AddTask'
+// import DetailTask from './ui/DetailTask'
 export default {
     name : "column",
     data(){

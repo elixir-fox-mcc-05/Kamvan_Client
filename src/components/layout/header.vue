@@ -6,8 +6,8 @@
         <div class="column" style="margin:3%;position: relative;">
           <button @click.prevent="logout" class="button is-pulled-right"  v-if="loggedIn == true">Logout</button>
           <button @click.prevent="addNewTaskForm" class="button is-pulled-right"  v-if="loggedIn == true">New Task</button>
-           <button  class="button is-pulled-right" v-if="loggedIn == false">Login</button>
-             <button  class="button is-pulled-right" v-if="loggedIn == false">Register</button>
+           <button @click.prevent="switchlogin" class="button is-pulled-right" v-if="loggedIn == false">Login</button>
+             <button @click.prevent="switchregister" class="button is-pulled-right" v-if="loggedIn == false">Register</button>
         </div>
       </div>
       
@@ -22,6 +22,12 @@ export default {
       },
       addNewTaskForm(){
         this.$emit('addNewTaskForm')
+      },
+      switchregister(){
+        this.$emit('switchregister')
+      },
+      switchlogin(){
+        this.$emit('switchlogin')
       }
     },
     props : ['loggedIn']
