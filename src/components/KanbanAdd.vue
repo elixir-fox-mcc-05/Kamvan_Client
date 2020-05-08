@@ -10,16 +10,6 @@
                 <label for="description">Description</label>
                 <input type="text" name="description" placeholder="Your Description" class="form-control" v-model="description">
             </div>
-            <!-- <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="" class="form-control" v-model="status">
-                    <option disabled value="">Select:</option>
-                    <option>Backlog</option>
-                    <option>ToDo</option>
-                    <option>Doing</option>
-                    <option>Done</option>
-                </select>
-            </div> -->
             <div class="form-group">
                 <label for="point">Points</label>
                 <input type="number" name="point" placeholder="Your Point" class="form-control" v-model="point">
@@ -61,6 +51,10 @@ export default {
                 console.log(data);
                 this.$emit('fetchKanban');
                 this.$emit('changeLogin', true);
+                this.title = '';
+                this.point = '';
+                this.description = '';
+                this.feedback = '';
             })
             .catch(err => {
                err = err.response

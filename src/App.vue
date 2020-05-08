@@ -42,7 +42,7 @@ export default {
       login,
       listKanban,
       kanbanAdd,
-      kanbanUpdate
+      kanbanUpdate,
     },
     methods: {
       // Menampilkan register form
@@ -63,13 +63,12 @@ export default {
       changeLogin(input) {
         this.isLogin = input;
         this.currentPage = 'dashboard';
-        fetchKanban();
-        checkLogin();
+        this.fetchKanban();
+        this.checkLogin();
       },
       // Mengecek apakah sudah login atau belum
       checkLogin() {
         if (localStorage.getItem('token')) {
-          console.log(isLogin)
           this.isLogin = true;
           this.currentPage = 'dashboard';
         }
@@ -131,5 +130,9 @@ export default {
     margin: auto;
     display: flex;
     justify-content: center;
+  }
+
+  * {
+    font-size: 15px;
   }
 </style>

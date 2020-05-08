@@ -25,6 +25,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'register-form',
     data() {
@@ -33,7 +34,16 @@ export default {
             email: '',
             organization: '',
             password: '',
-            feedback: ``
+            feedback: ``,
+            params: {
+                client_id: "498944937485-q32jf14hhda5hrlah85ia01tlja386gk.apps.googleusercontent.com"
+            },
+            // only needed if you want to render the button with the google ui
+            renderParams: {
+                width: 250,
+                height: 50,
+                longtitle: true
+            }
         }
     },
     props: ['currentPage'],
@@ -60,11 +70,10 @@ export default {
                     console.log(error[i].message);
                 }
             })
-        }   
+        }
     }
 }
 </script>
 
 <style>
-
 </style>
