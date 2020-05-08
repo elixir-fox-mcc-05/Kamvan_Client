@@ -147,6 +147,11 @@ export default {
                 assignedto : this.assignedto
             }
             this.$emit('createTitle', data)
+            this.title = ''
+            this.description = ''
+            this.point = ''
+            this.assignedto = ''
+
         },
         GetItem(data){
             console.log('masuk')
@@ -169,6 +174,11 @@ export default {
                 description : this.description
             }
             this.$emit('edit', data)
+            this.title = ''
+            this.description = ''
+            this.point = ''
+            this.assignedto = ''
+
         }
     }
 }

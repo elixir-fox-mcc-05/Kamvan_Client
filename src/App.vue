@@ -42,7 +42,13 @@ export default {
             status : [],
             logged_in : true,
             token : localStorage.getItem('token'),
-            errMsg : ''
+            errMsg : '',
+            id : null,
+            title : '',
+            description : '',
+            point : '',
+            assignedto : '',
+
         }
     },
     methods: {
