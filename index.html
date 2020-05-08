@@ -8,38 +8,177 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- nav bar -->
-    <div class="container">
-        <nav class="navbar bg-custom-grey">
-            <a class="h1 font-weight-bold display-4">Kanban Board</a>
-            <form class="form-inline">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formAddTask">
-                    New Task
-                </button>
+  <div id="app">
+    <!-- login -->
+    <div class="container" v-if="page == 'loginPage'">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto text-center">
+          <a class="h1 font-weight-bold display-4">KANBAN BOARD</a>
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center font-weight-bold h3">LOGIN</h5>
+              <hr class="my-2">
+              <form class="form-signin" v-on:submit.prevent="login">
+                <div class="form-label-group">
+                  <p class="text-center text-danger" v-if="errorMessage"> <span> {{ errorMessage }} </span> </p>
+                  <label for="inputEmail">Email address</label>
+                  <input type="email" v-model="loginEmail" class="form-control" placeholder="Email address" required autofocus>
+                </div><br>
+                <div class="form-label-group">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" v-model="loginPassword" class="form-control" placeholder="Password" required>
+                </div><br>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+              </form>
+              <hr class="my-4">
+              <p>Don't have account? Please Register Here</p>
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#formRegister">
+                Register
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end login -->
+
+    <!-- register -->
+    <div class="modal fade" id="formRegister" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              <h5 class="modal-title">Register Account</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click='clearLoginPage'>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <p class="text-center text-danger" v-if="errorMessage"> <span> {{ errorMessage }} </span> </p>
+            <form v-on:submit.prevent="register">
+                <div class="modal-body">
+                  <div class="form-label-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" v-model="registerEmail" class="form-control" placeholder="Email address" required>
+                  </div><br>
+                  <div class="form-label-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" v-model="registerPassword" class="form-control" placeholder="Password" required>
+                  </div><br>
+                  <div class="form-label-group">
+                    <label for="inputPassword">Confirmation Password</label>
+                    <input type="password" v-model="confirmRegisterPassword" class="form-control" placeholder="Password" required>
+                  </div><br>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
             </form>
-        </nav>
-    </div><br>
-    <!-- end nav bar -->
+          </div>
+        </div>
+    </div>
+    <!-- end register -->
+
+    <!-- main page -->
+    <div class="container" v-if="page == 'mainPage'">
+      <!-- navbar -->
+      <nav class="navbar bg-custom-grey">
+            <a class="h1 font-weight-bold display-4">Kanban Board</a>
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#formNewTask">
+                 New Task
+              </button>
+              <button type="button" class="btn btn-info" v-on:click='logout'>
+                LOGOUT
+             </button>
+        </nav><br>
+        <!-- end navbar -->
+        <div class="row row-cols-1 row-cols-lg-4">
+            <div class="col md-4" v-for='(category in categories'>
+                <!-- Task -->
+                <div class="card border-dark mb-3" style="max-width: 100%;">
+                  <p class="card-header bg-danger font-weight-bold text-light h4" v-if='category === "Back Log"'>{{ category }}</p>
+                  <div v-for='(task, i) in tasks' :key='i' v-if='task.category === "Back Log" && category === "Back Log"' class="taskList">
+                    <div class="card-body text-primary">
+                        <div class="card border-danger mb-3" style="max-width: 100%;">
+                            <div class="card-header font-weight-bold text-body">{{ task.title }}</div>
+                            <div class="card-body text-primary">
+                              <p class="text-body">{{ task.description }}</p>
+                              <p class="mt-1"><small class="text-muted">created by: {{ task.UserEmail }}</small></p>
+                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateForm" v-on:click="showUpdateData(task)">
+                                Update
+                            </button>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  <p class="card-header bg-custom-orange font-weight-bold text-light h4" v-if='category === "To Do"' >{{ category }}</p>
+                  <div v-for='(task, i) in tasks' :key='i' v-if='task.category === "To Do" && category === "To Do"' class="taskList">
+                    <div class="card-body text-primary">
+                        <div class="card border-custom-orange mb-3" style="max-width: 100%;">
+                            <div class="card-header font-weight-bold text-body">{{ task.title }}</div>
+                            <div class="card-body text-primary">
+                              <p class="text-body">{{ task.description }}</p>
+                              <p class="mt-1"><small class="text-muted">created by: {{ task.UserEmail }}</small></p>
+                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateForm" v-on:click="showUpdateData(task)">
+                                Update
+                            </button>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  <p class="card-header bg-info font-weight-bold text-light h4" v-if='category === "Doing"'>{{ category }}</p>
+                  <div v-for='(task, i) in tasks' :key='i' v-if='task.category === "Doing" && category === "Doing"' class="taskList">
+                    <div class="card-body text-primary">
+                        <div class="card border-info mb-3" style="max-width: 100%;">
+                            <div class="card-header font-weight-bold text-body">{{ task.title }}</div>
+                            <div class="card-body text-primary">
+                              <p class="text-body">{{ task.description }}</p>
+                              <p class="mt-1"><small class="text-muted">created by: {{ task.UserEmail }}</small></p>
+                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateForm" v-on:click="showUpdateData(task)">
+                                Update
+                            </button>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  <p class="card-header bg-success font-weight-bold text-light h4" v-if='category === "Done"'>{{ category }}</p>
+                  <div v-for='(task, i) in tasks' :key='i' v-if='task.category === "Done" && category === "Done"' class="taskList">
+                    <div class="card-body text-primary">
+                        <div class="card border-success mb-3" style="max-width: 100%;">
+                            <div class="card-header font-weight-bold text-body">{{ task.title }}</div>
+                            <div class="card-body text-primary">
+                              <p class="text-body">{{ task.description }}</p>
+                              <p class="mt-1"><small class="text-muted">created by: {{ task.UserEmail }}</small></p>
+                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateForm" v-on:click="showUpdateData(task)">
+                                Update
+                            </button>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end Task-->
+            </div>
+    </div>
+    <!-- end main page -->
 
     <!-- add new task -->
-    <div class="modal fade" id="formAddTask" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="formNewTask" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header border-bottom-0">
               <h5 class="modal-title">New Task</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click='clearMainPage'>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form>
+            <form v-on:submit.prevent="newTask">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="addTitle"  class="col-form-label font-weight-bold">Title</label>
-                        <input type="text" class="form-control" id="addTitle" placeholder="Task Title">
+                        <input type="text" class="form-control" v-model="newTitle" placeholder="Task Title" required>
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label font-weight-bold">Description:</label>
-                        <textarea class="form-control" id="addDescription" placeholder="Task Description"></textarea>
+                        <textarea class="form-control" v-model="newDescription" placeholder="Task Description"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -51,225 +190,62 @@
     </div>
     <!-- end add new task -->
 
-    <!-- main page -->
-    <div class="container">
-        <div class="row row-cols-1 row-cols-xl-4">
-            <div class="col md-4">
-                <!-- Back-Log-->
-                <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-danger font-weight-bold text-light h4">Back Log</div>
-                    <div class="card-body text-primary">
-                        <div class="card border-danger mb-3" style="max-width: 100%;">
-                            <div class="card-header font-weight-bold text-body">header task</div>
-                            <div class="card-body text-primary">
-                              <p class="text-body">tes description</p>
-                              <p><small class="text-muted">created by : </small></p>
-                              <p class="mt-0"><small class="text-muted">Last updated : </small></p>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateBackLog">
-                                update
-                            </button>
-                            </div>
-                          </div>
-                          <div class="card border-danger mb-3" style="max-width: 100%;">
-                            <div class="card-header font-weight-bold text-body">header task</div>
-                            <div class="card-body text-primary">
-                              <p class="text-body">tes description</p>
-                              <p><small class="text-muted">created by : </small></p>
-                              <p class="mt-0"><small class="text-muted">Last updated : </small></p>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateBackLog">
-                                update
-                            </button>
-                            </div>
-                          </div>
-                    </div>
-                  </div>
-                <!-- end Back-Log-->
+    <!-- update -->>
+    <div class="modal fade" id="updateForm" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{ updateTitle }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click='clearMainPage'>
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="col md-4">
-                <!-- ToD-o-->
-                <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-custom-orange font-weight-bold text-light h4">To Do</div>
-                    <div class="card-body text-primary">
-                        <div class="card border-custom-orange  mb-3" style="max-width: 100%;">
-                            <div class="card-header font-weight-bold text-body">header task</div>
-                            <div class="card-body text-primary">
-                              <p class="text-body">tes description</p>
-                              <p><small class="text-muted">created by : </small></p>
-                              <p class="mt-0"><small class="text-muted">Last updated : </small></p>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateToDo">
-                                update
-                            </button>
-                            </div>
-                          </div>
+            <p class="text-center text-danger" v-if="errorMessage"> <span> {{ errorMessage }} </span> </p>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="description" class="col-form-label font-weight-bold">Description:</label>
+                        <textarea class="form-control" v-model="updateDescription" placeholder="Task Description"></textarea>
                     </div>
-                  </div>
-                <!-- end To-Do-->
-            </div>
-            <div class="col md-4">
-                <!-- Doing-->
-                <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-info font-weight-bold text-light h4">Doing</div>
-                    <div class="card-body text-primary">
-                        <div class="card border-info mb-3" style="max-width: 100%;">
-                            <div class="card-header font-weight-bold text-body">header task</div>
-                            <div class="card-body text-primary">
-                              <p class="text-body">tes description</p>
-                              <p><small class="text-muted">created by : </small></p>
-                              <p class="mt-0"><small class="text-muted">Last updated : </small></p>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateDoing">
-                                update
-                            </button>
-                            </div>
-                          </div>
-                    </div>
-                  </div>
-                <!-- end Doing-->
-            </div>
-            <div class="col md-4">
-                <!-- Done-->
-                <div class="card border-dark mb-3" style="max-width: 100%;">
-                    <div class="card-header bg-success font-weight-bold text-light h4">Done</div>
-                    <div class="card-body text-primary">
-                        <div class="card border-success mb-3" style="max-width: 100%;">
-                            <div class="card-header font-weight-bold text-body">header task</div>
-                            <div class="card-body text-primary">
-                              <p class="text-body">tes description</p>
-                              <p><small class="text-muted">created by : </small></p>
-                              <p class="mt-0"><small class="text-muted">Last updated : </small></p>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#updateDone">
-                                update
-                            </button>
-                            </div>
-                          </div>
-                    </div>
-                  </div>
-                <!-- end Done-->
+                    <p class="col-form-label font-weight-bold">Category: {{ updateCategory }}</p>
+                    <p>created by: {{ updateUserEmail }} </p>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-around" v-if='updateCategory == "Back Log"'>
+                  <button v-on:click.prevent="updateBackLogButton(updateTaskId)" class="btn btn-danger">Back Log</button>
+                  <button v-on:click.prevent="deleteButton(updateTaskId)" class="btn btn-dark ">Delete</button>
+                  <button v-on:click.prevent="updateToDoButton(updateTaskId)" class="btn btn-custom-orange">To Do</button>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-around" v-if='updateCategory == "To Do"'>
+                  <button v-on:click.prevent="updateBackLogButton(updateTaskId)" class="btn btn-danger">Back Log</button>
+                  <button v-on:click.prevent="updateToDoButton(updateTaskId)" class="btn btn-custom-orange">To Do</button>
+                  <button v-on:click.prevent="deleteButton(updateTaskId)" class="btn btn-dark ">Delete</button>
+                  <button v-on:click.prevent="updateDoingButton(updateTaskId)" class="btn btn-info">Doing</button>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-around" v-if='updateCategory == "Doing"'>
+                  <button v-on:click.prevent="updateToDoButton(updateTaskId)" class="btn btn-custom-orange">To Do</button>
+                  <button v-on:click.prevent="updateDoingButton(updateTaskId)" class="btn btn-info">Doing</button>
+                  <button v-on:click.prevent="deleteButton(updateTaskId)" class="btn btn-dark ">Delete</button>
+                  <button v-on:click.prevent="updateDoneButton(updateTaskId)" class="btn btn-success">Done</button>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-around" v-if='updateCategory == "Done"'>
+                  <button v-on:click.prevent="updateDoingButton(updateTaskId)" class="btn btn-info">Doing</button>
+                  <button v-on:click.prevent="updateDoneButton(updateTaskId)" class="btn btn-success">Done</button>
+                  <button v-on:click.prevent="deleteButton(updateTaskId)" class="btn btn-dark ">Delete</button>
+                </div>
+            </form>
           </div>
+        </div>
     </div>
+    <!-- end update -->
     <!-- end main page -->
+  </div>
 
-    <!-- edit -->
-    <!-- Back-Log -->
-    <div class="modal fade" id="updateBackLog" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <p class="font-weight-bold">Task Description :</p>
-                    <p class="mt-0">test deskripsi</p>
-                    <p class="font-weight-bold">Category :</p>
-                    <p class="mt-0">Back Log</p>
-                    <p><small class="text-muted">Last updated : </small></p>
-                </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-around">
-                    <button type="submit" name="updateBackLogButton" class="btn btn-danger">Back Log</button>
-                    <button type="submit" name="deleteBackLogButton" class="btn btn-dark ">Delete</button>
-                    <button type="submit" name="updateTodoButton" class="btn btn-custom-orange">To Do</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <!-- end Back-Log -->
-    <!-- To-Do -->
-    <div class="modal fade" id="updateToDo" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <p class="font-weight-bold">Task Description :</p>
-                    <p class="mt-0">test deskripsi</p>
-                    <p class="font-weight-bold">Category :</p>
-                    <p class="mt-0">To Do</p>
-                    <p><small class="text-muted">Last updated : </small></p>
-                </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-around">
-                    <button type="submit" name="updateBackLogButton" class="btn btn-danger">Back Log</button>
-                    <button type="submit" name="updateToDoButton" class="btn btn-custom-orange">To Do</button>
-                    <button type="submit" name="deleteToDoButton" class="btn btn-dark">Delete</button>
-                    <button type="submit" name="updateDoingButton" class="btn btn-info">Doing</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <!-- End To-Do -->
-    <!-- Doing -->
-    <div class="modal fade" id="updateDoing" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <p class="font-weight-bold">Task Description :</p>
-                    <p class="mt-0">test deskripsi</p>
-                    <p class="font-weight-bold">Category :</p>
-                    <p class="mt-0">Doing</p>
-                    <p><small class="text-muted">Last updated : </small></p>
-                </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-around">
-                    <button type="submit" name="updateToDoButton" class="btn btn-custom-orange">To Do</button>
-                    <button type="submit" name="updateDoingButton" class="btn btn-info">Doing</button>
-                    <button type="submit" name="deleteDoingButton" class="btn btn-dark">Delete</button>
-                    <button type="submit" name="updateDoneButton" class="btn btn-success">Done</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <!-- End Doing -->
-    <!-- Done -->
-    <div class="modal fade" id="updateDone" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <p class="font-weight-bold">Task Description :</p>
-                    <p class="mt-0">test deskripsi</p>
-                    <p class="font-weight-bold">Category :</p>
-                    <p class="mt-0">Done</p>
-                    <p><small class="text-muted">Last updated : </small></p>
-                </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-around">
-                    <button type="submit" name="updateDoingButton" class="btn btn-info">Doing</button>
-                    <button type="submit" name="updateDoneButton" class="btn btn-success">Done</button>
-                    <button type="submit" name="deleteDoneButton" class="btn btn-dark">Delete</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-    <!-- End Done -->
-    <!-- end edit -->
-
-    <!-- script -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="main.js"></script>
+  <!-- script -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
