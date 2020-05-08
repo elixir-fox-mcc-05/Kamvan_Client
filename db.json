@@ -1,25 +1,60 @@
 {
-    "tasks":[
-        {
-            "id": 1,
-            "title": "Kanban",
-            "description": "no need",
-            "point": 100,
-            "assigned_to": "whoever"
-        },
-        {
-            "id": 2,
-            "title": "KamVan",
-            "description": "need",
-            "point": 90,
-            "assigned_to": "siapa"
-        },
-        {
-            "id": 3,
-            "title": "Bankai",
-            "description": "needed rn",
-            "point": 70,
-            "assigned_to": "siapa aja"
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Kanban",
+      "description": "no need",
+      "point": 100,
+      "assigned_to": "whoever",
+      "category": "Back-Log"
+    },
+    {
+      "id": 2,
+      "title": "KamVan",
+      "description": "need",
+      "point": 90,
+      "assigned_to": "siapa",
+      "category": "Done"
+    },
+    {
+      "id": 3,
+      "title": "Bankai",
+      "description": "needed rn",
+      "point": 70,
+      "assigned_to": "siapa aja",
+      "category": "Doing"
+    },
+    {
+      "title": "hangout",
+      "description": "sama x, y, z",
+      "point": "90",
+      "assigned_to": "Faris",
+      "id": 4,
+      "category": "To-Do"
+    },
+    {
+      "title": "Ngerjain kanban",
+      "description": "deadline jumat",
+      "point": "100",
+      "assigned_to": "Mira",
+      "id": 5,
+      "category": "Back-Log"
+    },
+    {
+      "title": "submit",
+      "description": "reload ga",
+      "point": "80",
+      "assigned_to": "asd",
+      "id": 6,
+      "category":"Doing"
+    },
+    {
+      "title": "makan",
+      "description": "GS kelapa 2",
+      "point": "70",
+      "assigned_to": "Faris",
+      "id": 7,
+      "category":"Back-Log"
+    }
+  ]
 }

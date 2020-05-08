@@ -7,25 +7,40 @@
     display: flex;
     /* background-color: aquamarine; */
     justify-content: space-between;
-    margin: 10px 90px;
+    margin: 10px -40px;
+}
+
+.right-side-navabar{
+    display: flex;
+    justify-content: space-between;
+    color: red;
 }
 
 .left-side-navbar p{
     font-size: 30px;
     font-weight: bold;
     color: slategray;
+    /* margin-right: 100px; */
 }
 
 .custom-card-place{
     display: flex;
     /* background-color: aquamarine; */
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 10px 80px;
     align-items: baseline;
 }
 
 .custom-card-place div{
     margin: 0 10px;
+}
+
+.right-side-navbar1{
+    margin-left: 100px;
+}
+
+.right-side-navbar2{
+    margin-left: 10px;
 }
 
 #Back-Log{
