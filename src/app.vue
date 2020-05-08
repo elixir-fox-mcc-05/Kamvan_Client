@@ -133,14 +133,13 @@ export default {
         });
     },
     logout(){
+      const auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        localStorage.removeItem('access_token');
+
+      });
       // const auth2 = gapi.auth2.getAuthInstance();
-      // auth2.signOut().then(function () {
-      //   localStorage.removeItem('access_token');
-      //   $('#main').empty();
-      //   $('#login-navbar-button').hide();
-      //   $('#not-login-navbar-button').show();
-      //   showFormLogin();
-      // });
+      // localStorage.removeItem('access_token');
       localStorage.clear()
       this.loggedIn = false
       this.showColumn = false
@@ -293,7 +292,7 @@ export default {
             // console.log(googleUser);
  
             // This only gets the user information: id, name, imageUrl and email
-            console.log(googleUser.getAuthResponse());
+            // console.log(googleUser.getAuthResponse());
             let google_token = googleUser.getAuthResponse().id_token
             axios({
               method : 'post',
