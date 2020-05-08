@@ -46,7 +46,7 @@ export default {
             this.$emit('cancel')
         },
         login() {
-        axios.post('http://localhost:4000/users/login', {
+        axios.post('https://server-akbar-kanban.herokuapp.com/users/login', {
             email: this.loginEmail,
             password: this.loginPassword
         })

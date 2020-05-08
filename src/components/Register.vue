@@ -62,7 +62,7 @@ export default {
             this.$emit('cancel');
         },
         register() {
-            axios.post('http://localhost:4000/users/register', {
+            axios.post('https://server-akbar-kanban.herokuapp.com/users/register', {
                 name: this.registrationName,
                 email: this.registrationEmail,
                 password: this.registrationPassword
@@ -90,7 +90,7 @@ export default {
         },
         onSignInSuccess(googleUser){
             var id_token = googleUser.getAuthResponse().id_token;
-            axios.post('http://localhost:4000/users/google-login', null, {
+            axios.post('https://server-akbar-kanban.herokuapp.com/users/google-login', null, {
                 headers: {
                     google_token: id_token
                 }

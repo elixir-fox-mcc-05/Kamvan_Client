@@ -17,7 +17,7 @@ export default {
     methods: {
         deleteTask(id) {
             const { access_token } = localStorage;
-            axios.delete(`http://localhost:4000/tasks/${id}`, {
+            axios.delete(`https://server-akbar-kanban.herokuapp.com/tasks/${id}`, {
                 params: {
                     id
                 },

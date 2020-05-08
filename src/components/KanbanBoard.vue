@@ -126,7 +126,7 @@ export default {
         },
         changeCategory(id, category) {
             const{ access_token } = localStorage;
-            axios.patch(`http://localhost:4000/tasks/${id}`, {
+            axios.patch(`https://server-akbar-kanban.herokuapp.com/tasks/${id}`, {
                 category
             },{
                 headers: {

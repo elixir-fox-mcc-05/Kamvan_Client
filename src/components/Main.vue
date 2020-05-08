@@ -96,7 +96,7 @@ export default {
         },
         showAllTask() {
             const { access_token } = localStorage;
-            axios.get('http://localhost:4000/tasks', {
+            axios.get('https://server-akbar-kanban.herokuapp.com/tasks', {
                 headers: {
                     access_token
                 }

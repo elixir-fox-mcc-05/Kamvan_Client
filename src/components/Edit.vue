@@ -37,7 +37,7 @@ export default {
     methods: {
         updateTask() {
             const { access_token } = localStorage;
-            axios.put(`http://localhost:4000/tasks/${this.task.id}`, {
+            axios.put(`https://server-akbar-kanban.herokuapp.com/tasks/${this.task.id}`, {
                 title: this.task.title,
                 description: this.task.description,
                 category: this.task.category,
