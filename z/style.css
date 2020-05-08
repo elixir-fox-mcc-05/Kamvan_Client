@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.card-header {
+	font-weight: bold;
+}
+
+.backlog {
+	background-color: #f73131;
+	color: #ffffff;
+}
+
+.todo {
+	background-color: #f7b531;
+	color: #ffffff;
+}
+
+.doing {
+	background-color: #318df7;
+	color: #ffffff;
+}
+
+.done {
+	background-color: #50ba38;
+	color: #ffffff;
+}
