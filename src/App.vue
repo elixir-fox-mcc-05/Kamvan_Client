@@ -10,10 +10,10 @@
       <register :currentPage="currentPage"></register>
       <login :currentPage="currentPage" :isLogin="isLogin" @changeLogin="changeLogin"></login>
       <div class="main-container" v-show="currentPage === 'dashboard'">
-        <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]" @showAddForm="showAddForm" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin"></listKanban>
+        <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]" @showAddForm="showAddForm" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin" @checkLogin="checkLogin"></listKanban>
       </div>
       <kanbanAdd @fetchKanban="fetchKanban" @changeLogin="changeLogin" v-show="currentPage === 'addKanban'"></kanbanAdd>
-      <kanbanUpdate :activity="activity" v-show="currentPage === 'editKanban'"  id="edit-form"></kanbanUpdate>
+      <kanbanUpdate @fetchKanban="fetchKanban" @changeLogin="changeLogin" :activity="activity" v-show="currentPage === 'editKanban'"  id="edit-form"></kanbanUpdate>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     name: 'App',
     data() {
       return {
-        isLogin: false,
+        isLogin: '',
         currentPage: 'login',
         categories: ['Backlog', 'ToDo', 'Doing', 'Done'],
         kanbans: [],
@@ -64,16 +64,19 @@ export default {
         this.isLogin = input;
         this.currentPage = 'dashboard';
         fetchKanban();
+        checkLogin();
       },
       // Mengecek apakah sudah login atau belum
       checkLogin() {
         if (localStorage.getItem('token')) {
+          console.log(isLogin)
           this.isLogin = true;
           this.currentPage = 'dashboard';
         }
       },
       // Menarik data dari server 
       fetchKanban() {
+        console.log(this.isLogin)
         this.kanbans = [];
         const axios = require('axios');
         axios.get('http://localhost:3000/kanbans', {
@@ -105,9 +108,10 @@ export default {
       },
       // Menampilkan edit kanban form
       showEditForm(input) {
-          this.currentPage = 'editKanban';
           this.activity = input;
+          this.currentPage = 'editKanban';
           console.log(this.activity)
+          checkLogin();
       }
     },
     created() {

@@ -7,7 +7,7 @@
                 </div>
                 <div class="card-body" id="main-body">
                     <div v-if="tasks.length>0">
-                        <kanbanCard v-for="task in tasks" :key="task.id" :task="task" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin"></kanbanCard>
+                        <kanbanCard v-for="task in tasks" :key="task.id" :task="task" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin" @checkLogin="checkLogin"></kanbanCard>
                     </div>
                 </div>
                 <!-- Add Button -->
@@ -51,6 +51,10 @@ export default {
         // Parsing change login
         changeLogin() {
             this.$emit('changeLogin')
+        },
+        // Parsing check login
+        checkLogin() {
+            this.$emit('checkLogin');
         }
     }
 }

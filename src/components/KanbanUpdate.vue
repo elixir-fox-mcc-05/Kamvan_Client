@@ -4,28 +4,29 @@
         <form action="" class="mt-4">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" class="form-control" v-model="title">
+                <input type="text" :value="this.activity.title" name="title" class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" name="description" class="form-control" v-model="description">
+                <input type="text" :value="this.activity.description" name="description" class="form-control">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="status">Status</label>
-                <select name="status" id="" class="form-control" v-model="status">
-                    <option disabled value="">Select:</option>
+                <select name="status" id="" class="form-control">
+                    <option disabled>Select:</option>
                     <option>Backlog</option>
                     <option>ToDo</option>
                     <option>Doing</option>
                     <option>Done</option>
                 </select>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="point">Points</label>
-                <input type="number" name="point" placeholder="Your Point" class="form-control" v-model="point">
+                <input type="number" :value="this.activity.point" name="point" placeholder="Your Point" class="form-control">
                 <div></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button @click.prevent="backToMainSection" type="submit" class="btn btn-primary">Cancel</button>
         </form>
     </div>
 </template>
@@ -36,23 +37,23 @@ export default {
     props: ['activity'],
     data() {
         return {
-            title: this.titles,
-            description: this.activity.description,
-            status: this.activity.status,
-            point: this.activity.point,
-            taskId: this.activity.id
+            title: '',
+            description: '',
+            point: '',
         }
     },
     methods: {
-        submitForm() {
+        submitForm(event) {
             const token = localStorage.token;
             const axios = require('axios');
-            console.log(this.taskId);
-            axios.patch(`http://localhost:3000/kanbans/${this.taskId}`, {
+            const id = this.activity.id;
+            this.title = event.target.elements.title.value;
+            this.description = event.target.elements.description.value;
+            this.point = event.target.elements.point.value;
+            axios.patch(`http://localhost:3000/kanbans/${id}`, {
                 title: this.title,
                 description: this.description,
                 point: this.point,
-                status: this.status
             }, { 
                 headers: { token }
                 }
@@ -60,7 +61,8 @@ export default {
             .then(response => {
                 const { data } = response;
                 const token = data.Token;
-                this.$emit('changeLogin', this.hasil);
+                this.$emit('fetchKanban');
+                this.$emit('changeLogin', true);
                 
             })
             .catch(err => {
@@ -73,10 +75,9 @@ export default {
                 }
             })
         },
-        computed: {
-            titles() {
-                return this.activity.title
-            }
+        backToMainSection() {
+            this.$emit('fetchKanban');
+            this.$emit('changeLogin', true);
         }
     }
 }

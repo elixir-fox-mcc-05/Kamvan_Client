@@ -10,7 +10,7 @@
                 <label for="description">Description</label>
                 <input type="text" name="description" placeholder="Your Description" class="form-control" v-model="description">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="status">Status</label>
                 <select name="status" id="" class="form-control" v-model="status">
                     <option disabled value="">Select:</option>
@@ -19,13 +19,14 @@
                     <option>Doing</option>
                     <option>Done</option>
                 </select>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="point">Points</label>
                 <input type="number" name="point" placeholder="Your Point" class="form-control" v-model="point">
                 <div v-html="feedback"></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button @click.prevent="backToMainSection" class="btn btn-primary">Cancel</button>
         </form>
     </div>
 </template>
@@ -38,7 +39,6 @@ export default {
             title: '',
             description: '',
             point: '',
-            status: '',
             feedback: ``
         }
     },
@@ -49,8 +49,7 @@ export default {
             axios.post('http://localhost:3000/kanbans', {
                 title: this.title,
                 description: this.description,
-                point: this.point,
-                status: this.status
+                point: this.point
             }, {
                 headers: {
                     token
@@ -72,6 +71,10 @@ export default {
                     console.log(error[i].message);
                 }
             })
+        },
+        backToMainSection() {
+            this.$emit('fetchKanban');
+            this.$emit('changeLogin', true);
         }
     }
 }

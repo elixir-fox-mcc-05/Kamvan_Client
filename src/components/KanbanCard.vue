@@ -10,7 +10,9 @@
                     <p class="card-text">{{ task.point }}</p>
                     <div class="btn-kanban">
                         <a @click.prevent="showEditForm" href="" class="btn btn-success">Edit</a>
-                        <a @click.prevent="deleteKanban" href="" class="btn btn-danger">Delete</a>
+                        <a @click.prevent="deleteKanban" href="" class="btn btn-danger">Del</a>
+                        <a @click.prevent="nextCategory" href="" class="btn btn-secondary">Next</a>
+                        <a @click.prevent="backCategory" href="" class="btn btn-secondary">Back</a>
                     </div>
                 </div>
             </div>
@@ -22,6 +24,11 @@
 export default {
     name: 'KanbanCard', 
     props: ['task'],
+    data() {
+        return {
+            next: ''
+        }
+    },
     methods: {
         showEditForm() {
             this.$emit('showEditForm', this.task);
@@ -42,6 +49,84 @@ export default {
             .catch(err => {
                 console.log(err.response);
             })
+        },
+        nextCategory() {
+            // Seleksi category saat ini
+            const status = this.task.status;
+            if (status === 'Backlog') {
+                this.next = 'ToDo';
+            } else if ( status === 'ToDo') {
+                this.next = 'Doing';
+            } else if (status === 'Doing') {
+                this.next = 'Done';
+            } else if (status === 'Done') {
+                this.next = 'Done';
+            }
+            // Mengerim data dengan Axios
+            const token = localStorage.token;
+            const axios = require('axios');
+            const id = this.task.id;
+            axios.patch(`http://localhost:3000/kanbans/${id}/category`, {
+                status: this.next
+            }, { 
+                headers: { token }
+                }
+            )
+            .then(response => {
+                const { data } = response;
+                const token = data.Token;
+                this.$emit('fetchKanban');
+                this.$emit('checkLogin');
+                this.$emit('changeLogin', true);
+            })
+            .catch(err => {
+               err = err.response
+                let { data } = err;
+                let error = data.errors;
+                for (let i = 0; i < error.length; i++) {
+                    this.feedback = `<p>${error[i].message}</p>`
+                    console.log(error[i].message);
+                }
+            })
+        },
+        backCategory() {
+            // Seleksi category saat ini
+            const status = this.task.status;
+            if (status === 'Backlog') {
+                this.next = 'Backlog';
+            } else if ( status === 'ToDo') {
+                this.next = 'Backlog';
+            } else if (status === 'Doing') {
+                this.next = 'ToDo';
+            } else if (status === 'Done') {
+                this.next = 'Doing';
+            }
+            // Mengerim data dengan Axios
+            const token = localStorage.token;
+            const axios = require('axios');
+            const id = this.task.id;
+            axios.patch(`http://localhost:3000/kanbans/${id}/category`, {
+                status: this.next
+            }, { 
+                headers: { token }
+                }
+            )
+            .then(response => {
+                const { data } = response;
+                const token = data.Token;
+                this.$emit('fetchKanban');
+                this.$emit('changeLogin', true);
+                
+            })
+            .catch(err => {
+               err = err.response
+                let { data } = err;
+                let error = data.errors;
+                for (let i = 0; i < error.length; i++) {
+                    this.feedback = `<p>${error[i].message}</p>`
+                    console.log(error[i].message);
+                }
+            })
         }
     }
 }
@@ -51,7 +136,7 @@ export default {
 .semi-container {
     background: blue;
     margin: 10px;
-    width: 200px;
+    width: 245px;
 }
 .mini-container {
     margin: 10px;
@@ -60,6 +145,8 @@ export default {
 .btn-kanban ul {
     box-sizing: border-box;
     display: flex;
-    
+}
+.btn-kanban ul a {
+    font-size: 5px;
 }
 </style>
