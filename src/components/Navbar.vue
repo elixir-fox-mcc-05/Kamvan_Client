@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
             <div class="container">
-                <a class="navbar-brand" href="">Kamvan</a>
+                <a @click.prevent="nothing" class="navbar-brand" href="">Kamvan</a>
                 <ul class="navbar-nav">
                     <li v-show="!isLogin" class="nav-item">
                         <a @click.prevent="$emit('showRegister')" class="nav-link" href="">Register</a>
@@ -20,10 +20,12 @@
 <script>
 export default {
     name: 'navbar',
-    props: ['isLogin']
+    props: ['isLogin'],
+    methods: {
+        nothing() {}
+    }
 }
 </script>
 
 <style>
-
 </style>

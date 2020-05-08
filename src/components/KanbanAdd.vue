@@ -48,13 +48,18 @@ export default {
             )
             .then(response => {
                 const { data } = response;
-                console.log(data);
                 this.$emit('fetchKanban');
                 this.$emit('changeLogin', true);
                 this.title = '';
                 this.point = '';
                 this.description = '';
                 this.feedback = '';
+                const Swal = require('sweetalert2');
+                Swal.fire(
+                    'Good job!',
+                    'Succsessfully Add Item!',
+                    'success'
+                )
             })
             .catch(err => {
                err = err.response

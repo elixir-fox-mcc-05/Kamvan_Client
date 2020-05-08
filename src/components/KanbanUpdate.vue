@@ -10,20 +10,10 @@
                 <label for="description">Description</label>
                 <input type="text" :value="this.activity.description" name="description" class="form-control">
             </div>
-            <!-- <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="" class="form-control">
-                    <option disabled>Select:</option>
-                    <option>Backlog</option>
-                    <option>ToDo</option>
-                    <option>Doing</option>
-                    <option>Done</option>
-                </select>
-            </div> -->
             <div class="form-group">
                 <label for="point">Points</label>
                 <input type="number" :value="this.activity.point" name="point" placeholder="Your Point" class="form-control">
-                <div></div>
+                <div v-html="feedback"></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <button @click.prevent="backToMainSection" type="submit" class="btn btn-primary">Cancel</button>
@@ -40,6 +30,7 @@ export default {
             title: '',
             description: '',
             point: '',
+            feedback: '',
         }
     },
     methods: {
@@ -47,6 +38,7 @@ export default {
             const token = localStorage.token;
             const axios = require('axios');
             const id = this.activity.id;
+            this.feedback = ''; 
             this.title = event.target.elements.title.value;
             this.description = event.target.elements.description.value;
             this.point = event.target.elements.point.value;
@@ -63,7 +55,6 @@ export default {
                 const token = data.Token;
                 this.$emit('fetchKanban');
                 this.$emit('changeLogin', true);
-                
             })
             .catch(err => {
                err = err.response

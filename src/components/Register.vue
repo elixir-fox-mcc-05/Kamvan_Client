@@ -59,16 +59,27 @@ export default {
             })
             .then(user => {
                 const { data } = user
-                console.log(data);
+                this.$emit('changeToLogin', 'login');
+                const Swal = require('sweetalert2');
+                Swal.fire(
+                    'Good job!',
+                    'Succsessfully Register!',
+                    'success'
+                )
             })
             .catch(err => {
                 err = err.response
                 let { data } = err;
                 let error = data.errors;
-                for (let i = 0; i < error.length; i++) {
-                    this.feedback = `<p>${error[i].message}</p>`
-                    console.log(error[i].message);
-                }
+                if (error.length > 0) {
+                    for (let i = 0; i < error.length; i++) {
+                        this.feedback = `<p>${error[i].message}</p>`
+                        console.log(error[i].message);
+                    }
+                } else {
+                    this.feedback = `<p>${error.message}</p>`
+                    console.log(error.message)
+                }                   
             })
         }
     }

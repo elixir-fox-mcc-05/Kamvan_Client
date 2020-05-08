@@ -15,6 +15,7 @@
                 <br>
                 <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
             </div>
+            <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -34,7 +35,6 @@ export default {
             params: {
                 client_id: "498944937485-q32jf14hhda5hrlah85ia01tlja386gk.apps.googleusercontent.com"
             },
-            // only needed if you want to render the button with the google ui
             renderParams: {
                 width: 250,
                 height: 50,
@@ -55,21 +55,20 @@ export default {
             .then(response => {
                 const { data } = response;
                 const token = data.Token;
-                this.$emit('changeLogin', this.hasil);
                 localStorage.setItem('token', token);
-                
+                this.$emit('changeLogin', this.hasil);
+                this.email = '';
+                this.password = '';
             })
             .catch(err => {
                 err = err.response
                 let { data } = err;
                 let error = data.errors;
                 this.feedback = `<p>${error}</p>`
-                console.log(error)
             })
         },
         onSuccess(googleUser) {
             const id_token = googleUser.getAuthResponse().id_token;
-            console.log(id_token);
             const axios = require('axios');
             axios.post('http://localhost:3000/users/google-login', {}, {
                 headers: {

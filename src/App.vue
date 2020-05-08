@@ -7,10 +7,12 @@
         @logout="logout" 
       >
       </navbar>
-      <register :currentPage="currentPage"></register>
+      <register :currentPage="currentPage" @changeToLogin="changeToLogin"></register>
       <login :currentPage="currentPage" :isLogin="isLogin" @changeLogin="changeLogin"></login>
-      <div class="main-container" v-show="currentPage === 'dashboard'">
-        <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]" @showAddForm="showAddForm" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin" @checkLogin="checkLogin"></listKanban>
+      <div class="container" v-show="currentPage === 'dashboard'">
+        <div class="row">
+          <listKanban v-for="(category, i) in categories" :key="category.id" :category="category" :tasks="kanbans[i]" @showAddForm="showAddForm" @showEditForm="showEditForm" @fetchKanban="fetchKanban" @changeLogin="changeLogin" @checkLogin="checkLogin"></listKanban>
+        </div>
       </div>
       <kanbanAdd @fetchKanban="fetchKanban" @changeLogin="changeLogin" v-show="currentPage === 'addKanban'"></kanbanAdd>
       <kanbanUpdate @fetchKanban="fetchKanban" @changeLogin="changeLogin" :activity="activity" v-show="currentPage === 'editKanban'"  id="edit-form"></kanbanUpdate>
@@ -62,8 +64,8 @@ export default {
       // Merubah isLogin ketika sudah berhasil login
       changeLogin(input) {
         this.isLogin = input;
-        this.currentPage = 'dashboard';
         this.fetchKanban();
+        this.currentPage = 'dashboard';
         this.checkLogin();
       },
       // Mengecek apakah sudah login atau belum
@@ -111,6 +113,10 @@ export default {
           this.currentPage = 'editKanban';
           console.log(this.activity)
           checkLogin();
+      },
+      // Menampilkan form login setelah success register
+      changeToLogin(input) {
+        this.currentPage = input
       }
     },
     created() {

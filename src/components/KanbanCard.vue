@@ -1,18 +1,28 @@
 <template>
     <div>
-        <div class="container mini-container">
+        <div class="container mini-container mt-2 mb-2">
             <div class="card semi-container">
-                <div class="card-header text-white bg-primary">
+                <div class="card-header text-white bg-primary font-weight-bold header">
                     {{ task.title }}
+                    <div>
+                        <a @click.prevent="backCategory" href="" class="btn btn-primary">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                        <a @click.prevent="nextCategory" href="" class="btn btn-primary">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ task.description }}</p>
-                    <p class="card-text">{{ task.point }}</p>
+                    <p class="card-text">Decription: {{ task.description }}</p>
+                    <p class="card-text">Point: {{ task.point }}</p>
                     <div class="btn-kanban">
-                        <a @click.prevent="showEditForm" href="" class="btn btn-success">Edit</a>
-                        <a @click.prevent="deleteKanban" href="" class="btn btn-danger">Del</a>
-                        <a @click.prevent="nextCategory" href="" class="btn btn-secondary">Next</a>
-                        <a @click.prevent="backCategory" href="" class="btn btn-secondary">Back</a>
+                        <a @click.prevent="showEditForm" href="" class="btn btn-warning">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a @click.prevent="deleteKanban" href="" class="btn btn-danger">
+                             <i class="fas fa-trash-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -34,20 +44,45 @@ export default {
             this.$emit('showEditForm', this.task);
         },
         deleteKanban() {
-            const axios = require('axios');
-            axios.delete(`http://localhost:3000/kanbans/${this.task.id}`, {
-                headers: {
-                    token: localStorage.token
+            const Swal = require('sweetalert2');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.value) {
+                    const axios = require('axios');
+                    axios.delete(`http://localhost:3000/kanbans/${this.task.id}`, {
+                        headers: {
+                            token: localStorage.token
+                        }
+                    })
+                    .then(kanban => {
+                        let { data } = kanban;
+                        this.$emit('fetchKanban');
+                        this.$emit('changeLogin');
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    })
+                    .catch(err => {
+                        err = err.response
+                        let { data } = err;
+                        let error = data.errors;
+                        const Swal = require('sweetalert2');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: error[0].message
+                        })
+                    })
                 }
-            })
-            .then(kanban => {
-                let { data } = kanban;
-                this.$emit('fetchKanban');
-                this.$emit('changeLogin');
-                console.log(data);
-            })
-            .catch(err => {
-                console.log(err.response);
             })
         },
         nextCategory() {
@@ -80,13 +115,15 @@ export default {
                 this.$emit('changeLogin', true);
             })
             .catch(err => {
-               err = err.response
+                err = err.response
                 let { data } = err;
                 let error = data.errors;
-                for (let i = 0; i < error.length; i++) {
-                    this.feedback = `<p>${error[i].message}</p>`
-                    console.log(error[i].message);
-                }
+                const Swal = require('sweetalert2');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error[0].message
+                })
             })
         },
         backCategory() {
@@ -119,13 +156,15 @@ export default {
                 
             })
             .catch(err => {
-               err = err.response
+                err = err.response
                 let { data } = err;
                 let error = data.errors;
-                for (let i = 0; i < error.length; i++) {
-                    this.feedback = `<p>${error[i].message}</p>`
-                    console.log(error[i].message);
-                }
+                const Swal = require('sweetalert2');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error[0].message
+                })
             })
         }
     }
@@ -133,20 +172,13 @@ export default {
 </script>
 
 <style>
-.semi-container {
-    background: blue;
-    margin: 10px;
-    width: 245px;
-}
-.mini-container {
-    margin: 10px;
-    width: 100px;
-}
-.btn-kanban ul {
-    box-sizing: border-box;
+.btn-kanban {
     display: flex;
+    justify-content: space-between;
+    align-self: auto;
 }
-.btn-kanban ul a {
-    font-size: 5px;
+.header {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
