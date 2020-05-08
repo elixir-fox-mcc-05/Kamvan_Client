@@ -146,7 +146,7 @@ export default {
             
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/users/login',
+                url: 'https://fierce-reef-02367.herokuapp.com/users/login',
                 data: {
                     email,
                     password
@@ -173,7 +173,7 @@ export default {
             
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/users/register',
+                url: 'https://fierce-reef-02367.herokuapp.com/users/register',
                 data: {
                     email,
                     password
@@ -202,7 +202,7 @@ export default {
             
             axios({
                 method: 'post',
-                url: 'http://localhost:3000/users/googleSign',
+                url: 'https://fierce-reef-02367.herokuapp.com/users/googleSign',
                 data: {
                     token
                 }

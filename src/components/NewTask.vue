@@ -60,7 +60,7 @@ export default {
 
             axios({
                 method: 'post',
-                url: 'http://localhost:3000/tasks',
+                url: 'https://fierce-reef-02367.herokuapp.com/tasks',
                 headers : {
                     access_token: localStorage.token
                 },

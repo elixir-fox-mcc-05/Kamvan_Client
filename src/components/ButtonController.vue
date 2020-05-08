@@ -46,7 +46,7 @@ export default {
         deleteBtn(id){
             axios({
                 method: 'delete',
-                url: 'http://localhost:3000/tasks/'+id,
+                url: 'https://fierce-reef-02367.herokuapp.com/tasks/'+id,
                 headers : {
                     access_token: localStorage.token
                 }
@@ -67,7 +67,7 @@ export default {
         moveUp(id){
             axios({
                 method: 'patch',
-                url: 'http://localhost:3000/tasks/up/'+id,
+                url: 'https://fierce-reef-02367.herokuapp.com/tasks/up/'+id,
                 headers : {
                     access_token: localStorage.token
                 }
@@ -87,7 +87,7 @@ export default {
         moveDown(id){
             axios({
                 method: 'patch',
-                url: 'http://localhost:3000/tasks/down/'+id,
+                url: 'https://fierce-reef-02367.herokuapp.com/tasks/down/'+id,
                 headers : {
                     access_token: localStorage.token
                 }

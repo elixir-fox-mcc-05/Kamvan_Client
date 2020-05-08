@@ -10716,7 +10716,7 @@ var _default = {
       var assignedTo = this.task.assignedTo;
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://fierce-reef-02367.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.token
         },
@@ -11018,7 +11018,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'delete',
-        url: 'http://localhost:3000/tasks/' + id,
+        url: 'https://fierce-reef-02367.herokuapp.com/tasks/' + id,
         headers: {
           access_token: localStorage.token
         }
@@ -11038,7 +11038,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'patch',
-        url: 'http://localhost:3000/tasks/up/' + id,
+        url: 'https://fierce-reef-02367.herokuapp.com/tasks/up/' + id,
         headers: {
           access_token: localStorage.token
         }
@@ -11057,7 +11057,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'patch',
-        url: 'http://localhost:3000/tasks/down/' + id,
+        url: 'https://fierce-reef-02367.herokuapp.com/tasks/down/' + id,
         headers: {
           access_token: localStorage.token
         }
@@ -11823,7 +11823,7 @@ var _default = {
       var password = this.userData.password;
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/users/login',
+        url: 'https://fierce-reef-02367.herokuapp.com/users/login',
         data: {
           email: email,
           password: password
@@ -11850,7 +11850,7 @@ var _default = {
       var password = this.userData.password;
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/users/register',
+        url: 'https://fierce-reef-02367.herokuapp.com/users/register',
         data: {
           email: email,
           password: password
@@ -11878,7 +11878,7 @@ var _default = {
       console.log(profile, 'PROFILE', token, 'TOKEN');
       (0, _axios.default)({
         method: 'post',
-        url: 'http://localhost:3000/users/googleSign',
+        url: 'https://fierce-reef-02367.herokuapp.com/users/googleSign',
         data: {
           token: token
         }
@@ -12438,7 +12438,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://fierce-reef-02367.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.token
         }
