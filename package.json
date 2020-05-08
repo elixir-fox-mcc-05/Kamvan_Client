@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/azrullahk/Kamvan_Client#readme",
   "dependencies": {
-    "live-server": "^1.2.1"
+    "parcel": "^1.12.4",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "vue-template-compiler": "^2.6.11"
   }
 }
