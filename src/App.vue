@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       AppName: "KamVan Board",
-      serverUrl: "http://localhost:3000",
+      serverUrl: "https://server-kamvan-yudhaaw96.herokuapp.com",
       signedIn: false
     };
   },

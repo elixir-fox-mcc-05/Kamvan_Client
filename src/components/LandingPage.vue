@@ -3,12 +3,10 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-3">KamVan</h1>
-        <p class="lead">
-          Welcome to KamVan Single Page WebApp.
-        </p>
+        <p class="lead">Welcome to KamVan Single Page WebApp.</p>
         <p class="my-2">
-          The first step in the introduction of Kanban is to visualize the workflow.<br/>
-          This is done in the form of a Kanban board consisting of a simple whiteboard and sticky notes or cards. Each card on the board represents a task.
+          The first step in the introduction of Kanban is to visualize the workflow.
+          <br />This is done in the form of a Kanban board consisting of a simple whiteboard and sticky notes or cards. Each card on the board represents a task.
         </p>
       </div>
     </div>
@@ -173,6 +171,8 @@ export default {
           this.successSignUpMessage = "Signup success!...";
         })
         .catch(err => {
+          this.successSignInMessage = "";
+          this.successSignUp = false;
           this.failedSignUpMessage = "";
           this.failedSignUp = true;
           let manyError = Array.isArray(err.response.data.message);
