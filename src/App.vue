@@ -9,7 +9,7 @@
                 :messageSucces="messageSucces"
         >
         </navbar>
-        <section id="firebaseui-auth-container"></section>
+        <div id="google-signin-button" v-if="!loggedIn"></div>
         <card :backlogs="backlogs" 
             :todos="todos" 
             :doings="doings" 
@@ -135,8 +135,11 @@ export default {
                 })
         },
         logout(){
-            localStorage.clear()
-            this.loggedIn = false
+            const auth2 = gapi.auth2.getAuthInstance()
+            auth2.signOut().then(() => {
+                localStorage.clear()
+                this.loggedIn = false
+            })
         },
         register(userData){
             axios({
@@ -216,8 +219,35 @@ export default {
                     this.message = "ada error"
                     console.log(this.message)
                 })
+        },
+        onSignIn (user) {
+            const profile = user.getAuthResponse().id_token
+            console.log(profile)
+            axios({
+                method: 'post',
+                url : this.baseUrl + 'user/google-login',
+                headers : {
+                    google_token : profile
+                },
+            })
+                .then(({data}) => {
+                    localStorage.setItem('token', data.Token)
+                    this.loggedIn = true
+                    this.fetchData()
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
-    }
+    },
+    mounted() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+        gapi.signin2.render('google-signin-button', {
+            onsuccess: this.onSignIn
+        })
+    },
 };
 </script>
 
