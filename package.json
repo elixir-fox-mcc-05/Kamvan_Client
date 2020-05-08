@@ -1,0 +1,32 @@
+{
+  "name": "Kamvan_Client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "modal.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "vue": "^2.6.11",
+    "vue-google-login": "^2.0.3",
+    "vue-google-signin-button-directive": "^1.0.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "stylus": "^0.54.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ottoyd/Kamvan_Client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ottoyd/Kamvan_Client/issues"
+  },
+  "homepage": "https://github.com/ottoyd/Kamvan_Client#readme"
+}
