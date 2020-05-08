@@ -48,7 +48,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" @click.prevent="clearData">Cancel</button>
                     <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" @click.prevent="updateTask">Save</button>    
                 </div>
             </div>
@@ -76,18 +76,19 @@ export default {
     },
     methods: {
         clearData() {
-            this.editTask.title = ''
-            this.editTask.description = ''
-            this.editTask.category = ''
-            this.editTask.priority = ''
-            this.editTask.deadline = ''
-            this.editTask.AssigneeId = ''
+            title = this.Task.title
+            description = this.Task.description
+            category = this.Task.category
+            priority = this.Task.priority
+            deadline = this.Task.deadline
+            AssigneeId = this.Task.AssigneeId
         },
 
         updateTask() {
             let id = this.Task.id
             let editedTask = this.editTask
             this.$emit('updateTask', id, editedTask)
+            this.clearData()
         }
     }
 }

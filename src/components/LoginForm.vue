@@ -1,6 +1,12 @@
 <template>
     <div id="loginForm" class="container-fluid col-6 mt-5 text-light font-weight-bolder">
         <h2 class="text-center">Login Form</h2>
+        <ErrorSection
+            :currentErr="currentErr"
+        ></ErrorSection>
+        <NotifSection
+            :currentNotif="currentNotif"
+        ></NotifSection>
         <form>
             <div class="form-group">
                 <label for="userEmail">Email</label>
@@ -19,6 +25,9 @@
 </template>
 
 <script>
+import ErrorSection from './ErrorSection'
+import NotifSection from './NotifSection'
+
 export default {
     name: 'LoginForm',
     data() {
@@ -29,6 +38,8 @@ export default {
             }
         }
     },
+    components: { ErrorSection, NotifSection},
+    props: [ 'currentErr', 'currentNotif'],
     methods: {
         loginUser() {
             let user = this.user

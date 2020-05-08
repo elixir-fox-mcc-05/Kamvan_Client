@@ -2,6 +2,8 @@
     <div>
         <div v-if="currentPage == 'landingPage'">
             <LandingPage
+                :currentErr="currentErr"
+                :currentNotif="currentNotif"
                 @registerUser="registerUser"
                 @loginUser="loginUser"
                 @logoutUser="logoutUser"
@@ -16,6 +18,8 @@
                 :Tasks="Tasks"
                 :Users="Users"
                 :currentPage="currentPage"
+                :currentErr="currentErr"
+                :currentNotif="currentNotif"
                 @createTask="createTask"
                 @updateTask="updateTask"
                 @changeCategory="changeCategory"
@@ -44,14 +48,15 @@ export default {
             baseUrl: 'http://localhost:3000',
             Tasks: [],
             Users: [],
-            currentUser: {
-                id: ''
-            },
+            currentErr: '',
+            currentNotif: '',
             currentPage: 'landingPage'
         }
     },
     methods: {
         showHome() {
+            this.currentErr = ''
+            this.currentNotif = ''
             if(localStorage.token) {
                 this.currentPage = 'mainPage'
                 this.fetchTasks()
@@ -70,7 +75,6 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data.Tasks)
                     this.Tasks = response.data.Tasks
                 })
                 .catch(err => {
@@ -87,7 +91,6 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data.Users)
                     this.Users = response.data.Users
                 })
                 .catch(err => {
@@ -96,7 +99,8 @@ export default {
         },
 
         registerUser(newUser) {
-            console.log('newuser', newUser)
+            this.currentErr = ''
+            this.currentNotif = ''
             let {name, organization, email, password} = newUser
             axios({
                 method: 'post',
@@ -109,16 +113,18 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     this.fetchUsers()
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         loginUser(user) {
-            console.log('user', user)
+            this.currentErr = ''
+            this.currentNotif = ''
             let {email, password} = user
             axios({
                 method: 'post',
@@ -129,7 +135,7 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('currentUserId', response.data.user.id)
                     localStorage.setItem('currentUserName', response.data.user.name)
@@ -138,12 +144,14 @@ export default {
                     this.currentPage = "mainPage"
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         createTask(newTask) {
-            console.log('New Task:', newTask)
+            this.currentErr = ''
+            this.currentNotif = ''
             let {title, description, category, priority, deadline, AssigneeId} = newTask
             axios({
                 method: 'post',
@@ -155,22 +163,25 @@ export default {
                     priority,
                     deadline,
                     AssigneeId,
+                    AssignorId: localStorage.currentUserId
                 },
                 headers: {
                     token: localStorage.token
                 }
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     this.fetchTasks()
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         updateTask(id, editedTask) {
-            console.log('EditedTask:', editedTask)
+            this.currentErr = ''
+            this.currentNotif = ''
             let {title, description, category, priority, deadline, AssigneeId} = editedTask
             axios({
                 method: 'put',
@@ -189,16 +200,18 @@ export default {
 
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     this.fetchTasks()
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         changeCategory(id, status) {
-            console.log('id', id, 'status', status)
+            this.currentErr = ''
+            this.currentNotif = ''
             axios({
                 method: 'patch',
                 url: `${this.baseUrl}/tasks/${id}`,
@@ -212,16 +225,18 @@ export default {
 
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     this.fetchTasks()
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         deleteTask(id) {
-            console.log('delete', id)
+            this.currentErr = ''
+            this.currentNotif = ''
             axios({
                 method: 'delete',
                 url: `${this.baseUrl}/tasks/${id}`,
@@ -230,34 +245,29 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response)
+                    this.currentNotif = response.data.notif
                     this.fetchTasks()
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err)
                 })
         },
 
         logoutUser() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut()
-                .then(() => {
-                    localStorage.clear()
-                    this.currentPage = 'landingPage'
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            this.currentErr = ''
+            this.currentNotif = ''
+            localStorage.clear()
+            this.currentPage = 'landingPage'
         },
 
         onSignInSuccess (googleUser) {
+            this.currentErr = ''
+            this.currentNotif = ''
             const profile = googleUser.getBasicProfile()
             let name = profile.getName()
             let email = profile.getEmail()
             let id_token = googleUser.getAuthResponse().id_token;
-            console.log('name', name)
-            console.log('email', email)
-            console.log(id_token)
             axios({
                 method: 'GET',
                 url: `${this.baseUrl}/users/google-login`,
@@ -268,7 +278,6 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log(response.data)
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('currentUserId', response.data.user.id)
                     localStorage.setItem('currentUserName', response.data.user.name)
@@ -277,11 +286,25 @@ export default {
                     this.currentPage = "mainPage"
                 })
                 .catch(err => {
+                    this.currentErr = err
                     console.log(err);
                 })
         },
+
         onSignInError (error) {
+            this.currentErr = ''
+            this.currentNotif = ''
             console.log('OH NOES', error)
+        },
+
+        showError(err) {
+            this.currentNotif = ''
+            this.currentErr = err
+        },
+
+        showNotif(notif) {
+            this.currentErr = ''
+            this.currentNotif = notif
         }
 
     },

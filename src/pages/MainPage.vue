@@ -5,6 +5,12 @@
                 @logoutUser="logoutUser"
                 :currentPage="currentPage"
             ></Navbar>
+            <ErrorSection
+                :currentErr="currentErr"
+            ></ErrorSection>
+            <NotifSection
+                :currentNotif="currentNotif"
+            ></NotifSection>
 
             <div class="container-fluid mt-3">
                 <div class="row" >
@@ -31,6 +37,8 @@
 import Navbar from '../components/Navbar'
 import KanbanBoard from '../components/KanbanBoard'
 import NewTaskModal from '../components/NewTaskModal'
+import ErrorSection from '../components/ErrorSection'
+import NotifSection from '../components/NotifSection'
 
 export default {
     name: 'mainPage',
@@ -40,9 +48,9 @@ export default {
         }
     },
     components: {
-        Navbar, KanbanBoard, NewTaskModal
+        Navbar, KanbanBoard, NewTaskModal, ErrorSection, NotifSection
     },
-    props: [ 'Tasks', 'Users', 'currentPage' ],
+    props: [ 'Tasks', 'Users', 'currentPage', 'currentErr', 'currentNotif' ],
     methods: {
         createTask(newTask) {
             this.$emit('createTask', newTask)

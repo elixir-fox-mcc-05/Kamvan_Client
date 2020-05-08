@@ -36,11 +36,15 @@
         <section v-else-if="currentSection == 'register'">
             <RegisterForm
                 @registerUser="registerUser"
+                :currentErr="currentErr"
+                :currentNotif="currentNotif"
             ></RegisterForm>
         </section>
         <section v-else-if="currentSection == 'login'">
             <LoginForm
                 @loginUser="loginUser"
+                :currentErr="currentErr"
+                :currentNotif="currentNotif"
             ></LoginForm>
         </section>
     </section>
@@ -58,7 +62,7 @@ export default {
         RegisterForm,
         LoginForm
     },
-    props: [ 'currentPage' ],
+    props: [ 'currentPage', 'currentErr', 'currentNotif' ],
     data() {
         return {
             currentSection: 'home',

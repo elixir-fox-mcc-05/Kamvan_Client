@@ -1,6 +1,12 @@
 <template>
     <div id="registerForm" class="container-fluid mt-5 col-8 text-light font-weight-bolder">
         <h2 class="text-center">Register Form</h2>
+        <ErrorSection
+            :currentErr="currentErr"
+        ></ErrorSection>
+        <NotifSection
+            :currentNotif="currentNotif"
+        ></NotifSection>
         <form>
             <div class="form-group">
                 <label for="newName">Name</label>
@@ -24,6 +30,9 @@
 </template>
 
 <script>
+import ErrorSection from './ErrorSection'
+import NotifSection from './NotifSection'
+
 export default {
     name: 'RegisterForm',
     data() {
@@ -36,6 +45,10 @@ export default {
             }
         }
     },
+    components: {
+        ErrorSection, NotifSection
+    },
+    props: [ 'currentErr', 'currentNotif'],
     methods: {
         registerUser() {
             let newUser = this.newUser
