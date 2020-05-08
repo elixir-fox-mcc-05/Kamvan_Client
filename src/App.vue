@@ -45,7 +45,7 @@ export default {
     },
     data: function() {
         return {
-            baseUrl: 'http://localhost:3000',
+            baseUrl: 'https://kanban-adit.web.app',
             Tasks: [],
             Users: [],
             currentErr: '',
