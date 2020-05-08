@@ -6,6 +6,8 @@
                 @loginUser="loginUser"
                 @logoutUser="logoutUser"
                 @showHome="showHome"
+                @success="onSignInSuccess"
+                @error="onSignInError"
                 :currentPage="currentPage"
             ></LandingPage>
         </div>
@@ -237,9 +239,51 @@ export default {
         },
 
         logoutUser() {
-            this.currentPage = 'landingPage'
-            localStorage.clear()
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut()
+                .then(() => {
+                    localStorage.clear()
+                    this.currentPage = 'landingPage'
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        },
+
+        onSignInSuccess (googleUser) {
+            const profile = googleUser.getBasicProfile()
+            let name = profile.getName()
+            let email = profile.getEmail()
+            let id_token = googleUser.getAuthResponse().id_token;
+            console.log('name', name)
+            console.log('email', email)
+            console.log(id_token)
+            axios({
+                method: 'GET',
+                url: `${this.baseUrl}/users/google-login`,
+                headers: {
+                    google_token: id_token,
+                    name,
+                    email,
+                }
+            })
+                .then(response => {
+                    console.log(response.data)
+                    localStorage.setItem('token', response.data.token)
+                    localStorage.setItem('currentUserId', response.data.user.id)
+                    localStorage.setItem('currentUserName', response.data.user.name)
+                    this.fetchTasks()
+                    this.fetchUsers()
+                    this.currentPage = "mainPage"
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        onSignInError (error) {
+            console.log('OH NOES', error)
         }
+
     },
     created() {
         if(localStorage.token) {

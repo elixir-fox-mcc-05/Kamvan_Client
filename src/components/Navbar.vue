@@ -3,13 +3,13 @@
             <div class="container-fluid pt-1 pb-1">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-9 justify-content-start">
-                        <a id="titleButton" class="btn" role="button" @click="showHome">Kanban Board</a>
+                        <a id="titleButton" class="btn" role="button" @click.prevent="showHome">Kanban Board</a>
                     </div>
                     <div v-if="currentPage == 'mainPage'" class="col-1 justify-content-between pr-0">
                         <a class="btn btn-primary btn-sm text-white" role="button" data-toggle="modal" data-target="#modalNewTask">New Task</a>
                     </div>
                     <div v-if="currentPage == 'mainPage'" class="col-1 justify-content-between pr-0">
-                        <a class="btn btn-secondary btn-sm" role="button" @click="logoutUser">Logout</a>
+                        <a class="btn btn-secondary btn-sm" role="button" @click.prevent="logoutUser">Logout</a>
                     </div>
                 </div>
             </div>

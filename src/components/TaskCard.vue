@@ -4,7 +4,7 @@
             <h5 class="card-text text-center font-weight-bolder">{{Task.title}}</h5>
         </div>
         <div class="card-body" id="cardBody">
-            <p class="card-text text-left font-weight-bolder">Priority: {{Task.priority}}</p>
+            <p class="card-text text-left font-weight-normal">Priority: {{Task.priority}}</p>
             <p class="card-text text-left font-weight-normal">Deadline: {{Task.deadline}}</p>
             <p class="card-text text-left font-weight-normal">Assign By: {{Task.AssignorDetail.name}}</p>
             <p class="card-text text-left font-weight-normal">Assign To: {{Task.AssigneeDetail.name}}</p>
