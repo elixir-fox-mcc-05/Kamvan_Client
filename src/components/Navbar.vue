@@ -5,8 +5,9 @@
         </div>
         <div class="menu">
             <ul>
-                <li class="btn btn-primary" v-if="page === 'landing'" @click="showLogin">Login</li>
-                <li class="btn btn-danger" v-if="page === 'main'" @click="logout">Logout</li>
+                <li class="btn btn-easygreen" v-if="page === 'landing'" @click="$emit('register')">Register</li>
+                <li class="btn btn-primary" v-if="page === 'landing'" @click="$emit('login')">Login</li>
+                <li class="btn btn-danger" v-if="page === 'main'" @click="$emit('logout')">Logout</li>
             </ul>
         </div>
     </div>
@@ -15,15 +16,7 @@
 <script>
 export default {
     name: 'Navbar',
-    props: ['page'],
-    methods: {
-        showLogin() {
-            this.$emit('login');
-        },
-        logout() {
-            this.$emit('logout');
-        }
-    }
+    props: ['page']
 }
 </script>
 
@@ -38,5 +31,14 @@ export default {
 
     ul {
         padding-right: 5px;
+    }
+
+    .btn-easygreen {
+        background-color: rgb(153, 230, 39);
+        color: white;
+    }
+
+    .btn-easygreen:hover {
+        background-color: rgb(126, 192, 26);
     }
 </style>

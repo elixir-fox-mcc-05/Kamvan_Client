@@ -16,20 +16,31 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Add New Task">
             <button type="button" class="btn btn-danger btn-block" @click="$emit('cancel')">Cancel</button>
+            <Error
+                v-if="errorDetected"
+                :alertMessage="alertMessage"
+            >
+    </Error>
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Error from './Error';
 
 export default {
     name: 'AddTaskForm',
+    components: {
+        Error
+    },
     data() {
         return {
             taskTitle: '',
             taskDescription: '',
             taskDueDate: '',
+            alertMessage:'',
+            errorDetected: false
         }
     },
     methods: {
@@ -45,11 +56,21 @@ export default {
                 }
             })
                 .then(res => {
-                    console.log(res);
-                    this.$emit('renew')
+                    this.$emit('renew');
+                    this.alertMessage = '';
+                    this.errorDetected = false;
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.errorDetected = true;
+                    if(Array.isArray(err.response.data.error)) {
+                        let errors = '';
+                        err.response.data.error.forEach(e =>  {
+                            errors += `${e}, `
+                        })
+                        this.alertMessage = errors.substring(0, errors.length-2);
+                    } else {
+                        this.alertMessage = err.response.data.error;
+                    }
                 })
         }
     }

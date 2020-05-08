@@ -70,8 +70,14 @@ export default {
                 ghostClass: "ghost"
             }
         },
-        stage() {
-            return this.tasks;
+        stage: {
+            get() {
+                return this.tasks;
+            },
+            set(task) {
+                // console.log(task);
+                this.$emit('changeStage', task, this.title)
+            }
         },
         capitalizeTitleFirstWord: function() {
             return this.title.charAt(0).toUpperCase() + this.title.slice(1);
@@ -126,6 +132,10 @@ export default {
         justify-content: space-evenly;
         align-items: center;
         padding: 10px;
+        min-height: 180px;
+    }
+
+    draggable {
         min-height: 180px;
     }
 </style>

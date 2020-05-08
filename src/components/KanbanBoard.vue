@@ -11,6 +11,7 @@
             @moveLeft="moveLeft"
             @moveRight="moveRight"
             @deleteTask="deleteTask"
+            @changeStage="changeStage"
         >
         </KanbanCard>
         <KanbanCard 
@@ -24,6 +25,7 @@
             @moveLeft="moveLeft"
             @moveRight="moveRight"
             @deleteTask="deleteTask"
+            @changeStage="changeStage"
         >
         </KanbanCard>
         <KanbanCard 
@@ -37,6 +39,7 @@
             @moveLeft="moveLeft"
             @moveRight="moveRight"
             @deleteTask="deleteTask"
+            @changeStage="changeStage"
         >
         </KanbanCard>
         <KanbanCard 
@@ -50,6 +53,7 @@
             @moveLeft="moveLeft"
             @moveRight="moveRight"
             @deleteTask="deleteTask"
+            @changeStage="changeStage"
         >
         </KanbanCard>
     </div>
@@ -93,6 +97,17 @@ export default {
                 }
             })
         },
+        changeStage(task, card) {
+            if(task.length) {
+                task.forEach(ticket => {
+                    if(ticket.category !== card) {
+                        const id = ticket.id;
+                        const newCategory = card;
+                        this.changeCategory(id, newCategory);
+                    }
+                })
+            }
+        },
         showEdit(taskEdit) {
             this.$emit('showEdit', taskEdit);
         },
@@ -122,7 +137,7 @@ export default {
                     this.$emit('renew');
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.$emit('tempError', err);
                 })
         },
         deleteTask(id) {

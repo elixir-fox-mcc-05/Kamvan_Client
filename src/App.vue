@@ -4,6 +4,7 @@
       :page="page" 
       @login="showLogin"
       @logout="logout"
+      @register="showRegister"
     ></Navbar>
     <Landing 
       ref="landing"

@@ -11,6 +11,7 @@
                 :registered="registered"
                 @cancel="cancel"
                 @login="login"
+                @showLogin="showLogin"
                 v-if="!registered"
             >
             </RegisterForm>

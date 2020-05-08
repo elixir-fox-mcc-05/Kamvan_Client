@@ -9,8 +9,12 @@
         <EditTaskForm
             v-if="form === 'edit'"
             :task="task"
+            :alertMessage='alertMessage'
+            :errorDetected="errorDetected"
             @cancel="$emit('cancel')"
+            @noError="$emit('noError')"
             @renew="$emit('renew')"
+            @errorDetected="processError"
         >
         </EditTaskForm>
         <DetailCard 
@@ -24,6 +28,7 @@
             :deleted="deleted"
             @cancel="$emit('cancel')"
             @renew="$emit('renew')"
+            @tempError="tempError"
         >
         </Warn>
     </div>
@@ -40,7 +45,15 @@ export default {
     components: {
         AddTaskForm, EditTaskForm, DetailCard, Warn
     },
-    props: ['form', 'task', 'detail', 'deleted']
+    props: ['form', 'task', 'detail', 'deleted', 'alertMessage', 'errorDetected'],
+    methods: {
+        processError(err) {
+            this.$emit('error', err);
+        },
+        tempError(err) {
+            this.$emit('tempError', err);
+        }
+    }
 }
 </script>
 

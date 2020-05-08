@@ -23,6 +23,11 @@
                 @error="onSignInError">
                 Sign in with Google
             </g-signin-button> 
+            <Error
+                v-if="errorDetected"
+                :alertMessage="alertMessage"
+            >
+            </Error>
         </form>
     </div>
 </template>
@@ -30,10 +35,12 @@
 <script>
 import axios from 'axios';
 import GSignInButton from 'vue-google-signin-button';
+import Error from './Error';
+
 export default {
     name: 'Register',
     components: {
-        GSignInButton
+        GSignInButton, Error
     },
     props: ['registered'],
     data() {
@@ -41,6 +48,8 @@ export default {
             registrationName: '',
             registrationEmail: '',
             registrationPassword: '',
+            alertMessage:'',
+            errorDetected: false,
             googleSignInParams: {
                 client_id: '701067433216-akosvqvvev2l52s5kso2dqrtior1m7b8.apps.googleusercontent.com'
             }
@@ -48,7 +57,9 @@ export default {
     },
     methods: {
         cancel() {
-            this.$emit('cancel')
+            this.errorDetected = false;
+            this.alertMessage = '';
+            this.$emit('cancel');
         },
         register() {
             axios.post('http://localhost:4000/users/register', {
@@ -60,23 +71,40 @@ export default {
                 this.registrationName = '';
                 this.registrationEmail = '';
                 this.registrationPassword = '';
+                this.errorDetected = false;
+                this.alertMessage = '';
+                this.$emit('showLogin');
             })
             .catch(err => {
-                console.log(err);
+                this.errorDetected = true;
+                if(Array.isArray(err.response.data.error)) {
+                    let errors = '';
+                    err.response.data.error.forEach(e =>  {
+                        errors += `${e}, `
+                    })
+                    this.alertMessage = errors.substring(0, errors.length-2);
+                } else {
+                    this.alertMessage = err.response.data.error;
+                }
             })
         },
         onSignInSuccess(googleUser){
             var id_token = googleUser.getAuthResponse().id_token;
-            axios.post('http://localhost:4000/users/google-login', {
-                google_token: id_token
+            axios.post('http://localhost:4000/users/google-login', null, {
+                headers: {
+                    google_token: id_token
+                }
             })
                 .then(res => {
                     console.log(res);
                     localStorage.setItem('access_token', res.data.access_token);
                     this.$emit('login');
+                    this.errorDetected = false;
+                    this.alertMessage = '';
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.errorDetected = true;
+                    this.alertMessage = err;
                 })
         },
         onSignInError (error) {
@@ -108,5 +136,11 @@ export default {
     .g-signin-button:hover {
         cursor: pointer;
         background-color: rgb(105, 32, 22);;
+    }
+</style>
+
+<style scoped>
+    .form-group {
+        margin: 5px 0;
     }
 </style>

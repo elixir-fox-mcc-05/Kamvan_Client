@@ -1,5 +1,10 @@
 <template>
 <div>
+    <Error
+        v-if="errorDetected"
+        :alertMessage="alertMessage"
+    >
+    </Error>
     <div class="d-flex justify-content-between main-head">
         <div>
             <h2>Welcome to Kanban Board</h2>
@@ -15,9 +20,12 @@
         @showEdit="showEditForm"
         @renew="renewList"
         @deleteTask="triggerWarn"
+        @tempError="showErrorTemporary"
     >
     </KanbanBoard>
     <ModalMain 
+        :alertMessage="alertMessage"
+        :errorDetected="errorDetected"
         :form="form" 
         :task="editTask"
         :detail="detailtask"
@@ -25,6 +33,9 @@
         :class="{'modal-active': modalActivated}"
         @renew="renewList"
         @cancel="closeModal"
+        @noError="noError"
+        @error="processError"
+        @tempError="showErrorTemporary"
     >
     </ModalMain>
     
@@ -36,11 +47,12 @@ import KanbanBoard from './KanbanBoard';
 import ModalMain from './ModalMain';
 import GSignInButton from 'vue-google-signin-button';
 import axios from 'axios';
+import Error from './Error';
 
 export default {
     name: 'Main',
     components: {
-        KanbanBoard, ModalMain
+        KanbanBoard, ModalMain, Error
     },
     data() {
         return {
@@ -50,6 +62,8 @@ export default {
             editTask: '',
             detailtask: '',
             deleted: '',
+            alertMessage:'',
+            errorDetected: false,
             googleSignInParams: {
                 client_id: '701067433216-akosvqvvev2l52s5kso2dqrtior1m7b8.apps.googleusercontent.com'
             }
@@ -59,6 +73,7 @@ export default {
         closeModal() {
             this.modalActivated = false;
             this.form = '';
+            this.noError();
         },
         showAddForm() {
             this.modalActivated = true;
@@ -91,15 +106,40 @@ export default {
                         this.tasks.push(task);
                     })
                     this.$refs.board.separateTask();
+                    this.noError();
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.processError(err);
                 })
+        },
+        noError() { 
+            this.alertMessage = '';
+            this.errorDetected = false;
+        },
+        processError(err) {
+            this.errorDetected = true;
+            if(Array.isArray(err.response.data.error)) {
+                let errors = '';
+                err.response.data.error.forEach(e =>  {
+                    errors += `${e}, `
+                })
+                this.alertMessage = errors.substring(0, errors.length-2);
+            } else {
+                this.alertMessage = err.response.data.error;
+            }
         },
         renewList() {
             this.tasks = [];
             this.showAllTask();
             this.closeModal();
+        },
+        showErrorTemporary(err) {
+            setTimeout(()=> {
+                this.noError();
+            }, 3000);
+            this.modalActivated = false;
+            this.form = '';
+            this.processError(err);
         }
     },
     created() {

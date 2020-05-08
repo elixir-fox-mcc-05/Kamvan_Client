@@ -16,16 +16,24 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Edit Task">
             <button type="button" class="btn btn-danger btn-block" @click="$emit('cancel')">Cancel</button>
+            <Error
+                v-if="errorDetected"
+                :alertMessage="alertMessage"
+            >
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Error from './Error';
 
 export default {
     name: 'EditTaskForm',
-    props: ['task'],
+    components: {
+        Error
+    },
+    props: ['task', 'alertMessage', 'errorDetected'],
     methods: {
         updateTask() {
             const { access_token } = localStorage;
@@ -41,9 +49,10 @@ export default {
             })
                 .then(res => {
                     this.$emit('renew');
+                    this.$emit('noError')
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.$emit('errorDetected', err);
                 })
         }
     }

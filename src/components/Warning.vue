@@ -29,7 +29,7 @@ export default {
                     this.$emit('renew');
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.$emit('tempError', err);
                 })
         }
     }

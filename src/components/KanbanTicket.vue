@@ -43,10 +43,14 @@ export default {
         },
         showDetail() {
             const detail = {};
+            if(this.task.description) {
+                detail.description = this.task.description;
+            } else {
+                detail.description = 'No description'
+            }
             detail.id = this.task.id;
             detail.title = this.task.title;
             detail.assignee = this.task.User.name
-            detail.description = this.task.description;
             detail.category = this.task.category;
             detail.due_date = this.task.due_date.slice(0,10);
             this.$emit('showDetail', detail);

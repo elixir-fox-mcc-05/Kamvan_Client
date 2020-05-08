@@ -8,7 +8,7 @@
                 <img src="../../assets/kanban-blue.png" alt="kanban-logo">
             </div>
             <h1>Manage Your Team and Reach Your Highest Productivity With Us</h1>
-            <button class="btn btn-primary btn-lg button-landing" @click="showModal">JOIN NOW</button>
+            <button class="btn btn-lg button-landing" @click="showModal">JOIN NOW</button>
         </div>
     </div>
 </template>
@@ -44,6 +44,10 @@ export default {
         width: 85%;
     }
 
+    h1 {
+        text-shadow: 1px 2px 3px #5E5E5E;
+    }
+
     .greet {
         display: flex;
         flex-direction: column;
@@ -57,6 +61,11 @@ export default {
         margin-top: 30px;
         background-color: #3071b8;
         border-color:  #3071b8;
+        color: white;
+    }
+
+    .button-landing:hover {
+        background-color: #22568f;
     }
 
     .logo-kanban {
