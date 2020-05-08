@@ -1,5 +1,17 @@
 <template>
   <div class="container login-container">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-3">KamVan</h1>
+        <p class="lead">
+          Welcome to KamVan Single Page WebApp.
+        </p>
+        <p class="my-2">
+          The first step in the introduction of Kanban is to visualize the workflow.<br/>
+          This is done in the form of a Kanban board consisting of a simple whiteboard and sticky notes or cards. Each card on the board represents a task.
+        </p>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6 login-form-2">
         <h3>SignIn</h3>

@@ -2,9 +2,9 @@
   <div class="card" v-if="category === task.category">
     <div class="card-header">{{ task.title }}</div>
     <div class="card-body">
-      <p class="card-text">Description : {{ task.description }}</p>
+      <p class="card-text">Description: {{ task.description }}</p>
       <p class="card-text">
-        Created By :
+        Created By:
         <strong>{{ task.User.name }}</strong>
       </p>
       <button
@@ -76,7 +76,36 @@
                   >{{ failedUpdateTaskMessage }}</div>
                 </div>
                 <div class="modal-footer">
-                  <button @click="destroy(task)" type="button" class="btn btn-danger">Delete</button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    :data-target="'#confirm-delete'+task.id"
+                  >Delete</button>
+                  <div
+                    class="modal fade"
+                    :id="'confirm-delete'+task.id"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="myModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header bg-warning">Confirm Delete</div>
+                        <div class="modal-body">Are you sure you want to delete?</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          <button
+                            @click="destroy(task)"
+                            type="button"
+                            class="btn btn-danger"
+                            data-dismiss="modal"
+                          >Delete it now !</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <button
                     @click="fetchTasks"
                     type="button"

@@ -2,7 +2,36 @@
   <nav class="navbar navbar-dark bg-primary">
     <h3 class="text-white">{{ AppName }}</h3>
     <div v-if="signedIn">
-      <button @click="signOut" type="button" class="btn btn-danger">sign out</button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-toggle="modal"
+        data-target="#confirm-signout"
+      >Sign Out</button>
+    </div>
+    <div
+      class="modal fade"
+      id="confirm-signout"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">Confirm Sign Out</div>
+          <div class="modal-body">Are you sure you want to sign out?</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button
+              @click="signOut"
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+            >Sign Out</button>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>

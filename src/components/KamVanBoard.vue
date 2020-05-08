@@ -63,6 +63,10 @@
       </div>
     </div>
 
+    <div v-if="!anyTask" class="d-flex justify-content-start">
+      <h2 class="text-info">Seems empty here..! lets add new Task :)</h2>
+    </div>
+
     <div class="row d-flex flex-sm-wrap">
       <div class="col-lg" v-for="(category, index) in categories" :key="index">
         <div class="card">
@@ -99,6 +103,7 @@ export default {
     return {
       categories: ["back-log", "to-do", "doing", "done"],
       tasks: null,
+      anyTask: false,
       addNewTaskTitle: "",
       addNewTaskDescription: "",
       newCreatedTask: null,
@@ -121,6 +126,11 @@ export default {
       })
         .then(data => {
           this.tasks = data.data.Tasks;
+          if (!data.data.Tasks.length) {
+            this.anyTask = false;
+          } else {
+            this.anyTask = true;
+          }
         })
         .catch(err => {
           console.log(err);
