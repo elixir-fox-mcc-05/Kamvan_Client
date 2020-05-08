@@ -10,6 +10,7 @@
             <RegisterForm 
                 :registered="registered"
                 @cancel="cancel"
+                @login="login"
                 v-if="!registered"
             >
             </RegisterForm>
@@ -69,6 +70,6 @@ export default {
         align-items: center;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s, opacity 0.5s;
+        transition: visibility 0.5s, opacity 0.5s;
     }
 </style>

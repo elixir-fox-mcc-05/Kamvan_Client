@@ -1,39 +1,55 @@
 <template>
     <div class="kanban-container">
         <KanbanCard 
+            ref="card"
             :class="{backlog: true}" 
             :title="card[0]" 
             :tasks="backlog" 
             @showEdit="showEdit" 
             @showDetail="showDetail" 
             @renew="$emit('renew')"
+            @moveLeft="moveLeft"
+            @moveRight="moveRight"
+            @deleteTask="deleteTask"
         >
         </KanbanCard>
         <KanbanCard 
+            ref="card"
             :class="{todo: true}" 
             :title="card[1]" 
             :tasks="todo" 
             @showEdit="showEdit" 
             @showDetail="showDetail" 
             @renew="$emit('renew')"
+            @moveLeft="moveLeft"
+            @moveRight="moveRight"
+            @deleteTask="deleteTask"
         >
         </KanbanCard>
         <KanbanCard 
+            ref="card"
             :class="{doing: true}" 
             :title="card[2]" 
             :tasks="doing" 
             @showEdit="showEdit" 
             @showDetail="showDetail" 
             @renew="$emit('renew')"
+            @moveLeft="moveLeft"
+            @moveRight="moveRight"
+            @deleteTask="deleteTask"
         >
         </KanbanCard>
         <KanbanCard 
+            ref="card"
             :class="{done: true}" 
             :title="card[3]" 
             :tasks="done" 
             @showEdit="showEdit" 
             @showDetail="showDetail" 
             @renew="$emit('renew')"
+            @moveLeft="moveLeft"
+            @moveRight="moveRight"
+            @deleteTask="deleteTask"
         >
         </KanbanCard>
     </div>
@@ -41,7 +57,7 @@
 
 <script>
 import KanbanCard from './KanbanCard';
-
+import axios from 'axios';
 
 
 export default {
@@ -82,10 +98,36 @@ export default {
         },
         showDetail(detail) {
             this.$emit('showDetail', detail)
+        },
+        moveLeft(movedTask) {
+            const index = this.card.indexOf(movedTask.category);
+            let newCategory = this.card[index-1];
+            this.changeCategory(movedTask.id, newCategory);
+        },
+        moveRight(movedTask) {
+            const index = this.card.indexOf(movedTask.category);
+            let newCategory = this.card[index+1];
+            this.changeCategory(movedTask.id, newCategory);
+        },
+        changeCategory(id, category) {
+            const{ access_token } = localStorage;
+            axios.patch(`http://localhost:4000/tasks/${id}`, {
+                category
+            },{
+                headers: {
+                    access_token
+                }
+            })
+                .then(res => {
+                    this.$emit('renew');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        deleteTask(id) {
+            this.$emit('deleteTask', id);
         }
-    },
-    created() {
-        this.separateTask();
     }
 }
 </script>

@@ -11,16 +11,6 @@
                 <textarea type="text" class="form-control" v-model="task.description" rows="3" placeholder="your task description"></textarea>
             </div>
             <div class="form-group">
-                <label for="due_date">Task Category</label>
-                <select class="custom-select my-1 mr-sm-2" v-model="task.category">
-                    <option selected disabled>Choose Category</option>
-                    <option value="backlog">backlog</option>
-                    <option value="todo">todo</option>
-                    <option value="doing">doing</option>
-                    <option value="done">done</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="due_date">Task Due Date</label>
                 <input type="date" class="form-control" v-model="task.due_date" placeholder="your task due date">
             </div>

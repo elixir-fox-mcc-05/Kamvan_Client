@@ -14,11 +14,18 @@
         >
         </EditTaskForm>
         <DetailCard 
-            :task="detail" 
             v-if="form === 'detail'"
+            :task="detail" 
             @cancel="$emit('cancel')"
         >
         </DetailCard>
+        <Warn
+            v-if ="form === 'warn'"
+            :deleted="deleted"
+            @cancel="$emit('cancel')"
+            @renew="$emit('renew')"
+        >
+        </Warn>
     </div>
 </template>
 
@@ -26,13 +33,14 @@
 import AddTaskForm from './Add';
 import EditTaskForm from './Edit';
 import DetailCard from './Detail';
+import Warn from './Warning';
 
 export default {
     name: 'ModalMain',
     components: {
-        AddTaskForm, EditTaskForm, DetailCard
+        AddTaskForm, EditTaskForm, DetailCard, Warn
     },
-    props: ['form', 'task', 'detail']
+    props: ['form', 'task', 'detail', 'deleted']
 }
 </script>
 
@@ -49,6 +57,6 @@ export default {
         align-items: center;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s, opacity 0.5s;
+        transition: visibility 0.5s, opacity 0.5s;
     }
 </style>

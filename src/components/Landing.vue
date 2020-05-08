@@ -33,6 +33,7 @@ export default {
         },
         closeModal() {
             this.modalActivated = false;
+            this.$emit('close')
         },
         login() {
             this.$emit('login');

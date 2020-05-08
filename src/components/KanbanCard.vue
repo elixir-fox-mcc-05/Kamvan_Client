@@ -1,23 +1,25 @@
 <template>
     <div class="kanban-card">
         <div class="card-head">
-            <h3 class="card-title">{{ capitalizeFirstWord }}</h3>
+            <h3 class="card-title">{{ capitalizeTitleFirstWord }}</h3>
         </div>
         <div class="card-body">
             <draggable 
-                v-model="tasks" 
+                v-model="stage" 
                 v-bind="dragOptions"
                 @start="drag = true"
                 @end="drag = false"
             >
                 <transition-group type="transition" :name="!drag? 'flip-list' : null">
                     <KanbanTicket 
-                        v-for="task in tasks" 
+                        v-for="task in stage" 
                         :key="task.id" 
                         :task="task"
                         @showDetail="showDetail"
                         @showEdit="showEdit"
-                        @renew="$emit('renew')"
+                        @moveLeft="moveLeft"
+                        @moveRight="moveRight"
+                        @deleteTask="deleteTask"
                     >
                     </KanbanTicket>
                 </transition-group>
@@ -47,7 +49,17 @@ export default {
         },
         showDetail(detail) {
             this.$emit('showDetail', detail)
+        },
+        moveLeft(movedTask) {
+            this.$emit('moveLeft', movedTask);
+        },
+        moveRight(movedTask) {
+            this.$emit('moveRight', movedTask);
+        },
+        deleteTask(id) {
+            this.$emit('deleteTask', id);
         }
+
     },
     computed: {
         dragOptions() {
@@ -58,7 +70,10 @@ export default {
                 ghostClass: "ghost"
             }
         },
-        capitalizeFirstWord: function() {
+        stage() {
+            return this.tasks;
+        },
+        capitalizeTitleFirstWord: function() {
             return this.title.charAt(0).toUpperCase() + this.title.slice(1);
         }
     }

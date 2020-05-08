@@ -9,6 +9,10 @@
         <div class="task-body">
             <p>Assign to: {{ task.User.name }}</p>
         </div>
+        <div class="task-arrow">
+            <i v-if="task.category !== 'backlog'" class="fas fa-arrow-left" @click="moveLeft"></i>
+            <i v-if="task.category !== 'done'" class="fas fa-arrow-right" @click="moveRight"></i>
+        </div>
         <div class="task-deadline">
             <i class="fas fa-clock"></i>
             <small>{{ task.due_date.slice(0,10) }}</small>
@@ -45,25 +49,24 @@ export default {
             detail.description = this.task.description;
             detail.category = this.task.category;
             detail.due_date = this.task.due_date.slice(0,10);
-            this.$emit('showDetail', detail)
+            this.$emit('showDetail', detail);
         },
         deleteTask(id) {
-            console.log(id);
-            const { access_token } = localStorage;
-            axios.delete(`http://localhost:4000/tasks/${id}`, {
-                params: {
-                    id
-                },
-                headers: {
-                    access_token
-                }
-            })
-                .then(res => {
-                    this.$emit('renew');
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            this.$emit('deleteTask', id);
+        },
+        moveLeft() {
+            const movedTask = {
+                id: this.task.id,
+                category: this.task.category
+            }
+            this.$emit('moveLeft', movedTask);
+        },
+        moveRight() {
+            const movedTask = {
+                id: this.task.id,
+                category: this.task.category
+            }
+            this.$emit('moveRight', movedTask);
         }
     }
 }
@@ -71,11 +74,11 @@ export default {
 
 <style>
     .task-ticket {
-        flex: 1 1 250px;
+        flex: 1 1 300px;
         max-width: 450px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, minmax(20px, auto));
+        grid-template-rows: repeat(4, minmax(20px, auto));
         border: black solid 1px;
         background-color: #ffff82;
         margin: 5px;
@@ -94,18 +97,36 @@ export default {
 
     .task-button {
         grid-column: 3/5;
-        grid-row: 3/4;
+        grid-row: 4/5;
     }
 
     .task-deadline {
         grid-column: 1/3;
-        grid-row: 3/4; 
+        grid-row: 4/5; 
     }
 
     .task-title, .task-body, .task-deadline {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+    }
+
+    .task-arrow {
+        grid-column: 1/5;
+        grid-row: 3/4;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fa-arrow-left {
+        grid-column: 1/2;
+        color: #0069D9;
+    }
+
+    .fa-arrow-right {
+        grid-column: 2/3;
+        text-align: right;
+        color: #0069D9;
     }
 
     .task-button {
@@ -128,7 +149,7 @@ export default {
         padding: 5px;
     }
 
-    .fa-pen:hover, .fa-trash-alt:hover {
+    .fa-pen:hover, .fa-trash-alt:hover, .fa-arrow-left, .fa-arrow-right {
         cursor: pointer;
     }
 

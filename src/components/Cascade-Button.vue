@@ -23,7 +23,7 @@ export default {
 <style scoped>
     .button-group {
         background-color: darkblue;
-        padding: 10px;
+        padding: 5px 10px;
         border-radius: 15px;
         margin-top: 5px;
     }
@@ -31,7 +31,7 @@ export default {
     .btn-dark-blue {
         background-color: darkblue;
         color: white;
-        padding: 10px 35px;
+        padding: 5px 35px;
         border-radius: 0;
     }
 

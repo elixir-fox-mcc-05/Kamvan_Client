@@ -14,12 +14,14 @@
         @showDetail="showDetail"
         @showEdit="showEditForm"
         @renew="renewList"
+        @deleteTask="triggerWarn"
     >
     </KanbanBoard>
     <ModalMain 
         :form="form" 
         :task="editTask"
         :detail="detailtask"
+        :deleted="deleted"
         :class="{'modal-active': modalActivated}"
         @renew="renewList"
         @cancel="closeModal"
@@ -32,6 +34,7 @@
 <script>
 import KanbanBoard from './KanbanBoard';
 import ModalMain from './ModalMain';
+import GSignInButton from 'vue-google-signin-button';
 import axios from 'axios';
 
 export default {
@@ -45,7 +48,11 @@ export default {
             modalActivated: false,
             form: '',
             editTask: '',
-            detailtask: ''
+            detailtask: '',
+            deleted: '',
+            googleSignInParams: {
+                client_id: '701067433216-akosvqvvev2l52s5kso2dqrtior1m7b8.apps.googleusercontent.com'
+            }
         }
     },
     methods: {
@@ -66,6 +73,11 @@ export default {
             this.modalActivated = true;
             this.form = 'detail';
             this.detailtask = detail;
+        },
+        triggerWarn(id) {
+            this.modalActivated = true;
+            this.form = 'warn';
+            this.deleted = id;
         },
         showAllTask() {
             const { access_token } = localStorage;

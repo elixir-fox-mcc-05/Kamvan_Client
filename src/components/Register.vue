@@ -16,20 +16,34 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block" @click.prevent="register">Register</button>
             <button type="button" class="btn btn-danger btn-block" @click="cancel">Cancel</button>
+            <h6 class="text-center mt-1">Or</h6>
+            <g-signin-button
+                :params="googleSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                Sign in with Google
+            </g-signin-button> 
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import GSignInButton from 'vue-google-signin-button';
 export default {
     name: 'Register',
+    components: {
+        GSignInButton
+    },
     props: ['registered'],
     data() {
         return {
             registrationName: '',
             registrationEmail: '',
-            registrationPassword: ''
+            registrationPassword: '',
+            googleSignInParams: {
+                client_id: '701067433216-akosvqvvev2l52s5kso2dqrtior1m7b8.apps.googleusercontent.com'
+            }
         }
     },
     methods: {
@@ -37,21 +51,37 @@ export default {
             this.$emit('cancel')
         },
         register() {
-        axios.post('http://localhost:4000/users/register', {
-            name: this.registrationName,
-            email: this.registrationEmail,
-            password: this.registrationPassword
-        })
-          .then(res => {
-            console.log(res);
-            this.registrationName = '';
-            this.registrationEmail = '';
-            this.registrationPassword = '';
-          })
-          .catch(err => {
-            console.log(err);
-          })
-    },
+            axios.post('http://localhost:4000/users/register', {
+                name: this.registrationName,
+                email: this.registrationEmail,
+                password: this.registrationPassword
+            })
+            .then(res => {
+                this.registrationName = '';
+                this.registrationEmail = '';
+                this.registrationPassword = '';
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        },
+        onSignInSuccess(googleUser){
+            var id_token = googleUser.getAuthResponse().id_token;
+            axios.post('http://localhost:4000/users/google-login', {
+                google_token: id_token
+            })
+                .then(res => {
+                    console.log(res);
+                    localStorage.setItem('access_token', res.data.access_token);
+                    this.$emit('login');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        onSignInError (error) {
+            console.log(error);
+        }
     }
 }
 </script>
@@ -63,5 +93,20 @@ export default {
         -webkit-box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
         -moz-box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
         box-shadow: -2px 3px 14px -2px rgba(71,68,71,0.46);
+    }
+
+    .g-signin-button {
+        margin-top: 5px;
+        text-align: center;
+        padding: 4px 8px;
+        border-radius: 3px;
+        background-color: #DD4C39;
+        color: #fff;
+        box-shadow: 0 3px 0 rgb(105, 32, 22);
+    }
+
+    .g-signin-button:hover {
+        cursor: pointer;
+        background-color: rgb(105, 32, 22);;
     }
 </style>
