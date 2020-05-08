@@ -20,8 +20,10 @@
                             <input v-model="password" type="password" class="form-control" placeholder="Enter password" id="pwd">
                         </div>
                         <div style="display:flex; justify-content:space-between">
-                            <button @click.prevent = "login" type="submit" class="btn btn-primary"> Submit</button>
-                            <button @click.prevent="hide" class="btn btn-primary">Close</button>
+                            <div>
+                                <button @click.prevent = "login" type="submit" class="btn btn-primary"> Submit</button>
+                                <button @click.prevent="hide" class="btn btn-primary">Close</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -39,6 +41,7 @@ export default {
             password: ""
         }
     },
+    props : ["message", "messageSucces"],
     methods : {
         show () {
             this.message = ""
@@ -53,16 +56,14 @@ export default {
                 email : this.email,
                 password : this.password
             }
-            this.$emit("login", payload)
-            this.email = ''
-            this.password = ''
-            this.hide()
+            if(this.$emit("login", payload)){
+                this.email = ''
+                this.password = ''
+                this.hide()
+            }
         }
-    },
-    props : ["message", "messageSucces"]
+    }
 }
 </script>
-
-<style>
-
+<style scoped>
 </style>

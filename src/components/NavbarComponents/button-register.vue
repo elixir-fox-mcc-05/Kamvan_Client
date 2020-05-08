@@ -9,6 +9,9 @@
                 <div v-if="message" style="font-size : 15px !important; color: red;">
                     {{message}}
                 </div>
+                <div v-if="messageSucces" style="font-size : 15px !important; color: red;">
+                    {{messageSucces}}
+                </div>
                 <div style="font-size : 20px !important;">
                     <form action="" style="display:flex; flex-direction:column; justify-content:space-between">
                         <div style="display:flex; flex-direction:row">

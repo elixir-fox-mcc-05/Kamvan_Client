@@ -9,6 +9,7 @@
                 :messageSucces="messageSucces"
         >
         </navbar>
+        <section id="firebaseui-auth-container"></section>
         <card :backlogs="backlogs" 
             :todos="todos" 
             :doings="doings" 
@@ -216,7 +217,7 @@ export default {
                     console.log(this.message)
                 })
         }
-    },
+    }
 };
 </script>
 
