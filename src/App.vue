@@ -39,7 +39,7 @@ export default {
             doings : [],
             dones : [],
             loggedIn : localStorage.getItem("token") ? true : false,
-            baseUrl : "http://localhost:3000/",
+            baseUrl : "https://mysterious-basin-64968.herokuapp.com/",
             token : localStorage.getItem("token"),
             message : "",
             messageSucces : ""
