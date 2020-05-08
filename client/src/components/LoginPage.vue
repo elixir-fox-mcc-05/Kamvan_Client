@@ -1,5 +1,5 @@
 <template>
-  <div class="LoginPage">
+  <div class="LoginPage" v-if="!statusPage">
     <div class="formGroup">
       <h1>welcome back, please login</h1>
 

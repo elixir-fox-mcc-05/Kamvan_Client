@@ -3,31 +3,38 @@
     <div class="KanbanCard">
       <div class="title-card">{{ task.title }}</div>
       <p>{{ task.desc }}</p>
-      <button :style="{ 'background-color': colorTheme }">
-        See Detail
-      </button>
+      <div class="buttonGroup">
+        <button :style="{ 'background-color': colorTheme }" @click="detailBtn">
+          Show Detail
+        </button>
+        <button @click.prevent="updateBtn" class="update">Update</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'KanbanCard',
-  props: ['task', 'category'],
-  computed: {
-    colorTheme() {
-      switch (this.category) {
-        case 'Back-Log':
-          return '#ff6161';
-        case 'Todo':
-          return '#a6b4ff';
-        case 'Doing':
-          return '#efde44';
-        case 'Done':
-          return '#52ef44';
-      }
+  methods: {
+    detailBtn() {
+      axios({
+        method: 'get',
+        url: `http://localhost:3000/tasks/${this.task.id}`,
+      })
+        .then(({ data }) => {
+          this.$emit('detailBtn', data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    updateBtn() {
+      this.$emit('updateBtn');
     },
   },
+  props: ['task', 'category', 'colorTheme'],
 };
 </script>
 
@@ -58,22 +65,31 @@ p {
   font-size: 20px;
 }
 
+.buttonGroup{
+  display: flex;
+  justify-content: space-between;
+}
+
 button {
   width: 180px;
   height: 40px;
   border: none;
   border-radius: 20px;
-  margin-top: 90px;
+  margin-top: 110px;
   color: #313236;
   font-size: 20px;
   cursor: pointer;
-  /* position: fixed; */
   z-index: 100;
+  position: inherit;
 }
 
-button:hover {
-  background-color: white;
-  border: 2px solid #64b5f6;
-  color: #64b5f6;
+button:focus {
+  outline: none;
+}
+
+.update{
+  background: white;
+  color: #313236;
+  border: 1px solid #313236;;
 }
 </style>

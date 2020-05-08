@@ -1,92 +1,11 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "category": "Back-Log",
-      "title": "makan makan",
-      "desc": "makan-makan bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 2,
-      "category": "Todo",
-      "title": "minum-minum",
-      "desc": "minum-minum bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 3,
+      "id": "1",
       "category": "Doing",
-      "title": "ngerjain portofolio",
-      "desc": "Kerjain create, update, delete task. Kejain sistem login-logout, buat register page, draggable, server",
-      "UserId": 1
-    },
-    {
-      "id": 4,
-      "category": "Todo",
-      "title": "ngerjain server",
-      "desc": "mengerjakan server untuk portofolio",
-      "UserId": 1
-    }, {
-      "id": 5,
-      "category": "Back-Log",
-      "title": "lari-lari",
-      "desc": "makan-makan bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 6,
-      "category": "Todo",
-      "title": "Kipas-kipas",
-      "desc": "minum-minum bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 6,
-      "category": "Todo",
-      "title": "Tidur",
-      "desc": "mengerjakan portofolio",
-      "UserId": 1
-    },
-    {
-      "id": 7,
-      "category": "Done",
-      "title": "Beli baju",
-      "desc": "mengerjakan server untuk portofolio",
-      "UserId": 1
-    }, {
-      "id": 8,
-      "category": "Back-Log",
-      "title": "Sholat",
-      "desc": "makan-makan bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 9,
-      "category": "Todo",
-      "title": "Jalan-jalan",
-      "desc": "minum-minum bareng teman-teman",
-      "UserId": 1
-    },
-    {
-      "id": 10,
-      "category": "Doing",
-      "title": "Mandi",
-      "desc": "mengerjakan portofolio",
-      "UserId": 1
-    },
-    {
-      "id": 11,
-      "category": "Doing",
-      "title": "Minum",
-      "desc": "mengerjakan server untuk portofolio yang mana servernya harus bagus dan harus tiada duanya",
-      "UserId": 1
-    },{
-      "id": 12,
-      "category": "Done",
-      "title": "Tiduuuuuur",
-      "desc": "mengerjakan server untuk portofolio",
-      "UserId": 1
+      "title": "Selesaikan Kanban",
+      "desc": "Update, Delete, Oauth, logout, login, register, server, asfjkagsfj, asdfjasg",
+      "UserId": "1"
     }
   ],
   "users": [
@@ -105,11 +24,11 @@
       "organization-name": "Hacktiv8"
     },
     {
-        "id": 3,
-        "name": "budi",
-        "email": "budi@gmail.com",
-        "password": "zxcvb",
-        "organization-name": "Strawhat Pirate"
-      }
+      "id": 3,
+      "name": "budi",
+      "email": "budi@gmail.com",
+      "password": "zxcvb",
+      "organization-name": "Strawhat Pirate"
+    }
   ]
 }

@@ -4,19 +4,21 @@
       <div :style="{ 'background-color': colorTheme }" class="circle"></div>
       <h1 class="title">{{ category }}</h1>
     </div>
-    <div class="KanbanAdd">
+    <div @click="addBtn" class="KanbanAdd">
       <i class="fas fa-plus"></i>
     </div>
     <div class="KanbanList">
       <KanbanCard
         v-for="(task, i) in taskList"
         :key="i"
-        :task="task"
-        :category="category"
+        :task="task" 
+        :colorTheme="colorTheme" 
+        :category="category" 
+        @detailBtn="detailBtn"
+         @updateBtn="updateBtn"
       ></KanbanCard>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -24,6 +26,17 @@ import KanbanCard from './KanbanCard';
 
 export default {
   name: 'KanbanList',
+  methods: {
+    addBtn() {
+      this.$emit('addBtn');
+    },
+    detailBtn(data){
+      this.$emit('detailBtn', data)
+    },
+    updateBtn() {
+      this.$emit('updateBtn');
+    },
+  },
   components: {
     KanbanCard,
   },
@@ -50,12 +63,11 @@ export default {
       }
     },
   },
-  props: ['category', 'tasks'],
+  props: ['category', 'tasks']
 };
 </script>
 
 <style scoped>
-
 .head {
   display: flex;
   justify-content: flex-start;
@@ -87,14 +99,5 @@ export default {
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.068);
-}
-
-.KanbanList {
-/* display: flex; */
-/* flex-wrap: wrap; */
-/* justify-content: flex-start; */
-/* padding-bottom: 50px; */
-/* flex-direction: column; */
-/* background: crimson; */
 }
 </style>
