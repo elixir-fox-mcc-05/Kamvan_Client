@@ -1,0 +1,38 @@
+{
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "element-ui": "^2.13.1",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "popper.js": "^1.16.1",
+    "vue": "^2.6.11",
+    "vue-google-login": "^2.0.3",
+    "vue-google-oauth2": "^1.5.3",
+    "vue-google-signin-button": "^1.0.4",
+    "vue-google-signin-button-directive": "^1.0.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-toast-notification": "^0.2.0"
+  },
+  "name": "c",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iguntop/Kanban-Client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iguntop/Kanban-Client/issues"
+  },
+  "homepage": "https://github.com/iguntop/Kanban-Client#readme"
+}
