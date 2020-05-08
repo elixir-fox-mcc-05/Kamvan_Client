@@ -1,5 +1,11 @@
 <template>
 <div class=" column is-offset-one-quarter box is-half" v-if="showlogin">
+    <h1 class="is-size-3">Login</h1>
+    <article class="message is-danger" v-if="showError">
+    <div class="message-body">
+        {{error.error}}
+    </div>
+    </article>
     <div class="column">
         <h1 class="subtitle has-text-centered is-size-4" for="name-field">E-mail</h1>
         <input v-model="email" type="text" id="loginemail" class="input is-small">
@@ -36,7 +42,7 @@ export default {
             
         }
     },
-    props: ['showlogin','params','renderParams'],
+    props: ['showlogin','params','renderParams','error','showError'],
     methods :{
         login(){
             

@@ -1,5 +1,10 @@
 <template>
 <div class=" column is-offset-one-quarter box is-half" v-if="showregister">
+    <article class="message is-danger" v-if="showErrorReg">
+    <div class="message-body">
+        {{error.error[0]}}
+    </div>
+    </article>
     <div class="column" >
         <h1 class="subtitle has-text-centered is-size-4" for="name-field">First Name</h1>
         <input v-model="first_name" type="text" id="regfirstname" class="input is-small">
@@ -34,7 +39,7 @@ export default {
             password : ''
         }
     },
-    props: ['showregister'],
+    props: ['showregister','showErrorReg','error'],
     methods :{
         register(){
             

@@ -5,6 +5,12 @@
                     <div class=" column is-offset-one-quarter box is-half" style="position:relative;z-index:999;">
                     <p class="message-header has-background-info has-text-white-bis">Add Task</p>
                     <hr class="login-hr has-background-info">
+                    <article class="message is-danger" v-if="showErrorAdd">
+                    <div class="message-body">
+                        {{error.err}}
+                    </div>
+                    </article>
+                    <div class="column" >
                 <div class="nes-field" >
                     <p class="is-size-4 is-small has-text-centered" for="name-field">Title</p>
                     <input v-model="title" type="text" id="addtitle" class="input is-small">
@@ -49,7 +55,7 @@ export default {
             category : ''
         }
     },
-    props : ['showAddTask'],
+    props : ['showAddTask','error','showErrorAdd'],
     methods : {
         addTask(){
             

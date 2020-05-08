@@ -6,17 +6,33 @@
     @switchregister="switchregister"
     @switchlogin="switchlogin"
     ></Headerside>
+
     <Login :showlogin="showlogin" 
     @login="login" 
     @switchregister='switchregister'
+    :error="error"
+    :showError="showError"
     :params="params"
     :renderParams="renderParams"
     @onSuccess="onSuccess"
     :onFailure="onFailure"
     ></Login>
-    <Register :showregister="showregister" @register='register'></Register>
+
+    <Register :showregister="showregister" 
+    @register='register'
+    :error="error"
+    :showErrorReg='showErrorReg'
+    ></Register>
+
     <Column :showColumn="showColumn" :tasks="tasks" @detailBtn="detailBtn"></Column>
-    <AddTask @addTask="addTask" :showAddTask="showAddTask" @close="showAddTask = false"></AddTask>
+    
+    <AddTask @addTask="addTask" 
+    :showAddTask="showAddTask" 
+    @close="showAddTask = false"
+    :error="error"
+    :showErrorAdd="showErrorAdd"
+    ></AddTask>
+
     <DetailTask :taskDetail="taskDetail" 
     :showDetailTask="showDetailTask" 
     @closeEditModal="closeEditModal" 
@@ -62,6 +78,10 @@ export default {
       showAddTask : true,
       showDetailTask : true,
       loggedIn : false,
+      showError : false,
+      showErrorReg : false,
+      showErrorAdd : false,
+      error : '',
       params: {
                     client_id: "352204718470-j9o7cm2ippmp6i1705sbhj3h6741234e.apps.googleusercontent.com"
                 },
@@ -85,10 +105,11 @@ export default {
   },
   methods: {
     login(dataLogin) {
+      this.showError = false
       // console.log(dataLogin)
       axios({
         method: "post",
-        url: "https://intense-scrubland-11112.herokuapp.com/login",
+        url: "http://localhost:3000/login",
         data : {
           email : dataLogin.email,
           password : dataLogin.password
@@ -101,18 +122,22 @@ export default {
           this.loggedIn = true
           this.showColumn = true
           this.showlogin = false
-
+          fetchTask()
           // console.log(localStorage.token)
         })
         .catch(err => {
-            console.log(err.response.data)
+           this.error = err.response.data
+           this.showError = true
+           setTimeout(function(){
+             this.showError = false
+           },15000)
         });
     },
     register(dataRegister){
       // console.log(dataRegister)
       axios({
         method: "post",
-        url: "https://intense-scrubland-11112.herokuapp.com/register",
+        url: "http://localhost:3000/register",
         data : {
           first_name : dataRegister.first_name,
           last_name : dataRegister.last_name,
@@ -130,6 +155,12 @@ export default {
         })
         .catch(err => {
             console.log(err.response.data)
+            this.error=err.response.data
+            this.showErrorReg = true
+            setTimeout(function(){
+              this.showErrorReg = false
+            },15000)
+
         });
     },
     logout(){
@@ -156,7 +187,7 @@ export default {
     fetchTask(){
       axios({
         method: "get",
-        url : 'https://intense-scrubland-11112.herokuapp.com/tasks',
+        url : 'http://localhost:3000/tasks',
         headers : {
           token : localStorage.token
         }
@@ -170,9 +201,10 @@ export default {
       })
     },
     addTask(data){
+      this.showErrorAdd = false
       axios({
         method : 'post',
-        url : 'https://intense-scrubland-11112.herokuapp.com/tasks/add',
+        url : 'http://localhost:3000/tasks/add',
         headers : {
           token : localStorage.token
         },
@@ -189,13 +221,18 @@ export default {
       })
       .catch(err => {
         console.log(err.response.data)
+        this.error=err.response.data
+        this.showErrorAdd = true
+        setTimeout(function(){
+          this.showErrorAdd = false
+        },15000)
       })
     },
     checkdetailTask(i){
-      console.log('jalan woi')
+      // console.log('jalan woi')
       axios({
         method: 'get',
-        url : `https://intense-scrubland-11112.herokuapp.com/tasks/${i}`,
+        url : `http://localhost:3000/tasks/${i}`,
         headers : {
           token : localStorage.token
         },
@@ -248,7 +285,7 @@ export default {
       // console.log('h')
       axios({
         method: 'put',
-        url : `https://intense-scrubland-11112.herokuapp.com/tasks/update/${id}`,
+        url : `http://localhost:3000/tasks/update/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -269,7 +306,7 @@ export default {
     deleteTask(id){
       axios({
         method: 'delete',
-        url : `https://intense-scrubland-11112.herokuapp.com/tasks/delete/${id}`,
+        url : `http://localhost:3000/tasks/delete/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -296,7 +333,7 @@ export default {
             let google_token = googleUser.getAuthResponse().id_token
             axios({
               method : 'post',
-              url : 'https://intense-scrubland-11112.herokuapp.com/googlelogin',
+              url : 'localhost:3000/googlelogin',
               headers : {
                 google_token
               }

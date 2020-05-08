@@ -52,6 +52,9 @@ export default {
             // console.log('close pls')
             this.$emit('closeEditModal')
         }
+    },
+    mounted(){
+        this.category = this.taskDetail.category
     }
 }
 </script>
