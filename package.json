@@ -1,0 +1,29 @@
+{
+  "name": "Kamvan_Client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laevenx/Kamvan_Client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laevenx/Kamvan_Client/issues"
+  },
+  "homepage": "https://github.com/laevenx/Kamvan_Client#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "vue": "^2.6.11",
+    "vue-google-api": "^0.2.0",
+    "vue-google-login": "^2.0.3"
+  },
+  "devDependencies": {
+    "pug": "^2.0.4"
+  }
+}

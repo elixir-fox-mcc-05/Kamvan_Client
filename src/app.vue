@@ -1,0 +1,268 @@
+<template>
+<div id="app">
+    <Headerside @logout="logout" 
+    :loggedIn="loggedIn" 
+    @addNewTaskForm="addNewTaskForm"
+    ></Headerside>
+    <Login :showlogin="showlogin" @login="login" @switchregister='switchregister'></Login>
+    <Register :showregister="showregister" @register='register'></Register>
+    <Column :showColumn="showColumn" :tasks="tasks" @detailBtn="detailBtn"></Column>
+    <AddTask @addTask="addTask" :showAddTask="showAddTask" @close="showAddTask = false"></AddTask>
+    <DetailTask :taskDetail="taskDetail" 
+    :showDetailTask="showDetailTask" 
+    @closeEditModal="closeEditModal" 
+    @updateTask="updateTask"
+     @deleteTask="deleteTask"
+     ></DetailTask>
+</div>
+</template>
+ <DetailTask :taskDetail="taskDetail" :showDetailTask="showDetailTask" @updateTask="updateTask" @deleteTask="deleteTask"></DetailTask>
+<script>
+import Headerside from './components/layout/header'
+import Login from './components/article/login'
+import Register from './components/article/register'
+import Column from './components/Column'
+import DetailTask from './components/ui/DetailTask'
+import AddTask from './components/ui/AddTask'
+import axios from 'axios'
+export default {
+  name: "App",
+  data() {
+    return {
+      tasks: [{
+        title : 'tidur',
+        description : 'selamat',
+        points : '300',
+        category : 'backlog'
+      }],
+      taskDetail: {
+        title : 'tidur',
+        description : 'selamat',
+        points : '300',
+        category : 'backlog',
+        User : {
+          first_name : 'bobo',
+          last_name : 'shleep'
+        }
+      },
+      category : ['backlog','todo','doing','done'],
+      showlogin : true,
+      showregister : true,
+      showColumn : true,
+      showAddTask : true,
+      showDetailTask : true,
+      loggedIn : false
+    };
+  },
+  components: {
+    Headerside,
+    Login,
+    Register,
+    Column,
+    AddTask,
+    DetailTask
+  },
+  methods: {
+    login(dataLogin) {
+      // console.log(dataLogin)
+      axios({
+        method: "post",
+        url: "http://localhost:3000/login",
+        data : {
+          email : dataLogin.email,
+          password : dataLogin.password
+        }
+      })
+        .then(({data}) => {
+          let token = data.token
+          // console.log(token)
+          localStorage.setItem('token', token)
+          this.loggedIn = true
+          this.showColumn = true
+          this.showlogin = false
+
+          // console.log(localStorage.token)
+        })
+        .catch(err => {
+            console.log(err.response.data)
+        });
+    },
+    register(dataRegister){
+      // console.log(dataRegister)
+      axios({
+        method: "post",
+        url: "http://localhost:3000/register",
+        data : {
+          first_name : dataRegister.first_name,
+          last_name : dataRegister.last_name,
+          email : dataRegister.email,
+          password : dataRegister.password
+        }
+      })
+        .then(({data}) => {
+            console.log(data)
+          // this.showlogin = true
+          // this.showregister = false
+          // let token = data
+          // console.log(token)
+          // localStorage.setItem('token', token)
+        })
+        .catch(err => {
+            console.log(err.response.data)
+        });
+    },
+    logout(){
+      localStorage.clear()
+      this.loggedIn = false
+      this.showColumn = false
+      this.showlogin = true
+    },
+    switchregister(){
+      this.showregister = true
+    },
+    fetchTask(){
+      axios({
+        method: "get",
+        url : 'http://localhost:3000/tasks',
+        headers : {
+          token : localStorage.token
+        }
+      })
+      .then(({data}) => {
+        // console.log(data.data)
+        this.tasks = data.data
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+    },
+    addTask(data){
+      axios({
+        method : 'post',
+        url : 'http://localhost:3000/tasks/add',
+        headers : {
+          token : localStorage.token
+        },
+        data : {
+          title : data.title,
+          points : data.points,
+          description : data.points,
+          category : data.category
+        }
+      })
+      .then(({data}) => {
+        this.checkstorage()
+        this.fetchTask()
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+    },
+    checkdetailTask(i){
+      console.log('jalan woi')
+      axios({
+        method: 'get',
+        url : `http://localhost:3000/tasks/${i}`,
+        headers : {
+          token : localStorage.token
+        },
+        params : {
+          id : i
+        }
+      })
+      .then(({data}) => {
+        // console.log(data)
+        this.taskDetail = data
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+    },
+    detailBtn(i){
+      // console.log('asd')
+      this.showDetailTask = !this.showDetailTask
+      this.checkdetailTask(i)
+    },
+    showlogin(){
+      this.showlogin = true,
+      this.showregister = false
+    },
+    showregister(){
+      this.showlogin = false,
+      this.showregister = true
+    },
+    checkstorage(){
+      if(localStorage.token){
+      this.showregister = false
+      this.showlogin = false
+      this.showColumn = true
+      this.loggedIn = true
+      this.showAddTask = false
+      this.showDetailTask = false
+    }else {
+      this.showregister = false
+      this.showlogin = true
+      this.showColumn = false
+      this.loggedIn =  false
+      this.showAddTask = false
+      this.showDetailTask = false
+    }
+    },
+    addNewTaskForm(){
+      this.showAddTask = !this.showAddTask
+    },
+    updateTask(id,category){
+      // console.log('h')
+      axios({
+        method: 'put',
+        url : `http://localhost:3000/tasks/update/${id}`,
+        headers : {
+          token : localStorage.token
+        },
+        params : {
+          id
+        },
+        data :{
+          category
+        }
+      })
+      .then(({data})=> {
+          this.fetchTask()
+      })
+      .catch(err => {
+          console.log(err.response.data)
+      })
+    },
+    deleteTask(id){
+      axios({
+        method: 'delete',
+        url : `http://localhost:3000/tasks/delete/${id}`,
+        headers : {
+          token : localStorage.token
+        },
+        params : {
+          id
+        }
+      })
+      .then(({data}) => {
+        this.fetchTask()
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
+    },
+    closeEditModal(){
+      // console.log('editclose')
+      this.showDetailTask = !this.showDetailTask
+    }
+  },
+  created() {
+    this.checkstorage()
+    this.fetchTask()
+  }
+}
+
+</script>
+
+<style scoped>
+</style>
