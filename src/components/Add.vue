@@ -47,7 +47,7 @@ export default {
             axios(
             {
                 method: "POST",
-                url: "https://lit-bayou-72535.herokuapp.com/add",
+                url: "https://localhost:3000/add",
                 data:
                 {
                     title : this.title,

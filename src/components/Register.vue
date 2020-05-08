@@ -36,7 +36,7 @@ export default {
             axios(
             {
                 method: "POST",
-                url: "https://lit-bayou-72535.herokuapp.com/register",
+                url: "https://localhost:3000/register",
                 data: 
                 {
                     email: this.email,

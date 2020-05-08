@@ -48,7 +48,7 @@ export default {
             axios(
             {
                 method: "PUT",
-                url: `https://lit-bayou-72535.herokuapp.com/${this.id}/update`,
+                url: `https://localhost:3000/${this.id}`,
                 data:
                 {
                     title : this.title,

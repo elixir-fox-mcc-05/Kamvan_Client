@@ -49,7 +49,7 @@ export default {
             axios(
             {
                 method: "DELETE",
-                url: `https://lit-bayou-72535.herokuapp.com/${id}/delete`,
+                url: `https://localhost:3000//${id}`,
                 headers: 
                 {
                     token: localStorage.token

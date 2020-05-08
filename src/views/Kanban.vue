@@ -64,7 +64,7 @@ export default {
             axios(
             {
                 method: "GET",
-                url: "https://lit-bayou-72535.herokuapp.com/task",
+                url: "https://localhost:3000//tasks",
                 headers: 
                 {
                     token: localStorage.token
