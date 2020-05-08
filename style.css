@@ -8,46 +8,46 @@ body{
     padding: 10px 20px 10px 20px;
 }
 
-.container{
+.container-header{
     display: flex;
     justify-content: space-between;
 }
 
-.container #New-Task{
+#New-Task{
     background-color: blue;
     color: white;
     border-radius: 15%;
 }
 
-.container1{
+.container-list-status{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.container1 .item{
+.container-list-status .item{
     flex-grow: 0.24;
     border-radius: 2%;
     border: 1px solid blue;
 }
 
-.container1 .item #status{
+.container-list-status .item #status{
     background-color: red;
     color: white;
     border-radius: 3% 3% 0% 0%;
 }
 
-.container1 .item #status1{
+.container-list-status .item #status1{
     background-color: orange;
     color: white;
 }
 
-.container1 .item #status2{
+.container-list-status .item #status2{
     background-color: blue;
     color: white;
 }
 
-.container1 .item #status3{
+.container-list-status .item #status3{
     background-color: green;
     color: white;
 }
@@ -68,7 +68,13 @@ body{
     border-radius: 0% 0% 3% 3%;
 }
 
-#Show-Detail{
+#update{
+    background-color: blue;
+    color: white;
+    border-radius: 15%;
+}
+
+#delete{
     background-color: blue;
     color: white;
     border-radius: 15%;
