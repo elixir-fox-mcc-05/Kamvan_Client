@@ -2,7 +2,7 @@
     <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-dark text-light">
                     <h5 class="modal-title" id="">Edit Task</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click.prevent="clearData">
                         <span aria-hidden="true">&times;</span>
@@ -11,15 +11,15 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="editTitle">Title</label>
+                            <label for="editTitle" class="text-dark font-weight-bolder">Title</label>
                             <input type="text" v-model="editTask.title" class="form-control" id="editTitle" placeholder="title">
                         </div>
                         <div class="form-group">
-                            <label for="editDescription">Description</label>
+                            <label for="editDescription" class="text-dark font-weight-bolder">Description</label>
                             <textarea class="form-control" v-model="editTask.description" id="editDescription" rows="3" placeholder="write description here"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="editCategory">Category</label>
+                            <label for="editCategory" class="text-dark font-weight-bolder">Category</label>
                             <select class="form-control" v-model="editTask.category">
                                 <option>Back-Log</option>
                                 <option>Todo</option>
@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="editPriority">Priority</label>
+                            <label for="editPriority" class="text-dark font-weight-bolder">Priority</label>
                             <select class="form-control" v-model="editTask.priority">
                                 <option>Normal</option>
                                 <option>Important</option>
@@ -36,11 +36,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="editDeadline">Deadline</label>
+                            <label for="editDeadline" class="text-dark font-weight-bolder">Deadline</label>
                             <input type="date"  v-model="editTask.deadline" class="form-control" id="editDeadline">
                         </div>
                         <div class="form-group">
-                            <label for="editAssignee">Assign To</label>
+                            <label for="editAssignee" class="text-dark font-weight-bolder">Assign To</label>
                             <select class="form-control" v-model="editTask.AssigneeId">
                                 <option v-for="User in Users" :key="User.id" :value="User.id">{{User.name}}</option>
                             </select>

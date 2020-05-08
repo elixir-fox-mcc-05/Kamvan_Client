@@ -1,13 +1,13 @@
 <template>
-    <div class="card mb-3 bg-light" style="width: 16rem;" v-if="Task.category == category">
-        <div class="card-header text-light bg-dark">
-            <h5 class="card-text text-center">{{Task.title}}</h5>
+    <div class="card mb-3 text-light" style="width: 16rem;" v-if="Task.category == category">
+        <div class="card-header text-light" id="cardHead">
+            <h5 class="card-text text-center font-weight-bolder">{{Task.title}}</h5>
         </div>
-        <div class="card-body">
-            <p class="card-text text-left font-weight-light">Priority: {{Task.priority}}</p>
-            <p class="card-text text-left font-weight-light">Deadline: {{Task.deadline}}</p>
-            <p class="card-text text-left font-weight-light">Assign By: {{Task.AssignorDetail.name}}</p>
-            <p class="card-text text-left font-weight-light">Assign To: {{Task.AssigneeDetail.name}}</p>
+        <div class="card-body" id="cardBody">
+            <p class="card-text text-left font-weight-bolder">Priority: {{Task.priority}}</p>
+            <p class="card-text text-left font-weight-normal">Deadline: {{Task.deadline}}</p>
+            <p class="card-text text-left font-weight-normal">Assign By: {{Task.AssignorDetail.name}}</p>
+            <p class="card-text text-left font-weight-normal">Assign To: {{Task.AssigneeDetail.name}}</p>
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" :data-target="target">Show Detail</a>
         </div>
         <DetailTaskModal
@@ -47,6 +47,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#cardHead {
+    background-color: #00897b ;
+}
 
+#cardBody {
+    background-color: #282828;
+    
+}
+p {
+    color: white;
+}
 </style>

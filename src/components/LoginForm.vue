@@ -1,5 +1,5 @@
 <template>
-    <div id="loginForm" class="container-fluid col-6">
+    <div id="loginForm" class="container-fluid col-6 mt-5 text-light font-weight-bolder">
         <h2 class="text-center">Login Form</h2>
         <form>
             <div class="form-group">

@@ -1,16 +1,24 @@
 <template>
-    <section id="landingPage" class="container-fluid justify-content-center">
-        <Navbar></Navbar>
+    <section id="landingPage" class="container-fluid justify-content-center pr-0 pl-0">
+        <Navbar
+            @showHome="showHome"
+            @logoutUser="logoutUser"
+            :currentPage="currentPage"
+        ></Navbar>
         <section id="titleJumbotron" v-if="currentSection == 'home'">
-            <div class="jumbotron text-center bg-dark text-light">
-                <h1 class="display-4">Welcome to Kanban Board!</h1>
+            <div class="jumbotron text-center text-light" id="jumbotronLP">
+                <h1 class="display-4 pb-5">Welcome to Kanban Board!</h1>
                 <p class="lead">"For every minute spent in organizing, an hour is earned"</p>
-                <p class="lead">--Benjamin Franklin--</p>
+                <p class="lead pb-4">--Benjamin Franklin--</p>
                 <hr class="my-4">
                 <div class="row">
                     <div class="col">
                         <p>For new member, please register.</p>
                         <a class="btn btn-primary btn-lg" href="#" role="button" @click="changeSection('register')">Register</a>
+                    </div>
+                    <div class="col">
+                        <p>Login with Google</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Google</a>
                     </div>
                     <div class="col">
                         <p>For our member, please login first.</p>
@@ -45,6 +53,7 @@ export default {
         RegisterForm,
         LoginForm
     },
+    props: [ 'currentPage' ],
     data() {
         return {
             currentSection: 'home'
@@ -60,11 +69,19 @@ export default {
         },
         changeSection(section) {
             this.currentSection = section
+        },
+        showHome() {
+            this.$emit('showHome')
+        },
+        logoutUser() {
+            this.$emit('logoutUser')
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+#jumbotronLP {
+    background-color: #282828;
+}
 </style>

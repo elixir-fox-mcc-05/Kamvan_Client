@@ -1,5 +1,5 @@
 <template>
-    <div id="registerForm" class="container-fluid col-8">
+    <div id="registerForm" class="container-fluid mt-5 col-8 text-light font-weight-bolder">
         <h2 class="text-center">Register Form</h2>
         <form>
             <div class="form-group">

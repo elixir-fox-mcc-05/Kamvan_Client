@@ -4,16 +4,22 @@
             <LandingPage
                 @registerUser="registerUser"
                 @loginUser="loginUser"
+                @logoutUser="logoutUser"
+                @showHome="showHome"
+                :currentPage="currentPage"
             ></LandingPage>
         </div>
         <div v-else-if="currentPage == 'mainPage'">
             <MainPage
                 :Tasks="Tasks"
                 :Users="Users"
+                :currentPage="currentPage"
                 @createTask="createTask"
                 @updateTask="updateTask"
                 @changeCategory="changeCategory"
                 @deleteTask="deleteTask"
+                @showHome="showHome"
+                @logoutUser="logoutUser"
             >
             </MainPage>
         </div>
@@ -43,6 +49,16 @@ export default {
         }
     },
     methods: {
+        showHome() {
+            if(localStorage.token) {
+                this.currentPage = 'mainPage'
+                this.fetchTasks()
+                this.fetchUsers()
+            } else {
+                this.currentPage = 'landingPage'
+            }
+        },
+
         fetchTasks() {
             axios({
                 method: 'get',
@@ -92,6 +108,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
+                    this.fetchUsers()
                 })
                 .catch(err => {
                     console.log(err)
@@ -111,12 +128,12 @@ export default {
             })
                 .then(response => {
                     console.log(response)
-                    this.currentPage = "mainPage"
-                    this.fetchTasks()
-                    this.fetchUsers()
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('currentUserId', response.data.user.id)
                     localStorage.setItem('currentUserName', response.data.user.name)
+                    this.fetchTasks()
+                    this.fetchUsers()
+                    this.currentPage = "mainPage"
                 })
                 .catch(err => {
                     console.log(err)
@@ -143,6 +160,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
+                    this.fetchTasks()
                 })
                 .catch(err => {
                     console.log(err)
@@ -170,6 +188,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
+                    this.fetchTasks()
                 })
                 .catch(err => {
                     console.log(err)
@@ -192,6 +211,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
+                    this.fetchTasks()
                 })
                 .catch(err => {
                     console.log(err)
@@ -209,6 +229,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
+                    this.fetchTasks()
                 })
                 .catch(err => {
                     console.log(err)
@@ -229,8 +250,6 @@ export default {
             this.currentPage = 'landingPage'
         }
     }
-
-
 }
 </script>
 

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'gilroy';
+    src: url('./fonts/Gilroy-Light.woff');
+}
+@font-face {
+    font-family: 'gilroyBold';
+    src: url('./fonts/Gilroy-ExtraBold.woff');
+}
+
+body {
+    background-color: #282828;
+    font-family: 'gilroy';
+}

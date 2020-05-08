@@ -2,7 +2,7 @@
     <div class="modal fade" id="modalNewTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-dark text-light">
                     <h5 class="modal-title" id="">New Task</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click.prevent="clearData">
                         <span aria-hidden="true">&times;</span>
@@ -85,6 +85,7 @@ export default {
         createTask() {
             let newTask = this.newTask
             this.$emit('createTask', newTask)
+            this.clearData()
         }
     }
 }

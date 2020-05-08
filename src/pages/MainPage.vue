@@ -1,7 +1,10 @@
 <template>
     <div>
         <section id="mainPage">
-            <Navbar></Navbar>
+            <Navbar
+                @logoutUser="logoutUser"
+                :currentPage="currentPage"
+            ></Navbar>
 
             <div class="container-fluid mt-3">
                 <div class="row" >
@@ -39,7 +42,7 @@ export default {
     components: {
         Navbar, KanbanBoard, NewTaskModal
     },
-    props: [ 'Tasks', 'Users' ],
+    props: [ 'Tasks', 'Users', 'currentPage' ],
     methods: {
         createTask(newTask) {
             this.$emit('createTask', newTask)
@@ -52,6 +55,9 @@ export default {
         },
         deleteTask(id) {
             this.$emit('deleteTask', id)
+        },
+        logoutUser() {
+            this.$emit('logoutUser')
         }
     }
 }
