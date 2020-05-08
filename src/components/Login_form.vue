@@ -31,7 +31,7 @@ export default {
         logged() { 
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/login',
+                url: 'https://peaceful-escarpment-72977.herokuapp.com/login',
                 data: {
                     email: this.email,
                     password: this.password

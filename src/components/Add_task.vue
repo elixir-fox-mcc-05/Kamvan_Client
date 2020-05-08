@@ -40,7 +40,7 @@ export default {
         add_task() {
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/tasks',
+                url: 'https://peaceful-escarpment-72977.herokuapp.comhttps://peaceful-escarpment-72977.herokuapp.com/tasks',
                 headers: {
                     access_token: localStorage.access_token
                 },

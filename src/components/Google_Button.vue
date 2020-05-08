@@ -16,7 +16,7 @@ export default {
     OnGoogleAuthSuccess (idToken) { // backend
       axios({
           method: 'POST',
-          url: 'http://localhost:3000/google-signin',
+          url: 'https://peaceful-escarpment-72977.herokuapp.com/google-signin',
           headers: {
               google_token: idToken
           }

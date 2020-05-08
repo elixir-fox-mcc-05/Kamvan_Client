@@ -10959,7 +10959,7 @@ var _default = {
 
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://peaceful-escarpment-72977.herokuapp.comhttps://peaceful-escarpment-72977.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         },
@@ -11194,7 +11194,7 @@ var _default = {
       console.log(id, category);
       axios({
         method: 'PUT',
-        url: "http://localhost:3000/tasks/".concat(id),
+        url: "https://peaceful-escarpment-72977.herokuapp.com/tasks/".concat(id),
         headers: {
           access_token: localStorage.access_token
         },
@@ -11372,7 +11372,7 @@ var _default = {
 
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/login',
+        url: 'https://peaceful-escarpment-72977.herokuapp.com/login',
         data: {
           email: this.email,
           password: this.password
@@ -11612,7 +11612,7 @@ var _default = {
       // backend
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/google-signin',
+        url: 'https://peaceful-escarpment-72977.herokuapp.com/google-signin',
         headers: {
           google_token: idToken
         }
@@ -11912,7 +11912,7 @@ var _default = {
 
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/register',
+        url: 'https://peaceful-escarpment-72977.herokuapp.com/register',
         data: {
           email: this.email,
           password: this.password,
@@ -12248,7 +12248,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/tasks/".concat(id),
+        url: "https://peaceful-escarpment-72977.herokuapp.com/tasks/".concat(id),
         headers: {
           access_token: localStorage.access_token
         }
@@ -12263,7 +12263,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'DELETE',
-        url: "http://localhost:3000/tasks/".concat(id),
+        url: "https://peaceful-escarpment-72977.herokuapp.com/tasks/".concat(id),
         headers: {
           access_token: localStorage.access_token
         }
@@ -12278,7 +12278,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://peaceful-escarpment-72977.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         }
@@ -12296,7 +12296,7 @@ var _default = {
     if (localStorage.access_token) {
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/logged',
+        url: 'https://peaceful-escarpment-72977.herokuapp.com/logged',
         headers: {
           access_token: localStorage.access_token
         }
@@ -12477,7 +12477,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55321" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52498" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

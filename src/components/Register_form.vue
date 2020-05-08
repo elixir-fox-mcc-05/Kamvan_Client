@@ -36,7 +36,7 @@ export default {
         registered() { 
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/register',
+                url: 'https://peaceful-escarpment-72977.herokuapp.com/register',
                 data: {
                     email : this.email,
                     password : this.password,

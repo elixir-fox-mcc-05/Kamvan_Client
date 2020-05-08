@@ -118,7 +118,7 @@ export default {
     edit_task(id) {
         axios({
             method: 'GET',
-            url: `http://localhost:3000/tasks/${id}`,
+            url: `https://peaceful-escarpment-72977.herokuapp.com/tasks/${id}`,
             headers: {
                 access_token: localStorage.access_token
             }
@@ -131,7 +131,7 @@ export default {
     delete_task(id) {
         axios({
             method: 'DELETE',
-            url: `http://localhost:3000/tasks/${id}`,
+            url: `https://peaceful-escarpment-72977.herokuapp.com/tasks/${id}`,
             headers: {
                 access_token: localStorage.access_token
             }
@@ -144,7 +144,7 @@ export default {
     get_all_task() {
         axios({
             method: 'GET',
-            url: 'http://localhost:3000/tasks',
+            url: 'https://peaceful-escarpment-72977.herokuapp.com/tasks',
             headers: {
                 access_token: localStorage.access_token
             }
@@ -159,7 +159,7 @@ export default {
         if (localStorage.access_token) {
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/logged',
+                url: 'https://peaceful-escarpment-72977.herokuapp.com/logged',
                 headers: {
                     access_token: localStorage.access_token
                 }

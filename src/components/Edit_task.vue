@@ -28,7 +28,7 @@ export default {
             console.log(id, category)
             axios({
                 method: 'PUT',
-                url: `http://localhost:3000/tasks/${id}`,
+                url: `https://peaceful-escarpment-72977.herokuapp.com/tasks/${id}`,
                 headers: {
                     access_token: localStorage.access_token
                 },
