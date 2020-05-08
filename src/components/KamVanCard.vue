@@ -54,27 +54,29 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Organization</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Organization</th>
                       </tr>
                     </thead>
-                      <tbody>
-                        <tr>
-                          <td><strong>{{ task.User.name }}</strong></td>
-                          <td>{{ task.User.email }}</td>
-                          <td>{{ task.User.organization }}</td>
-                        </tr>
-                      </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong>{{ task.User.name }}</strong>
+                        </td>
+                        <td>{{ task.User.email }}</td>
+                        <td>{{ task.User.organization }}</td>
+                      </tr>
+                    </tbody>
                   </table>
+                  <div
+                    v-if="failedUpdateTask"
+                    class="alert alert-warning"
+                    role="alert"
+                  >{{ failedUpdateTaskMessage }}</div>
                 </div>
                 <div class="modal-footer">
-                  <button
-                    @click="destroy(task)"
-                    type="button"
-                    class="btn btn-danger"
-                    data-dismiss="modal"
-                  >Delete</button>
+                  <button @click="destroy(task)" type="button" class="btn btn-danger">Delete</button>
                   <button
                     @click="fetchTasks"
                     type="button"
@@ -117,14 +119,17 @@ export default {
       updateTaskTitle: "",
       updateTaskDescription: "",
       updatedTask: null,
+      failedUpdateTask: false,
+      failedUpdateTaskMessage: "",
       destroyedTask: null
     };
   },
   methods: {
     authentication() {
-      this.$emit("authentication", localStorage.getItem("access_token"))
+      this.$emit("authentication", localStorage.getItem("access_token"));
     },
     fetchTasks() {
+      this.failedUpdateTask = false;
       this.$emit("fetchTasks");
     },
     updateTask(task) {
@@ -140,13 +145,22 @@ export default {
         }
       })
         .then(data => {
-          console.log(data.data.UpdatedTask);
           this.updatedTask = data.data.UpdatedTask;
           $("#detailTaskModal" + data.data.UpdatedTask.id).modal("hide");
           this.fetchTasks();
         })
         .catch(err => {
-          console.log(err);
+          this.failedUpdateTaskMessage = "";
+          this.failedUpdateTask = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedUpdateTaskMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedUpdateTaskMessage += "!-- " + err.response.data.message;
+          }
         });
     },
     destroy(task) {
@@ -163,7 +177,17 @@ export default {
           this.fetchTasks();
         })
         .catch(err => {
-          console.log(err);
+          this.failedUpdateTaskMessage = "";
+          this.failedUpdateTask = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedUpdateTaskMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedUpdateTaskMessage += "!-- " + err.response.data.message;
+          }
         });
     },
     next(task) {
@@ -188,7 +212,17 @@ export default {
           this.fetchTasks();
         })
         .catch(err => {
-          console.log(err);
+          this.failedUpdateTaskMessage = "";
+          this.failedUpdateTask = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedUpdateTaskMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedUpdateTaskMessage += "!-- " + err.response.data.message;
+          }
         });
     },
     previous(task) {
@@ -213,7 +247,17 @@ export default {
           this.fetchTasks();
         })
         .catch(err => {
-          console.log(err);
+          this.failedUpdateTaskMessage = "";
+          this.failedUpdateTask = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedUpdateTaskMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedUpdateTaskMessage += "!-- " + err.response.data.message;
+          }
         });
     }
   },

@@ -29,6 +29,7 @@
           class="alert alert-success"
           role="alert"
         >{{ successSignInMessage }}</div>
+        <div v-if="failedSignIn" class="alert alert-warning" role="alert">{{ failedSignInMessage }}</div>
         <!-- <div class="d-flex justify-content-center g-signin2" data-onsuccess="onSignIn"></div> -->
         <div class="d-flex justify-content-center">
           <button
@@ -71,6 +72,7 @@
           class="alert alert-success"
           role="alert"
         >{{ successSignUpMessage }}</div>
+        <div v-if="failedSignUp" class="alert alert-warning" role="alert">{{ failedSignUpMessage }}</div>
       </div>
     </div>
   </div>
@@ -92,11 +94,15 @@ export default {
       passwordSignIn: "",
       successSignIn: false,
       successSignInMessage: "",
+      failedSignIn: false,
+      failedSignInMessage: "",
       nameSignUp: "",
       emailSignUp: "",
       passwordSignUp: "",
       successSignUp: false,
       successSignUpMessage: "",
+      failedSignUp: false,
+      failedSignUpMessage: "",
       clientId:
         "399663808216-0up96s702bcag70g0bp3ljorhs1qvpm4.apps.googleusercontent.com"
     };
@@ -123,7 +129,17 @@ export default {
           this.authentication();
         })
         .catch(err => {
-          console.log(err);
+          this.failedSignInMessage = "";
+          this.failedSignIn = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedSignInMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedSignInMessage += "!-- " + err.response.data.message;
+          }
         });
     },
     signUp() {
@@ -141,10 +157,21 @@ export default {
           this.emailSignUp = "";
           this.passwordSignUp = "";
           this.successSignUp = true;
+          this.failedSignUp = false;
           this.successSignUpMessage = "Signup success!...";
         })
         .catch(err => {
-          console.log(err);
+          this.failedSignUpMessage = "";
+          this.failedSignUp = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedSignUpMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedSignUpMessage += "!-- " + err.response.data.message;
+          }
         });
     },
     OnGoogleAuthSuccess(googleUser) {

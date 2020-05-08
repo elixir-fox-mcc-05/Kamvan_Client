@@ -2,15 +2,11 @@
   <div id="board" class="container">
     <button
       type="button"
-      class="btn btn-primary"
+      class="btn btn-primary pad"
       data-toggle="modal"
       data-target="#newTaskModal"
     >New Task</button>
-    <button
-      type="button"
-      class="btn btn-info"
-      @click="fetchTasks"
-    >Re-fetch</button>
+    <button type="button" class="btn btn-info pad" @click="fetchTasks">Re-fetch</button>
 
     <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,6 +52,11 @@
                 >Cancel</button>
                 <input type="submit" class="btn btn-primary" value="create a new task" />
               </div>
+              <div
+                v-if="failedAddTask"
+                class="alert alert-warning"
+                role="alert"
+              >{{ failedAddTaskMessage }}</div>
             </form>
           </div>
         </div>
@@ -100,7 +101,9 @@ export default {
       tasks: null,
       addNewTaskTitle: "",
       addNewTaskDescription: "",
-      newCreatedTask: null
+      newCreatedTask: null,
+      failedAddTask: false,
+      failedAddTaskMessage: ""
     };
   },
   methods: {
@@ -108,6 +111,7 @@ export default {
       this.$emit("authentication", localStorage.getItem("access_token"));
     },
     fetchTasks() {
+      this.failedAddTask = false;
       axios({
         method: "get",
         url: this.serverUrl + "/tasks",
@@ -141,7 +145,17 @@ export default {
           (this.addNewTaskDescription = ""), this.fetchTasks();
         })
         .catch(err => {
-          console.log(err);
+          this.failedAddTaskMessage = "";
+          this.failedAddTask = true;
+          let manyError = Array.isArray(err.response.data.message);
+          if (manyError) {
+            for (let i = 0; i < err.response.data.message.length; i++) {
+              this.failedAddTaskMessage +=
+                "!-- " + err.response.data.message[i]["message"] + " ";
+            }
+          } else {
+            this.failedAddTaskMessage += "!-- " + err.response.data.message;
+          }
         });
     }
   },
