@@ -39,33 +39,12 @@ export default {
         },
         changePage(page){
         this.$emit( 'changePage', page )
-        },
-        reassignTasks(){
-            this.allBacklogTasks = []
-            this.allTodoTasks = []
-            this.allDoingTasks = []
-            this.allDoneTasks = []
-            console.log(this.allTasks)
-            for (let i = 0; i < this.allTasks.length; i++) {
-                if (this.allTasks[i].category === 'backlog'){
-                   this.everyTasks.allBacklogTasks.push( this.allTasks[i] )
-                } else if (allTasks[i].category === 'todo'){
-                   this.everyTasks.allTodoTasks.push( this.allTasks[i] )
-                } else if (allTasks[i].category === 'doing'){
-                   this.everyTasks.allDoingTasks.push( this.allTasks[i] )
-                } else if (allTasks[i].category === 'done'){
-                   this.everyTasks.allDoneTasks.push( this.allTasks[i] )
-                }
-            }
         }
     },
     computed:{
         filterTasks(){ // ini sudah menjadi serupa variabel data, jadi bisa dipanggil di dalam template
             return this.allTasks.filter(task => task.category === this.taskCategory.name)
         }
-    },
-    created(){
-        this.reassignTasks()
     }
  
 }

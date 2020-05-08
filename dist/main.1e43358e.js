@@ -10305,7 +10305,12 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"node_modules/vue-google-login/dist/vue-google-login.min.js":[function(require,module,exports) {
+var define;
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t=t||self)["vue-google-login"]={})}(this,function(t){"use strict";var e,n,o=function(t){return e?Promise.resolve(e):(n||(n=function(t){return new Promise(function(n,o){window.onGapiLoad=function(){window.gapi.load("auth2",function(){try{e=window.gapi.auth2.init(Object.assign({},t))}catch(t){o({err:"client_id missing or is incorrect, or if you added extra params maybe they are written incorrectly, did you add it to the component or plugin?"})}n(e)})}})}(t)),n)},i=function(t,e){if(t)return t[e]();return Promise.reject({err:"Script not loaded correctly, did you added the plugin or the client_id to the component?"})},r={load:function(t){return Promise.all([o(t),new Promise(function(t,e){if(!document.getElementById("auth2_script_id")){var n=document.createElement("script");n.setAttribute("src","https://apis.google.com/js/platform.js?onload=onGapiLoad"),n.setAttribute("async",!0),n.setAttribute("defer","defer"),n.setAttribute("id","auth2_script_id"),document.head.appendChild(n)}t()})]).then(function(t){return t[0]})},signIn:function(){return i(e,"signIn")},signOut:function(){return i(e,"signOut")}},s=0;var d=function(t,e,n,o,i,r,s,d,u,a){"boolean"!=typeof s&&(u=d,d=s,s=!1);var c,l="function"==typeof n?n.options:n;if(t&&t.render&&(l.render=t.render,l.staticRenderFns=t.staticRenderFns,l._compiled=!0,i&&(l.functional=!0)),o&&(l._scopeId=o),r?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),e&&e.call(this,u(t)),t&&t._registeredComponents&&t._registeredComponents.add(r)},l._ssrRegister=c):e&&(c=s?function(){e.call(this,a(this.$root.$options.shadowRoot))}:function(t){e.call(this,d(t))}),c)if(l.functional){var f=l.render;l.render=function(t,e){return c.call(e),f(t,e)}}else{var h=l.beforeCreate;l.beforeCreate=h?[].concat(h,c):[c]}return n}({render:function(){var t=this.$createElement,e=this._self._c||t;return this.renderParams&&!this.logoutButton?e("div",{attrs:{id:this.id},on:{click:this.handleClick}}):e("button",{attrs:{id:this.id},on:{click:this.handleClick}},[this._t("default")],2)},staticRenderFns:[]},void 0,{name:"GoogleLogin",props:{params:{type:Object,required:!0},onSuccess:{type:Function,default:function(){}},onFailure:{type:Function,default:function(){}},logoutButton:{type:Boolean,default:!1},renderParams:{type:Object,required:!1}},beforeCreate:function(){this.id="google-signin-btn-".concat(s++)},methods:{handleClick:function(){var t=this,e=this.logoutButton?"signOut":"signIn";r[e]().then(function(e){return t.onSuccess(e)}).catch(function(e){return t.onFailure(e)})}},mounted:function(){var t=this;r.load(this.params).then(function(){t.renderParams&&!1===t.logoutButton&&window.gapi.signin2.render(t.id,t.renderParams)}).catch(function(t){console.log(t)})}},void 0,!1,void 0,void 0,void 0),u={install:function(t,e){t.GoogleAuth=r.load(e)}};t.GoogleLogin=d,t.LoaderPlugin=u,t.default=d,Object.defineProperty(t,"__esModule",{value:!0})});
+
+
+},{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -10657,8 +10662,13 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _vueGoogleLogin = _interopRequireDefault(require("vue-google-login"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
 //
 //
 //
@@ -10693,6 +10703,14 @@ var _default = {
   name: 'loginPage',
   data: function data() {
     return {
+      params: {
+        client_id: "586440042690-mlh4cu9h1ihs7rcseiptgth6ajopa7ch.apps.googleusercontent.com"
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       message: "Hello! This is loginPage",
       user: {
         loginEmail: "",
@@ -10700,7 +10718,16 @@ var _default = {
       }
     };
   },
-  props: ['successMessage'],
+  components: {
+    GoogleLogin: _vueGoogleLogin.default
+  },
+  props: {
+    successMessage: String,
+    params: Object,
+    onSuccess: Function,
+    onFailure: Function,
+    logoutButton: Boolean
+  },
   methods: {
     changePage: function changePage(page) {
       this.$emit('changePage', page);
@@ -10729,10 +10756,38 @@ var _default = {
         console.log(error);
       });
     },
-    created: function created() {
-      if (localStorage.access_token) {
-        this.changePage('dashboard');
-      }
+    onSuccess: function onSuccess(googleUser) {
+      var _this2 = this;
+
+      // console.log(googleUser);
+      // This only gets the user information: id, name, imageUrl and email
+      var id_token = googleUser.getAuthResponse().id_token;
+      (0, _axios.default)({
+        method: 'POST',
+        url: 'http://localhost:3000/googleSign',
+        data: {
+          id_token: id_token
+        }
+      }).then(function (result) {
+        localStorage.setItem("access_token", result.data.access_token);
+
+        _this2.changePage('dashboard');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    logout: function logout() {
+      localStorage.clear();
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+      this.changePage('loginPage');
+    }
+  },
+  created: function created() {
+    if (localStorage.access_token) {
+      this.changePage('dashboard');
     }
   }
 };
@@ -10875,11 +10930,39 @@ exports.default = _default;
                       "button",
                       {
                         staticClass: "btn btn-success",
+                        staticStyle: { width: "100%" },
                         attrs: { type: "submit" }
                       },
                       [_vm._v("Log in")]
                     )
                   ]
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      display: "flex",
+                      "justify-content": "flex-end"
+                    }
+                  },
+                  [
+                    _c(
+                      "GoogleLogin",
+                      {
+                        staticStyle: { width: "100%" },
+                        attrs: {
+                          params: _vm.params,
+                          renderParams: _vm.renderParams,
+                          onSuccess: _vm.onSuccess,
+                          onFailure: _vm.onFailure
+                        }
+                      },
+                      [_vm._v("Login with Google")]
+                    )
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c("hr"),
@@ -10940,7 +11023,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","vue-google-login":"node_modules/vue-google-login/dist/vue-google-login.min.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11743,25 +11826,6 @@ var _default = {
     },
     changePage: function changePage(page) {
       this.$emit('changePage', page);
-    },
-    reassignTasks: function reassignTasks() {
-      this.allBacklogTasks = [];
-      this.allTodoTasks = [];
-      this.allDoingTasks = [];
-      this.allDoneTasks = [];
-      console.log(this.allTasks);
-
-      for (var i = 0; i < this.allTasks.length; i++) {
-        if (this.allTasks[i].category === 'backlog') {
-          this.everyTasks.allBacklogTasks.push(this.allTasks[i]);
-        } else if (allTasks[i].category === 'todo') {
-          this.everyTasks.allTodoTasks.push(this.allTasks[i]);
-        } else if (allTasks[i].category === 'doing') {
-          this.everyTasks.allDoingTasks.push(this.allTasks[i]);
-        } else if (allTasks[i].category === 'done') {
-          this.everyTasks.allDoneTasks.push(this.allTasks[i]);
-        }
-      }
     }
   },
   computed: {
@@ -11773,9 +11837,6 @@ var _default = {
         return task.category === _this.taskCategory.name;
       });
     }
-  },
-  created: function created() {
-    this.reassignTasks();
   }
 };
 exports.default = _default;
@@ -11955,6 +12016,10 @@ var _default = {
     },
     logout: function logout() {
       localStorage.clear();
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
       this.changePage('loginPage');
     }
   },
@@ -12891,7 +12956,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63188" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49250" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

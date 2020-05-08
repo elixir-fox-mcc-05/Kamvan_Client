@@ -16,8 +16,11 @@
                       <input type="email" class="form-control" id="loginEmail" v-model="user.loginEmail">
                       <label class="control-label" for="loginPassword">Password:</label>
                       <input type="password" class="form-control" id="loginPassword" v-model="user.loginPassword"><br>
-                      <button type="submit" class="btn btn-success">Log in</button>
-                  </form>
+                      <button type="submit" class="btn btn-success" style="width:100%;">Log in</button>
+                  </form><br>
+                  <div style="display:flex;justify-content:flex-end;">
+                    <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure" style="width:100%;">Login with Google</GoogleLogin>
+                  </div>
                   <hr/>
                   <p>New to Spree? You can <a href="#" @click="changePage('registerPage')">register here!</a></p>
               </div>
@@ -30,11 +33,20 @@
 
 <script>
 import axios from 'axios'
+import GoogleLogin from 'vue-google-login';
 
 export default { 
   name:'loginPage',
   data() {
     return {
+      params: {
+        client_id: "586440042690-mlh4cu9h1ihs7rcseiptgth6ajopa7ch.apps.googleusercontent.com"
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       message: "Hello! This is loginPage",
       user:{
         loginEmail:"",
@@ -42,7 +54,16 @@ export default {
       }
     }
   },
-  props: ['successMessage'],
+  components: {
+    GoogleLogin
+  },
+  props: {
+    successMessage: String,
+    params: Object,
+    onSuccess: Function,
+    onFailure: Function,
+    logoutButton: Boolean
+  },
   methods:{
     changePage(page){
       this.$emit( 'changePage', page )
@@ -70,10 +91,38 @@ export default {
           console.log(error)
         })
     },
-    created(){
-      if(localStorage.access_token){
+    onSuccess(googleUser) {
+      // console.log(googleUser);
+      // This only gets the user information: id, name, imageUrl and email
+      let id_token = googleUser.getAuthResponse().id_token;
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/googleSign',
+        data: {
+          id_token
+        }
+      })
+      .then(result =>{
+        localStorage.setItem("access_token", result.data.access_token)
         this.changePage('dashboard')
-      }
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      
+    },
+    logout(){
+      localStorage.clear()
+      var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+      });
+      this.changePage('loginPage')
+    }
+  },
+  created(){
+    if(localStorage.access_token){
+      this.changePage('dashboard')
     }
   }
 }
