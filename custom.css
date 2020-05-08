@@ -1,14 +1,11 @@
-body{
-    /* background-image: url('bg.jpg'); */
-    background-repeat: repeat;
-    background-position: center; /* Center the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-}
 .todotitle {
     background-color: white;
     text-align: center;
     margin-top: 10px;
     border-radius: 3px;
+}
+a:hover {
+    text-decoration: none;
 }
 .card {
     margin-top: 10px;
@@ -42,22 +39,23 @@ table {
 .register-overlay {
     width: 50vw;
     position: absolute;
-    left : 50.30%;
+    left : 50%;
     overflow: hidden;   
     transition: 1s ease;
 }
 
 .register-form-container{
     transition: 1s ease;
-    width: 50vw;
 }
 .login-form-container {
     /* transform: translateX(100%); */
     transition: 1s ease;
-    width: 50vw;
 }
 .register-card{
     background-color: rgba(245, 245, 255, 0.3);
+}
+.register-card button:hover{
+    text-decoration: underline;
 }
 .register-card * {
     opacity: 1;

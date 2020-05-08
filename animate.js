@@ -6,7 +6,6 @@ function alter(key){
         $(`.register-left`).css(`background-position`,`center right`)
         $(`.register-left`).css(`transform`,`translateX(-30%)`)
         $(`.register-right`).css(`transform`,`translateX(0)`)
-        
         $(`.register-right`).css(`background-position`,`center right`)
         
     } else {
@@ -16,8 +15,6 @@ function alter(key){
         $(`.register-left`).css(`background-position`,`center left`)
         $(`.register-left`).css(`transform`,`translateX(0)`)
         $(`.register-right`).css(`transform`,`translateX(30%)`)
-        $(`.register-right`).css(`background-position`,`center left`)
-        
-        
+        $(`.register-right`).css(`background-position`,`center left`)        
     }
 }
