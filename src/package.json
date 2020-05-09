@@ -1,0 +1,30 @@
+{
+  "name": "Kamvan_Client",
+  "version": "1.0.0",
+  "description": "How to use this app?",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IrwanKhaliq/Kamvan_Client.git"
+  },
+  "keywords": [],
+  "author": "Irwan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IrwanKhaliq/Kamvan_Client/issues"
+  },
+  "homepage": "https://github.com/IrwanKhaliq/Kamvan_Client#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "vue": "^2.6.11",
+    "vue-google-signin-button-directive": "^1.0.3",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
