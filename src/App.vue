@@ -1,25 +1,37 @@
 <template>
     <div>
-        <LandingPage
+        <section v-if="currentPage === 'HomePage'">
+            <HomePage
                 @login="login"
-        ></LandingPage>       
+                @register="register"
+            ></HomePage>
+        </section>
+        <section v-else-if="currentPage === 'Dashboard'" >
+            <Dashboard>
+
+            </Dashboard>
+        </section>
+
+
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import qs from 'qs'
-import LandingPage from './pages/LandingPage'
+import HomePage from './pages/HomePage'
+import Dashboard from './pages/Dashboard'
 
 export default {
     name: 'App',
     components: {
-        LandingPage
+        HomePage,
+        Dashboard
     },
     data: function() {
         return {
             baseUrl: 'http://localhost:3000',
-            currentPage: 'landingPage'
+            currentPage: 'HomePage'
         }
     },
     methods: {
@@ -37,7 +49,7 @@ export default {
             })
                 .then(response => {
                     console.log(response)
-                    this.currentPage = "mainPage"
+                    this.currentPage = "Dashboard"
                     localStorage.setItem('access_token', response.data.access_token)
                 })
                 .catch(err => {
@@ -45,7 +57,32 @@ export default {
                 })
         },
         register(user) {
+            console.log('@register', user)
+            let { email, password } = user
+            const data = {
+                email,
+                password
+            }
+            axios({
+                method: 'post',
+                url: `${this.baseUrl}/register`,
+                data: qs.stringify(data)
+            })
+                .then(response => {
+                    console.log(response);
+                    this.currentPage = "HomePage"
+                })
+                .catch(err => {
+                    console.log('@axios', err);                    
+                })
+        }
+    },
 
+    created() {
+        if (localStorage.access_token) {
+            this.currentPage = 'Dashboard'
+        } else {
+            this.currentPage = 'HomePage'
         }
     }
 

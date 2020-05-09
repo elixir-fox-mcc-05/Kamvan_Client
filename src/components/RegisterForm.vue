@@ -1,6 +1,6 @@
 <template>
-    <div id="LoginForm" class="container-fluid col-6">
-        <h2 class="text-center">Login Form</h2>
+    <div id="RegisterForm" class="container-fluid col-6">
+        <h2 class="text-center">Registration Form</h2>
         <form>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -11,7 +11,7 @@
                 <input v-model="user.password" type="password" class="form-control" id="password" required>
             </div>
             <div>
-                <button type="button" class="btn btn-primary btn-md" @click.prevent="login">Login</button>
+                <button type="button" class="btn btn-primary btn-md" @click.prevent="register">Register</button>
             </div>
         </form>
     </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: 'LoginForm',
+    name: 'RegisterForm',
     data() {
         return {
             user: {
@@ -30,9 +30,9 @@ export default {
         }
     },
     methods: {
-        login() {
+        register() {
             let user = this.user
-            this.$emit('login', user)
+            this.$emit('register', user)
         }
     }
 }
