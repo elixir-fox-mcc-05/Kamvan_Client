@@ -1,0 +1,65 @@
+.todotitle {
+    background-color: white;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+a:hover {
+    text-decoration: none;
+}
+.card {
+    margin-top: 10px;
+}
+table {
+	font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
+.landing-container {
+    overflow: hidden;   
+}
+.register-left {
+    transition: 1s ease;
+    overflow: hidden;   
+    background-image: url('./bg-join.jpg');
+    background-position: center left;
+    background-size: cover;
+}
+.register-right {
+    transition: 1s ease;
+    overflow: hidden;
+    background-image: url('./bg-signin.jpg');
+    background-position: center left;
+    background-size: cover;
+    transform: translateX(30%);
+}
+.register-overlay {
+    width: 50vw;
+    position: absolute;
+    left : 50%;
+    overflow: hidden;   
+    transition: 1s ease;
+}
+
+.register-form-container{
+    transition: 1s ease;
+}
+.login-form-container {
+    /* transform: translateX(100%); */
+    transition: 1s ease;
+}
+.register-card{
+    background-color: rgba(245, 245, 255, 0.3);
+}
+.register-card button:hover{
+    text-decoration: underline;
+}
+.register-card * {
+    opacity: 1;
+}
+.login-card{
+	opacity: 0.5
+}
