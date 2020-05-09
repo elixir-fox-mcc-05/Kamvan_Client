@@ -12,13 +12,18 @@
             </div>
             <div>
                 <button type="button" class="btn btn-primary btn-md" @click.prevent="register">Register</button>
+            </div><br>
+            <div id="back">
+                <small>Already have an account?</small>
+                <button type="button" class="btn btn-secondary" @click="reload">Back</button>
             </div>
+
         </form>
     </div>
-
 </template>
 
 <script>
+
 export default {
     name: 'RegisterForm',
     data() {
@@ -33,6 +38,9 @@ export default {
         register() {
             let user = this.user
             this.$emit('register', user)
+        },
+        reload() {
+            window.location.reload()
         }
     }
 }

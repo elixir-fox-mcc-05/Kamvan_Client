@@ -1,4 +1,32 @@
+#HomePage[data-v-49bf55] {
+    margin-top: 20vh;
+}
+#Navbar[data-v-54d756] {
+    margin: 2vh;
+}
 #Home[data-v-54d756] {
-    background-color: black;
     color: blanchedalmond;
+}
+#Logout[data-v-54d756] {
+    color: blanchedalmond;
+}
+.card[data-v-d8b327] {
+    min-width: 200px;
+    width: auto;
+    margin: 2px;
+}
+#backlog[data-v-3537b2] {
+    color: red
+}
+#todo[data-v-3537b2] {
+    color: orange
+}
+#doing[data-v-3537b2] {
+    color: green
+}
+#done[data-v-3537b2] {
+    color: royalblue
+}
+.Board[data-v-3537b2] {
+    margin: 3px;
 }

@@ -9,13 +9,12 @@
         <section v-else-if="currentPage === 'Dashboard'" >
             <Dashboard
                 :currentPage="currentPage"
+                :Tasks="Tasks"
                 @logout="logout"
                 @getHome="getHome"
             >
             </Dashboard>
         </section>
-
-
     </div>
 </template>
 
@@ -34,13 +33,14 @@ export default {
     data: function() {
         return {
             baseUrl: 'http://localhost:3000',
-            currentPage: 'HomePage'
+            currentPage: 'HomePage',
+            Tasks: []
         }
     },
     methods: {
         login(user) {
-            console.log('@login', user)
             let { email, password } = user
+            console.log('@login', email)
             const data = {
                 email,
                 password
@@ -54,14 +54,15 @@ export default {
                     console.log(response)
                     this.currentPage = "Dashboard"
                     localStorage.setItem('access_token', response.data.access_token)
+                    this.fetchTasks()
                 })
                 .catch(err => {
                     console.log('@axios', err)
                 })
         },
         register(user) {
-            console.log('@register', user)
             let { email, password } = user
+            console.log('@register', email)
             const data = {
                 email,
                 password
@@ -89,17 +90,33 @@ export default {
             } else {
                 this.currentPage = 'HomePage'
             }
+        },
+
+        fetchTasks() {
+            let { access_token } = localStorage            
+            axios({
+                method: 'get',
+                url: `${this.baseUrl}/tasks/`,
+                headers: {
+                    access_token
+                }
+            })
+                .then(response => {                    
+                    this.Tasks = response.data.tasks
+                })
+                .catch(err => {
+                    console.log("@fetch", err)
+                })
         }
     },
-
     created() {
         if (localStorage.access_token) {
+            this.fetchTasks()
             this.currentPage = 'Dashboard'
         } else {
             this.currentPage = 'HomePage'
         }
     }
-
 }
 </script>
 

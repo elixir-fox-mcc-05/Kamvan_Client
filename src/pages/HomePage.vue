@@ -11,8 +11,9 @@
                         <a class="btn btn-primary btn-lg" href="register" role="button" @click.prevent="changePage('RegisterForm')">Register</a>
                     </div><br>
                     <div>
-                        <p class="small">Already have an account?</p>
-                        <a class="btn btn-primary btn-light btn-lg" href="login" role="button" @click.prevent="changePage('LoginForm')">Login</a>
+                        <p class="">Already have an account?</p>
+                        <a class="btn btn-primary btn-light btn-lg" href="login" role="button" @click.prevent="changePage('LoginForm')">Login</a><br><br>
+                        <small>Note: You also need to login if you have just registered</small>
                     </div>
                 </div>
             </div>
@@ -61,5 +62,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#HomePage {
+    margin-top: 20vh;
+}
 </style>

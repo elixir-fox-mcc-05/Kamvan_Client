@@ -12,6 +12,10 @@
             </div>
             <div>
                 <button type="button" class="btn btn-primary btn-md" @click.prevent="login">Login</button>
+            </div><br>
+            <div id="back">
+                <small>New User?</small><br>
+                <button type="button" class="btn btn-secondary" @click="reload">Back</button>
             </div>
         </form>
     </div>
@@ -33,6 +37,9 @@ export default {
         login() {
             let user = this.user
             this.$emit('login', user)
+        },
+        reload() {
+            window.location.reload()
         }
     }
 }

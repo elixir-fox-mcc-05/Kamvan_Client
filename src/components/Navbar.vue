@@ -1,15 +1,9 @@
 <template>
   <div id="Navbar" class="container-fluid">
-      <div class="row align-items-center justify-content-between">
-          <div class="col-6 justify-content-start">
-              <a id="Home" class="btn" role="button" @click.prevent="getHome">Home</a>
-          </div>
-        <div v-if="currentPage == 'Dashboard'" class="col-5 justify-content-between pr-0">
-            <a class="btn btn-primary btn-sm text-white" role="button" data-toggle="modal" data-target="#modalNewTask">New Task</a>
-        </div>
-        <div v-if="currentPage == 'Dashboard'" class="col-1 justify-content-between pr-0">
-            <a class="btn btn-secondary btn-sm" role="button" @click="logout">Logout</a>
-        </div>
+      <div class="row align-items-center justify-content-around">
+            <a id="Home" class="btn btn-dark btn-sm" role="button" @click.prevent="getHome">Home</a>
+            <a v-if="currentPage == 'Dashboard'" class="btn btn-primary text-white" role="button" data-toggle="modal" data-target="#NewTaskmodal">New Task</a>
+            <a v-if="currentPage == 'Dashboard'" id="Logout" class="btn btn-secondary btn-sm" role="button" @click="logout">Logout</a>
       </div>
   </div>
 </template>
@@ -26,8 +20,13 @@ export default {
 </script>
 
 <style scoped>
+#Navbar {
+    margin: 2vh;
+}
 #Home {
-    background-color: black;
+    color: blanchedalmond;
+}
+#Logout {
     color: blanchedalmond;
 }
 </style>
