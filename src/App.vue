@@ -7,8 +7,11 @@
             ></HomePage>
         </section>
         <section v-else-if="currentPage === 'Dashboard'" >
-            <Dashboard>
-
+            <Dashboard
+                :currentPage="currentPage"
+                @logout="logout"
+                @getHome="getHome"
+            >
             </Dashboard>
         </section>
 
@@ -69,12 +72,23 @@ export default {
                 data: qs.stringify(data)
             })
                 .then(response => {
-                    console.log(response);
+                    console.log('Registration successful', response);
                     this.currentPage = "HomePage"
                 })
                 .catch(err => {
                     console.log('@axios', err);                    
                 })
+        },
+        logout() {
+            localStorage.clear()
+            this.currentPage = "HomePage"
+        },
+        getHome() {
+            if (localStorage.access_token) {
+                this.currentPage = 'Dashboard'
+            } else {
+                this.currentPage = 'HomePage'
+            }
         }
     },
 

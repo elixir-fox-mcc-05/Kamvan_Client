@@ -1,12 +1,29 @@
 <template>
   <div>
-      <p>Bisa ke Dashboard</p>
+    <Navbar 
+      @logout="logout"
+      @getHome="getHome"
+      :currentPage="currentPage"    
+    >
+    </Navbar>
+    
+    <p>Bisa ke Dashboard</p>
   </div>
 </template>
 
 <script>
-export default {
+import Navbar from '../components/Navbar'
 
+export default {
+  name: 'Dashboard',
+  components: {
+    Navbar
+  },
+  props: ['currentPage'],
+  methods: {    
+    getHome() { this.$emit('getHome') },
+    logout() { this.$emit('logout') }
+  }
 }
 </script>
 

@@ -11867,7 +11867,7 @@ exports.default = _default;
     "section",
     {
       staticClass: "container-fluid justify-content-center",
-      attrs: { id: "landingPage" }
+      attrs: { id: "HomePage" }
     },
     [
       _vm.currentPage === "HomePage"
@@ -11976,7 +11976,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/LoginForm":"src/components/LoginForm.vue","../components/RegisterForm":"src/components/RegisterForm.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Dashboard.vue":[function(require,module,exports) {
+},{"../components/LoginForm":"src/components/LoginForm.vue","../components/RegisterForm":"src/components/RegisterForm.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/Navbar.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11989,7 +11989,174 @@ exports.default = void 0;
 //
 //
 //
-var _default = {};
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: 'Navbar',
+  props: ['currentPage'],
+  methods: {
+    getHome: function getHome() {
+      this.$emit('getHome');
+    },
+    logout: function logout() {
+      this.$emit('logout');
+    }
+  }
+};
+exports.default = _default;
+        var $54d756 = exports.default || module.exports;
+      
+      if (typeof $54d756 === 'function') {
+        $54d756 = $54d756.options;
+      }
+    
+        /* template */
+        Object.assign($54d756, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container-fluid", attrs: { id: "Navbar" } },
+    [
+      _c(
+        "div",
+        { staticClass: "row align-items-center justify-content-between" },
+        [
+          _c("div", { staticClass: "col-6 justify-content-start" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn",
+                attrs: { id: "Home", role: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.getHome($event)
+                  }
+                }
+              },
+              [_vm._v("Home")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.currentPage == "Dashboard"
+            ? _c("div", { staticClass: "col-5 justify-content-between pr-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary btn-sm text-white",
+                    attrs: {
+                      role: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#modalNewTask"
+                    }
+                  },
+                  [_vm._v("New Task")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage == "Dashboard"
+            ? _c("div", { staticClass: "col-1 justify-content-between pr-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-secondary btn-sm",
+                    attrs: { role: "button" },
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("Logout")]
+                )
+              ])
+            : _vm._e()
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-54d756",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$54d756', $54d756);
+          } else {
+            api.reload('$54d756', $54d756);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Dashboard.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Navbar = _interopRequireDefault(require("../components/Navbar"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: 'Dashboard',
+  components: {
+    Navbar: _Navbar.default
+  },
+  props: ['currentPage'],
+  methods: {
+    getHome: function getHome() {
+      this.$emit('getHome');
+    },
+    logout: function logout() {
+      this.$emit('logout');
+    }
+  }
+};
 exports.default = _default;
         var $d577fa = exports.default || module.exports;
       
@@ -12003,16 +12170,20 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c("Navbar", {
+        attrs: { currentPage: _vm.currentPage },
+        on: { logout: _vm.logout, getHome: _vm.getHome }
+      }),
+      _vm._v(" "),
+      _c("p", [_vm._v("Bisa ke Dashboard")])
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("Bisa ke Dashboard")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -12045,7 +12216,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"../components/Navbar":"src/components/Navbar.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12063,6 +12234,9 @@ var _Dashboard = _interopRequireDefault(require("./pages/Dashboard"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
 //
 //
 //
@@ -12131,11 +12305,22 @@ var _default = {
         url: "".concat(this.baseUrl, "/register"),
         data: _qs.default.stringify(data)
       }).then(function (response) {
-        console.log(response);
+        console.log('Registration successful', response);
         _this2.currentPage = "HomePage";
       }).catch(function (err) {
         console.log('@axios', err);
       });
+    },
+    logout: function logout() {
+      localStorage.clear();
+      this.currentPage = "HomePage";
+    },
+    getHome: function getHome() {
+      if (localStorage.access_token) {
+        this.currentPage = 'Dashboard';
+      } else {
+        this.currentPage = 'HomePage';
+      }
     }
   },
   created: function created() {
@@ -12169,7 +12354,16 @@ exports.default = _default;
           1
         )
       : _vm.currentPage === "Dashboard"
-      ? _c("section", [_c("Dashboard")], 1)
+      ? _c(
+          "section",
+          [
+            _c("Dashboard", {
+              attrs: { currentPage: _vm.currentPage },
+              on: { logout: _vm.logout, getHome: _vm.getHome }
+            })
+          ],
+          1
+        )
       : _vm._e()
   ])
 }
@@ -12248,7 +12442,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37947" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42965" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,5 +1,5 @@
 <template>
-    <section id="landingPage" class="container-fluid justify-content-center">
+    <section id="HomePage" class="container-fluid justify-content-center">
         <section id="title" v-if="currentPage === 'HomePage'">
             <div class="jumbotron text-center bg-dark text-light">
                 <h1 class="display-4">Welcome to Kamvan</h1>
