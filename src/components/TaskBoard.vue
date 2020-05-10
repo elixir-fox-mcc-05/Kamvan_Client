@@ -15,11 +15,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body align-items-center pt-4" id="Board">
+                <div class="card-body align-items-center pt-4" id="CardBoard">
                     <TaskCard v-for="Task in TasksList" :key="Task.id"
                         :category="category"
                         :Task="Task"
-                        
+                        @destroy="destroy"
                     >
                     </TaskCard>
                 </div>
@@ -38,7 +38,7 @@ export default {
     },
     props: [ 'category', 'Tasks' ],
     methods: {
-
+        destroy(id) { this.$emit('destroy', id) }
     },
     computed: {
         TasksList() {
@@ -68,7 +68,9 @@ export default {
 #done {
     color: royalblue
 }
-.Board {
+.container {
     margin: 3px;
+    max-width: 450px;
+    min-width: 150px;
 }
 </style>

@@ -12,6 +12,8 @@
                 :Tasks="Tasks"
                 @logout="logout"
                 @getHome="getHome"
+                @destroy="destroy"
+                @create="create"
             >
             </Dashboard>
         </section>
@@ -86,6 +88,7 @@ export default {
         },
         getHome() {
             if (localStorage.access_token) {
+                this.fetchTasks()
                 this.currentPage = 'Dashboard'
             } else {
                 this.currentPage = 'HomePage'
@@ -107,15 +110,40 @@ export default {
                 .catch(err => {
                     console.log("@fetch", err)
                 })
+        },
+
+        create(Task) {
+            console.log("@create", Task);
+            let { access_token } = localStorage            
+            axios({
+                method: 'post',
+                url: `${this.baseUrl}/tasks/`,
+                data: Task,
+                headers: { access_token }
+            })
+                .then(response => {
+                    this.fetchTasks()
+                })
+                .catch(err => console.log(err))
+        },
+
+        destroy(id) {
+            let { access_token } = localStorage            
+            axios({
+                method: 'delete',
+                url: `${this.baseUrl}/tasks/${id}`,
+                headers: {
+                    access_token
+                }
+            })
+                .then(response => {
+                    this.fetchTasks()
+                })
+                .catch(err => { console.log(err) })
         }
     },
     created() {
-        if (localStorage.access_token) {
-            this.fetchTasks()
-            this.currentPage = 'Dashboard'
-        } else {
-            this.currentPage = 'HomePage'
-        }
+        this.getHome()
     }
 }
 </script>

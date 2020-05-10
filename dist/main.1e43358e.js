@@ -53733,10 +53733,10 @@ exports.default = _default;
                   attrs: {
                     role: "button",
                     "data-toggle": "modal",
-                    "data-target": "#NewTaskmodal"
+                    "data-target": "#CreateModal"
                   }
                 },
-                [_vm._v("New Task")]
+                [_vm._v("Add Task")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -53810,10 +53810,36 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "Card",
   components: {},
-  props: ['Task', 'category']
+  props: ['Task', 'category'],
+  methods: {
+    destroy: function destroy(id) {
+      this.$emit('destroy', id);
+    }
+  }
 };
 exports.default = _default;
         var $d8b327 = exports.default || module.exports;
@@ -53832,19 +53858,101 @@ exports.default = _default;
     _c("div", { staticClass: "card-body" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.Task.title))]),
       _vm._v(" "),
-      _c("p", { staticClass: "small card-subtitle" }, [
+      _c("p", { staticClass: "card-subtitle" }, [
         _vm._v(
-          "Due Date: " + _vm._s(new Date(_vm.Task.due_date).toDateString())
+          "Deadline: " + _vm._s(new Date(_vm.Task.due_date).toDateString())
         )
       ]),
       _c("br"),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(_vm._s(_vm.Task.description))
-      ]),
-      _vm._v(" "),
       _vm._m(0)
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "edit",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v(_vm._s(_vm.Task.title))]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v(
+                  "\n              " +
+                    _vm._s(_vm.Task.description) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "modal-footer justify-content-around align-items-centre"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.destroy(_vm.Task.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Save changes")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary btn-sm",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -53853,10 +53961,36 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "row justify-content-around" }, [
-      _c("a", { staticClass: "btn btn-primary btn-sm" }, [_vm._v("Edit")]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-secondary btn-sm" }, [_vm._v("Delete")])
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-outline-primary btn-sm",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#edit"
+          }
+        },
+        [_vm._v("Details")]
+      )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   }
 ]
 render._withStripped = true
@@ -53939,7 +54073,11 @@ var _default = {
     TaskCard: _TaskCard.default
   },
   props: ['category', 'Tasks'],
-  methods: {},
+  methods: {
+    destroy: function destroy(id) {
+      this.$emit('destroy', id);
+    }
+  },
   computed: {
     TasksList: function TasksList() {
       var results = [];
@@ -54016,12 +54154,13 @@ exports.default = _default;
           "div",
           {
             staticClass: "card-body align-items-center pt-4",
-            attrs: { id: "Board" }
+            attrs: { id: "CardBoard" }
           },
           _vm._l(_vm.TasksList, function(Task) {
             return _c("TaskCard", {
               key: Task.id,
-              attrs: { category: _vm.category, Task: Task }
+              attrs: { category: _vm.category, Task: Task },
+              on: { destroy: _vm.destroy }
             })
           }),
           1
@@ -54063,7 +54202,358 @@ render._withStripped = true
       
       }
     })();
-},{"../components/TaskCard":"src/components/TaskCard.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Dashboard.vue":[function(require,module,exports) {
+},{"../components/TaskCard":"src/components/TaskCard.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/CreateModal.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: 'CreateForm',
+  data: function data() {
+    return {
+      Task: {
+        title: '',
+        description: '',
+        category: '',
+        due_date: ''
+      },
+      Today: "".concat(new Date().getFullYear(), "-0").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate())
+    };
+  },
+  methods: {
+    clear: function clear() {
+      for (var key in this.Task) {
+        this.Task[key] = '';
+      }
+    },
+    create: function create() {
+      var Task = this.Task;
+      console.log('@modal', Task);
+      this.$emit('create', this.Task); // this.clear()
+    }
+  },
+  mounted: function mounted() {
+    this.clear();
+  }
+};
+exports.default = _default;
+        var $469d53 = exports.default || module.exports;
+      
+      if (typeof $469d53 === 'function') {
+        $469d53 = $469d53.options;
+      }
+    
+        /* template */
+        Object.assign($469d53, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      ref: "modal",
+      staticClass: "modal fade",
+      attrs: {
+        id: "CreateModal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "CreateTask",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-scrollable",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header bg-dark text-light" }, [
+              _c("h5", { staticClass: "modal-title", attrs: { id: "" } }, [
+                _vm._v("Add Task")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: {
+                    type: "button",
+                    "data-dismiss": "modal",
+                    "aria-label": "Close"
+                  },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.clear($event)
+                    }
+                  }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("form", [
+                _c("label", { attrs: { for: "CreateTitle" } }, [
+                  _vm._v("Title")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Task.title,
+                      expression: "Task.title"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "CreateTitle",
+                    required: "",
+                    autofocus: ""
+                  },
+                  domProps: { value: _vm.Task.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.Task, "title", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "CreateDescription" } }, [
+                  _vm._v("Description")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "textarea",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.Task.description,
+                        expression: "Task.description"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "CreateDescription", rows: "3" },
+                    domProps: { value: _vm.Task.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.Task, "description", $event.target.value)
+                      }
+                    }
+                  },
+                  [_vm._v("Task.description")]
+                ),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "CreateCategory" } }, [
+                  _vm._v("Category")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.Task.category,
+                        expression: "Task.category"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { required: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.Task,
+                          "category",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", [_vm._v("Backlog")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Todo")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Doing")]),
+                    _vm._v(" "),
+                    _c("option", [_vm._v("Done")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "CreateDue" } }, [
+                  _vm._v("Deadline")
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Task.due_date,
+                      expression: "Task.due_date"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "date", id: "CreateDue", min: _vm.Today },
+                  domProps: { value: _vm.Task.due_date },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.Task, "due_date", $event.target.value)
+                    }
+                  }
+                }),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary btn-sm",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.clear($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-sm",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.create($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Save")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" })
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$469d53', $469d53);
+          } else {
+            api.reload('$469d53', $469d53);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/pages/Dashboard.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54079,8 +54569,13 @@ var _Navbar = _interopRequireDefault(require("../components/Navbar"));
 
 var _TaskBoard = _interopRequireDefault(require("../components/TaskBoard"));
 
+var _CreateModal = _interopRequireDefault(require("../components/CreateModal"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
 //
 //
 //
@@ -54110,7 +54605,8 @@ var _default = {
   },
   components: {
     Navbar: _Navbar.default,
-    TaskBoard: _TaskBoard.default
+    TaskBoard: _TaskBoard.default,
+    CreateModal: _CreateModal.default
   },
   props: ['currentPage', 'Tasks'],
   methods: {
@@ -54119,6 +54615,12 @@ var _default = {
     },
     logout: function logout() {
       this.$emit('logout');
+    },
+    create: function create(Task) {
+      this.$emit('create', Task);
+    },
+    destroy: function destroy(id) {
+      this.$emit('destroy', id);
     }
   }
 };
@@ -54137,6 +54639,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { attrs: { id: "Dashboard" } },
     [
       _c("Navbar", {
         attrs: { currentPage: _vm.currentPage },
@@ -54149,11 +54652,14 @@ exports.default = _default;
         _vm._l(_vm.Categories, function(category) {
           return _c("TaskBoard", {
             key: category,
-            attrs: { Tasks: _vm.Tasks, category: category }
+            attrs: { Tasks: _vm.Tasks, category: category },
+            on: { destroy: _vm.destroy }
           })
         }),
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("CreateModal", { on: { create: _vm.create } })
     ],
     1
   )
@@ -54191,7 +54697,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","qs":"node_modules/qs/lib/index.js","../components/Navbar":"src/components/Navbar.vue","../components/TaskBoard":"src/components/TaskBoard.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","qs":"node_modules/qs/lib/index.js","../components/Navbar":"src/components/Navbar.vue","../components/TaskBoard":"src/components/TaskBoard.vue","../components/CreateModal":"src/components/CreateModal.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54209,6 +54715,8 @@ var _Dashboard = _interopRequireDefault(require("./pages/Dashboard"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
 //
 //
 //
@@ -54294,6 +54802,7 @@ var _default = {
     },
     getHome: function getHome() {
       if (localStorage.access_token) {
+        this.fetchTasks();
         this.currentPage = 'Dashboard';
       } else {
         this.currentPage = 'HomePage';
@@ -54315,15 +54824,46 @@ var _default = {
       }).catch(function (err) {
         console.log("@fetch", err);
       });
+    },
+    create: function create(Task) {
+      var _this4 = this;
+
+      console.log("@create", Task);
+      var _localStorage2 = localStorage,
+          access_token = _localStorage2.access_token;
+      (0, _axios.default)({
+        method: 'post',
+        url: "".concat(this.baseUrl, "/tasks/"),
+        data: Task,
+        headers: {
+          access_token: access_token
+        }
+      }).then(function (response) {
+        _this4.fetchTasks();
+      }).catch(function (err) {
+        return console.log(err);
+      });
+    },
+    destroy: function destroy(id) {
+      var _this5 = this;
+
+      var _localStorage3 = localStorage,
+          access_token = _localStorage3.access_token;
+      (0, _axios.default)({
+        method: 'delete',
+        url: "".concat(this.baseUrl, "/tasks/").concat(id),
+        headers: {
+          access_token: access_token
+        }
+      }).then(function (response) {
+        _this5.fetchTasks();
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   },
   created: function created() {
-    if (localStorage.access_token) {
-      this.fetchTasks();
-      this.currentPage = 'Dashboard';
-    } else {
-      this.currentPage = 'HomePage';
-    }
+    this.getHome();
   }
 };
 exports.default = _default;
@@ -54354,7 +54894,12 @@ exports.default = _default;
           [
             _c("Dashboard", {
               attrs: { currentPage: _vm.currentPage, Tasks: _vm.Tasks },
-              on: { logout: _vm.logout, getHome: _vm.getHome }
+              on: {
+                logout: _vm.logout,
+                getHome: _vm.getHome,
+                destroy: _vm.destroy,
+                create: _vm.create
+              }
             })
           ],
           1
@@ -54445,7 +54990,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43581" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
