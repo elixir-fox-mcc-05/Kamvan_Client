@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 #Navbar {
-    margin: 2vh;
+    margin-top: 2vh;
 }
 #Home {
     color: blanchedalmond;

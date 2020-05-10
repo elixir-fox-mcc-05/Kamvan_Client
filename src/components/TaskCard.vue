@@ -3,9 +3,9 @@
       <div class="card-body">
         <h5 class="card-title">{{Task.title}}</h5>
         <p class="card-subtitle">Deadline: {{new Date(Task.due_date).toDateString()}}</p><br>
-        <!-- <p class="card-text">{{Task.description}}</p> -->
+        <p class="card-text">{{Task.description}}</p>
         <section class="row justify-content-around">
-            <a type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#edit">Details</a>
+            <a type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#edit">Edit</a>
             <!-- <a type="button" class="btn btn-secondary btn-sm" @click.prevent="destroy(Task.id)">Delete</a> -->
         </section>
       </div>
@@ -23,13 +23,12 @@
               </div>
               <div class="modal-footer justify-content-around align-items-centre">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" @click.prevent="destroy(Task.id)">Delete</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
       </div>
-
   </div>
 </template>
 

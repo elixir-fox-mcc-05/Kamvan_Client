@@ -5,7 +5,7 @@
       @getHome="getHome"
       :currentPage="currentPage"    
     >
-    </Navbar>
+    </Navbar><br>
     
     <div class="row container-fluid">
       <TaskBoard v-bind:Tasks="Tasks"
@@ -17,7 +17,12 @@
       </TaskBoard>
     </div>
 
-    <CreateModal @create="create"></CreateModal>
+    <CreateModal @create="create"></CreateModal><br>
+    
+    <div class="row justify-content-around">
+      <a class="btn btn-primary text-white" role="button" data-toggle="modal" data-target="#CreateModal">Add Task</a>
+    </div>
+
   </div>
 </template>
 
@@ -50,6 +55,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.btn {
+  margin-bottom: 20px;
+}
+.row {
+  max-width: 100vw;
+}
 </style>

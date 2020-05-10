@@ -2,7 +2,7 @@
     margin-top: 20vh;
 }
 #Navbar[data-v-54d756] {
-    margin: 2vh;
+    margin-top: 2vh;
 }
 #Home[data-v-54d756] {
     color: blanchedalmond;
@@ -37,4 +37,10 @@
     margin: 3px;
     max-width: 450px;
     min-width: 150px;
+}
+.btn[data-v-d577fa] {
+  margin-bottom: 20px;
+}
+.row[data-v-d577fa] {
+  max-width: 100vw;
 }

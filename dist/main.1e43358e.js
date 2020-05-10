@@ -53830,7 +53830,6 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
   name: "Card",
   components: {},
@@ -53864,6 +53863,10 @@ exports.default = _default;
         )
       ]),
       _c("br"),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(_vm._s(_vm.Task.description))
+      ]),
       _vm._v(" "),
       _vm._m(0)
     ]),
@@ -53932,19 +53935,19 @@ exports.default = _default;
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" }
+                      staticClass: "btn btn-secondary btn-sm",
+                      attrs: { type: "button", "data-dismiss": "modal" }
                     },
-                    [_vm._v("Save changes")]
+                    [_vm._v("Cancel")]
                   ),
                   _vm._v(" "),
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-secondary btn-sm",
-                      attrs: { type: "button", "data-dismiss": "modal" }
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" }
                     },
-                    [_vm._v("Cancel")]
+                    [_vm._v("Save changes")]
                   )
                 ]
               )
@@ -53971,7 +53974,7 @@ var staticRenderFns = [
             "data-target": "#edit"
           }
         },
-        [_vm._v("Details")]
+        [_vm._v("Edit")]
       )
     ])
   },
@@ -54271,7 +54274,7 @@ var _default = {
     create: function create() {
       var Task = this.Task;
       console.log('@modal', Task);
-      this.$emit('create', this.Task); // this.clear()
+      this.$emit('create', this.Task);
     }
   },
   mounted: function mounted() {
@@ -54596,6 +54599,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   name: 'Dashboard',
   data: function data() {
@@ -54645,6 +54653,7 @@ exports.default = _default;
         attrs: { currentPage: _vm.currentPage },
         on: { logout: _vm.logout, getHome: _vm.getHome }
       }),
+      _c("br"),
       _vm._v(" "),
       _c(
         "div",
@@ -54659,19 +54668,42 @@ exports.default = _default;
         1
       ),
       _vm._v(" "),
-      _c("CreateModal", { on: { create: _vm.create } })
+      _c("CreateModal", { on: { create: _vm.create } }),
+      _c("br"),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-around" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary text-white",
+          attrs: {
+            role: "button",
+            "data-toggle": "modal",
+            "data-target": "#CreateModal"
+          }
+        },
+        [_vm._v("Add Task")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
           return {
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-d577fa",
             functional: undefined
           };
         })());
