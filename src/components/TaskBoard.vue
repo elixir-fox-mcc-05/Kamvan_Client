@@ -4,10 +4,10 @@
             <div class="card text-left">
                 <div class="card-header container">
                     <div class="row">
-                        <div class="col-10 justify-content-center align-items-center">
+                        <div class="col-9 justify-content-center align-items-center">
                             <h4 class="mb-0">{{category}}</h4>
                         </div>
-                        <div class="col-1">
+                        <div class="col-3">
                             <i v-if="category == 'Backlog'" class="fas fa-ambulance" id="backlog"></i>
                             <i v-else-if="category == 'Todo'" class="fa fa-wheelchair-alt" id="todo"></i>
                             <i v-else-if="category == 'Doing'" class="fas fa-truck" id="doing"></i>
@@ -74,6 +74,6 @@ export default {
 .container {
     margin: 3px;
     max-width: 450px;
-    min-width: 150px;
+    min-width: 200px;
 }
 </style>

@@ -53838,7 +53838,6 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
   name: "EditModal",
   props: ['Task'],
@@ -53846,6 +53845,7 @@ var _default = {
     return {
       Today: "".concat(new Date().getFullYear(), "-0").concat(new Date().getMonth() + 1, "-").concat(new Date().getDate()),
       EditID: "EditModal".concat(this.Task.id),
+      ConfirmID: "ConfirmModal".concat(this.Task.id),
       EditTask: {
         title: this.Task.title,
         description: this.Task.description,
@@ -53856,7 +53856,23 @@ var _default = {
   },
   methods: {
     destroy: function destroy(id) {
-      this.$emit('destroy', id);
+      var self = this;
+      bootbox.confirm({
+        message: "Sure you want to delete the task? You cannot undo this operation.",
+        buttons: {
+          confirm: {
+            label: 'Yes, delete',
+            className: 'btn-danger'
+          },
+          cancel: {
+            label: 'No, take me back',
+            className: 'btn-primary'
+          }
+        },
+        callback: function callback(result) {
+          if (result) self.$emit('destroy', id);
+        }
+      });
     },
     update: function update() {
       var id = this.Task.id;
@@ -53905,7 +53921,7 @@ exports.default = _default;
             _c("div", { staticClass: "modal-body" }, [
               _c("form", [
                 _c("label", { attrs: { for: "CreateTitle" } }, [
-                  _vm._v("Title")
+                  _vm._v("Edit Title")
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -53931,7 +53947,7 @@ exports.default = _default;
                 }),
                 _vm._v(" "),
                 _c("label", { attrs: { for: "CreateDescription" } }, [
-                  _vm._v("Description")
+                  _vm._v("Edit Description")
                 ]),
                 _vm._v(" "),
                 _c(
@@ -53965,7 +53981,7 @@ exports.default = _default;
                 ),
                 _vm._v(" "),
                 _c("label", { attrs: { for: "CreateCategory" } }, [
-                  _vm._v("Category")
+                  _vm._v("Change Category")
                 ]),
                 _vm._v(" "),
                 _c(
@@ -54013,7 +54029,7 @@ exports.default = _default;
                 ),
                 _vm._v(" "),
                 _c("label", { attrs: { for: "CreateDue" } }, [
-                  _vm._v("Deadline")
+                  _vm._v("Change Deadline")
                 ]),
                 _c("br"),
                 _vm._v(" "),
@@ -54052,8 +54068,12 @@ exports.default = _default;
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger btn-sm",
-                    attrs: { type: "button", "data-dismiss": "modal" },
+                    staticClass: "btn btn-danger btn-sm popover-test",
+                    attrs: {
+                      type: "button",
+                      "data-content": "Popover",
+                      "data-dismiss": "modal"
+                    },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -54387,7 +54407,7 @@ exports.default = _default;
             _c(
               "div",
               {
-                staticClass: "col-10 justify-content-center align-items-center"
+                staticClass: "col-9 justify-content-center align-items-center"
               },
               [
                 _c("h4", { staticClass: "mb-0" }, [
@@ -54396,7 +54416,7 @@ exports.default = _default;
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "col-1" }, [
+            _c("div", { staticClass: "col-3" }, [
               _vm.category == "Backlog"
                 ? _c("i", {
                     staticClass: "fas fa-ambulance",
