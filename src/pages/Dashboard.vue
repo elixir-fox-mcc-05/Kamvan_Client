@@ -11,8 +11,8 @@
       <TaskBoard v-bind:Tasks="Tasks"
         v-for="category in Categories" :key="category"
         :category="category"
+        @update="update"
         @destroy="destroy"
-
       >
       </TaskBoard>
     </div>
@@ -21,7 +21,7 @@
     
     <div class="row justify-content-around">
       <a class="btn btn-primary text-white" role="button" data-toggle="modal" data-target="#CreateModal">Add Task</a>
-    </div>
+    </div>   
 
   </div>
 </template>
@@ -50,6 +50,7 @@ export default {
     getHome() { this.$emit('getHome') },
     logout() { this.$emit('logout') },
     create(Task) { this.$emit('create', Task) },
+    update(id, Task) { this.$emit('update', id, Task)},
     destroy(id) { this.$emit('destroy', id) }
   }
 }

@@ -14,6 +14,7 @@
                 @getHome="getHome"
                 @destroy="destroy"
                 @create="create"
+                @update="update"
             >
             </Dashboard>
         </section>
@@ -113,7 +114,7 @@ export default {
         },
 
         create(Task) {
-            console.log("@create", Task);
+            console.log("@create", Task.category);
             let { access_token } = localStorage            
             axios({
                 method: 'post',
@@ -122,6 +123,22 @@ export default {
                 headers: { access_token }
             })
                 .then(response => {
+                    this.fetchTasks()
+                })
+                .catch(err => console.log(err))
+        },
+
+        update(id, Task) {
+            console.log("@update", Task);
+            let { access_token } = localStorage            
+            axios({
+                method: 'put',
+                url: `${this.baseUrl}/tasks/${id}`,
+                data: Task,
+                headers: { access_token }
+            })
+                .then(response => {
+                    console.log("@update", response);
                     this.fetchTasks()
                 })
                 .catch(err => console.log(err))
@@ -136,7 +153,7 @@ export default {
                     access_token
                 }
             })
-                .then(response => {
+                .then(response => {                    
                     this.fetchTasks()
                 })
                 .catch(err => { console.log(err) })

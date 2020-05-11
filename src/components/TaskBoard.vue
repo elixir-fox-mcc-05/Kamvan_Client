@@ -20,6 +20,7 @@
                         :category="category"
                         :Task="Task"
                         @destroy="destroy"
+                        @update="update"
                     >
                     </TaskCard>
                 </div>
@@ -38,7 +39,9 @@ export default {
     },
     props: [ 'category', 'Tasks' ],
     methods: {
-        destroy(id) { this.$emit('destroy', id) }
+        destroy(id) { this.$emit('destroy', id) },
+        update(id, Task) { this.$emit('update', id, Task) }
+
     },
     computed: {
         TasksList() {
