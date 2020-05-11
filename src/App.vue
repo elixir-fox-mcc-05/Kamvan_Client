@@ -5,41 +5,38 @@
                 @login="login"
                 @logout="logout"
                 @register="register"
+                @onSignIn="onSignIn"
                 :message="message"
                 :messageSucces="messageSucces"
         >
         </navbar>
-        <div id="google-signin-button" v-if="!loggedIn"></div>
-        <card :backlogs="backlogs" 
-            :todos="todos" 
-            :doings="doings" 
-            :dones="dones" 
+        <div style="display : flex; flex-wrap:wrap; height:39px; padding-left:5px;" v-if="!loggedIn">
+                                <div id="google-signin-button" class="btn btn-primary" style="height:inherit; background-color: inherit;"></div>
+                            </div>
+        <dashboard :Tasks="Tasks"
             :loggedIn="loggedIn" 
             :message="message"
             @edit="edit"
             @changeCategory="changeCategory"
             @deleteData="deleteData"
-        ></card>
+        ></dashboard>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import navbar from "./components/navbar";
-import card from "./components/card";
+import dashboard from "./components/dashboard";
 export default {
     name : "App",
     components : {
-        navbar, card
+        navbar, dashboard
     },
     data() {
         return {
-            backlogs : [],
-            todos : [],
-            doings : [],
-            dones : [],
+            Tasks : [],
             loggedIn : localStorage.getItem("token") ? true : false,
-            baseUrl : "https://mysterious-basin-64968.herokuapp.com/",
+            baseUrl : "http://localhost:3000/",
             token : localStorage.getItem("token"),
             message : "",
             messageSucces : ""
@@ -49,46 +46,16 @@ export default {
         fetchData(){
             axios ({
                 method : "get",
-                url : this.baseUrl + "task/backlogs",
+                url : this.baseUrl + "task",
                 headers : {
                     token :  this.token
                 }
                 })
                 .then(({data}) => {
-                    this.backlogs = data;
-                    return axios({
-                        url : this.baseUrl + "task/todos",
-                        method : "get",
-                        headers : {
-                                    token :  this.token
-                                }
-                        });
-                })
-                .then(({data}) =>{
-                    this.todos = data;
-                    return axios({
-                        url : this.baseUrl + "task/doings",
-                        method : "get",
-                        headers : {
-                                    token :  this.token
-                                }
-                        });
-                })
-                .then(({data})=>{
-                    this.doings = data;
-                    return axios({
-                        url : this.baseUrl + "task/dones",
-                        method : "get",
-                        headers : {
-                                    token :  this.token
-                                }
-                        });
-                })
-                .then(({data})=>{
-                    this.dones = data;
+                    this.Tasks = data.Category
                 })
                 .catch(err => {
-                    this.message = "Ada Error"
+                    this.message = err.response.data.msg;
                 });
         },
         createTask(taskData){
@@ -106,12 +73,10 @@ export default {
                 }
             })
                 .then(({data})=>{
-                    console.log(data.Task)
-                    this.backlogs.Task.push(data.Task)
+                    this.fetchData()
                 })
                 .catch(err => {
-                    console.log(err.response)
-                    this.message = "ada error" 
+                    this.message = err.response.data.msg;
                 })
         },
         login(userData){
@@ -132,7 +97,7 @@ export default {
                     this.fetchData()
                 })
                 .catch(err => {
-                    console.log(err)
+                    this.message = err.response.data.msg;
                 })
         },
         logout(){
@@ -140,7 +105,13 @@ export default {
             auth2.signOut().then(() => {
                 localStorage.clear()
                 this.loggedIn = false
-            })
+            });
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+            gapi.signin2.render('google-signin-button', {
+                onsuccess: this.onSignIn
+            });
         },
         register(userData){
             axios({
@@ -158,11 +129,11 @@ export default {
                     this.message = ""
                 })
                 .catch(err => {
-                    this.message = "Ada error"
-                    console.log(this.message)
+                    this.message = err.response.data.msg;
                 })
         },
         edit(data){
+            console.log(data)
             axios({
                 method : "put",
                 url : `${this.baseUrl}task/${data.id}`,
@@ -180,8 +151,7 @@ export default {
                     this.fetchData();
                 })
                 .catch(err => {
-                    this.message = "Ada error";
-                    console.log(this.message);
+                    this.message = err.response.data.msg;
                 })
         },
         deleteData(data){
@@ -193,12 +163,10 @@ export default {
                 }
             })
                 .then(res => {
-                    console.log("succes");
                     this.fetchData();
                 })
                 .catch(err => {
-                    this.message = "";
-                    console.log(this.message);
+                    this.message = err.response.data.msg;
                 })
         },
         changeCategory(data){
@@ -209,15 +177,14 @@ export default {
                     token : this.token
                 },
                 data : {
-                    category : data.category
+                    CategoryId : data.category
                 }
             })
                 .then(res => {
                     this.fetchData();
                 })
                 .catch(err => {
-                    this.message = "ada error";
-                    console.log(this.message);
+                    this.message = err.response.data.msg;
                 })
         },
         onSignIn (user) {
@@ -237,17 +204,17 @@ export default {
                     this.fetchData();
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.message = err.response.data.msg;
                 })
         }
     },
-    mounted() {
+    mounted(){
         gapi.load('auth2', function() {
             gapi.auth2.init();
-        });
+        })
         gapi.signin2.render('google-signin-button', {
             onsuccess: this.onSignIn
-        });
+        })
     },
     created(){
         if(localStorage.getItem("token")){

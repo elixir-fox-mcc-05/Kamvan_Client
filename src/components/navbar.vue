@@ -5,7 +5,7 @@
                 <i class="mdi mdi-format-size cc cc-logo:">Kamvan Board</i>
             </div>
             <div style="display:flex; flex-directions:row;">
-                <buttonLogin v-if="!loggedIn" @login="login" :message="message" :messageSucces="messageSucces"></buttonLogin>
+                <buttonLogin v-if="!loggedIn" @login="login" :message="message" :messageSucces="messageSucces" @onSignIn="onSignIn"></buttonLogin>
                 <buttonRegister v-if="!loggedIn" @register="register" :messageSucces="messageSucces"></buttonRegister>
                 <buttonNewTask v-if="loggedIn" @createTask="createTask" :message="message"></buttonNewTask>
                 <buttonLogOut v-if="loggedIn" @logout="logout" :message="message"></buttonLogOut>
@@ -40,6 +40,9 @@ export default {
         },
         register(data){
             this.$emit("register", data)
+        },
+        onSignIn(data){
+            this.$emit("onSignIn", data)
         }
     }
 };

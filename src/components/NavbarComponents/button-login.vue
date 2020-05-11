@@ -21,7 +21,7 @@
                         </div>
                         <div style="display:flex; justify-content:space-between">
                             <div>
-                                <button @click.prevent = "login" type="submit" class="btn btn-primary"> Submit</button>
+                                <button @click.prevent = "login" class="btn btn-primary"> Submit</button>
                                 <button @click.prevent="hide" class="btn btn-primary">Close</button>
                             </div>
                         </div>
@@ -61,7 +61,18 @@ export default {
                 this.password = ''
                 this.hide()
             }
+        },
+        onSignIn(data) {
+            this.$emit("onSignIn", data)
         }
+    },
+    mounted(){
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        })
+        gapi.signin2.render('google-signin-button', {
+            onsuccess: this.onSignIn
+        })
     }
 }
 </script>
