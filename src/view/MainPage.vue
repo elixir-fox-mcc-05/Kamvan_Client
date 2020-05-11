@@ -5,7 +5,7 @@
                 <nav class="navbar fixed-top">
                     <img src="../hacktiv8.png" alt="" width="48" height="48">
                     <div class="row">
-                      <h1> Kanban Board </h1>
+
                       <div v-if="isLoading" class="spinner-border" role="status">
                         <span class="sr-only">Loading...</span>
                       </div>

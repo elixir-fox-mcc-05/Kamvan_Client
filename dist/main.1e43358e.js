@@ -9828,22 +9828,15 @@ exports.default = _default;
                       [
                         _c("div", { staticClass: "row" }, [
                           _c("div", { staticClass: "col full previous" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "bg-transparent btn-block",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.previousCat(
-                                      task.id,
-                                      task.category
-                                    )
-                                  }
+                            _c("button", {
+                              staticClass: "bg-transparent btn-block",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.previousCat(task.id, task.category)
                                 }
-                              },
-                              [_vm._v("<")]
-                            )
+                              }
+                            })
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col full edit" }, [
@@ -10175,8 +10168,6 @@ exports.default = _default;
         }),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("h1", [_vm._v(" Kanban Board ")]),
-          _vm._v(" "),
           _vm.isLoading
             ? _c(
                 "div",
@@ -10831,7 +10822,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54180" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54401" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

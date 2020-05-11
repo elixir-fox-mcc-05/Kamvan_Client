@@ -15,7 +15,7 @@
                                 <div class="card-header bg-success border-success">
                                     <div class="row">
                                         <div class="col full previous">
-                                            <button class="bg-transparent btn-block" @click.prevent="previousCat(task.id, task.category)"><</button>
+                                            <button class="bg-transparent btn-block" @click.prevent="previousCat(task.id, task.category)"></button>
                                         </div>
                                         <div class="col full edit">    
                                             <button class="bg-transparent btn-block" @click.prevent="editTask(task.id, task.title)" data-toggle="modal" data-target="#editTask">Edit</button>

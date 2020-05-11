@@ -24,7 +24,6 @@ nav {
 }
 
 .medium {
-    background-color: #50514f;
     height: 80vh;
     width: 100vw;
     top: 10vh;
@@ -81,7 +80,6 @@ nav {
 }
 
 #bottom {
-    background-color: orange;
     height: 10vh;
 }
 
