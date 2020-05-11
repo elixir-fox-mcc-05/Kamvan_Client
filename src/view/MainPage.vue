@@ -91,7 +91,6 @@
             <!-- END OF MAIN PAGE -->  
             <footer>
                 <div class="footer fixed-bottom" id="bottom">
-                    <h4>Made By : Robin</h4>
                     <h6>Powered By : Bootstrap</h6>
                 </div>
             </footer>

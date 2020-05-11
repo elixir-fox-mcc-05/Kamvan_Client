@@ -10066,7 +10066,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: 'MainPage',
   data: function data() {
@@ -10540,11 +10539,7 @@ var staticRenderFns = [
       _c(
         "div",
         { staticClass: "footer fixed-bottom", attrs: { id: "bottom" } },
-        [
-          _c("h4", [_vm._v("Made By : Robin")]),
-          _vm._v(" "),
-          _c("h6", [_vm._v("Powered By : Bootstrap")])
-        ]
+        [_c("h6", [_vm._v("Powered By : Bootstrap")])]
       )
     ])
   }
@@ -10836,7 +10831,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52834" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58309" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
