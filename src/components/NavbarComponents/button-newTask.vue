@@ -64,6 +64,10 @@ export default {
                 assigned : this.assigned
             }
             this.$emit("createTask", payload)
+            this.title = ""
+            this.descriptions = ""
+            this.point = 0
+            this.assigned = ""
         }
     }
 };

@@ -36,7 +36,7 @@ export default {
         return {
             Tasks : [],
             loggedIn : localStorage.getItem("token") ? true : false,
-            baseUrl : "http://localhost:3000/",
+            baseUrl : "https://mysterious-basin-64968.herokuapp.com/",
             token : localStorage.getItem("token"),
             message : "",
             messageSucces : ""
@@ -137,10 +137,10 @@ export default {
                 }
             })
                 .then(({data}) => {
+                    this.message = ""
                     this.messageSucces = `succes create account with email ${data.email} ${data.organization}`
                     setInterval(() => {
                         this.$modal.hide("register-Form")
-                        this.message = ""
                         this.messageSucces = ""
                     }, 2000);
                 })
