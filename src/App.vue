@@ -42,7 +42,7 @@ export default {
             baseUrl: 'http://localhost:3000',
 
             //firebase
-            // baseUrl: 'https://kanban-server-robin.herokuapp.com',
+            // baseUrl: 
 
             isLogin: false,
             user: {

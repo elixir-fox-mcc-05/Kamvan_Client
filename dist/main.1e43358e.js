@@ -10629,7 +10629,7 @@ var _default = {
       //localhost
       baseUrl: 'http://localhost:3000',
       //firebase
-      // baseUrl: 'https://kanban-server-robin.herokuapp.com',
+      // baseUrl: 
       isLogin: false,
       user: {
         email: "",
@@ -10831,7 +10831,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58309" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54180" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
