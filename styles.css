@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+body {
+    background-image: url("./src/84248.png");
+}
+
+nav {
+    background-color: top;
+    height:10vh;
+    align-content: center;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.medium {
+    background-color: #50514f;
+    height: 80vh;
+    width: 100vw;
+    top: 10vh;
+    left: 0;
+    position:fixed;
+}
+
+.columns {
+    height: 75vh;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 0;
+}
+
+.border-set {
+    border: 2px solid #f5f5f5;
+}
+
+.title {
+    justify-content: center;
+    align-items: center;
+}
+
+.content { 
+    padding: 10px;
+}
+
+.overflowing {
+    padding: 0;
+    margin: 0;
+    height: 68vh;
+    overflow-y: scroll;
+}
+
+.card-footer, .card-header {
+    padding: 0;
+}
+
+.full {
+    padding: 0;
+    margin: 0;
+}
+
+.previous {
+    background-color: #f5f5f5;
+}
+
+.edit {
+    background-color: #ffe066;
+}
+
+.next {
+    background-color: #70c1b3;
+}
+
+#bottom {
+    background-color: orange;
+    height: 10vh;
+}
+
+#backlog {
+    background-color: #f5f5f5;
+    border-radius: 8px 8px 0 0
+}
+
+#todo {
+    background-color: #f25f5c;
+    border-radius: 8px 8px 0 0
+}
+
+#done {
+    background-color: #ffe066;
+    border-radius: 8px 8px 0 0
+}
+
+#completed {
+    background-color: #70c1b3;
+    border-radius: 8px 8px 0 0
+}
