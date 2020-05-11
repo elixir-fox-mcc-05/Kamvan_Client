@@ -53,6 +53,8 @@ export default {
                 })
                 .then(({data}) => {
                     this.Tasks = data.Category
+                    this.message = ""
+                    this.messageSucces = ""
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -74,8 +76,12 @@ export default {
             })
                 .then(({data})=>{
                     this.fetchData()
+                    this.message = ""
+                    this.messageSucces = ""
+                    this.$modal.hide("newTask-Form")
                 })
                 .catch(err => {
+                    console.log(err.response.data.msg)
                     this.message = err.response.data.msg;
                 })
         },
@@ -94,7 +100,11 @@ export default {
                     localStorage.setItem("token", data.acces_token)
                     this.token = data.acces_token
                     this.loggedIn = true
+                    this.$modal.hide("login-form")
                     this.fetchData()
+                    this.message = ""
+                    this.messageSucces = ""
+                    this.$modal.hide("newTask-Form")
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -105,6 +115,8 @@ export default {
             auth2.signOut().then(() => {
                 localStorage.clear()
                 this.loggedIn = false
+                this.message = ""
+                this.messageSucces = ""
             });
             gapi.load('auth2', function() {
                 gapi.auth2.init();
@@ -126,7 +138,11 @@ export default {
             })
                 .then(({data}) => {
                     this.messageSucces = `succes create account with email ${data.email} ${data.organization}`
-                    this.message = ""
+                    setInterval(() => {
+                        this.$modal.hide("register-Form")
+                        this.message = ""
+                        this.messageSucces = ""
+                    }, 2000);
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -149,6 +165,8 @@ export default {
             })
                 .then(result => {
                     this.fetchData();
+                    this.message = ""
+                    this.messageSucces = ""
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -164,6 +182,8 @@ export default {
             })
                 .then(res => {
                     this.fetchData();
+                    this.message = ""
+                    this.messageSucces = ""
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -182,6 +202,8 @@ export default {
             })
                 .then(res => {
                     this.fetchData();
+                    this.message = ""
+                    this.messageSucces = ""
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;
@@ -202,6 +224,10 @@ export default {
                     this.token = data.Token
                     this.loggedIn = true;
                     this.fetchData();
+                    setInterval(() => {
+                        this.message = ""
+                        this.messageSucces = ""
+                    }, 2000);
                 })
                 .catch(err => {
                     this.message = err.response.data.msg;

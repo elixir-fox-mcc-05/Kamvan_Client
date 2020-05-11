@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div style="display:flex; flex-direction:column">
-                        <button @click.prevent = "createTask" type="submit" class="btn btn-primary btn-m btn-block">Submit</button>
+                        <button @click.prevent = "createTask" class="btn btn-primary btn-m btn-block">Submit</button>
                         <button @click.prevent="hide" class="btn btn-primary btn-m btn-block">Close</button>
                     </div>
                 </form>
@@ -48,6 +48,7 @@ export default {
             assigned : ''
         }
     },
+    props : ["message"],
     methods : {
         show () {
             this.$modal.show('newTask-Form');
@@ -63,14 +64,8 @@ export default {
                 assigned : this.assigned
             }
             this.$emit("createTask", payload)
-            this.title = ''
-            this.descriptions = ''
-            this.point = 0
-            this.assigned = ''
-            this.hide()
         }
-    },
-    props : ["message"]
+    }
 };
 </script>
 

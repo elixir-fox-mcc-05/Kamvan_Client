@@ -44,8 +44,6 @@ export default {
     props : ["message", "messageSucces"],
     methods : {
         show () {
-            this.message = ""
-            this.messageSucces = ""
             this.$modal.show('login-Form');
         },
         hide () {
@@ -59,7 +57,6 @@ export default {
             if(this.$emit("login", payload)){
                 this.email = ''
                 this.password = ''
-                this.hide()
             }
         },
         onSignIn(data) {

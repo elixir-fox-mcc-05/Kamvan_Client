@@ -56,6 +56,7 @@ export default {
             organization: ""
         }
     },
+    props : ["message", "messageSucces"],
     methods : {
         show () {
             this.$modal.show('register-Form');
@@ -76,8 +77,7 @@ export default {
             this.confirmPassword = ""
             this.organization = ""
         }
-    },
-    props : ["message", "messageSucces"]
+    }
 }
 </script>
 
