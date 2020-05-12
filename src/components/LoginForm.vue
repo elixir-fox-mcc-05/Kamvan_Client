@@ -8,7 +8,8 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input v-model="user.password" type="password" class="form-control" id="password" required>
+                <input v-model="user.password" type="password" class="form-control" id="password" required><br>
+                <input type="checkbox" @click="show()">Show Password 
             </div>
             <div>
                 <button type="button" class="btn btn-primary btn-md" @click.prevent="login">Login</button>
@@ -40,6 +41,14 @@ export default {
         },
         reload() {
             window.location.reload()
+        },
+        show() {
+            let x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
     }
 }

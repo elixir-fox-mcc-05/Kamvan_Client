@@ -4,11 +4,12 @@
         <form>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input v-model="user.email" type="email" class="form-control" id="email" placeholder="user@email.com" required autofocus>
+                <input v-model="user.email" type="email" class="form-control" id="registerEmail" placeholder="user@email.com" required autofocus>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input v-model="user.password" type="password" class="form-control" id="password" required>
+                <input v-model="user.password" type="password" class="form-control" id="registerPassword" required><br>
+                <input type="checkbox" @click="show()">Show Password</button>
             </div>
             <div>
                 <button type="button" class="btn btn-primary btn-md" @click.prevent="register">Register</button>
@@ -41,6 +42,14 @@ export default {
         },
         reload() {
             window.location.reload()
+        },
+        show() {
+            let x = document.getElementById("registerPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
     }
 }

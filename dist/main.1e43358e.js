@@ -53092,6 +53092,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   name: 'LoginForm',
   data: function data() {
@@ -53109,6 +53110,15 @@ var _default = {
     },
     reload: function reload() {
       window.location.reload();
+    },
+    show: function show() {
+      var x = document.getElementById("password");
+
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
   }
 };
@@ -53187,7 +53197,18 @@ exports.default = _default;
                 _vm.$set(_vm.user, "password", $event.target.value)
               }
             }
-          })
+          }),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "checkbox" },
+            on: {
+              click: function($event) {
+                return _vm.show()
+              }
+            }
+          }),
+          _vm._v("Show Password \n        ")
         ]),
         _vm._v(" "),
         _c("div", [
@@ -53290,6 +53311,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   name: 'RegisterForm',
   data: function data() {
@@ -53307,6 +53329,15 @@ var _default = {
     },
     reload: function reload() {
       window.location.reload();
+    },
+    show: function show() {
+      var x = document.getElementById("registerPassword");
+
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
   }
 };
@@ -53345,7 +53376,7 @@ exports.default = _default;
             staticClass: "form-control",
             attrs: {
               type: "email",
-              id: "email",
+              id: "registerEmail",
               placeholder: "user@email.com",
               required: "",
               autofocus: ""
@@ -53375,7 +53406,7 @@ exports.default = _default;
               }
             ],
             staticClass: "form-control",
-            attrs: { type: "password", id: "password", required: "" },
+            attrs: { type: "password", id: "registerPassword", required: "" },
             domProps: { value: _vm.user.password },
             on: {
               input: function($event) {
@@ -53385,7 +53416,18 @@ exports.default = _default;
                 _vm.$set(_vm.user, "password", $event.target.value)
               }
             }
-          })
+          }),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "checkbox" },
+            on: {
+              click: function($event) {
+                return _vm.show()
+              }
+            }
+          }),
+          _vm._v("Show Password\n        ")
         ]),
         _vm._v(" "),
         _c("div", [
@@ -53702,59 +53744,55 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container-fluid", attrs: { id: "Navbar" } },
-    [
-      _c(
-        "div",
-        { staticClass: "row align-items-center justify-content-around" },
-        [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-dark btn-sm",
-              attrs: { id: "Home", role: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.getHome($event)
-                }
+  return _c("div", { attrs: { id: "Navbar" } }, [
+    _c(
+      "div",
+      { staticClass: "row align-items-center justify-content-around" },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-dark btn-sm",
+            attrs: { id: "Home", role: "button" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.getHome($event)
               }
-            },
-            [_vm._v("Home")]
-          ),
-          _vm._v(" "),
-          _vm.currentPage == "Dashboard"
-            ? _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary text-white",
-                  attrs: {
-                    role: "button",
-                    "data-toggle": "modal",
-                    "data-target": "#CreateModal"
-                  }
-                },
-                [_vm._v("Add Task")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentPage == "Dashboard"
-            ? _c(
-                "a",
-                {
-                  staticClass: "btn btn-secondary btn-sm",
-                  attrs: { id: "Logout", role: "button" },
-                  on: { click: _vm.logout }
-                },
-                [_vm._v("Logout")]
-              )
-            : _vm._e()
-        ]
-      )
-    ]
-  )
+            }
+          },
+          [_vm._v("Home")]
+        ),
+        _vm._v(" "),
+        _vm.currentPage == "Dashboard"
+          ? _c(
+              "a",
+              {
+                staticClass: "btn btn-primary text-white",
+                attrs: {
+                  role: "button",
+                  "data-toggle": "modal",
+                  "data-target": "#CreateModal"
+                }
+              },
+              [_vm._v("Add Task")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentPage == "Dashboard"
+          ? _c(
+              "a",
+              {
+                staticClass: "btn btn-secondary btn-sm",
+                attrs: { id: "Logout", role: "button" },
+                on: { click: _vm.logout }
+              },
+              [_vm._v("Logout")]
+            )
+          : _vm._e()
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54401,7 +54439,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col pl-0 pr-0" }, [
     _c("div", { staticClass: "container Board" }, [
-      _c("div", { staticClass: "card text-left" }, [
+      _c("div", { staticClass: "card text-left category-card" }, [
         _c("div", { staticClass: "card-header container" }, [
           _c("div", { staticClass: "row" }, [
             _c(
@@ -54410,7 +54448,7 @@ exports.default = _default;
                 staticClass: "col-9 justify-content-center align-items-center"
               },
               [
-                _c("h4", { staticClass: "mb-0" }, [
+                _c("h4", { staticClass: "mb-0 text-light" }, [
                   _vm._v(_vm._s(_vm.category))
                 ])
               ]
@@ -54419,22 +54457,22 @@ exports.default = _default;
             _c("div", { staticClass: "col-3" }, [
               _vm.category == "Backlog"
                 ? _c("i", {
-                    staticClass: "fas fa-ambulance",
+                    staticClass: "fas fa-ambulance icon",
                     attrs: { id: "backlog" }
                   })
                 : _vm.category == "Todo"
                 ? _c("i", {
-                    staticClass: "fa fa-wheelchair-alt",
+                    staticClass: "fa fa-wheelchair-alt icon",
                     attrs: { id: "todo" }
                   })
                 : _vm.category == "Doing"
                 ? _c("i", {
-                    staticClass: "fas fa-truck",
+                    staticClass: "fas fa-truck icon",
                     attrs: { id: "doing" }
                   })
                 : _vm.category == "Done"
                 ? _c("i", {
-                    staticClass: "fas fa-rocket",
+                    staticClass: "fas fa-rocket icon",
                     attrs: { id: "done" }
                   })
                 : _vm._e()
@@ -54445,7 +54483,7 @@ exports.default = _default;
         _c(
           "div",
           {
-            staticClass: "card-body align-items-center pt-4",
+            staticClass: "card-body d-flex flex-column pt-4 ",
             attrs: { id: "CardBoard" }
           },
           _vm._l(_vm.TasksList, function(Task) {
@@ -54559,21 +54597,29 @@ var _default = {
   },
   methods: {
     clear: function clear() {
-      for (var key in this.CreateTask) {
-        this.CreateTask[key] = '';
-      }
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        setTimeout(function (resolve) {
+          for (var key in _this.CreateTask) {
+            _this.CreateTask[key] = '';
+          }
+        }, 2000);
+      });
     },
-    // asyncCreate() {
-    //     return new Promise((resolve, reject) => {
-    //         const Task = this.CreateTask
-    //         console.log('@modal', Task.category)
-    //         this.$emit('create', Task)
-    //     })  
-    // },
+    asyncCreate: function asyncCreate() {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        var Task = _this2.CreateTask;
+
+        _this2.$emit('create', Task);
+
+        resolve();
+      });
+    },
     create: function create() {
-      var Task = this.CreateTask;
-      console.log('@modal', Task.category);
-      this.$emit('create', Task); // this.clear() // async makes it impossible to clear after create
+      this.asyncCreate().then(this.clear());
     }
   },
   mounted: function mounted() {
@@ -54976,7 +55022,6 @@ exports.default = _default;
         attrs: { currentPage: _vm.currentPage },
         on: { logout: _vm.logout, getHome: _vm.getHome }
       }),
-      _c("br"),
       _vm._v(" "),
       _c(
         "div",
@@ -55026,7 +55071,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-d577fa",
+            _scopeId: null,
             functional: undefined
           };
         })());
@@ -55111,8 +55156,8 @@ var _default = {
       var _this = this;
 
       var email = user.email,
-          password = user.password;
-      console.log('@login', email);
+          password = user.password; // console.log('@login', email)
+
       var data = {
         email: email,
         password: password
@@ -55122,7 +55167,7 @@ var _default = {
         url: "".concat(this.baseUrl, "/login"),
         data: _qs.default.stringify(data)
       }).then(function (response) {
-        console.log(response);
+        // console.log(response)
         _this.currentPage = "Dashboard";
         localStorage.setItem('access_token', response.data.access_token);
 
@@ -55146,7 +55191,7 @@ var _default = {
         url: "".concat(this.baseUrl, "/register"),
         data: _qs.default.stringify(data)
       }).then(function (response) {
-        console.log('Registration successful', response);
+        // console.log('Registration successful', response);
         _this2.currentPage = "HomePage";
       }).catch(function (err) {
         console.log('@axios', err);
@@ -55184,7 +55229,7 @@ var _default = {
     create: function create(Task) {
       var _this4 = this;
 
-      console.log("@create", Task.category);
+      // console.log("@create", Task.category);
       var _localStorage2 = localStorage,
           access_token = _localStorage2.access_token;
       (0, _axios.default)({
@@ -55214,8 +55259,7 @@ var _default = {
           access_token: access_token
         }
       }).then(function (response) {
-        console.log("@update", response);
-
+        // console.log("@update", response);
         _this5.fetchTasks();
       }).catch(function (err) {
         return console.log(err);
@@ -55368,7 +55412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43347" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39887" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

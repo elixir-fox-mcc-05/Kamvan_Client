@@ -43,7 +43,7 @@ export default {
     methods: {
         login(user) {
             let { email, password } = user
-            console.log('@login', email)
+            // console.log('@login', email)
             const data = {
                 email,
                 password
@@ -54,7 +54,7 @@ export default {
                 data: qs.stringify(data)
             })
                 .then(response => {
-                    console.log(response)
+                    // console.log(response)
                     this.currentPage = "Dashboard"
                     localStorage.setItem('access_token', response.data.access_token)
                     this.fetchTasks()
@@ -76,7 +76,7 @@ export default {
                 data: qs.stringify(data)
             })
                 .then(response => {
-                    console.log('Registration successful', response);
+                    // console.log('Registration successful', response);
                     this.currentPage = "HomePage"
                 })
                 .catch(err => {
@@ -114,7 +114,7 @@ export default {
         },
 
         create(Task) {
-            console.log("@create", Task.category);
+            // console.log("@create", Task.category);
             let { access_token } = localStorage            
             axios({
                 method: 'post',
@@ -138,7 +138,7 @@ export default {
                 headers: { access_token }
             })
                 .then(response => {
-                    console.log("@update", response);
+                    // console.log("@update", response);
                     this.fetchTasks()
                 })
                 .catch(err => console.log(err))

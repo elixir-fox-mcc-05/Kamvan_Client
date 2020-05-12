@@ -5,7 +5,7 @@
       @getHome="getHome"
       :currentPage="currentPage"    
     >
-    </Navbar><br>
+    </Navbar>
     
     <div class="row container-fluid">
       <TaskBoard v-bind:Tasks="Tasks"
@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .btn {
   margin-bottom: 20px;
 }

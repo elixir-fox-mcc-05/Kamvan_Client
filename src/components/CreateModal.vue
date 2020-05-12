@@ -57,24 +57,26 @@ export default {
     },
     methods: {
         clear() {
-            for (const key in this.CreateTask) {
-                this.CreateTask[key] = '' 
-            }
+            return new Promise((resolve, reject) => {
+                setTimeout((resolve) => {  
+                    for (const key in this.CreateTask) {
+                        this.CreateTask[key] = '' 
+                    }
+                }, 2000)
+             })
+            
         },
 
-        // asyncCreate() {
-        //     return new Promise((resolve, reject) => {
-        //         const Task = this.CreateTask
-        //         console.log('@modal', Task.category)
-        //         this.$emit('create', Task)
-        //     })  
-        // },
+        asyncCreate() {
+            return new Promise((resolve, reject) => {
+                const Task = this.CreateTask
+                this.$emit('create', Task)
+                resolve()
+            })  
+        },
 
         create() {
-            const Task = this.CreateTask
-            console.log('@modal', Task.category)
-            this.$emit('create', Task)
-            // this.clear() // async makes it impossible to clear after create
+            this.asyncCreate().then(this.clear())
         }
     },
     mounted() {
