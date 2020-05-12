@@ -39,10 +39,10 @@ export default {
     data() {
         return {
             //localhost
-            baseUrl: 'http://localhost:3000',
+           // baseUrl: 'http://localhost:3000',
 
             //firebase
-            // baseUrl: 
+             baseUrl: 'https://murmuring-harbor-62035.herokuapp.com',
 
             isLogin: false,
             user: {

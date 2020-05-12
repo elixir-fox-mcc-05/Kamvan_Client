@@ -10618,9 +10618,9 @@ var _default = {
   data: function data() {
     return {
       //localhost
-      baseUrl: 'http://localhost:3000',
+      // baseUrl: 'http://localhost:3000',
       //firebase
-      // baseUrl: 
+      baseUrl: 'https://murmuring-harbor-62035.herokuapp.com',
       isLogin: false,
       user: {
         email: "",
@@ -10822,7 +10822,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49946" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
