@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <!-- <meta name="google-signin-client_id" content="128463172838-3r16td2mk1rlc86lvas1bvs0ikbsrojb.apps.googleusercontent.com"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>KamVan</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- GOOGLE SIGNIN API -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <!-- AJAX AND BOOTSTRAP -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="/src/main.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    LOGIN
+    
+    <div v-if="currentPage == 'login'" class="col-4 mx-auto my-4">
+        <form id="loginForm" v-on:submit.prevent="login" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+    
+    MAIN PAGE KAMVAN
+
+    navbar
+
+    <div v-else-if="currentPage == 'dashboard'" class="container-fluid">
+        <div class="custom-navbar">
+            <div class="left-side-navbar">
+                <p>KamVan Board</p> 
+            </div>
+            <div class="right-side-navbar1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">New Task</button>
+            </div>
+            <div class="right-side-navbar2">
+              <button type="button" class="btn btn-primary" v-on:click.prevent="logout">Logout</button>
+          </div>
+        </div>
+
+        CARD
+
+        <div class="custom-card-place" >
+            <div v-for="step in steps">
+              <div v-if="step == 'Back-Log'">
+                <div class="card">
+                    <h3 class="card-header" :id="step" >{{ step }}</h3>
+                    <div class="card-body">
+                      <div v-for="task in tasks" :key="task.id">
+                        <div class="card" id="custom-card">
+                            <h3 class="card-header">{{task.title}}</h3>
+                            <div class="card-body">
+                              <p class="card-text">Point: {{task.point}}</p>
+                              <p class="card-text">Assigned To: {{task.assigned_to}}</p>
+                              <a href="#!" class="btn btn-primary">Show Detail</a>
+                            </div>
+                        </div>   
+                      </div>
+                    </div>
+                </div>    
+              </div>
+              <div v-else>
+                <div class="card">
+                  <h3 class="card-header" :id="step" >{{ step }}</h3>
+                  <div class="card-body">
+                      <div class="card" id="custom-card">
+                          <h3 class="card-header">task title</h3>
+                          <div class="card-body">
+                            <p class="card-text">Point: </p>
+                            <p class="card-text">Assigned To: </p>
+                            <a href="#!" class="btn btn-primary">Show Detail</a>
+                          </div>
+                      </div>   
+                  </div>
+                </div>    
+              </div>
+              </div>
+            </div>
+
+            MODAL ADD FORM
+
+            <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="addForm" v-on:submit.prevent="addTask" >
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input  type="text" class="form-control" id="title"  placeholder="Enter title" v-model="title">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Enter description" v-model="description">
+                      </div>
+                      <div class="form-group">
+                        <label for="point">Point</label>
+                        <input type="number" class="form-control" id="point" value="0" v-model="point">
+                      </div>
+                      <div class="form-group">
+                        <label for="assigned_to">Assigned To</label>
+                        <input type="text" class="form-control" id="assigned_to" v-model="assigned_to">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>   
+
+  AXIOS
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  JQUERY BOOTSTRAP
+
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  VUE
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./src/main.js"></script>
+
+</body>
+</html> -->
