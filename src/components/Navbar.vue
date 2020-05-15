@@ -33,6 +33,7 @@ export default {
  height: 50px;
  width: 100%;
  position: fixed;
+ z-index : 10;
 }
 
 .navbar a{

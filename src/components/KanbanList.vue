@@ -1,21 +1,9 @@
 <template>
   <div class="kanban">
     <div class="card">
-      <div class="back-log">
-        <h4>Backlog</h4>
-      <KanbanCard @refresh="refresh" v-for="data in StatusCheck('backlog')" :key="data.id" :data="data" />
-      </div>
-      <div class="todo">
-        <h4>Todo</h4>
-      <KanbanCard @refresh="refresh" v-for="data in StatusCheck('todo')" :key="data.id" :data="data" />
-      </div>
-      <div class="onprogress">
-        <h4>On Progress</h4>
-      <KanbanCard @refresh="refresh" v-for="data in StatusCheck('on progress')" :key="data.id" :data="data" />
-      </div>
-      <div class="done">
-        <h4>Done</h4>
-      <KanbanCard @refresh="refresh" v-for="data in StatusCheck('done')" :key="data.id" :data="data" />
+      <div class="done" v-for="tag in tags" :key="tag">
+        <h4>{{tag}}</h4>
+      <KanbanCard @refresh="refresh" v-for="data in StatusCheck(tag)" :key="data.id" :data="data" />
       </div>
     </div>
   </div>
@@ -31,7 +19,8 @@ export default {
   },
   data () {
     return {
-      kanban : []
+      kanban : [],
+      tags: ['Backlog','Todo','On progress','Done']
     }
   },
   methods: {
@@ -44,8 +33,8 @@ export default {
           }
       })
       .then((result)=>{
-        this.kanban = result.data.result
-        // console.log(result.data.result);
+        this.kanban = result.data
+        console.log(result);
       })
     },
     StatusCheck(status){      
@@ -57,7 +46,7 @@ export default {
         //   }
         // }
         if(this.kanban != undefined){
-        datafilter= this.kanban.filter(function (item) { return item.tag == status })
+        datafilter= this.kanban.filter(function (item) { return item.tag == status.toLowerCase() })
         }
       }
         return datafilter

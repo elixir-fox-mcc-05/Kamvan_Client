@@ -4,10 +4,10 @@
   <div class="form-add-page">
    <form>
     <div class="form-group">
-     <input class="form-control" type="text" placeholder="Title" v-model="kanban.title">
+     <input class="form-control" type="text" placeholder="Title" v-model="kanban.title" required>
     </div>
     <div class="form-group">
-     <input class="form-control" type="text" placeholder="Description" v-model="kanban.description">
+     <input class="form-control" type="text" placeholder="Description" v-model="kanban.description" required>
     </div>
     <div class="form-group">
      <button class="btn btn-dark" @click.prevent="add()">Add</button>

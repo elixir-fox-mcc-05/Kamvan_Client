@@ -7,6 +7,7 @@
        </div>
         <h6>{{data.description}}</h6>
         <br />
+        <h6>By : {{data.User.email}}</h6>
         <br />
         <div class="card-panel">
           <button

@@ -6,6 +6,10 @@
     <Addpage @cancel="home" v-if="isLogin && isAdd" />
     <Homepage v-else-if="isLogin && !isAdd" />
     <Loginpage @logged="logged" v-else-if="!isLogin" />
+    <audio src="./assets/fall_theme.mp3" volume="0.3" autoplay>
+    <p>If you are reading this, it is because your browser does not support the audio element.</p>
+    <embed src="./assets/fall_theme.mp3" autostart="true" loop="true" />
+    </audio>
   </div>
 </template>
 
@@ -26,7 +30,7 @@ export default {
   data () {
     return {
       isLogin: false,
-      isAdd : false
+      isAdd: false
     }
   },
   methods: {
@@ -36,25 +40,25 @@ export default {
     logout () {
       this.isLogin = false
       localStorage.clear()
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function() {
-        console.log('User signed out.');
-      });
       const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          onOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
         })
         Toast.fire({
           icon: 'success',
           title: 'Logged out successfully'
         })
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function() {
+        console.log('User signed out.');
+      });
     },
     openAdd () {
       this.isAdd = true
