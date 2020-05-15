@@ -6,10 +6,6 @@
     <Addpage @cancel="home" v-if="isLogin && isAdd" />
     <Homepage v-else-if="isLogin && !isAdd" />
     <Loginpage @logged="logged" v-else-if="!isLogin" />
-    <audio src="./assets/fall_theme.mp3" volume="0.3" autoplay>
-    <p>If you are reading this, it is because your browser does not support the audio element.</p>
-    <embed src="./assets/fall_theme.mp3" autostart="true" loop="true" />
-    </audio>
   </div>
 </template>
 
@@ -78,6 +74,8 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,7 +85,8 @@ export default {
   background: url('//hdwallpapers.imgix.net/freestockphotos-44901565544399i0xpir1orw.jpg?auto=compress&cs=tinysrgb&dpr=1');
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 700px;
+  min-height: 695px;
+  max-height: 100%;
 }
 
 .header{

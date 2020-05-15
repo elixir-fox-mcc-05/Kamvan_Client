@@ -3,7 +3,9 @@
     <div class="card">
       <div class="done" v-for="tag in tags" :key="tag">
         <h4>{{tag}}</h4>
-      <KanbanCard @refresh="refresh" v-for="data in StatusCheck(tag)" :key="data.id" :data="data" />
+        <div class="wrap">
+          <KanbanCard @refresh="refresh" v-for="data in StatusCheck(tag)" :key="data.id" :data="data" />
+        </div>
       </div>
     </div>
   </div>
@@ -34,7 +36,6 @@ export default {
       })
       .then((result)=>{
         this.kanban = result.data
-        console.log(result);
       })
     },
     StatusCheck(status){      
@@ -70,21 +71,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-.back-log{
-  width: 300px;
-  min-height: 450px;
-  margin: 10px;
-}
-.todo{
-  width: 300px;
-  min-height: 450px;
-  margin: 10px;
-}
-.onprogress{
-  width: 300px;
-  min-height: 450px;
-  margin: 10px;
-}
+
 .done{
   width: 300px;
   min-height: 450px;
@@ -92,6 +79,13 @@ export default {
 }
 h4{
   margin-left: 50px;
+}
+
+.wrap{
+  overflow: auto;
+  overflow-wrap: inherit;
+  height: 550px;
+  width: fit-content;
 }
 
 </style>

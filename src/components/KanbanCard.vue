@@ -57,10 +57,14 @@ export default {
           access_token: localStorage.access_token
         },
         data: task
-      }).then(result => {
-        this.refresh();
-        Swal.fire("Success!", "Task Successfully Forwarded!", "success");
-      });
+      })
+        .then(result => {
+          this.refresh();
+          Swal.fire("Success!", "Task Successfully Forwarded!", "success");
+        })
+        .catch(err =>{
+          Swal.fire("Failed", err, "error")
+        })
     },
     backward(data) {
       let task = {
@@ -82,10 +86,14 @@ export default {
           access_token: localStorage.access_token
         },
         data: task
-      }).then(result => {
-        this.refresh();
-        Swal.fire("Success!", "Task Successfully Backwarded!", "success");
-      });
+      })
+        .then(result => {
+          this.refresh();
+          Swal.fire("Success!", "Task Successfully Backwarded!", "success");
+        })
+        .catch(err =>{
+           Swal.fire("Failed", err, "error")
+        })
     },
     del (data) {
      let id = data.data.id
@@ -96,10 +104,13 @@ export default {
           access_token: localStorage.access_token
         }
      })
-     .then((result)=>{
-      this.refresh();
-        Swal.fire("Success!", "Task Successfully Deleted!", "success");
-     })
+      .then((result)=>{
+        this.refresh();
+          Swal.fire("Success!", "Task Successfully Deleted!", "success");
+      })
+      .catch(err =>{
+            Swal.fire("Failed", err, "error")
+      })
     },
     refresh() {
       this.$emit("refresh");
