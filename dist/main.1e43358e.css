@@ -1,0 +1,9 @@
+.card {
+    margin-bottom: 15px;
+}
+#tabel {
+    display: flex;
+    max-height: 82vh;
+    flex-direction: column;
+    overflow-y: auto;
+}
