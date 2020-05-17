@@ -1,0 +1,148 @@
+h2[data-v-ab7c1b] {
+  color: #f44336;
+  text-align: center;
+}
+.main[data-v-ab7c1b] {
+  padding: 0 30%;
+}
+
+/* Full-width inputs */
+input[type=text][data-v-ab7c1b], input[type=password][data-v-ab7c1b] {
+  width: 100%;
+  padding: 5px 0px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button[data-v-ab7c1b] {
+  background-color: #4CAF50;
+  color: white;
+  margin: 18px 0;
+  border: none;
+  cursor: pointer;
+  width: 49%;
+}
+
+
+/* Extra style for the cancel button (red) */
+.cancelbtn[data-v-ab7c1b] {
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer[data-v-ab7c1b] {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Add padding to containers */
+.containerlog[data-v-ab7c1b] {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw[data-v-ab7c1b] {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw[data-v-ab7c1b] {
+    display: block;
+    float: none;
+}
+.cancelbtn[data-v-ab7c1b] {
+    width: 100%;
+}
+}
+.cancelbtn[data-v-e1d90c] {
+  width: 30px;
+  background-color: #f44336;
+  float: right;
+  border-radius: 50px;
+}
+.actionbtn[data-v-e1d90c] {
+  width: 50px;
+  background-color: #442d96;
+  border-radius: 50px;
+}
+.editbtn[data-v-e1d90c] {
+  width: 50px;
+  background-color: #84a708;
+  border-radius: 50px;
+}
+.btn-add {
+  width: 30px;
+  background-color: green;
+  font-weight: bold;
+  float: right;
+}
+h2[data-v-85e68a] {
+  color: #f44336;
+  text-align: center;
+}
+.main[data-v-85e68a] {
+  padding: 10% 30%;
+}
+/* Bordered form */
+form[data-v-85e68a] {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text][data-v-85e68a], input[type=password][data-v-85e68a] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button[data-v-85e68a] {
+  background-color: #4CAF50;
+  color: white;
+  margin: 18px 0;
+  border: none;
+  cursor: pointer;
+  width: 32%;
+}
+
+
+/* Extra style for the cancel button (red) */
+.cancelbtn[data-v-85e68a] {
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer[data-v-85e68a] {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Add padding to containers */
+.containerlog[data-v-85e68a] {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw[data-v-85e68a] {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw[data-v-85e68a] {
+    display: block;
+    float: none;
+}
+.cancelbtn[data-v-85e68a] {
+    width: 100%;
+}
+}
