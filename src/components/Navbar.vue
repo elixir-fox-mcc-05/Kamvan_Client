@@ -28,7 +28,6 @@ export default {
   justify-content: space-between;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.068);
 }
-
 .navbar-fixed-top {
   position: fixed;
   right: 0;
@@ -36,29 +35,24 @@ export default {
   top: 0;
   z-index: 1030;
 }
-
 .navbar .navbar-left {
   display: flex;
   align-items: center;
 }
-
 .navbar .navbar-left i,
 #logo {
   color: #ff6161;
   font-size: 30px;
   margin: 0 10px 0;
 }
-
 .navbar-left p {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 .navbar .navbar-right {
   display: flex;
   align-items: center;
 }
-
 .navbar .navbar-right img {
   width: 40px;
   height: 40px;
@@ -66,13 +60,11 @@ export default {
   object-fit: cover;
   margin: 0 10px 0;
 }
-
 .navbar .navbar-right i {
   font-size: 20px;
   margin: 0 10px 0;
   color: #757575;
 }
-
 .logout {
   width: 140px;
   height: 40px;
@@ -83,7 +75,6 @@ export default {
   background-color: white;
   cursor: pointer;
 }
-
 .logout:hover {
   background-color: #ff6161;
   border: none;
