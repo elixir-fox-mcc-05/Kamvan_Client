@@ -1,7 +1,7 @@
 <template>
   <div class="addTaskPage">
     <div class="addTaskGroup">
-      <p @click="closeBtn" class="closeAddForm">close</p>
+      <p @click.prevent="closeBtn" class="closeAddForm">close</p>
       <h1>
         Add Task
       </h1>
@@ -20,11 +20,6 @@
         </label>
         <label class="labelAddTask">
           <h4>Category:</h4>
-          <!-- <input
-            v-model="newTask.category"
-            type="text"
-            class="addTaskInput"
-          /> -->
           <select v-model="selected" class="selectCategory">
             <option disabled value="">Choose category</option>
             <option>Back-Log</option>

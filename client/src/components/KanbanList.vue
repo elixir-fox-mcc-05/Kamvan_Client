@@ -27,11 +27,6 @@ export default {
   components: {
     KanbanCard
   },
-  // methods: {
-  //   detailBtn() {
-  //     this.$emit("detailBtn");
-  //   }
-  // },
   data() {
     return {
       categoryList: [

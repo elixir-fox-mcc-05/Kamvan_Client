@@ -32,7 +32,7 @@
         <a @click.prevent="login" href>login here</a>
       </p>
       <div class="copyright">
-        <p>Copyright © 2020</p>
+        <p>Copyright © Amir Faisal Zamzami, 2020</p>
         <p>KamVan's Team. All rights. reserved</p>
       </div>
     </div>

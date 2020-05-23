@@ -10,7 +10,10 @@ export default new Vuex.Store({
     taskList: [],
     myNotif: "",
     myError: "",
-    userLogin: {},
+    userLogin: {
+      name: "",
+      id: ""
+    },
     taskOneId: ""
   },
   mutations: {
@@ -21,8 +24,7 @@ export default new Vuex.Store({
       state.taskList = payload;
     },
     SET_TASKONE_ID(state, payload) {
-      state.taskOneId = payload
-      // console.log(state.taskOne, "<+++++++++++<")
+      state.taskOneId = payload;
     },
     CHANGE_MYNOTIF(state, payload) {
       state.myNotif = payload;
@@ -40,13 +42,13 @@ export default new Vuex.Store({
         method: "get",
         url: "/tasks"
       })
-        .then(response => {
+        .then((response) => {
           context.commit("SET_TASKLIST", response.data.task);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    },
+    }
   },
   modules: {}
 });

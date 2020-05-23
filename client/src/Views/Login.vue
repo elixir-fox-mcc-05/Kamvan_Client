@@ -48,7 +48,7 @@
         </a>
       </div>
       <div class="copyright">
-        <p>Copyright © 2020</p>
+        <p>Copyright © Amir Faisal Zamzami, 2020</p>
         <p>KamVan's Team. All rights. reserved</p>
       </div>
     </div>
@@ -110,10 +110,12 @@ export default {
           this.$store.dispatch("fetchTaskList");
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userName", response.data.name);
+          localStorage.setItem("userId", response.data.id)
           this.$store.commit("SET_LOGIN", true);
-          this.$store.commit("CHANGE_USERLOGIN", {
-            name: localStorage.getItem("userName")
-          });
+          // this.$store.commit("CHANGE_USERLOGIN", {
+          //   name: localStorage.getItem("userName"),
+          //   id: localStorage.getItem("userId")
+          // });
           this.$router.push("/dashboard");
           (this.user.email = ""), (this.user.password = "");
         })
@@ -129,7 +131,6 @@ export default {
     },
     onSuccess(googleUser) {
       const id_token = googleUser.getAuthResponse().id_token;
-      // console.log(id_token);
       server({
         method: "post",
         url: "/google-login",
@@ -137,16 +138,16 @@ export default {
           google_token: id_token
         }
       }).then((response) => {
-        console.log('<++++++++++< masuk google');
-        console.log(response,"<+++++++++++++< response")
         this.$store.commit("CHANGE_MYERROR", "");
         this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
         this.$store.dispatch("fetchTaskList");
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.name);
+        localStorage.setItem("userId", response.data.id);
         this.$store.commit("SET_LOGIN", true);
         this.$store.commit("CHANGE_USERLOGIN", {
-          name: localStorage.getItem("userName")
+          name: localStorage.getItem("userName"),
+          id: localStorage.getItem("userId")
         });
         this.$router.push("/dashboard");
       });

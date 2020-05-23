@@ -4,9 +4,9 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Missing from "../components/Missing.vue";
 import Dashboard from "../views/Dashboard.vue";
-// dashboard children
 import AddTask from "../components/AddTask.vue";
 import DetailTask from "../components/DetailTask.vue"
+import UpdateTask from "../components/UpdateTask.vue"
 
 Vue.use(VueRouter);
 
@@ -35,6 +35,11 @@ const routes = [
     path: "/detail-task/:id",
     name: "DetailTask",
     component: DetailTask
+  },
+  {
+    path: "/update-task/:id",
+    name: "UpdateTask",
+    component: UpdateTask
   },
   {
     path: "*",

@@ -26,7 +26,8 @@ export default {
     if (localStorage.token) {
       this.$store.commit("SET_LOGIN", true);
       this.$store.commit("CHANGE_USERLOGIN", {
-        name: localStorage.getItem("userName")
+        name: localStorage.getItem("userName"),
+        id: localStorage.getItem("userId")
       });
     } else {
       this.$store.commit("SET_LOGIN", false);

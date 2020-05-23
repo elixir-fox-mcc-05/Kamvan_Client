@@ -15,8 +15,9 @@
         :params="params"
         class="nav-name logout"
         href=""
-        >Logout</a
       >
+        Logout
+      </a>
     </div>
     <transition name="fade">
       <router-view />
