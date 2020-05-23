@@ -38,9 +38,6 @@ export default {
       server({
         method: "get",
         url: `/tasks/${this.$route.params.id}`,
-        headers: {
-          token: localStorage.token
-        }
       })
         .then((response) => {
           this.task = response.data.task;
@@ -80,7 +77,7 @@ export default {
   padding: 5vh 10px 0;
   display: flex;
   justify-content: center;
-  background: #1c00bb2c;
+  background: #f3f7f9;
   z-index: 120;
   overflow: hidden;
 }

@@ -34,27 +34,10 @@ export default {
   },
   methods: {
     showDetail(id) {
-      this.$router.push(`/detail-task/${id}`)
+      this.$router.push(`/detail-task/${id}`);
     }
   },
   props: ["category"],
-  // methods: {
-  //   detailBtn() {
-  //     axios({
-  //       method: 'get',
-  //       url: `http://localhost:3000/tasks/${this.task.id}`,
-  //     })
-  //       .then(({ data }) => {
-  //         this.$emit('detailBtn', data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  //   updateBtn() {
-  //     this.$emit('updateBtn');
-  //   },
-  // },
   created() {
     if (!localStorage.token) {
       this.$store.commit("SET_LOGIN", false);
@@ -81,7 +64,7 @@ export default {
   text-transform: uppercase;
   color: #424242;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 p {
   margin: 10px 0 10px;
@@ -98,7 +81,7 @@ button {
   height: 4vh;
   border: none;
   border-radius: 20px;
-  margin-top: 3vh;
+  margin-top: 2vh;
   color: #313236;
   font-size: 12px;
   cursor: pointer;

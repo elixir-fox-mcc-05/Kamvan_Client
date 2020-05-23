@@ -15,9 +15,7 @@
           <i class="fas fa-plus"></i>
         </div>
       </router-link>
-      <div class="KanbanList">
-        <KanbanCard :category="category"></KanbanCard>
-      </div>
+      <KanbanCard :category="category"></KanbanCard>
     </div>
   </div>
 </template>
@@ -29,11 +27,11 @@ export default {
   components: {
     KanbanCard
   },
-  methods: {
-    detailBtn() {
-      this.$emit("detailBtn");
-    }
-  },
+  // methods: {
+  //   detailBtn() {
+  //     this.$emit("detailBtn");
+  //   }
+  // },
   data() {
     return {
       categoryList: [

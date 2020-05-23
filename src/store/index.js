@@ -38,10 +38,7 @@ export default new Vuex.Store({
     fetchTaskList(context) {
       server({
         method: "get",
-        url: "/tasks",
-        headers: {
-          token: localStorage.token
-        }
+        url: "/tasks"
       })
         .then(response => {
           context.commit("SET_TASKLIST", response.data.task);

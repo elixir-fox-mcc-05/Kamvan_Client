@@ -5,8 +5,18 @@
         <p>KamVan</p>
       </div>
       <router-link v-if="!isLogin" class="nav-name" to="/">Login</router-link>
-      <router-link v-if="!isLogin" class="nav-name" to="/register">Register</router-link>
-      <a v-if="isLogin" @click.prevent="logout" class="nav-name logout" href="">Logout</a>
+      <router-link v-if="!isLogin" class="nav-name" to="/register"
+        >Register</router-link
+      >
+      <a
+        v-if="isLogin"
+        @click.prevent="logout"
+        :logoutButton="true"
+        :params="params"
+        class="nav-name logout"
+        href=""
+        >Logout</a
+      >
     </div>
     <transition name="fade">
       <router-view />
@@ -15,8 +25,19 @@
 </template>
 
 <script>
+import GoogleLogin from "vue-google-login";
 export default {
   name: "App",
+  components: {
+    GoogleLogin
+  },
+  data() {
+    return {
+      params: {
+        client_id: "228781523398-vdju82mh3d70vtuo76o2q73vkff21f60.apps.googleusercontent.com"
+      }
+    };
+  },
   computed: {
     isLogin() {
       return this.$store.state.isLogin;
@@ -42,7 +63,7 @@ export default {
 .Logo {
   font-weight: bold;
   font-size: 26px;
-  color: #6E35A7;
+  color: #6e35a7;
   margin-right: 20px;
 }
 
@@ -75,19 +96,21 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #FF7082;
+  color: #ff7082;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition-property: opacity;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .fade-enter-active {
-  transition-delay: .3s;
+  transition-delay: 0.3s;
 }
 
-.fade-enter, .fade-leave-active {
-  opacity: 0
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>

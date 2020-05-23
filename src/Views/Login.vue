@@ -21,7 +21,14 @@
         placeholder="Enter your password"
         @keyup.enter.prevent="login"
       />
-      <button @click.prevent="login">Login</button>
+      <button @click.prevent="login" class="Login">Login</button>
+      <GoogleLogin
+        :params="params"
+        :renderParams="renderParams"
+        :onSuccess="onSuccess"
+        :onFailure="onFailure"
+        class="google"
+      ></GoogleLogin>
       <p class="register">
         don't have an account?
         <a @click.prevent="register" href="">register here </a>
@@ -52,6 +59,7 @@
 </template>
 
 <script>
+import GoogleLogin from "vue-google-login";
 import server from "../api";
 import Notif from "../components/Notif";
 import Error from "../components/Error";
@@ -59,7 +67,8 @@ export default {
   name: "Login",
   components: {
     Notif,
-    Error
+    Error,
+    GoogleLogin
   },
   data() {
     return {
@@ -70,7 +79,16 @@ export default {
       isShowing: true,
       show: true,
       message: "",
-      errMessage: ""
+      errMessage: "",
+      params: {
+        client_id:
+          "228781523398-vdju82mh3d70vtuo76o2q73vkff21f60.apps.googleusercontent.com"
+      },
+      renderParams: {
+        width: 250,
+        height: 40,
+        longtitle: true,
+      }
     };
   },
   methods: {
@@ -108,6 +126,33 @@ export default {
       (this.passwordFieldType =
         this.passwordFieldType === "password" ? "text" : "password"),
         (this.isShowing = !this.isShowing);
+    },
+    onSuccess(googleUser) {
+      const id_token = googleUser.getAuthResponse().id_token;
+      // console.log(id_token);
+      server({
+        method: "post",
+        url: "/google-login",
+        headers: {
+          google_token: id_token
+        }
+      }).then((response) => {
+        console.log('<++++++++++< masuk google');
+        console.log(response,"<+++++++++++++< response")
+        this.$store.commit("CHANGE_MYERROR", "");
+        this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
+        this.$store.dispatch("fetchTaskList");
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userName", response.data.name);
+        this.$store.commit("SET_LOGIN", true);
+        this.$store.commit("CHANGE_USERLOGIN", {
+          name: localStorage.getItem("userName")
+        });
+        this.$router.push("/dashboard");
+      });
+    },
+    onFailure() {
+      console.log("failed google login");
     }
   },
   created() {
@@ -145,7 +190,7 @@ export default {
     width: 40vw;
   }
   .kamvan {
-    color: #6E35A7;
+    color: #6e35a7;
   }
   .label {
     text-align: left;
@@ -169,7 +214,7 @@ export default {
     outline: none;
   }
   .eyeToggle {
-    margin-top: -19vh;
+    margin-top: -28.5vh;
     margin-left: 34vw;
     z-index: 999;
     background: white;
@@ -179,7 +224,7 @@ export default {
   .eyeToggle i {
     color: #4d4e52;
   }
-  button {
+  .Login {
     margin-top: 30px;
     margin-left: 100px;
     width: 30vw;
@@ -187,25 +232,30 @@ export default {
     box-shadow: 0 20px 70px rgba(66, 154, 236, 0.185);
     border-radius: 20px;
     padding-left: 20px;
-    background: #6E35A7;
+    background: #6e35a7;
     border: none;
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
   }
-  button:focus {
+  .Login:focus {
     outline: none;
   }
-  button:hover {
-    background: #FF7082;
+  .Login:hover {
+    background: #ff7082;
+  }
+  .google {
+    margin-top: 4vh;
+    margin-left: 13vw;
+    border-radius: 20px;
   }
   .register {
     margin-top: 20px;
-    margin-left: -13.5vw;
+    margin-left: -3.5vw;
     font-size: 14px;
   }
   .copyright {
-    margin-top: 14vh;
+    margin-top: 17vh;
     margin-left: 100px;
     display: flex;
     justify-content: flex-start;

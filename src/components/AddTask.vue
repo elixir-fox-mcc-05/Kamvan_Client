@@ -63,7 +63,7 @@ export default {
         title: "",
         description: "",
         category: "",
-        organization: ""
+        organization: "Hacktiv8"
       }
     };
   },
