@@ -1,0 +1,33 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+#box-category{
+    padding-bottom: 10px;
+    background-color: white;
+    min-height: 60vh;
+}
+#box-category .header{
+    padding: 10px;
+}
+#box-item {
+    margin: 10px 15px;
+}
+.modal {
+    max-width: 75%;
+    max-height: 100%;
+    overflow: visible;
+}
+#title-kamvan{
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.modal-footer {
+    display:flex;
+    justify-content: space-around;
+}
+#newtask {
+    width: 500px;
+}
