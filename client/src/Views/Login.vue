@@ -145,10 +145,10 @@ export default {
         localStorage.setItem("userName", response.data.name);
         localStorage.setItem("userId", response.data.id);
         this.$store.commit("SET_LOGIN", true);
-        this.$store.commit("CHANGE_USERLOGIN", {
-          name: localStorage.getItem("userName"),
-          id: localStorage.getItem("userId")
-        });
+        // this.$store.commit("CHANGE_USERLOGIN", {
+        //   name: localStorage.getItem("userName"),
+        //   id: localStorage.getItem("userId")
+        // });
         this.$router.push("/dashboard");
       });
     },

@@ -8,11 +8,7 @@
       <div class="formInput">
         <label class="labelAddProduct">
           <h4>Task Title:</h4>
-          <input
-            v-model="editTask.title"
-            type="text"
-            class="addProductInput"
-          />
+          <input v-model="editTask.title" type="text" class="addProductInput" />
         </label>
         <label class="labelAddProduct">
           <h4>Description:</h4>
@@ -66,7 +62,6 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.task, "<+++++++++<response.data")
           this.editTask = response.data.task;
         })
         .catch((err) => {
@@ -87,11 +82,13 @@ export default {
         }
       })
         .then((response) => {
+          this.$store.commit("CHANGE_MYERROR", "");
+          this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
           this.$router.push("/dashboard");
-          console.log(response);
         })
         .catch((err) => {
-          console.log(err);
+          this.$store.commit("CHANGE_MYNOTIF", "");
+          this.$store.commit("CHANGE_MYERROR", err.response.data.err);
         });
     }
   },

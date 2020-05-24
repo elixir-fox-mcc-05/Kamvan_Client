@@ -6,14 +6,27 @@
         Detail Task
       </h1>
       <div class="taskDetail">
-        <p>Task id: <span class="idCard">{{ task.id }}</span></p>
-        <p>Task title: <span class="titleCard">{{ task.title }}</span></p>
-        <p>Task description: <span class="descCard">{{ task.description }}</span></p>
-        <p>Task category: <span class="categoryCard">{{ task.category }}</span></p>
+        <p>
+          Task id: <span class="idCard">{{ task.id }}</span>
+        </p>
+        <p>
+          Task title: <span class="titleCard">{{ task.title }}</span>
+        </p>
+        <p>
+          Task description: <span class="descCard">{{ task.description }}</span>
+        </p>
+        <p>
+          Task category: <span class="categoryCard">{{ task.category }}</span>
+        </p>
       </div>
-      <div v-if="task.UserId == this.$store.state.userLogin.id" class="buttonGroup">
-        <button @click.prevent="showUpdatePage(task.id)" class="edit">EDIT</button>
-        <button @click.prevent="deleteTask">DELETE</button>
+      <div
+        v-if="task.UserId == this.$store.state.userLogin.id"
+        class="buttonGroup"
+      >
+        <button @click.prevent="showUpdatePage(task.id)" class="edit">
+          EDIT
+        </button>
+        <button @click.prevent="deletePageBtn">DELETE</button>
         <button @click.prevent="moveToBtn" class="moveTo">Move To</button>
       </div>
     </div>
@@ -30,6 +43,19 @@
         <button @click.prevent="updateCategory" class="sendMove">Move</button>
       </div>
     </div>
+    <div v-if="deletePage == true" class="selectPage">
+      <div class="selectContainer deletecontainer">
+        <p>
+          Are you sure want to delete this task? This data will never comeback.
+        </p>
+        <button @click.prevent="deletePageBtn" class="cancelDel deleteModal">
+          No, Cancel
+        </button>
+        <button @click.prevent="deleteTask" class="sendMove deleteModal">
+          Yes, Delete
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,7 +67,8 @@ export default {
     return {
       selected: "",
       task: {},
-      moveTo: false
+      moveTo: false,
+      deletePage: false
     };
   },
   methods: {
@@ -58,7 +85,6 @@ export default {
       })
         .then((response) => {
           this.task = response.data.task;
-          console.log(this.task, "taskskskskskssk")
         })
         .catch((err) => {
           console.log(err);
@@ -74,15 +100,20 @@ export default {
       })
         .then((response) => {
           this.$store.dispatch("fetchTaskList");
+          this.$store.commit("CHANGE_MYERROR", "");
+          this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
           this.$router.push({ name: "Dashboard" });
-          console.log(response);
         })
         .catch((err) => {
-          console.log(err);
+          this.$store.commit("CHANGE_MYNOTIF", "");
+          this.$store.commit("CHANGE_MYERROR", err.response.data.err);
         });
     },
     moveToBtn() {
       this.moveTo = !this.moveTo;
+    },
+    deletePageBtn() {
+      this.deletePage = !this.deletePage;
     },
     updateCategory() {
       server({
@@ -92,16 +123,18 @@ export default {
           token: localStorage.token
         },
         data: {
-          category: this.selected,
+          category: this.selected
         }
       })
         .then((response) => {
           this.$store.dispatch("fetchTaskList");
+          this.$store.commit("CHANGE_MYERROR", "");
+          this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
           this.$router.push({ name: "Dashboard" });
-          console.log(response);
         })
         .catch((err) => {
-          console.log(err);
+          this.$store.commit("CHANGE_MYNOTIF", "");
+          this.$store.commit("CHANGE_MYERROR", err.response.data.err);
         });
     },
     showUpdatePage(id) {
@@ -111,9 +144,9 @@ export default {
   created() {
     this.getTaskById();
     this.$store.commit("CHANGE_USERLOGIN", {
-        name: localStorage.getItem("userName"),
-        id: localStorage.getItem("userId")
-      });
+      name: localStorage.getItem("userName"),
+      id: localStorage.getItem("userId")
+    });
   }
 };
 </script>
@@ -173,12 +206,12 @@ p {
 
 .idCard {
   margin-left: 10px;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .titleCard {
   margin-left: 10px;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .descCard {
@@ -188,7 +221,7 @@ p {
 
 .categoryCard {
   margin-left: 10px;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .buttonGroup {
@@ -207,7 +240,6 @@ button {
   border-radius: 20px;
   cursor: pointer;
   margin-top: 8vh;
-  /* margin-left: 40%; */
 }
 
 button:hover {
@@ -238,12 +270,15 @@ button:focus {
 }
 .selectContainer {
   background: white;
-  /* margin-top: 20vh; */
-  /* position: fixed; */
   width: 20vw;
   height: 20vh;
   border-radius: 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.082);
+}
+.deletecontainer {
+  padding: 20px;
+  width: 25vw;
+  height: 22vh;
 }
 .x {
   position: fixed;
@@ -253,14 +288,18 @@ button:focus {
 }
 .selectCategory {
   margin-top: 30px;
-  /* margin: -15px 0 0 -5vw; */
   border-radius: 20px;
   height: 30px;
   width: 13vw;
-  /* position: fixed; */
 }
 .sendMove {
   margin-top: 25px;
   background: #ade3f8;
+}
+.deleteModal {
+  margin-top: 20px;
+}
+.cancelDel {
+  background: rgb(212, 212, 212);
 }
 </style>

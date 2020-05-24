@@ -81,6 +81,8 @@ export default {
         }
       }).then((response) => {
         this.$store.dispatch("fetchTaskList");
+        this.$store.commit("CHANGE_MYERROR", "");
+        this.$store.commit("CHANGE_MYNOTIF", response.data.msg);
         this.$router.push("/dashboard");
         console.log(response);
       });
