@@ -20,11 +20,13 @@
         </label>
         <label class="labelAddProduct">
           <h4>Category:</h4>
-          <input
-            v-model="editTask.category"
-            type="text"
-            class="addProductInput"
-          />
+          <select v-model="selected" class="selectCategory">
+            <option disabled value="">Choose category</option>
+            <option>Back-Log</option>
+            <option>To-Do</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
         </label>
         <input
           @click.prevent="editProductById"
@@ -42,6 +44,7 @@ export default {
   name: "EditProduct",
   data() {
     return {
+      selected: "",
       editTask: {
         title: "",
         description: "",
@@ -78,7 +81,7 @@ export default {
         data: {
           title: this.editTask.title,
           description: this.editTask.description,
-          category: this.editTask.category
+          category: this.selected
         }
       })
         .then((response) => {
@@ -151,7 +154,13 @@ h4 {
   font-size: 14px;
   color: #778192;
 }
-
+.selectCategory {
+  margin: -15px 0 0 -5vw;
+  border-radius: 20px;
+  height: 30px;
+  width: 250px;
+  position: fixed;
+}
 .addProductInput {
   width: 125%;
   margin-top: 20px;
@@ -180,6 +189,7 @@ input:focus {
   text-align: center;
   border-radius: 20px;
   cursor: pointer;
+  margin-top: 6vh;
 }
 
 .submitForm:hover {
