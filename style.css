@@ -8,10 +8,15 @@ body{
     padding: 10px 20px 10px 20px;
 }
 
-.container-header{
+#nav{
     display: flex;
-    justify-content: space-between;
+    position: sticky;
 }
+
+.nav-name {
+    margin: 0 20px 0 100px;
+    text-decoration: none;
+  }
 
 #New-Task{
     background-color: blue;
@@ -78,4 +83,10 @@ body{
     background-color: blue;
     color: white;
     border-radius: 15%;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
 }
