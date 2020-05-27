@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="App">
         <LandingPage
         v-if="page == 'landingPage'"
         @toMainPage="toMainPage"

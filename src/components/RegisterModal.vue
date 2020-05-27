@@ -14,20 +14,20 @@
       <form v-on:submit.prevent="register">
         <div class="modal-body">
           <div class="form-label-group">
-              <label for="registerEmail">Email address</label>
+              <label for="registerEmail"><strong>Email address</strong></label>
               <input type="email" v-model="registerEmail" class="form-control" placeholder="Email address" required>
           </div><br>
           <div class="form-label-group">
-              <label for="registerPassword">Password</label>
+              <label for="registerPassword"><strong>Password</strong></label>
               <input type="password" v-model="registerPassword" class="form-control" placeholder="Password" required>
           </div><br>
           <div class="form-label-group">
-              <label for="confirmRegisterPassword">Confirmation Password</label>
+              <label for="confirmRegisterPassword"><strong>Confirmation Password</strong></label>
               <input type="password" v-model="confirmRegisterPassword" class="form-control" placeholder="Password" required>
           </div><br>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success"><strong>SUBMIT</strong></button>
         </div>
       </form>
     </b-modal>

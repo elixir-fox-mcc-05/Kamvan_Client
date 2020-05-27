@@ -5,11 +5,11 @@
             <h3 class="font-weight-bold my-0">{{ organizationName }} Kanban Board</h3>
             <h5 class="font-weight-bold my-0">Welcome {{ emailName }} </h5>
         </div>
-        <button class="btn btn-primary btn-sm" type="button" @click.prevent="newTask">
-            NEW TASK
+        <button class="btn btn-primary btn-md" type="button" @click.prevent="showAddTask">
+            <strong>NEW TASK</strong>
         </button>
-        <button class="btn btn-dark btn-sm" type="button" @click.prevent="toLandingPage">
-            LOGOUT
+        <button class="btn btn-dark btn-md" type="button" @click.prevent="toLandingPage">
+            <strong>LOGOUT</strong>
         </button>
     </nav>
   </div>
@@ -25,8 +25,8 @@ export default {
         }
     },
     methods: {
-        newTask() {
-
+        showAddTask() {
+            this.$emit('showAddTask')
         },
         toLandingPage() {
             this.$emit('toLandingPage');

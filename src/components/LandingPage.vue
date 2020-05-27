@@ -11,20 +11,20 @@
                             <h6 class="text-center text-danger" v-if="errorMessage">{{ errorMessage }} </h6>
                             <form class="form-signin" v-on:submit.prevent="login">
                                 <div class="form-label-group">
-                                    <label for="inputEmail">Email address</label>
+                                    <label for="inputEmail"><strong>Email Address</strong></label>
                                     <input type="email" v-model="loginEmail" class="form-control" placeholder="Email address" required autofocus>
                                 </div><br>
                                 <div class="form-label-group">
-                                    <label for="inputPassword">Password</label>
+                                    <label for="inputPassword"><strong>Password</strong></label>
                                     <input type="password" v-model="loginPassword" class="form-control" placeholder="Password" required>
                                 </div><br>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><strong>Login</strong></button>
                             </form>
                             <hr class="my-4">
                             <p>Don't have account? Please Register Here</p>
                             <!-- register -->
                             <button class="btn btn-warning btn-lg btn-block text-uppercase" v-on:click="showModal()">
-                                Register
+                                <strong>Register</strong>
                             </button>
                             <RegisterModal ref="registerModalComponent"></RegisterModal>
                             <!-- register -->
