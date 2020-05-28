@@ -62,6 +62,7 @@ export default {
                     this.addDescription = ''
                     this.errorMessage = false
                     this.$refs.addTaskModal.hide()
+                    this.$emit('addTask')
                 })
                 .catch(err => {
                     this.errorMessage = err.response.data.errors[0].message

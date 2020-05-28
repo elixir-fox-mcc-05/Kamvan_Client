@@ -23,7 +23,7 @@
                             <hr class="my-4">
                             <p>Don't have account? Please Register Here</p>
                             <!-- register -->
-                            <button class="btn btn-warning btn-lg btn-block text-uppercase" v-on:click="showModal()">
+                            <button class="btn btn-warning btn-lg btn-block text-uppercase" v-on:click.prevent="showModal()">
                                 <strong>Register</strong>
                             </button>
                             <RegisterModal ref="registerModalComponent"></RegisterModal>
@@ -73,6 +73,7 @@ export default {
                 })
         },
         showModal() {
+            this.errorMessage = false
             this.$refs.registerModalComponent.showRegisterModal()
         }
     }
