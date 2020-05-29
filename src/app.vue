@@ -39,10 +39,16 @@
     @updateTask="updateTask"
      @deleteTask="deleteTask"
      ></DetailTask>
+
+     <Log :loggedIn="loggedIn" 
+     :dataLog="dataLog"></Log>
 </div>
 </template>
 
 <script>
+import io from 'socket.io-client'
+import {mapState} from 'vuex'
+import Log from './components/Log'
 import Headerside from './components/layout/header'
 import Login from './components/article/login'
 import Register from './components/article/register'
@@ -81,6 +87,7 @@ export default {
       showError : false,
       showErrorReg : false,
       showErrorAdd : false,
+      dataLog: [],
       error : '',
       params: {
                     client_id: "352204718470-j9o7cm2ippmp6i1705sbhj3h6741234e.apps.googleusercontent.com"
@@ -101,10 +108,12 @@ export default {
     Column,
     AddTask,
     DetailTask,
+    Log
     // GoogleLogin
   },
   methods: {
     login(dataLogin) {
+      // let socket = io()
       this.showError = false
       // console.log(dataLogin)
       axios({
@@ -116,17 +125,21 @@ export default {
         }
       })
         .then(({data}) => {
+          // this.socket.on('log',function(log){
+          //   console.log(log)
+          // })
+          // console.log('testsocket:',this.socket.on())
           let token = data.token
           // console.log(token)
           localStorage.setItem('token', token)
           this.loggedIn = true
           this.showColumn = true
           this.showlogin = false
-          fetchTask()
+          this.fetchTask()
           // console.log(localStorage.token)
         })
         .catch(err => {
-           this.error = err.response.data
+           this.error = err.response
            this.showError = true
            setTimeout(function(){
              this.showError = false
@@ -164,13 +177,14 @@ export default {
         });
     },
     logout(){
-      const auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        localStorage.removeItem('access_token');
+      // const auth2 = gapi.auth2.getAuthInstance();
+      // auth2.signOut().then(function () {
+      //   localStorage.removeItem('access_token');
 
-      });
+      // });
       // const auth2 = gapi.auth2.getAuthInstance();
       // localStorage.removeItem('access_token');
+      this.socket.emit('log','')
       localStorage.clear()
       this.loggedIn = false
       this.showColumn = false
@@ -246,6 +260,7 @@ export default {
       })
       .catch(err => {
         console.log(err.response.data)
+        this.$buefy.toast.open(err.response.data)
       })
     },
     detailBtn(i){
@@ -269,6 +284,7 @@ export default {
       this.loggedIn = true
       this.showAddTask = false
       this.showDetailTask = false
+      this.fetchTask()
     }else {
       this.showregister = false
       this.showlogin = true
@@ -298,9 +314,11 @@ export default {
       })
       .then(({data})=> {
           this.fetchTask()
+          this.checkstorage()
       })
       .catch(err => {
           console.log(err.response.data)
+          this.$buefy.toast.open(err.response.data.err)
       })
     },
     deleteTask(id){
@@ -315,10 +333,12 @@ export default {
         }
       })
       .then(({data}) => {
+        this.checkstorage()
         this.fetchTask()
       })
       .catch(err => {
         console.log(err.response.data)
+        this.$buefy.toast.open(err.response.data)
       })
     },
     closeEditModal(){
@@ -357,9 +377,19 @@ export default {
     }
   },
   created() {
+     if(this.socket === null){
+         let socket = io("http://localhost:3000")
+         //let socket = io("https://murmuring-wildwood-15232.herokuapp.com/")
+         //let socket = io("https://guarded-harbor-22113.herokuapp.com/")
+         //let socket = io("http://localhost:3000")
+         this.$store.commit('setSocket',socket)
+       }
     this.checkstorage()
-    this.fetchTask()
-  }
+    // this.fetchTask()
+  },
+  computed: {
+        ...mapState(["socket"])
+  },
 }
 
 </script>

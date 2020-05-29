@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-                  <p class="message-header has-background-primary has-text-grey-darker">{{task.title}}</p>
+                  <p class="message-header has-background-info has-text-white">{{task.title}}</p>
                   <p class="is-size-6 has-text-centered">Points: {{task.points}}</p>
                   <p class="is-size-6 has-text-centered">Author: {{task.User.first_name}} {{task.User.last_name}}</p>
                   <hr class="login-hr has-background-dark">
