@@ -6,7 +6,7 @@
     @switchregister="switchregister"
     @switchlogin="switchlogin"
     ></Headerside>
-
+    <div id="background">
     <Login :showlogin="showlogin" 
     @login="login" 
     @switchregister='switchregister'
@@ -42,6 +42,7 @@
 
      <Log :loggedIn="loggedIn" 
      ></Log>
+     </div>
 </div>
 </template>
 
@@ -142,7 +143,7 @@ export default {
            this.showError = true
            setTimeout(function(){
              this.showError = false
-           },15000)
+           }.bind(this),15000)
         });
     },
     register(dataRegister){
@@ -169,11 +170,12 @@ export default {
             console.log(err.response.data)
             this.error=err.response.data
             this.showErrorReg = true
-            setTimeout(function(){
-              this.showErrorReg = false
-            },15000)
+
 
         });
+        setTimeout(function(){
+              this.showErrorReg = false
+            }.bind(this),30000)
     },
     logout(){
       // const auth2 = gapi.auth2.getAuthInstance();
@@ -192,10 +194,12 @@ export default {
     switchregister(){
       this.showlogin = false
       this.showregister = true
+      this.showErrorReg = false
     },
     switchlogin(){
       this.showlogin = true
       this.showregister = false
+      this.showError = false
     },
     fetchTask(){
       axios({
@@ -238,7 +242,7 @@ export default {
         this.showErrorAdd = true
         setTimeout(function(){
           this.showErrorAdd = false
-        },15000)
+        }.bind(this),15000)
       })
     },
     checkdetailTask(i){
@@ -394,4 +398,12 @@ export default {
 </script>
 
 <style scoped>
+#background{
+padding-bottom: 20%;
+position:relative;
+background-position:center;
+background-image: url('./assets/2927262.jpg');
+height:100%;
+background-size:cover;
+}
 </style>
