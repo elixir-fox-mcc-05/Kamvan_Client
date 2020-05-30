@@ -3,7 +3,7 @@
     <h1 class="is-size-3">Login</h1>
     <article class="message is-danger" v-if="showError">
     <div class="message-body">
-        {{error.error}}
+        {{error.data.err}}
     </div>
     </article>
     <div class="column">

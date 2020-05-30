@@ -3,8 +3,11 @@
         <div class="column is-6">
         
         <div class="box">
-            <h1>Log</h1>
+            <h1 class="message-header">Log</h1>
+            <div class="box">
             <p v-for="(log,i) in dataLog" :key="log">{{log}}</p>
+            </div>
+            
         </div>
         </div>
     </div>
@@ -14,9 +17,9 @@
 import {mapGetters,mapState} from 'vuex'
 export default {
     name: 'Log',
-    props: ['loggedIn','dataLog'],
+    props: ['loggedIn'],
     computed: {
-        ...mapState(['socket'])
+        ...mapState(['socket','dataLog'])
     },
     created() {
         this.listenLog()

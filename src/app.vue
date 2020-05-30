@@ -41,7 +41,7 @@
      ></DetailTask>
 
      <Log :loggedIn="loggedIn" 
-     :dataLog="dataLog"></Log>
+     ></Log>
 </div>
 </template>
 
@@ -87,7 +87,6 @@ export default {
       showError : false,
       showErrorReg : false,
       showErrorAdd : false,
-      dataLog: [],
       error : '',
       params: {
                     client_id: "352204718470-j9o7cm2ippmp6i1705sbhj3h6741234e.apps.googleusercontent.com"
