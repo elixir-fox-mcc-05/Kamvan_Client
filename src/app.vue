@@ -6,7 +6,7 @@
     @switchregister="switchregister"
     @switchlogin="switchlogin"
     ></Headerside>
-
+    <div id="background">
     <Login :showlogin="showlogin" 
     @login="login" 
     @switchregister='switchregister'
@@ -39,10 +39,17 @@
     @updateTask="updateTask"
      @deleteTask="deleteTask"
      ></DetailTask>
+
+     <Log :loggedIn="loggedIn" 
+     ></Log>
+     </div>
 </div>
 </template>
 
 <script>
+import io from 'socket.io-client'
+import {mapState} from 'vuex'
+import Log from './components/Log'
 import Headerside from './components/layout/header'
 import Login from './components/article/login'
 import Register from './components/article/register'
@@ -101,10 +108,12 @@ export default {
     Column,
     AddTask,
     DetailTask,
+    Log
     // GoogleLogin
   },
   methods: {
     login(dataLogin) {
+      // let socket = io()
       this.showError = false
       // console.log(dataLogin)
       axios({
@@ -116,21 +125,25 @@ export default {
         }
       })
         .then(({data}) => {
+          // this.socket.on('log',function(log){
+          //   console.log(log)
+          // })
+          // console.log('testsocket:',this.socket.on())
           let token = data.token
           // console.log(token)
           localStorage.setItem('token', token)
           this.loggedIn = true
           this.showColumn = true
           this.showlogin = false
-          fetchTask()
+          this.fetchTask()
           // console.log(localStorage.token)
         })
         .catch(err => {
-           this.error = err.response.data
+           this.error = err.response
            this.showError = true
            setTimeout(function(){
              this.showError = false
-           },15000)
+           }.bind(this),15000)
         });
     },
     register(dataRegister){
@@ -146,31 +159,30 @@ export default {
         }
       })
         .then(({data}) => {
-            console.log(data)
-          // this.showlogin = true
-          // this.showregister = false
-          // let token = data
-          // console.log(token)
-          // localStorage.setItem('token', token)
+            // console.log(data)
+          this.showlogin = true
+          this.showregister = false
         })
         .catch(err => {
-            console.log(err.response.data)
+            // console.log(err.response.data)
             this.error=err.response.data
             this.showErrorReg = true
-            setTimeout(function(){
-              this.showErrorReg = false
-            },15000)
+
 
         });
+        setTimeout(function(){
+              this.showErrorReg = false
+            }.bind(this),30000)
     },
     logout(){
-      const auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        localStorage.removeItem('access_token');
+      // const auth2 = gapi.auth2.getAuthInstance();
+      // auth2.signOut().then(function () {
+      //   localStorage.removeItem('access_token');
 
-      });
+      // });
       // const auth2 = gapi.auth2.getAuthInstance();
       // localStorage.removeItem('access_token');
+      this.socket.emit('log','')
       localStorage.clear()
       this.loggedIn = false
       this.showColumn = false
@@ -179,10 +191,12 @@ export default {
     switchregister(){
       this.showlogin = false
       this.showregister = true
+      this.showErrorReg = false
     },
     switchlogin(){
       this.showlogin = true
       this.showregister = false
+      this.showError = false
     },
     fetchTask(){
       axios({
@@ -225,7 +239,7 @@ export default {
         this.showErrorAdd = true
         setTimeout(function(){
           this.showErrorAdd = false
-        },15000)
+        }.bind(this),15000)
       })
     },
     checkdetailTask(i){
@@ -246,6 +260,7 @@ export default {
       })
       .catch(err => {
         console.log(err.response.data)
+        this.$buefy.toast.open(err.response.data)
       })
     },
     detailBtn(i){
@@ -269,6 +284,7 @@ export default {
       this.loggedIn = true
       this.showAddTask = false
       this.showDetailTask = false
+      this.fetchTask()
     }else {
       this.showregister = false
       this.showlogin = true
@@ -298,9 +314,11 @@ export default {
       })
       .then(({data})=> {
           this.fetchTask()
+          this.checkstorage()
       })
       .catch(err => {
           console.log(err.response.data)
+          this.$buefy.toast.open(err.response.data.err)
       })
     },
     deleteTask(id){
@@ -315,10 +333,12 @@ export default {
         }
       })
       .then(({data}) => {
+        this.checkstorage()
         this.fetchTask()
       })
       .catch(err => {
         console.log(err.response.data)
+        this.$buefy.toast.open(err.response.data)
       })
     },
     closeEditModal(){
@@ -357,12 +377,30 @@ export default {
     }
   },
   created() {
+     if(this.socket === null){
+         let socket = io("http://localhost:3000")
+         //let socket = io("https://murmuring-wildwood-15232.herokuapp.com/")
+         //let socket = io("https://guarded-harbor-22113.herokuapp.com/")
+         //let socket = io("http://localhost:3000")
+         this.$store.commit('setSocket',socket)
+       }
     this.checkstorage()
-    this.fetchTask()
-  }
+    // this.fetchTask()
+  },
+  computed: {
+        ...mapState(["socket"])
+  },
 }
 
 </script>
 
 <style scoped>
+#background{
+padding-bottom: 20%;
+position:relative;
+background-position:center;
+background-image: url('./assets/2927262.jpg');
+height:100%;
+background-size:cover;
+}
 </style>

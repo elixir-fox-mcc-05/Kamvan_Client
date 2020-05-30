@@ -1,6 +1,8 @@
 <template>
 <div class=" column is-offset-one-quarter box is-half" v-if="showregister">
+    <h1 class="is-size-3">Register</h1>
     <article class="message is-danger" v-if="showErrorReg">
+        
     <div class="message-body">
         {{error.error[0]}}
     </div>
