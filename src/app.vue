@@ -159,15 +159,12 @@ export default {
         }
       })
         .then(({data}) => {
-            console.log(data)
-          // this.showlogin = true
-          // this.showregister = false
-          // let token = data
-          // console.log(token)
-          // localStorage.setItem('token', token)
+            // console.log(data)
+          this.showlogin = true
+          this.showregister = false
         })
         .catch(err => {
-            console.log(err.response.data)
+            // console.log(err.response.data)
             this.error=err.response.data
             this.showErrorReg = true
 
