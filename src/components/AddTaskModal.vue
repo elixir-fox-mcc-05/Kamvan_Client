@@ -49,7 +49,7 @@ export default {
             this.errorMessage = false
         },
         addTask() {
-            axios.post('http://localhost:3000/tasks', {
+            axios.post('https://mighty-spire-18757.herokuapp.com/tasks', {
                 title: this.addTitle,
                 description: this.addDescription
             }, {

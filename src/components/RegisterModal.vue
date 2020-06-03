@@ -60,7 +60,7 @@ export default {
         this.confirmRegisterPassword = '';
       }
       else {
-        axios.post('http://localhost:3000/users/register', {
+        axios.post('https://mighty-spire-18757.herokuapp.com/users/register', {
           email: this.registerEmail,
           password: this.registerPassword
         })

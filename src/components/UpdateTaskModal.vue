@@ -68,7 +68,7 @@ export default {
             this.updateTaskId = data.id
         },
         updateTask() {
-            axios.put(`http://localhost:3000/tasks/${this.updateTaskId}`, {
+            axios.put(`https://mighty-spire-18757.herokuapp.com/tasks/${this.updateTaskId}`, {
                 title: this.updateTitle,
                 description: this.updateDescription,
                 category: this.updateCategory
@@ -86,7 +86,7 @@ export default {
                 })
         },
         deleteTask(taskId) {
-            axios.delete(`http://localhost:3000/tasks/${taskId}`, {
+            axios.delete(`https://mighty-spire-18757.herokuapp.com/tasks/${taskId}`, {
                 headers: {
                     token: localStorage.token
                 }

@@ -66,7 +66,7 @@ export default {
     },
     methods: {
         login() {
-            axios.post(`http://localhost:3000/users/login`, {
+            axios.post(`https://mighty-spire-18757.herokuapp.com/users/login`, {
                 email: this.loginEmail,
                 password: this.loginPassword
             })
@@ -91,7 +91,7 @@ export default {
         },
         onSuccess(googleUser) {
             const id_token = googleUser.getAuthResponse().id_token;
-            axios.post('http://localhost:3000/users/google-login', {
+            axios.post('https://mighty-spire-18757.herokuapp.com/users/google-login', {
               headers: {
                 'googleToken': id_token
               }

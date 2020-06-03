@@ -54,7 +54,7 @@ export default {
             this.$refs.UpdateTaskModalComponent.showUpdateTask(data)
         },
         getTask() {
-            axios.get(`http://localhost:3000/tasks`, {
+            axios.get(`https://mighty-spire-18757.herokuapp.com/tasks`, {
                 headers: {
                     token:localStorage.token
                 }
