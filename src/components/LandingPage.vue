@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container mt-2 mb-4">
+        <div class="container mt-2 mb-5">
             <div class="row">
                 <div class="col-lg-9 col-lg-7 col-lg-5 mx-auto text-center">
                     <h1 class="font-weight-bold display-4">KANBAN BOARD</h1>
@@ -20,6 +20,10 @@
                                 </div><br>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><strong>Login</strong></button>
                             </form>
+                            <h5 class="mt-3"><strong>OR</strong></h5>
+                            <button class="btn">
+                                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+                            </button>
                             <hr class="my-4">
                             <p>Don't have account? Please Register Here</p>
                             <!-- register -->
@@ -39,16 +43,25 @@
 <script>
 import RegisterModal from './RegisterModal'
 import axios from 'axios'
+import GoogleLogin from 'vue-google-login'
 export default {
     name: 'LandingPage',
     components: {
-        RegisterModal
+        RegisterModal, GoogleLogin
     },
     data() {
         return {
             errorMessage: false,
             loginEmail: '',
-            loginPassword: ''
+            loginPassword: '',
+            params: {
+                client_id: "188097869036-3uh64feh8ahg3p41jvf49g7589a1l6hm.apps.googleusercontent.com"
+            },
+            renderParams: {
+                width: 250,
+                height: 50,
+                longtitle: true
+            }
         }
     },
     methods: {
@@ -75,7 +88,31 @@ export default {
         showModal() {
             this.errorMessage = false
             this.$refs.registerModalComponent.showRegisterModal()
+        },
+        onSuccess(googleUser) {
+            const id_token = googleUser.getAuthResponse().id_token;
+            axios.post('http://localhost:3000/users/google-login', {
+              headers: {
+                'googleToken': id_token
+              }
+            })
+                .then(data => {
+                    this.loginEmail = '';
+                    this.loginPassword = '';
+                    this.errorMessage = false;
+                    this.$emit('toMainPage');
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('email', data.data.email);
+                    localStorage.setItem('organization', data.data.organization);
+                })
+                .catch(err => {
+                    console.log(err.response)
+                })
+        },
+        onFailure(error) {
+            console.log("google login fail", error)
         }
+
     }
 }
 </script>

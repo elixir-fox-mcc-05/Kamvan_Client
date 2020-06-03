@@ -9,19 +9,26 @@
             <strong>NEW TASK</strong>
         </button>
         <button class="btn btn-dark btn-md" type="button" @click.prevent="toLandingPage">
-            <strong>LOGOUT</strong>
+            <GoogleLogin :params="params" :logoutButton="true"><strong>LOGOUT<strong></GoogleLogin>
         </button>
     </nav>
   </div>
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
 export default {
     name: 'NavBar',
+    components: {
+        GoogleLogin
+    },
     data() {
         return {
             emailName: localStorage.email || null,
-            organizationName: localStorage.organization || null
+            organizationName: localStorage.organization || null,
+            params: {
+                client_id: "188097869036-3uh64feh8ahg3p41jvf49g7589a1l6hm.apps.googleusercontent.com"
+            }
         }
     },
     methods: {
