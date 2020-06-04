@@ -47,7 +47,7 @@ export default {
         addTask(){
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/tasks',
+                url: 'https://fierce-savannah-25696.herokuapp.com/tasks',
                 headers:{
                     access_token: localStorage.access_token
                 },

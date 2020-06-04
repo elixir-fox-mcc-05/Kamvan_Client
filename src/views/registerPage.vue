@@ -62,7 +62,7 @@ export default {
                 }
                 axios({
                     method: 'POST',
-                    url:'http://localhost:3000/register',
+                    url:'https://fierce-savannah-25696.herokuapp.com/register',
                     data:{
                         email: payload.email,
                         password: payload.password,

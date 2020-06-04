@@ -41,7 +41,7 @@ export default {
     updateSpecificTask(){
         axios({
             method: 'PUT',
-            url: 'http://localhost:3000/tasks/' + this.selectedTaskId,
+            url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + this.selectedTaskId,
             headers:{
                 access_token: localStorage.access_token
             },
@@ -61,7 +61,7 @@ export default {
     fetchSpecificTask(){
         axios({
             method: 'GET',
-            url: 'http://localhost:3000/tasks/' + this.selectedTaskId,
+            url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + this.selectedTaskId,
             headers:{
                 access_token: localStorage.access_token
             }

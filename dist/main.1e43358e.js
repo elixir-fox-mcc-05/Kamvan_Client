@@ -10305,12 +10305,7 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"node_modules/vue-google-login/dist/vue-google-login.min.js":[function(require,module,exports) {
-var define;
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t=t||self)["vue-google-login"]={})}(this,function(t){"use strict";var e,n,o=function(t){return e?Promise.resolve(e):(n||(n=function(t){return new Promise(function(n,o){window.onGapiLoad=function(){window.gapi.load("auth2",function(){try{e=window.gapi.auth2.init(Object.assign({},t))}catch(t){o({err:"client_id missing or is incorrect, or if you added extra params maybe they are written incorrectly, did you add it to the component or plugin?"})}n(e)})}})}(t)),n)},i=function(t,e){if(t)return t[e]();return Promise.reject({err:"Script not loaded correctly, did you added the plugin or the client_id to the component?"})},r={load:function(t){return Promise.all([o(t),new Promise(function(t,e){if(!document.getElementById("auth2_script_id")){var n=document.createElement("script");n.setAttribute("src","https://apis.google.com/js/platform.js?onload=onGapiLoad"),n.setAttribute("async",!0),n.setAttribute("defer","defer"),n.setAttribute("id","auth2_script_id"),document.head.appendChild(n)}t()})]).then(function(t){return t[0]})},signIn:function(){return i(e,"signIn")},signOut:function(){return i(e,"signOut")}},s=0;var d=function(t,e,n,o,i,r,s,d,u,a){"boolean"!=typeof s&&(u=d,d=s,s=!1);var c,l="function"==typeof n?n.options:n;if(t&&t.render&&(l.render=t.render,l.staticRenderFns=t.staticRenderFns,l._compiled=!0,i&&(l.functional=!0)),o&&(l._scopeId=o),r?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),e&&e.call(this,u(t)),t&&t._registeredComponents&&t._registeredComponents.add(r)},l._ssrRegister=c):e&&(c=s?function(){e.call(this,a(this.$root.$options.shadowRoot))}:function(t){e.call(this,d(t))}),c)if(l.functional){var f=l.render;l.render=function(t,e){return c.call(e),f(t,e)}}else{var h=l.beforeCreate;l.beforeCreate=h?[].concat(h,c):[c]}return n}({render:function(){var t=this.$createElement,e=this._self._c||t;return this.renderParams&&!this.logoutButton?e("div",{attrs:{id:this.id},on:{click:this.handleClick}}):e("button",{attrs:{id:this.id},on:{click:this.handleClick}},[this._t("default")],2)},staticRenderFns:[]},void 0,{name:"GoogleLogin",props:{params:{type:Object,required:!0},onSuccess:{type:Function,default:function(){}},onFailure:{type:Function,default:function(){}},logoutButton:{type:Boolean,default:!1},renderParams:{type:Object,required:!1}},beforeCreate:function(){this.id="google-signin-btn-".concat(s++)},methods:{handleClick:function(){var t=this,e=this.logoutButton?"signOut":"signIn";r[e]().then(function(e){return t.onSuccess(e)}).catch(function(e){return t.onFailure(e)})}},mounted:function(){var t=this;r.load(this.params).then(function(){t.renderParams&&!1===t.logoutButton&&window.gapi.signin2.render(t.id,t.renderParams)}).catch(function(t){console.log(t)})}},void 0,!1,void 0,void 0,void 0),u={install:function(t,e){t.GoogleAuth=r.load(e)}};t.GoogleLogin=d,t.LoaderPlugin=u,t.default=d,Object.defineProperty(t,"__esModule",{value:!0})});
-
-
-},{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -10662,8 +10657,6 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _vueGoogleLogin = _interopRequireDefault(require("vue-google-login"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -10699,6 +10692,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+// import GoogleLogin from 'vue-google-login';
 var _default = {
   name: 'loginPage',
   data: function data() {
@@ -10715,18 +10715,14 @@ var _default = {
       user: {
         loginEmail: "",
         loginPassword: ""
+      },
+      googleSignInParams: {
+        client_id: '586440042690-mlh4cu9h1ihs7rcseiptgth6ajopa7ch.apps.googleusercontent.com'
       }
     };
   },
-  components: {
-    GoogleLogin: _vueGoogleLogin.default
-  },
-  props: {
-    successMessage: String,
-    params: Object,
-    onSuccess: Function,
-    onFailure: Function,
-    logoutButton: Boolean
+  props: ['successMessage'],
+  components: {// GoogleLogin
   },
   methods: {
     changePage: function changePage(page) {
@@ -10741,7 +10737,7 @@ var _default = {
       };
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/login',
+        url: 'https://fierce-savannah-25696.herokuapp.com/login',
         data: {
           email: payload.email,
           password: payload.password
@@ -10756,26 +10752,59 @@ var _default = {
         console.log(error);
       });
     },
-    onSuccess: function onSuccess(googleUser) {
+    onSignInSuccess: function onSignInSuccess(googleUser) {
       var _this2 = this;
 
-      // console.log(googleUser);
-      // This only gets the user information: id, name, imageUrl and email
-      var id_token = googleUser.getAuthResponse().id_token;
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      var profile = googleUser.getBasicProfile(); // etc etc
+
+      var payload = {
+        email: profile.Du
+      };
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/googleSign',
+        url: 'https://fierce-savannah-25696.herokuapp.com/googleSign',
+        // url:'http://localhost:3000/googleSign',
         data: {
-          id_token: id_token
+          email: payload.email
         }
       }).then(function (result) {
-        localStorage.setItem("access_token", result.data.access_token);
+        // console.log(result.data)
+        // console.log("INI ACCESS TOKEN",result.data.access_token)
+        localStorage.setItem('access_token', result.data.access_token);
 
         _this2.changePage('dashboard');
       }).catch(function (error) {
         console.log(error);
       });
     },
+    onSignInError: function onSignInError(error) {
+      // `error` contains any error occurred.
+      console.log('Google Sign in error:', error);
+    },
+    // onSuccess(googleUser) {
+    //   // console.log(googleUser);
+    //   // This only gets the user information: id, name, imageUrl and email
+    //   let id_token = googleUser.getAuthResponse().id_token;
+    //   axios({
+    //     method: 'POST',
+    //     url: 'https://fierce-savannah-25696.herokuapp.com/googleSign',
+    //     data: {
+    //       id_token
+    //     }
+    //   })
+    //   .then(result =>{
+    //     console.log("===============")
+    //     console.log(result)
+    //     console.log("===============")
+    //     // localStorage.setItem("access_token", result.data.access_token)
+    //     // this.changePage('dashboard')
+    //   })
+    //   .catch(error =>{
+    //     console.log(error)
+    //   })
+    // },
     logout: function logout() {
       localStorage.clear();
       var auth2 = gapi.auth2.getAuthInstance();
@@ -10949,17 +10978,19 @@ exports.default = _default;
                   },
                   [
                     _c(
-                      "GoogleLogin",
+                      "g-signin-button",
                       {
-                        staticStyle: { width: "100%" },
-                        attrs: {
-                          params: _vm.params,
-                          renderParams: _vm.renderParams,
-                          onSuccess: _vm.onSuccess,
-                          onFailure: _vm.onFailure
+                        attrs: { params: _vm.googleSignInParams },
+                        on: {
+                          success: _vm.onSignInSuccess,
+                          error: _vm.onSignInError
                         }
                       },
-                      [_vm._v("Login with Google")]
+                      [
+                        _vm._v(
+                          "\n                    Sign in with Google\n                  "
+                        )
+                      ]
                     )
                   ],
                   1
@@ -11023,7 +11054,7 @@ render._withStripped = true
       
       }
     })();
-},{"axios":"node_modules/axios/index.js","vue-google-login":"node_modules/vue-google-login/dist/vue-google-login.min.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11098,7 +11129,7 @@ var _default = {
         };
         (0, _axios.default)({
           method: 'POST',
-          url: 'http://localhost:3000/register',
+          url: 'https://fierce-savannah-25696.herokuapp.com/register',
           data: {
             email: payload.email,
             password: payload.password,
@@ -11468,7 +11499,7 @@ var _default = {
       $("#task-".concat(selectedTaskId)).modal('hide');
       axios({
         method: 'PATCH',
-        url: 'http://localhost:3000/tasks/' + selectedTaskId + '/?newCategory=' + newCategory,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + selectedTaskId + '/?newCategory=' + newCategory,
         headers: {
           access_token: localStorage.access_token
         }
@@ -11486,7 +11517,7 @@ var _default = {
       $("#task-".concat(selectedTaskId)).modal('hide');
       axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/tasks/' + selectedTaskId,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + selectedTaskId,
         headers: {
           access_token: localStorage.access_token
         }
@@ -11993,7 +12024,7 @@ var _default = {
       this.allTasks = [];
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/tasks",
+        url: "https://fierce-savannah-25696.herokuapp.com/tasks",
         headers: {
           access_token: localStorage.access_token
         }
@@ -12223,7 +12254,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         },
@@ -12486,7 +12517,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'PUT',
-        url: 'http://localhost:3000/tasks/' + this.selectedTaskId,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + this.selectedTaskId,
         headers: {
           access_token: localStorage.access_token
         },
@@ -12506,7 +12537,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: 'http://localhost:3000/tasks/' + this.selectedTaskId,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + this.selectedTaskId,
         headers: {
           access_token: localStorage.access_token
         }
@@ -12914,21 +12945,29 @@ render._withStripped = true
       
       }
     })();
-},{"./views/loginPage":"src/views/loginPage.vue","./views/registerPage":"src/views/registerPage.vue","./views/dashboard":"src/views/dashboard.vue","./views/addTaskPage":"src/views/addTaskPage.vue","./views/editTaskPage":"src/views/editTaskPage.vue","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
+},{"./views/loginPage":"src/views/loginPage.vue","./views/registerPage":"src/views/registerPage.vue","./views/dashboard":"src/views/dashboard.vue","./views/addTaskPage":"src/views/addTaskPage.vue","./views/editTaskPage":"src/views/editTaskPage.vue","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js":[function(require,module,exports) {
+var define;
+'use strict';var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(obj){return typeof obj}:function(obj){return obj&&'function'==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?'symbol':typeof obj};(function(){function a(c){'undefined'!=typeof console&&console.error('[g-signin-button] '+c)}function b(c){c.component('g-signin-button',{name:'g-signin-button',render:function render(d){return d('div',{attrs:{class:'g-signin-button'},ref:'signinBtn'},this.$slots.default)},props:{params:{type:Object,required:!0,default:function _default(){return{}}}},mounted:function mounted(){var _this=this;return window.gapi?this.params.client_id?void window.gapi.load('auth2',function(){var d=window.gapi.auth2.init(_this.params);d.attachClickHandler(_this.$refs.signinBtn,{},function(e){_this.$emit('success',e)},function(e){_this.$emit('error',e),_this.$emit('failure',e)})}):void a('params.client_id must be specified.'):void a('"https://apis.google.com/js/api:client.js" needs to be included as a <script>.')}})}'object'==('undefined'==typeof exports?'undefined':_typeof(exports))?module.exports=b:'function'==typeof define&&define.amd?define([],function(){return b}):window.Vue&&window.Vue.use(b)})();
+
+},{}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
+var _vueGoogleSigninButton = _interopRequireDefault(require("vue-google-signin-button"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue.default.use(_vueGoogleSigninButton.default);
 
 new _vue.default({
   render: function render(h) {
     return h(_App.default);
   }
 }).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","vue-google-signin-button":"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -12956,7 +12995,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49250" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50728" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

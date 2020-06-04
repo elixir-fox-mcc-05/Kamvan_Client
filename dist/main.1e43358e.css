@@ -1,19 +1,11 @@
-.vertical-alignment-helper[data-v-b6468e] {
-display:table;
-height: 100%;
-width: 100%;
-pointer-events:none;}
-.vertical-align-center[data-v-b6468e] {
-/* To center vertically */
-display: table-cell;
-vertical-align: middle;
-pointer-events:none;}
-.modal-content[data-v-b6468e] {
-/* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-width:inherit;
-max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching 
-full width */
-height:inherit;
-/* To center horizontally */
-margin: 0 auto;
-pointer-events:all;}
+.g-signin-button {
+  /* This is where you control how the button looks. Be creative! */
+  display: inline-block;
+  text-align: center;
+  width:100%;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #3c82f7;
+  color: #fff;
+  box-shadow: 0 3px 0 #0f69ff;
+}

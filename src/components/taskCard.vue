@@ -83,7 +83,7 @@ export default {
       $(`#task-${selectedTaskId}`).modal('hide')
       axios({
         method: 'PATCH',
-        url: 'http://localhost:3000/tasks/' + selectedTaskId + '/?newCategory=' + newCategory,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + selectedTaskId + '/?newCategory=' + newCategory,
         headers:{
           access_token: localStorage.access_token
         }
@@ -100,7 +100,7 @@ export default {
       $(`#task-${selectedTaskId}`).modal('hide')
       axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/tasks/' + selectedTaskId,
+        url: 'https://fierce-savannah-25696.herokuapp.com/tasks/' + selectedTaskId,
         headers:{
           access_token: localStorage.access_token
         }
