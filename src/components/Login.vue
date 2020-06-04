@@ -23,6 +23,7 @@
 
 <script>
 import GoogleLogin from 'vue-google-login';
+import socket from '../config/socket'
 export default {
     name: 'login-form',
     props: ['currentPage', 'isLogin'],
@@ -48,11 +49,15 @@ export default {
     methods: {
         login() {
             const axios = require('axios');
+            socket.emit('user-connect', this.email)
             axios.post('http://localhost:3000/users/login', {
                 email: this.email,
                 password: this.password
             })
             .then(response => {
+                socket.on('user-connect', (data) => {
+                    console.log(data)
+                })
                 const { data } = response;
                 const token = data.Token;
                 localStorage.setItem('token', token);

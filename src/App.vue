@@ -26,6 +26,7 @@ import login from './components/Login';
 import listKanban from './components/ListKanban';
 import kanbanAdd from './components/KanbanAdd';
 import kanbanUpdate from './components/KanbanUpdate';
+import socket from './config/socket'
 
 export default {
     name: 'App',
@@ -35,7 +36,8 @@ export default {
         currentPage: 'login',
         categories: ['Backlog', 'ToDo', 'Doing', 'Done'],
         kanbans: [],
-        activity: ''
+        activity: '',
+        newData: []
       }
     },
     components: {
@@ -77,7 +79,6 @@ export default {
       },
       // Menarik data dari server 
       fetchKanban() {
-        console.log(this.isLogin)
         this.kanbans = [];
         const axios = require('axios');
         axios.get('http://localhost:3000/kanbans', {
@@ -88,7 +89,6 @@ export default {
           .then(kanban => {
             let { data } = kanban;
             kanban = data;
-            console.log(kanban);
             const Backlog = kanban.filter(el => el.status === 'Backlog');
             const ToDo = kanban.filter(el => el.status === 'ToDo');
             const Doing = kanban.filter(el => el.status === 'Doing');
@@ -111,7 +111,6 @@ export default {
       showEditForm(input) {
           this.activity = input;
           this.currentPage = 'editKanban';
-          console.log(this.activity)
           checkLogin();
       },
       // Menampilkan form login setelah success register
@@ -119,9 +118,17 @@ export default {
         this.currentPage = input
       }
     },
+    watch: {
+      newData () {
+        this.fetchKanban()
+      }
+    },
     created() {
       this.fetchKanban();
       this.checkLogin();
+      socket.on('fetch-kanban', (data) => {
+        this.newData = data
+      })
     }
 }
 </script>
