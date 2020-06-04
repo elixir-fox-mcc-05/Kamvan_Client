@@ -16,6 +16,7 @@
                 <div class="card-body">
                     <p class="card-text">Decription: {{ task.description }}</p>
                     <p class="card-text">Point: {{ task.point }}</p>
+                    <p class="card-text">Created By: {{ task.User.name }}</p>
                     <div class="btn-kanban">
                         <a @click.prevent="showEditForm" href="" class="btn btn-warning">
                             <i class="fas fa-edit"></i>
