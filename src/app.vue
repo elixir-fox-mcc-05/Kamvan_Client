@@ -118,7 +118,7 @@ export default {
       // console.log(dataLogin)
       axios({
         method: "post",
-        url: "http://localhost:3000/login",
+        url: "https://intense-scrubland-11112.herokuapp.com/login",
         data : {
           email : dataLogin.email,
           password : dataLogin.password
@@ -150,7 +150,7 @@ export default {
       // console.log(dataRegister)
       axios({
         method: "post",
-        url: "http://localhost:3000/register",
+        url: "https://intense-scrubland-11112.herokuapp.com/register",
         data : {
           first_name : dataRegister.first_name,
           last_name : dataRegister.last_name,
@@ -201,7 +201,7 @@ export default {
     fetchTask(){
       axios({
         method: "get",
-        url : 'http://localhost:3000/tasks',
+        url : 'https://intense-scrubland-11112.herokuapp.com/tasks',
         headers : {
           token : localStorage.token
         }
@@ -218,7 +218,7 @@ export default {
       this.showErrorAdd = false
       axios({
         method : 'post',
-        url : 'http://localhost:3000/tasks/add',
+        url : 'https://intense-scrubland-11112.herokuapp.com/tasks/add',
         headers : {
           token : localStorage.token
         },
@@ -246,7 +246,7 @@ export default {
       // console.log('jalan woi')
       axios({
         method: 'get',
-        url : `http://localhost:3000/tasks/${i}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/${i}`,
         headers : {
           token : localStorage.token
         },
@@ -301,7 +301,7 @@ export default {
       // console.log('h')
       axios({
         method: 'put',
-        url : `http://localhost:3000/tasks/update/${id}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/update/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -324,7 +324,7 @@ export default {
     deleteTask(id){
       axios({
         method: 'delete',
-        url : `http://localhost:3000/tasks/delete/${id}`,
+        url : `https://intense-scrubland-11112.herokuapp.com/tasks/delete/${id}`,
         headers : {
           token : localStorage.token
         },
@@ -353,7 +353,7 @@ export default {
             let google_token = googleUser.getAuthResponse().id_token
             axios({
               method : 'post',
-              url : 'localhost:3000/googlelogin',
+              url : 'https://intense-scrubland-11112.herokuapp.com/googlelogin',
               headers : {
                 google_token
               }
@@ -378,10 +378,8 @@ export default {
   },
   created() {
      if(this.socket === null){
-         let socket = io("http://localhost:3000")
-         //let socket = io("https://murmuring-wildwood-15232.herokuapp.com/")
-         //let socket = io("https://guarded-harbor-22113.herokuapp.com/")
-         //let socket = io("http://localhost:3000")
+        //  let socket = io("http://localhost:3000/")
+         let socket = io("https://intense-scrubland-11112.herokuapp.com")
          this.$store.commit('setSocket',socket)
        }
     this.checkstorage()
