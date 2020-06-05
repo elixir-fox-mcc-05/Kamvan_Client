@@ -1,7 +1,9 @@
 <template>
-     <div class="column" style="margin-left: 100px;" v-if="showColumn">
+     <div class="column" style="margin: 45px;" v-if="showColumn">
       <div class="columns">
-          <TaskList v-for="(category,i) in categories" :key="i" :tasks="tasks" :category="category" @detailBtn="detailBtn"></TaskList>
+        <div class="column is-3"  v-for="(category,i) in categories" :key="i">
+          <TaskList :tasks="tasks" :category="category" @detailBtn="detailBtn"></TaskList>
+          </div>
       </div>
      </div>
 </template>
