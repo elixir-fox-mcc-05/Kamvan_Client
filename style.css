@@ -1,0 +1,92 @@
+* {   
+    padding: 0;
+    margin: 0;
+    font-family: 'Slabo 27px';
+  }
+
+body{
+    padding: 10px 20px 10px 20px;
+}
+
+#nav{
+    display: flex;
+    position: sticky;
+}
+
+.nav-name {
+    margin: 0 20px 0 100px;
+    text-decoration: none;
+  }
+
+#New-Task{
+    background-color: blue;
+    color: white;
+    border-radius: 15%;
+}
+
+.container-list-status{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.container-list-status .item{
+    flex-grow: 0.24;
+    border-radius: 2%;
+    border: 1px solid blue;
+}
+
+.container-list-status .item #status{
+    background-color: red;
+    color: white;
+    border-radius: 3% 3% 0% 0%;
+}
+
+.container-list-status .item #status1{
+    background-color: orange;
+    color: white;
+}
+
+.container-list-status .item #status2{
+    background-color: blue;
+    color: white;
+}
+
+.container-list-status .item #status3{
+    background-color: green;
+    color: white;
+}
+
+.task{
+    padding: 20px 10px 5px 10px;
+}
+
+.task-title{
+    padding: 15px;
+    border: 1px solid blue;
+    border-radius: 3% 3% 0% 0%;
+}
+
+.task-body{
+    padding: 15px;
+    border: 1px solid blue;
+    border-radius: 0% 0% 3% 3%;
+}
+
+#update{
+    background-color: blue;
+    color: white;
+    border-radius: 15%;
+}
+
+#delete{
+    background-color: blue;
+    color: white;
+    border-radius: 15%;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
