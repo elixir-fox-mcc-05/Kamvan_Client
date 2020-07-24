@@ -40,7 +40,7 @@ export default {
     name: 'ButtonController',
     props: ['card'],
     data(){
-
+        return {}
     },
     methods: {
         deleteBtn(id){

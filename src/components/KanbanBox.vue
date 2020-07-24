@@ -22,7 +22,7 @@ export default {
         }
     },
     created(){
-        this.refetchTasks()  
+        // this.refetchTasks()  
     }
 }
 </script>

@@ -159,6 +159,7 @@ export default {
                     this.userData.password = ''
                     swal("Yashhh", "Hello :) welcome to kamvban", "success");
                     this.isLogin=true
+                    this.$emit('alreadyLogin')
                     this.$emit('refetchTasks')                   
                 })
                 .catch(err => {
@@ -186,6 +187,7 @@ export default {
                     this.userData.password = ''
                     swal("Yashhh", "Hello :) welcome to kamvban", "success");
                     this.isLogin=true
+                    this.$emit('alreadyLogin')
                     this.$emit('refetchTasks')                    
                 })
                 .catch(err => {
@@ -212,6 +214,7 @@ export default {
                     localStorage.setItem('token', data.token)
                     swal("Yashhh", "Hello :) welcome to kamvban", "success");
                     this.isLogin=true
+                    this.$emit('alreadyLogin')
                     this.$emit('refetchTasks') 
                 })
                 .catch(err=> {

@@ -10735,13 +10735,12 @@ var _default = {
         console.log(err);
         swal("Whopss", "Something is wrong please check your form", "error");
       });
-    },
-    refetchTasks: function refetchTasks() {
-      this.$emit('refetchTasks');
-    }
+    } // refetchTasks(){
+    //     this.$emit('refetchTasks')
+    // }
+
   },
-  created: function created() {
-    this.refetchTasks();
+  created: function created() {// this.refetchTasks()
   }
 };
 exports.default = _default;
@@ -11011,7 +11010,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = {
   name: 'ButtonController',
   props: ['card'],
-  data: function data() {},
+  data: function data() {
+    return {};
+  },
   methods: {
     deleteBtn: function deleteBtn(id) {
       var _this = this;
@@ -11280,8 +11281,7 @@ var _default = {
       this.$emit('refetchTasks');
     }
   },
-  created: function created() {
-    this.refetchTasks();
+  created: function created() {// this.refetchTasks()  
   }
 };
 exports.default = _default;
@@ -11382,8 +11382,7 @@ var _default = {
       this.$emit('refetchTasks');
     }
   },
-  created: function created() {
-    this.refetchTasks();
+  created: function created() {// this.refetchTasks()  
   }
 };
 exports.default = _default;
@@ -11502,10 +11501,26 @@ var _default = {
     NewTask: _NewTask.default,
     Category: _Category.default
   },
-  props: ['listBacklog', 'listTodo', 'listDoing', 'listDone'],
+  props: ['list'],
   data: function data() {
     return {
-      categories: ['Backlog', 'Todo', 'Doing', 'Done']
+      categories: [{
+        name: 'Backlog',
+        title: 'listBacklog',
+        key: 'backlog'
+      }, {
+        name: 'Todo',
+        title: 'listTodo',
+        key: 'todo'
+      }, {
+        name: 'Doing',
+        title: 'listDoing',
+        key: 'doing'
+      }, {
+        name: 'Done',
+        title: 'listDone',
+        key: 'done'
+      }]
     };
   },
   methods: {
@@ -11513,13 +11528,14 @@ var _default = {
       localStorage.clear();
       swal("Yashhh", "Goodbye!", "success");
       this.isLogin = false;
+      this.$emit('alreadyLogout');
     },
     refetchTasks: function refetchTasks() {
       this.$emit('refetchTasks');
     }
   },
   created: function created() {
-    this.refetchTasks(); // this.$emit('refetchTasks')
+    this.refetchTasks();
   }
 };
 exports.default = _default;
@@ -11585,27 +11601,16 @@ exports.default = _default;
         _c(
           "div",
           { staticClass: "containerBoard" },
-          [
-            _c("Category", {
-              attrs: { CategoryName: "Backlog", list: _vm.listBacklog },
-              on: { refetchTasks: _vm.refetchTasks }
-            }),
-            _vm._v(" "),
-            _c("Category", {
-              attrs: { CategoryName: "Todo", list: _vm.listTodo },
-              on: { refetchTasks: _vm.refetchTasks }
-            }),
-            _vm._v(" "),
-            _c("Category", {
-              attrs: { CategoryName: "Doing", list: _vm.listDoing },
-              on: { refetchTasks: _vm.refetchTasks }
-            }),
-            _vm._v(" "),
-            _c("Category", {
-              attrs: { CategoryName: "Done", list: _vm.listDone },
+          _vm._l(_vm.categories, function(category, index) {
+            return _c("Category", {
+              key: index,
+              attrs: {
+                CategoryName: category.name,
+                list: _vm.list[category.key]
+              },
               on: { refetchTasks: _vm.refetchTasks }
             })
-          ],
+          }),
           1
         )
       ],
@@ -11837,6 +11842,8 @@ var _default = {
         (0, _sweetalert.default)("Yashhh", "Hello :) welcome to kamvban", "success");
         _this.isLogin = true;
 
+        _this.$emit('alreadyLogin');
+
         _this.$emit('refetchTasks');
       }).catch(function (err) {
         console.log(err);
@@ -11864,6 +11871,8 @@ var _default = {
         (0, _sweetalert.default)("Yashhh", "Hello :) welcome to kamvban", "success");
         _this2.isLogin = true;
 
+        _this2.$emit('alreadyLogin');
+
         _this2.$emit('refetchTasks');
       }).catch(function (err) {
         console.log(err);
@@ -11888,6 +11897,8 @@ var _default = {
         localStorage.setItem('token', data.token);
         (0, _sweetalert.default)("Yashhh", "Hello :) welcome to kamvban", "success");
         _this3.isLogin = true;
+
+        _this3.$emit('alreadyLogin');
 
         _this3.$emit('refetchTasks');
       }).catch(function (err) {
@@ -12412,8 +12423,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
 var _default = {
   name: 'App',
   components: {
@@ -12474,13 +12483,20 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    alreadyLogin: function alreadyLogin() {
+      this.isLogin = true;
+    },
+    alreadyLogout: function alreadyLogout() {
+      this.isLogin = false;
     }
   },
   created: function created() {
     if (localStorage.token) {
-      this.isLogin = true;
       this.fetchTask();
+      this.alreadyLogin();
     } else {
+      this.alreadyLogout();
       this.isLogin = false;
     }
   }
@@ -12503,15 +12519,13 @@ exports.default = _default;
     [
       _vm.isLogin == true
         ? _c("Main", {
-            attrs: {
-              listBacklog: _vm.category.backlog,
-              listTodo: _vm.category.todo,
-              listDoing: _vm.category.doing,
-              listDone: _vm.category.done
-            },
-            on: { refetchTasks: _vm.fetchTask }
+            attrs: { list: _vm.category },
+            on: {
+              refetchTasks: _vm.fetchTask,
+              alreadyLogout: _vm.alreadyLogout
+            }
           })
-        : _c("Landing", { on: { refetchTasks: _vm.refetchTasks } })
+        : _c("Landing", { on: { alreadyLogin: _vm.alreadyLogin } })
     ],
     1
   )
@@ -12599,7 +12613,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52929" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49994" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

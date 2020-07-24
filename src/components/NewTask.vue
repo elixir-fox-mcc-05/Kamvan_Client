@@ -80,12 +80,12 @@ export default {
                      swal("Whopss", "Something is wrong please check your form", "error");
                 })
         },
-        refetchTasks(){
-            this.$emit('refetchTasks')
-        }
+        // refetchTasks(){
+        //     this.$emit('refetchTasks')
+        // }
     },
     created(){
-        this.refetchTasks()
+        // this.refetchTasks()
     }
 
 }

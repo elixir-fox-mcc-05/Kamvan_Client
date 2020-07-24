@@ -20,10 +20,10 @@
 
             <!-- Kanban Board -->
             <div class="containerBoard">
-                <Category CategoryName='Backlog' :list='listBacklog' @refetchTasks="refetchTasks"></Category>
-                <Category CategoryName='Todo' :list='listTodo' @refetchTasks="refetchTasks"></Category>
+                <Category v-for="(category, index) in categories" :key="index" :CategoryName="category.name" :list='list[category.key]' @refetchTasks="refetchTasks"></Category>
+                <!-- <Category CategoryName='Todo' :list='listTodo' @refetchTasks="refetchTasks"></Category>
                 <Category CategoryName='Doing' :list='listDoing' @refetchTasks="refetchTasks"></Category>
-                <Category CategoryName='Done' :list='listDone' @refetchTasks="refetchTasks"></Category>
+                <Category CategoryName='Done' :list='listDone' @refetchTasks="refetchTasks"></Category> -->
             </div>
         </div>
     </div>
@@ -39,10 +39,27 @@ export default {
         NewTask,
         Category
     },
-    props: ['listBacklog', 'listTodo', 'listDoing', 'listDone'],
+    props: ['list'],
     data(){
       return{
-        categories: ['Backlog', 'Todo', 'Doing', 'Done']
+        categories: [
+            {
+                name: 'Backlog',
+                title: 'listBacklog',
+                key: 'backlog'
+            }, {
+                name: 'Todo',
+                title: 'listTodo',
+                key: 'todo'
+            }, {
+                name: 'Doing',
+                title: 'listDoing',
+                key: 'doing'
+            }, {
+                name: 'Done',
+                title: 'listDone',
+                key: 'done'
+            }]
       }
 
     },
@@ -51,6 +68,7 @@ export default {
             localStorage.clear()
             swal("Yashhh", "Goodbye!", "success");
             this.isLogin = false
+            this.$emit('alreadyLogout')
         },
         refetchTasks(){
             this.$emit('refetchTasks')
@@ -58,7 +76,6 @@ export default {
     },
     created(){
         this.refetchTasks()
-        // this.$emit('refetchTasks')
     }
 }
 </script>

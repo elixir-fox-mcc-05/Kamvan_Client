@@ -1,12 +1,10 @@
 <template>
     <div>
         <Main v-if="isLogin==true"
-            :listBacklog ='category.backlog'
-            :listTodo='category.todo'
-            :listDoing='category.doing'
-            :listDone='category.done'
-            @refetchTasks="fetchTask"></Main>
-        <Landing v-else @refetchTasks="refetchTasks"></Landing>
+            :list="category"
+            @refetchTasks="fetchTask"
+            @alreadyLogout="alreadyLogout"></Main>
+        <Landing v-else @alreadyLogin="alreadyLogin"></Landing>
     </div>
 </template> 
 
@@ -80,14 +78,21 @@ export default {
                 .catch(err => {
                     console.log(err); 
                 })
+        },
+        alreadyLogin(){
+            this.isLogin=true         
+        },
+        alreadyLogout(){
+            this.isLogin=false
         }
     },
     created(){
         if(localStorage.token){
-            this.isLogin = true
             this.fetchTask()
+            this.alreadyLogin()
         }
         else {
+            this.alreadyLogout()
             this.isLogin = false
         }
     }
