@@ -68,15 +68,30 @@
 
 .taskTitle {
     font-family: 'Lemonada', cursive !important;
-    min-height: 100px;
-    margin: 10px auto;
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 5px auto;
+    padding: 5px;
+    text-align: center;
+}
+
+.taskDescription {
+    font-family: 'Lemonada', cursive !important;
+    font-size: 15px;
+    margin: 5px auto;
     padding: 5px;
     text-align: center;
 }
 
 .taskAssigned{
     min-height: 50px;
+    margin-top: 10px;
     padding: 5px 15px;
+}
+
+.taskAuthor{
+    min-height: 50px;
+    padding: 0px 15px;
 }
 
 .deleteBtn {

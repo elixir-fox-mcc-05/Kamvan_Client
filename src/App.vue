@@ -88,7 +88,6 @@ export default {
     },
     created(){
         if(localStorage.token){
-            this.fetchTask()
             this.alreadyLogin()
         }
         else {

@@ -15,15 +15,11 @@
             </nav>
             <!-- New Task Form -->
             <NewTask @refetchTasks="refetchTasks"></NewTask>
-        
             <!-- End Task Form -->
 
             <!-- Kanban Board -->
             <div class="containerBoard">
                 <Category v-for="(category, index) in categories" :key="index" :CategoryName="category.name" :list='list[category.key]' @refetchTasks="refetchTasks"></Category>
-                <!-- <Category CategoryName='Todo' :list='listTodo' @refetchTasks="refetchTasks"></Category>
-                <Category CategoryName='Doing' :list='listDoing' @refetchTasks="refetchTasks"></Category>
-                <Category CategoryName='Done' :list='listDone' @refetchTasks="refetchTasks"></Category> -->
             </div>
         </div>
     </div>

@@ -22,6 +22,10 @@
                         <input type="text" class="form-control" id="task-title" v-model="task.title" required>
                         </div>
                         <div class="form-group">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="task-assigned" v-model="task.description"></textarea>
+                        </div>
+                        <div class="form-group">
                         <label for="message-text" class="col-form-label">Assigned To:</label>
                         <textarea class="form-control" id="task-assigned" v-model="task.assignedTo"></textarea>
                         </div>
@@ -49,6 +53,7 @@ export default {
         return {
             task: {
                 title: '',
+                description: '',
                 assignedTo:'',
             }
         }
@@ -56,6 +61,7 @@ export default {
     methods: {
         createTask(){
             let title = this.task.title
+            let description = this.task.description
             let assignedTo = this.task.assignedTo
 
             axios({
@@ -66,26 +72,21 @@ export default {
                 },
                 data: {
                     title,
+                    description,
                     assignedTo
                 }
             })
                 .then(({data}) => {
                     this.task.title=''
+                    this.task.description=''
                     this.task.assignedTo=''
-                    swal("Yashhh", "Successfully create new task", "success");
+                    swal("Yashhh", data.msg, "success");
                     this.$emit('refetchTasks')
                 })
                  .catch(err => {
-                     console.log(err);
-                     swal("Whopss", "Something is wrong please check your form", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
                 })
-        },
-        // refetchTasks(){
-        //     this.$emit('refetchTasks')
-        // }
-    },
-    created(){
-        // this.refetchTasks()
+        }
     }
 
 }

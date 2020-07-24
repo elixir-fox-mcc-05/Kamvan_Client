@@ -163,8 +163,7 @@ export default {
                     this.$emit('refetchTasks')                   
                 })
                 .catch(err => {
-                    console.log(err);
-                    swal("Whopss", "Can't login, please try again!", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
                 })
         },
 
@@ -191,16 +190,13 @@ export default {
                     this.$emit('refetchTasks')                    
                 })
                 .catch(err => {
-                    console.log(err);
-                    swal("Whopss", "Can't register, please try again!", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
                 })
         },
 
         onSignInSuccess(googleUser){
             const profile = googleUser.getBasicProfile();
-            const token = googleUser.getAuthResponse().id_token;
-            console.log(profile, 'PROFILE', token, 'TOKEN');
-            
+            const token = googleUser.getAuthResponse().id_token; 
             
             axios({
                 method: 'post',
@@ -210,7 +206,6 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data);
                     localStorage.setItem('token', data.token)
                     swal("Yashhh", "Hello :) welcome to kamvban", "success");
                     this.isLogin=true
@@ -218,15 +213,13 @@ export default {
                     this.$emit('refetchTasks') 
                 })
                 .catch(err=> {
-                    console.log(err);
                     swal("Whopss", "Can't login, please try again!", "error");
                 })
             
         },
 
         onSignInError(err){
-            console.log(err);
-            swal("Whopss", "Can't login, please try again!", "error");
+            swal("Whopss", err.error, "error");
         }
     }
 }

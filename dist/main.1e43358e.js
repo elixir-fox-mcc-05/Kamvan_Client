@@ -10697,6 +10697,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   name: 'NewTask',
   components: {},
@@ -10704,6 +10708,7 @@ var _default = {
     return {
       task: {
         title: '',
+        description: '',
         assignedTo: ''
       }
     };
@@ -10713,6 +10718,7 @@ var _default = {
       var _this = this;
 
       var title = this.task.title;
+      var description = this.task.description;
       var assignedTo = this.task.assignedTo;
       (0, _axios.default)({
         method: 'post',
@@ -10722,25 +10728,21 @@ var _default = {
         },
         data: {
           title: title,
+          description: description,
           assignedTo: assignedTo
         }
       }).then(function (_ref) {
         var data = _ref.data;
         _this.task.title = '';
+        _this.task.description = '';
         _this.task.assignedTo = '';
-        swal("Yashhh", "Successfully create new task", "success");
+        swal("Yashhh", data.msg, "success");
 
         _this.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err);
-        swal("Whopss", "Something is wrong please check your form", "error");
+        swal("Whopss", err.response.data.errors[0].message, "error");
       });
-    } // refetchTasks(){
-    //     this.$emit('refetchTasks')
-    // }
-
-  },
-  created: function created() {// this.refetchTasks()
+    }
   }
 };
 exports.default = _default;
@@ -10830,6 +10832,43 @@ exports.default = _default;
                               return
                             }
                             _vm.$set(_vm.task, "title", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-form-label",
+                          attrs: { for: "message-text" }
+                        },
+                        [_vm._v("Description:")]
+                      ),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.task.description,
+                            expression: "task.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "task-assigned" },
+                        domProps: { value: _vm.task.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.task,
+                              "description",
+                              $event.target.value
+                            )
                           }
                         }
                       })
@@ -11025,13 +11064,11 @@ var _default = {
         }
       }).then(function (_ref) {
         var data = _ref.data;
-        console.log(data);
-        swal("Yashhh", "Successfully deleted your task", "success");
+        swal("Yashhh", data.msg, "success");
 
         _this.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err, 'Error');
-        swal("Whopss", "Dont touch someone's task", "error");
+        swal("Whopss", err.response.data.errors[0].message, "error");
       });
     },
     moveUp: function moveUp(id) {
@@ -11044,13 +11081,11 @@ var _default = {
           access_token: localStorage.token
         }
       }).then(function (data) {
-        console.log(data);
-        swal("Yashhh", "Successfully updated your task", "success");
+        swal("Yashhh", data.data.msg, "success");
 
         _this2.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err, 'Error');
-        swal("Whopss", "Dont touch someone's task", "error");
+        swal("Whopss", err.response.data.errors[0].message, "error");
       });
     },
     moveDown: function moveDown(id) {
@@ -11063,13 +11098,11 @@ var _default = {
           access_token: localStorage.token
         }
       }).then(function (data) {
-        console.log(data);
-        swal("Yashhh", "Successfully updated your task", "success");
+        swal("Yashhh", data.data.msg, "success");
 
         _this3.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err);
-        swal("Whopss", "Dont touch someone's task", "error");
+        swal("Whopss", err.response.data.errors[0].message, "error");
       });
     }
   }
@@ -11270,6 +11303,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   name: 'KanbanBox',
   components: {
@@ -11305,8 +11340,16 @@ exports.default = _default;
         _vm._v(" " + _vm._s(_vm.taskCard.title) + " ")
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "taskDescription" }, [
+        _vm._v(" " + _vm._s(_vm.taskCard.description) + " ")
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "taskAssigned" }, [
         _vm._v("Assigned To: " + _vm._s(_vm.taskCard.assignedTo) + " ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "taskAuthor" }, [
+        _vm._v("Author: " + _vm._s(_vm.taskCard.author) + " ")
       ]),
       _vm._v(" "),
       _c("ButtonController", {
@@ -11464,10 +11507,6 @@ var _Category = _interopRequireDefault(require("../components/Category"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -11846,8 +11885,7 @@ var _default = {
 
         _this.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err);
-        (0, _sweetalert.default)("Whopss", "Can't login, please try again!", "error");
+        (0, _sweetalert.default)("Whopss", err.response.data.errors[0].message, "error");
       });
     },
     register: function register() {
@@ -11875,8 +11913,7 @@ var _default = {
 
         _this2.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err);
-        (0, _sweetalert.default)("Whopss", "Can't register, please try again!", "error");
+        (0, _sweetalert.default)("Whopss", err.response.data.errors[0].message, "error");
       });
     },
     onSignInSuccess: function onSignInSuccess(googleUser) {
@@ -11884,7 +11921,6 @@ var _default = {
 
       var profile = googleUser.getBasicProfile();
       var token = googleUser.getAuthResponse().id_token;
-      console.log(profile, 'PROFILE', token, 'TOKEN');
       (0, _axios.default)({
         method: 'post',
         url: 'https://fierce-reef-02367.herokuapp.com/users/googleSign',
@@ -11893,7 +11929,6 @@ var _default = {
         }
       }).then(function (_ref3) {
         var data = _ref3.data;
-        console.log(data);
         localStorage.setItem('token', data.token);
         (0, _sweetalert.default)("Yashhh", "Hello :) welcome to kamvban", "success");
         _this3.isLogin = true;
@@ -11902,13 +11937,11 @@ var _default = {
 
         _this3.$emit('refetchTasks');
       }).catch(function (err) {
-        console.log(err);
         (0, _sweetalert.default)("Whopss", "Can't login, please try again!", "error");
       });
     },
     onSignInError: function onSignInError(err) {
-      console.log(err);
-      (0, _sweetalert.default)("Whopss", "Can't login, please try again!", "error");
+      (0, _sweetalert.default)("Whopss", err.error, "error");
     }
   }
 };
@@ -12493,7 +12526,6 @@ var _default = {
   },
   created: function created() {
     if (localStorage.token) {
-      this.fetchTask();
       this.alreadyLogin();
     } else {
       this.alreadyLogout();
@@ -12613,7 +12645,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52627" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

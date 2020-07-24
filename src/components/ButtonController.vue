@@ -52,14 +52,12 @@ export default {
                 }
             })
                 .then(({data}) => {
-                    console.log(data);
-                    swal("Yashhh", "Successfully deleted your task", "success");
+                    swal("Yashhh", data.msg, "success");
                     this.$emit('refetchTasks')
                     
                 })
                 .catch(err => {
-                    console.log(err, 'Error');
-                    swal("Whopss", "Dont touch someone's task", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
                     
                 })
         },
@@ -73,13 +71,11 @@ export default {
                 }
             })
                 .then((data) => {
-                    console.log(data);
-                    swal("Yashhh", "Successfully updated your task", "success");
+                    swal("Yashhh", data.data.msg, "success");
                     this.$emit('refetchTasks')
                 })
                 .catch(err => {
-                    console.log(err, 'Error');
-                    swal("Whopss", "Dont touch someone's task", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
  
                 })
         },
@@ -93,14 +89,12 @@ export default {
                 }
             })
                 .then((data) => {
-                    console.log(data);
-                    swal("Yashhh", "Successfully updated your task", "success");
+                    swal("Yashhh", data.data.msg, "success");
                     this.$emit('refetchTasks')
 
                 })
                 .catch(err => {
-                    console.log(err);
-                    swal("Whopss", "Dont touch someone's task", "error");
+                    swal("Whopss", err.response.data.errors[0].message, "error");
                 })
         }
     }
