@@ -1,4 +1,4 @@
-# Kamvan_Client
+# Kanban_Client
 
 ## Authors
 
