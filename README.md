@@ -7,7 +7,7 @@
 
 ## Client URL :
 
-https:// (status : inactive
+https:// (status : inactive)
 
 ## Server URL :
 
