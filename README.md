@@ -7,8 +7,8 @@
 
 ## Client URL :
 
-https://client-kamvan-yudhaaw96.firebaseapp.com/ (status : active)
+https:// (status : inactive
 
 ## Server URL :
 
-https://server-kamvan-yudhaaw96.herokuapp.com/ (status : active)
+https:// (status : inactive)
