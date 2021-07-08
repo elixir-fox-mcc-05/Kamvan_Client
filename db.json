@@ -1,0 +1,31 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Pudge",
+      "type": "Strength",
+      "imageURL": "https://gamepedia.cursecdn.com/dota2_gamepedia/c/c0/Pudge_icon.png",
+      "category" : "Backlog"
+    },
+    {
+      "id": 2,
+      "name": "Shadow Fiend",
+      "type": "Agility",
+      "imageURL": "https://gamepedia.cursecdn.com/dota2_gamepedia/3/36/Shadow_Fiend_icon.png",
+      "category" : "Todo"
+    },
+    {
+      "id": 3,
+      "name": "Mars",
+      "type": "Strength",
+      "imageURL": "https://gamepedia.cursecdn.com/dota2_gamepedia/9/9d/Mars_icon.png",
+      "category": "sleep"
+    },
+    {
+      "id": 4,
+      "name": "Meepo",
+      "type": "Agility",
+      "imageURL": "https://gamepedia.cursecdn.com/dota2_gamepedia/8/85/Meepo_icon.png"
+    } 
+  ]
+}
